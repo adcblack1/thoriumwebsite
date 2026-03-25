@@ -1,0 +1,29 @@
+MARKETS
+
+# $300 billion vanished from software stocks. Is this the SaaS-pocalypse?
+
+Anthropic's latest AI upgrade erased a chunk of the enterprise software market in a single week.
+
+On Monday, a wave of selling slammed software stocks after Anthropic [unveiled Claude Opus 4.6](https://www.anthropic.com/news/claude-is-a-space-to-think) and its "agent teams" feature, which lets users spin up AI agents that autonomously split up tasks and work on them in parallel. The timing was brutal. Investors, already jittery about whether traditional software companies could survive the agentic AI era, took one look at what these tools could do — financial analysis, document creation, agentic search, working across massive codebases — and panicked.
+
+Salesforce fell to a 52-week low around $187. ServiceNow, Workday and other enterprise stalwarts [got dragged down with it](https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-02-03-2026). European software stocks [weren't spared either](https://www.reuters.com/business/media-telecom/ai-concerns-pummel-european-software-stocks-2026-02-03/), with SAP, Dassault Systèmes and others sliding as investors reassessed the entire sector. By midweek, roughly [$300 billion in market value had evaporated](https://www.forbes.com/sites/donmuir/2026/02/04/300-billion-evaporated-the-saaspocalypse-has-begun/) from software companies globally.
+
+"The software companies were assumed to be winners from AI. But all of a sudden, you start to worry about whether you can earn the money back from your AI investments, and/or will you be outsmarted," Lars Skovgaard, senior investment strategist at Danske Bank, [told Reuters](https://www.reuters.com/business/media-telecom/ai-concerns-pummel-european-software-stocks-2026-02-03/).
+
+The fear isn't abstract. When an AI agent team can autonomously handle the kind of work that once required a Salesforce license, a Workday subscription and a ServiceNow contract, the math starts to look uncomfortable for the companies selling those subscriptions. Anthropic's Scott White, head of product for enterprise, [told Reuters](https://www.reuters.com/business/retail-consumer/anthropic-releases-ai-upgrade-market-punishes-software-stocks-2026-02-05/) that the company wants to "partner and actually lower the floor to get more value out of those tools" — a diplomatic way of saying that AI agents are coming for workflows that SaaS companies currently own.
+
+This wasn't just Anthropic. OpenAI released GPT-5.3-Codex the same day, expanding its coding agent into a tool that can handle slide decks, spreadsheets, debugging and deployment.
+
+The one-two punch felt less like a coincidence and more like a signal.
+
+But not everyone is buying the doom narrative. Nvidia CEO Jensen Huang [pushed back hard](https://www.wsj.com/livecoverage/stock-market-today-dow-sp-500-nasdaq-02-04-2026/card/nvidia-s-huang-says-it-s-illogical-to-think-ai-will-replace-software-tools-FqQnxoNLLQqwGXkEKM6z) during the selloff, calling the idea that AI would replace software tools "the most illogical thing in the world." His argument: AI doesn't eliminate the need for software — it creates more of it. More agents means more infrastructure, more orchestration layers, more tooling. Nvidia's stock [jumped 7%](https://www.cnbc.com/2026/02/06/nvidia-rises-7percent-as-ceo-says-660-billion-capex-buildout-is-sustainable.html) as he made the case that the $660 billion AI infrastructure buildout is sustainable.
+
+The pressure on software valuations may have staying power. Baader Bank analyst Maximilien Pascaud [warned](https://www.reuters.com/business/media-telecom/ai-concerns-pummel-european-software-stocks-2026-02-03/) that "deflationary pressure on software-sector multiples could persist as long as the organic monetisation of AI is not clearly demonstrated."
+
+**Enterprises are already voting with their budgets.** According to a [McKinsey interview](https://www.mckinsey.com/industries/financial-services/our-insights/jpmorgan-chases-derek-waldron-on-building-an-ai-first-bank-culture) published this month, JPMorgan Chase — backed by an $18 billion annual technology budget — is "rewiring itself for a new era, harnessing agentic and gen AI to perform complex, multistep work." Derek Waldron, the bank's chief analytics officer, described the push as driven by a belief that "gen AI would be a highly democratizing technology." Translation: if JPMorgan can replace licensed software seats with AI agents running tasks internally, it will.
+
+An [OpenAI enterprise report](https://openai.com/index/the-state-of-enterprise-ai-2025-report/) paints a similar picture. Organizations are moving past pilots and into production deployments, and the use cases that are sticking — document processing, code generation, workflow automation — overlap directly with what SaaS vendors sell today.
+
+**Our Valley View:** The market's reaction was violent, but it wasn't irrational. AI agents that can autonomously handle financial analysis, document creation and cross-application workflows are a direct threat to the per-seat subscription model that built the modern software industry. Huang is right that AI creates demand for *new* software. But he's sidestepping the question that actually spooked investors: what happens to the *old* software? The SaaS companies that survive will be the ones that embed AI agents into their own products faster than those agents can replace them. The ones that can't will find themselves in a race they've already lost. Adapt or get vibe-coded out of existence, dear reader — that's the new law of enterprise software.
+
+---
