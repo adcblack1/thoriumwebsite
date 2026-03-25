@@ -1,0 +1,140 @@
+[
+  {
+    "id": "march-20-2026",
+    "slug": "march-20-2026",
+    "title": "Thorium Valley | March 20, 2026",
+    "date": "March 20, 2026",
+    "intro": "Welcome back. An AI agent at Meta leaked restricted employee data last week — not from a hack, but because the agent didn't know it shouldn't. Existing security tools couldn't distinguish normal behavior from a breach until the damage was done, and that's a problem every company deploying agents is about to face. Microsoft is retreating on a different front: over 11,000 people starred a GitHub project to rip AI out of Windows, and the company is now pulling Copilot from consumer apps while quietly redirecting everything toward enterprise, where the money is. Washington wants to write one AI rulebook for all of it, which might be the most consequential story here if anyone can agree on what goes in it.",
+    "toc": [
+      "Meta's rogue AI agent is everyone's problem now",
+      "Microsoft is done shoving Copilot into everything",
+      "Washington wants one AI rulebook for everyone"
+    ],
+    "article_slugs": [
+      "metas-rogue-ai-agent-is-everyones-problem-now",
+      "microsoft-is-done-shoving-copilot-into-everything",
+      "washington-wants-one-ai-rulebook-the-states-arent-having-it"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-03-23.png",
+    "published_at": "2026-03-20T13:00:00.000Z",
+    "updated_at": "2026-03-20T13:00:00.000Z",
+    "status": "published"
+  },
+  {
+    "id": "march-10-2026",
+    "slug": "march-10-2026",
+    "title": "Thorium Valley | March 10, 2026",
+    "date": "March 10, 2026",
+    "intro": "Welcome back. A survey of nearly 6,000 executives found over 80% of firms report zero productivity gains from AI—even as 70% actively use it and half a trillion dollars flows into infrastructure this year. Goldman coined a term for the disconnect: \"AI-nxiety.\" Nvidia is stepping back too, with Jensen Huang saying the company is done funding AI labs. He framed it as IPO timing, though the less comfortable read involves a chipmaker bankrolling its own biggest customers. Then two OpenAI engineers built an internal data agent with the same tools the company sells externally—and it quietly became the most-used product in the building. Somewhere between the trillion-dollar uncertainty and the 82-second query, there's probably a realistic picture of where AI actually stands.",
+    "toc": [
+      "Goldman can't find AI's productivity boost",
+      "Nvidia says it's done investing in AI labs",
+      "Two engineers built OpenAI's most-used internal tool"
+    ],
+    "article_slugs": [
+      "goldman-cant-find-ais-productivity-boost",
+      "nvidia-says-its-done-investing-in-ai-labs",
+      "two-engineers-built-openais-most-used-internal-tool"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-03-10.png",
+    "published_at": "2026-03-10T13:00:00.000Z",
+    "updated_at": "2026-03-10T13:00:00.000Z",
+    "status": "published"
+  },
+  {
+    "id": "march-04-2026",
+    "slug": "march-04-2026",
+    "title": "Thorium Valley | March 04, 2026",
+    "date": "March 04, 2026",
+    "intro": "Welcome back. OpenAI is having a week where every headline looks great until you read the second paragraph. The company replaced Anthropic as the Pentagon's AI provider—then Sam Altman called his own deal \"opportunistic and sloppy\" and rushed to add the surveillance guardrails it had skipped. GPT-5.3 Instant arrives with OpenAI conceding its chatbot was preachy and over-cautious—a fix that conveniently lands the same week Claude hit No. 1 on the App Store. And that $110B funding round? Nvidia slashed its commitment by 70%, Amazon tied big chunks to milestone triggers, and Microsoft sat it out entirely. Three massive moves, three sets of fine print.",
+    "toc": [
+      "OpenAI calls its own Pentagon deal 'sloppy'",
+      "ChatGPT just got a personality and accuracy overhaul",
+      "Inside OpenAI's $110B round, investors are hedging"
+    ],
+    "article_slugs": [
+      "openai-calls-its-own-pentagon-deal-sloppy",
+      "chatgpt-just-got-a-personality-and-accuracy-overhaul",
+      "inside-openais-110b-round-investors-are-hedging"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-03-04.png",
+    "published_at": "2026-03-04T13:00:00.000Z",
+    "updated_at": "2026-03-04T13:00:00.000Z",
+    "status": "published"
+  },
+  {
+    "id": "february-27-2026",
+    "slug": "february-27-2026",
+    "title": "Thorium Valley | February 27, 2026",
+    "date": "February 27, 2026",
+    "intro": "Welcome back. The Pentagon has given Anthropic until Friday to drop Claude's safety restrictions for military use — or face the Defense Production Act or a blacklist from federal contractors. The legal footing is shaky, but the pressure is real. Meanwhile, Anthropic just plugged Claude Cowork into Salesforce, Slack, Excel, and a dozen other enterprise tools, betting that AI agents failed in 2025 not because the idea was wrong but because the approach was. And Google quietly shipped something Apple promised two years ago and never delivered: Gemini can now book your Uber, order your DoorDash, and run real errands inside Android apps. It still asks before it spends your money, though.",
+    "toc": [
+      "Anthropic's Friday deadline: bend or break",
+      "Claude Cowork plugs into your entire workflow",
+      "Gemini can now run your errands on Android"
+    ],
+    "article_slugs": [
+      "anthropics-friday-deadline-bend-or-break",
+      "claude-cowork-now-finishes-what-it-starts",
+      "gemini-can-now-run-your-errands-on-android"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-02-27.png",
+    "published_at": "2026-02-27T13:00:00.000Z",
+    "updated_at": "2026-02-27T13:00:00.000Z",
+    "status": "published"
+  },
+  {
+    "id": "february-24-2026",
+    "slug": "february-24-2026",
+    "title": "Thorium Valley | February 24, 2026",
+    "date": "February 24, 2026",
+    "intro": "Welcome back. Artificial Analysis just overhauled its Intelligence Index — the scorecard many use to rank AI models — and the results are humbling. They replaced older academic-style benchmarks with real-world evaluations, and suddenly top models are scoring 50 or below on a 100-point scale. Some of these same models were posting scores in the high 80s on the old tests. Turns out they'd gotten really good at passing exams without necessarily being useful. The AI equivalent of acing the SAT but struggling to file your taxes.",
+    "toc": [
+      "Apple Paid Google $1B. Siri Still Doesn't Work.",
+      "Most AI Agent Projects Are Headed for the Trash",
+      "The People Building AI Are Walking Out"
+    ],
+    "article_slugs": [
+      "apple-paid-google-1b-siri-still-doesnt-work",
+      "most-ai-agent-projects-are-headed-for-the-trash",
+      "the-people-building-ai-are-walking-out"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-02-24.png",
+    "published_at": "2026-02-24T13:00:00.000Z",
+    "updated_at": "2026-02-24T13:00:00.000Z",
+    "status": "published"
+  },
+  {
+    "id": "february-23-2026",
+    "slug": "february-23-2026",
+    "title": "Thorium Valley | February 23, 2026",
+    "date": "February 23, 2026",
+    "intro": "Welcome back. Jensen Huang is doing the tech CEO equivalent of shaking a wrapped present in front of you. In an interview last week, the NVIDIA chief <a href=\"https://www.kedglobal.com/artificial-intelligence/newsView/ked202602190001\" style=\"color:#5170ff;text-decoration:none;\">teased</a> that \"a chip that will surprise the world\" will be unveiled at GTC next month. No specifics—that would ruin the buildup. But the AI chip race is moving fast enough that even a grain of salt might be underselling the hype.",
+    "toc": [
+      "The Most Popular AI Tool Is a Security Disaster",
+      "China's AI Video App Just Lawyered Up Hollywood",
+      "Use AI or Lose Your Promotion. Accenture Made It Official."
+    ],
+    "article_slugs": [
+      "big-tech-is-banning-openclaw",
+      "bytedance-made-tom-cruise-fight-brad-pitt-hollywood-is-not-amused",
+      "use-ai-or-lose-your-promotion-accenture-made-it-official-"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-02-23.png",
+    "published_at": "2026-02-23T13:00:00.000Z",
+    "updated_at": "2026-02-22T13:00:00.000Z",
+    "status": "published"
+  }
+]

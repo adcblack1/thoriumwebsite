@@ -1,26 +1,467 @@
 @import "tailwindcss";
 
+/* ============================================
+   THORIUM VALLEY - DESIGN TOKENS
+   ============================================
+
+   CRITICAL: These are the ONLY allowed values.
+   - Background: #ffffff (white)
+   - Text/Borders: #1b1b1b (near-black)
+   - Accent: #5170ff (blue)
+
+   NO OTHER COLORS ALLOWED.
+   ============================================ */
+
+@font-face {
+  font-family: 'Times New Roman MT Std';
+  src: url('/fonts/TimesNewRomanMTStdRegular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Times New Roman MT Std';
+  src: url('/fonts/TimesNewRomanMTStdBold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Times New Roman MT Std';
+  src: url('/fonts/TimesNewRomanMTStdItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* === BRAND COLORS (ONLY THESE 3) === */
+  --color-background: #ffffff;
+  --color-text: #1b1b1b;
+  --color-accent: #5170ff;
+
+  /* Opacity variants */
+  --color-text-muted: rgba(27, 27, 27, 0.6);
+  --color-text-subtle: rgba(27, 27, 27, 0.4);
+  --color-border: rgba(27, 27, 27, 0.2);
+  --color-border-light: rgba(27, 27, 27, 0.1);
+
+  /* === TYPOGRAPHY === */
+  --font-times: 'Times New Roman MT Std', 'Times New Roman', Georgia, serif;
+
+  /* === SPACING (8px base) === */
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --spacing-24: 6rem;
+
+  /* === ANIMATION === */
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent: #5170ff;
+  --color-tv-bg: #ffffff;
+  --color-tv-text: #1b1b1b;
+  --color-tv-muted: rgba(27, 27, 27, 0.6);
+  --color-tv-border: rgba(27, 27, 27, 0.2);
+  --font-times: 'Times New Roman MT Std', 'Times New Roman', Georgia, serif;
+  --font-inter: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-inter {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+}
+
+.font-times {
+  font-family: var(--font-times);
+}
+
+/* Times New Roman MT Bold with extra emphasis */
+.font-times-bold {
+  font-family: var(--font-times);
+  font-weight: 700;
+  -webkit-text-stroke: 0.5px currentColor;
+}
+
+/* Group hover accent - workaround for Tailwind v4 */
+.group:hover .group-hover\:text-accent {
+  color: #5170ff !important;
+}
+
+.hover\:text-accent:hover {
+  color: #5170ff !important;
+}
+
+/* === ARTICLE/NEWSLETTER LIST INDENTATION === */
+.prose ul,
+.prose ol {
+  padding-left: 1.75em;
+}
+
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
+.prose li {
+  margin-bottom: 0.5em;
+}
+
+
+/* === TYPOGRAPHY DEFAULTS === */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-times);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 1.875rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.625;
+  color: var(--color-text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--duration-fast) ease;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+strong,
+b {
+  font-weight: 700;
+}
+
+/* === ANIMATIONS === */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes subtle-float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.6s var(--ease-out) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s var(--ease-out) forwards;
+}
+
+.globe-container {
+  animation: subtle-float 6s ease-in-out infinite;
+}
+
+/* Stagger delays */
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* === RESPONSIVE === */
+@media (min-width: 1025px) {
+  h1 {
+    font-size: 3.75rem;
+  }
+}
+
+/* ============================================
+   DECORATIVE VISUAL ELEMENTS
+   Modern tech aesthetics (QuickNode/Stripe style)
+   ============================================ */
+
+/* Dot Grid Pattern - use as background overlay */
+.dot-grid {
+  background-image: radial-gradient(circle, rgba(27, 27, 27, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Subtle Line Grid - for section backgrounds */
+.line-grid {
+  background-image:
+    linear-gradient(rgba(27, 27, 27, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 27, 27, 0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Gradient Blur Blob - position absolutely in sections */
+.gradient-blur {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(81, 112, 255, 0.15), transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.gradient-blur-sm {
+  width: 200px;
+  height: 200px;
+  filter: blur(40px);
+}
+
+.gradient-blur-lg {
+  width: 600px;
+  height: 600px;
+  filter: blur(80px);
+}
+
+/* Accent line - horizontal decorative bar */
+.accent-line {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #5170ff, transparent);
+  width: 100%;
+}
+
+/* Card hover glow effect */
+.card-glow {
+  position: relative;
+  transition: box-shadow 0.3s ease;
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(135deg, rgba(81, 112, 255, 0), rgba(81, 112, 255, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.card-glow:hover::before {
+  opacity: 1;
+}
+
+/* Subtle border glow on hover */
+.border-glow:hover {
+  box-shadow: 0 0 0 1px rgba(81, 112, 255, 0.3);
+}
+
+/* Floating animation for decorative elements */
+@keyframes float-slow {
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+
+  25% {
+    transform: translateY(-15px) translateX(5px);
+  }
+
+  50% {
+    transform: translateY(-5px) translateX(-5px);
+  }
+
+  75% {
+    transform: translateY(-20px) translateX(3px);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 20s ease-in-out infinite;
+}
+
+/* Pulse glow for accent elements */
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* ─── LEGAL PAGES (Terms / Privacy) ─── */
+.legal-body,
+.legal-body * {
+  color: #1b1b1b !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif !important;
+}
+.legal-body h2 {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif !important;
+  font-size: 28px !important;
+  font-weight: 700 !important;
+  margin-top: 2.5em !important;
+  margin-bottom: 0.8em !important;
+  letter-spacing: -0.03em !important;
+}
+.legal-body h3 {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  margin-top: 1.8em !important;
+  margin-bottom: 0.6em !important;
+}
+.legal-body p {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  line-height: 1.9 !important;
+  margin-bottom: 1.5em !important;
+}
+.legal-body ul,
+.legal-body ol {
+  font-size: 18px !important;
+  font-weight: 400 !important;
+  line-height: 1.9 !important;
+  margin-bottom: 1.5em !important;
+  padding-left: 1.5em !important;
+}
+.legal-body li {
+  margin-bottom: 0.5em !important;
+}
+.legal-body a {
+  color: #5170ff !important;
+  text-decoration: underline !important;
+}
+.legal-body strong {
+  font-weight: 700 !important;
+}
+.legal-body .caps-notice {
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  line-height: 1.8 !important;
+  background: #f5f5f5 !important;
+  padding: 1.2em 1.5em !important;
+  border-left: 4px solid #5170ff !important;
+  margin-bottom: 1.5em !important;
+}
+.legal-body table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  margin-bottom: 1.5em !important;
+  font-size: 16px !important;
+}
+.legal-body th,
+.legal-body td {
+  border: 1px solid #e0e0e0 !important;
+  padding: 10px 14px !important;
+  text-align: left !important;
+  vertical-align: top !important;
+}
+.legal-body th {
+  background: #f5f5f5 !important;
+  font-weight: 700 !important;
 }

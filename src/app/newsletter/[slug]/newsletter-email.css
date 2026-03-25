@@ -1,0 +1,377 @@
+/* ═══════════════════════════════════════════════════════════════
+   NEWSLETTER EMAIL TEMPLATE — Thorium Valley
+   Uses !important to override globals.css / Tailwind base styles
+   ═══════════════════════════════════════════════════════════════ */
+
+.nl-shell {
+    max-width: 670px;
+    margin: 0 auto;
+    padding: 10px;
+    background: #FFFFFF;
+    font-family: var(--font-inter) !important;
+    color: #2D2D2D !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── Reset ALL globals inside newsletter ── */
+.nl-shell h1,
+.nl-shell h2,
+.nl-shell h3,
+.nl-shell h4,
+.nl-shell h5,
+.nl-shell h6 {
+    font-family: var(--font-times) !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 1.25 !important;
+    letter-spacing: normal !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.nl-shell p {
+    font-family: var(--font-inter) !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    color: #2D2D2D !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.nl-shell a {
+    transition: none !important;
+}
+
+/* ── Header ───────────────────────────────── */
+.nl-header {
+    padding: 15px 15px 0;
+}
+
+.nl-header-meta {
+    text-align: right;
+    font-family: var(--font-inter) !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+    color: #2D2D2D;
+    padding-bottom: 12px;
+}
+
+/* ── Logo ─────────────────────────────────── */
+.nl-logo {
+    padding: 8px 15px 16px;
+    text-align: center;
+}
+
+.nl-logo h1 {
+    font-family: var(--font-times) !important;
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    line-height: 35px !important;
+    color: var(--color-text) !important;
+    margin: 0 !important;
+    letter-spacing: -0.05em !important;
+}
+
+/* ── Intro ────────────────────────────────── */
+.nl-intro {
+    padding: 0 15px;
+    text-align: left;
+    word-break: break-word;
+}
+
+.nl-intro p {
+    font-family: var(--font-inter) !important;
+    font-weight: 400 !important;
+    color: #2D2D2D !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    padding: 8px 0 !important;
+    margin: 0 !important;
+}
+
+.nl-intro strong,
+.nl-intro b {
+    font-weight: 700 !important;
+}
+
+.nl-intro a {
+    color: var(--color-accent) !important;
+    text-decoration: underline !important;
+}
+
+/* ── TOC ──────────────────────────────────── */
+.nl-toc {
+    padding: 0 15px;
+}
+
+.nl-toc-label {
+    font-family: var(--font-inter) !important;
+    font-weight: 700 !important;
+    font-size: 16px !important;
+    color: #2D2D2D !important;
+    padding: 10px 0 !important;
+    margin: 0 !important;
+}
+
+.nl-toc h2 {
+    font-family: var(--font-times) !important;
+    font-weight: 400 !important;
+    font-size: 24px !important;
+    line-height: 1.25 !important;
+    color: #2A2A2A !important;
+    padding: 4px 0 !important;
+    margin: 0 !important;
+}
+
+.nl-toc h2 .nl-toc-num {
+    color: var(--color-accent) !important;
+}
+
+/* ── Article Card ─────────────────────────── */
+.nl-card {
+    background-color: transparent;
+    border: 1px solid #CDCDCD;
+    border-radius: 10px;
+    margin: 5px 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.nl-card-category {
+    padding: 10px 15px 0;
+    text-align: left;
+}
+
+.nl-card-category p {
+    font-family: var(--font-inter) !important;
+    color: var(--color-accent) !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    line-height: 24px !important;
+    padding: 10px 0 !important;
+    margin: 0 !important;
+}
+
+.nl-card-title {
+    padding: 0 15px;
+    text-align: left;
+}
+
+.nl-card-title h1 {
+    font-family: var(--font-times) !important;
+    font-weight: 400 !important;
+    font-size: 28px !important;
+    line-height: 35px !important;
+    color: #2A2A2A !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.nl-card-title h1 a {
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+.nl-card-title h1 a:hover {
+    color: var(--color-accent) !important;
+}
+
+.nl-card-hero {
+    padding: 8px 15px;
+    text-align: center;
+}
+
+.nl-card-hero a {
+    display: block;
+}
+
+.nl-card-hero img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.nl-card-body {
+    padding: 0 15px;
+    text-align: left;
+    word-break: break-word;
+}
+
+.nl-card-body p {
+    font-family: var(--font-inter) !important;
+    font-weight: 400 !important;
+    color: #2D2D2D !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    padding: 10px 0 !important;
+    margin: 0 !important;
+}
+
+.nl-card-body p a {
+    color: var(--color-accent) !important;
+    text-decoration: underline !important;
+}
+
+.nl-card-body p strong,
+.nl-card-body p b {
+    font-weight: 700 !important;
+}
+
+.nl-card-body p em,
+.nl-card-body p i {
+    font-style: italic !important;
+}
+
+.nl-card-body ul {
+    font-family: var(--font-inter) !important;
+    margin: 0 0 0 25px !important;
+    padding: 0 !important;
+    color: #2D2D2D !important;
+    line-height: 24px !important;
+    list-style: disc !important;
+    font-size: 16px !important;
+}
+
+.nl-card-body ul>li {
+    margin: 10px 0 0 0 !important;
+    padding: 0 !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+}
+
+.nl-card-body ul>li a {
+    color: var(--color-accent) !important;
+    text-decoration: underline !important;
+}
+
+.nl-card-body ol {
+    font-family: var(--font-inter) !important;
+    margin: 0 0 0 25px !important;
+    padding: 0 !important;
+    color: #2D2D2D !important;
+    line-height: 24px !important;
+    font-size: 16px !important;
+}
+
+.nl-card-body ol>li {
+    margin: 10px 0 0 0 !important;
+    padding: 0 !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+}
+
+.nl-card-body ol>li a {
+    color: var(--color-accent) !important;
+    text-decoration: underline !important;
+}
+
+.nl-card-body h2,
+.nl-card-body h3 {
+    font-family: var(--font-times) !important;
+    font-weight: 400 !important;
+    font-size: 24px !important;
+    line-height: 1.25 !important;
+    color: #2A2A2A !important;
+    padding: 10px 0 4px !important;
+    margin: 0 !important;
+}
+
+.nl-card-body h3 {
+    font-size: 20px !important;
+}
+
+.nl-card-body blockquote {
+    border-left: 3px solid var(--color-accent) !important;
+    margin: 10px 0 !important;
+    padding: 4px 15px !important;
+    color: rgba(45, 45, 45, 0.8) !important;
+}
+
+/* Divider line between content sections */
+.nl-card-divider {
+    padding: 8px 15px;
+    text-align: center;
+}
+
+/* Author byline */
+.nl-card-byline {
+    padding: 8px 15px;
+    text-align: center;
+}
+
+.nl-card-byline p {
+    font-family: var(--font-inter) !important;
+    font-size: 13px !important;
+    color: #666 !important;
+    margin: 0 !important;
+}
+
+/* ── Sign-off / Footer ────────────────────── */
+.nl-signoff {
+    padding: 0 15px;
+    border-top: 1px solid #CDCDCD;
+    margin-top: 10px;
+}
+
+.nl-signoff p {
+    font-family: var(--font-inter) !important;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    color: #2D2D2D !important;
+    padding: 10px 0 !important;
+    margin: 0 !important;
+}
+
+/* ── Footer links ─────────────────────────── */
+.nl-footer {
+    padding: 15px;
+    text-align: center;
+}
+
+.nl-footer p {
+    font-family: var(--font-inter) !important;
+    font-size: 12px !important;
+    line-height: 16px !important;
+    color: #2D2D2D !important;
+    margin: 0 !important;
+    padding: 4px 0 !important;
+}
+
+.nl-footer a {
+    color: var(--color-accent) !important;
+    text-decoration: underline !important;
+}
+
+/* ── Inline subscribe card ────────────────── */
+.nl-subscribe-card {
+    margin: 20px 0;
+    padding: 20px 15px;
+    border: 1px solid #CDCDCD;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.nl-subscribe-card h2 {
+    font-family: var(--font-times) !important;
+    font-weight: 400 !important;
+    font-size: 24px !important;
+    line-height: 1.25 !important;
+    color: #2A2A2A !important;
+    margin: 0 0 8px !important;
+}
+
+.nl-subscribe-card p {
+    font-family: var(--font-inter) !important;
+    font-size: 14px !important;
+    color: #666 !important;
+    margin: 0 0 16px !important;
+}
+
+/* ── Responsive ───────────────────────────── */
+@media only screen and (max-width: 700px) {
+    .nl-shell {
+        padding: 10px 4px;
+    }
+}
