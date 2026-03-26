@@ -1,55 +1,57 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface TweetEmbedProps {
   tweetUrl: string
 }
 
-/**
- * Renders an X/Twitter post using Twitter's iframe embed.
- * Shows the full tweet content — text, media, likes, date — just like iframely.
- */
 export function TweetEmbed({ tweetUrl }: TweetEmbedProps) {
-  const [loaded, setLoaded] = useState(false)
+  const iframeRef = useRef<HTMLIFrameElement>(null)
+  const [height, setHeight] = useState(500)
 
-  // Extract tweet ID from URL
   const match = tweetUrl.match(/status\/(\d+)/)
   if (!match) return null
   const tweetId = match[1]
 
+  // Auto-resize iframe based on Twitter's postMessage events
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== 'https://platform.twitter.com') return
+      try {
+        const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data
+        if (data['twttr.embed']?.method === 'twttr.private.resize') {
+          const params = data['twttr.embed'].params
+          if (params?.[0]?.height && iframeRef.current) {
+            const src = iframeRef.current.src
+            if (src.includes(tweetId)) {
+              setHeight(params[0].height)
+            }
+          }
+        }
+      } catch { /* not our message */ }
+    }
+
+    window.addEventListener('message', handleMessage)
+    return () => window.removeEventListener('message', handleMessage)
+  }, [tweetId])
+
   return (
     <div style={{ margin: '12px 0', display: 'flex', justifyContent: 'center' }}>
       <iframe
+        ref={iframeRef}
         src={`https://platform.twitter.com/embed/Tweet.html?id=${tweetId}&dnt=true&theme=light`}
         style={{
           border: 'none',
           borderRadius: '12px',
           maxWidth: '550px',
           width: '100%',
-          height: loaded ? '300px' : '0px',
+          height: `${height}px`,
           overflow: 'hidden',
-          transition: 'height 0.3s ease',
         }}
-        loading="lazy"
+        scrolling="no"
         allowFullScreen
-        onLoad={() => setLoaded(true)}
       />
-      {!loaded && (
-        <a
-          href={tweetUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            color: '#5170ff',
-            textDecoration: 'none',
-            fontSize: '14px',
-            fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif",
-          }}
-        >
-          View post on X →
-        </a>
-      )}
     </div>
   )
 }
