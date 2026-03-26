@@ -211,12 +211,14 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
               )}
 
               {/* Body content — prefer newsletter_content (condensed), fall back to full content */}
-              <ArticleContent
-                className="nl-body"
-                html={((article as any).newsletter_content || article.content || '<p>Content not available.</p>')
-                  .replace(/<p[^>]*><strong[^>]*>Our Valley View<\/strong><\/p>/gi,
-                    '<div class="vv-header" style="padding:16px 0 4px;"><img src="/thumbnails/valley-view-header.png" alt="Our Valley View" style="display:block;max-width:200px;height:auto;padding:0;" /></div>')}
-              />
+              <div style={{ padding: `0 ${PAD}`, textAlign: 'left', wordBreak: 'break-word' }}>
+                <ArticleContent
+                  className="nl-body"
+                  html={((article as any).newsletter_content || article.content || '<p>Content not available.</p>')
+                    .replace(/<p[^>]*><strong[^>]*>Our Valley View<\/strong><\/p>/gi,
+                      '<div class="vv-header" style="padding:16px 0 4px;"><img src="/thumbnails/valley-view-header.png" alt="Our Valley View" style="display:block;max-width:200px;height:auto;padding:0;" /></div>')}
+                />
+              </div>
 
             </div>
           );

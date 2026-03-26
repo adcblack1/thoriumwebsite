@@ -8,45 +8,54 @@ interface ArticleContentProps {
 }
 
 /**
- * Renders article HTML content with tweet embeds.
- * Detects <div class="tweet-embed" data-tweet-url="..."></div> in the HTML
- * and replaces them with interactive TweetEmbed components.
+ * Renders article HTML content with automatic tweet embeds.
+ * Detects any <a href="https://x.com/.../status/..."> or twitter.com links
+ * and inserts a TweetEmbed after the paragraph containing them.
  */
 export function ArticleContent({ html, className }: ArticleContentProps) {
-  // Split HTML by tweet embed markers
-  const tweetPattern = /<div\s+class="tweet-embed"\s+data-tweet-url="([^"]+)"[^>]*><\/div>/g
-  const parts: { type: 'html' | 'tweet'; content: string }[] = []
-  
-  let lastIndex = 0
-  let match: RegExpExecArray | null
+  // Split HTML into paragraphs/blocks
+  const blockPattern = /(<(?:p|div|blockquote)[^>]*>[\s\S]*?<\/(?:p|div|blockquote)>)/gi
+  const blocks = html.split(blockPattern).filter(Boolean)
 
-  while ((match = tweetPattern.exec(html)) !== null) {
-    // Add HTML before the tweet
-    if (match.index > lastIndex) {
-      parts.push({ type: 'html', content: html.slice(lastIndex, match.index) })
+  // Pattern to find x.com or twitter.com status links
+  const tweetLinkPattern = /href="(https?:\/\/(?:x\.com|twitter\.com)\/[^"]*\/status\/\d+[^"]*)"/g
+
+  const elements: { type: 'html' | 'tweet'; content: string }[] = []
+
+  for (const block of blocks) {
+    elements.push({ type: 'html', content: block })
+
+    // Check if this block contains any tweet links
+    const tweetUrls: string[] = []
+    let match: RegExpExecArray | null
+    tweetLinkPattern.lastIndex = 0
+    while ((match = tweetLinkPattern.exec(block)) !== null) {
+      // Clean the URL (remove ref_src params etc)
+      const url = match[1].split('?')[0]
+      if (!tweetUrls.includes(url)) {
+        tweetUrls.push(url)
+      }
     }
-    // Add the tweet
-    parts.push({ type: 'tweet', content: match[1] })
-    lastIndex = match.index + match[0].length
+
+    // Add tweet embeds after this block (max 1 per paragraph to avoid clutter)
+    if (tweetUrls.length > 0) {
+      elements.push({ type: 'tweet', content: tweetUrls[0] })
+    }
   }
 
-  // Add remaining HTML
-  if (lastIndex < html.length) {
-    parts.push({ type: 'html', content: html.slice(lastIndex) })
-  }
-
-  // If no tweets found, just render the HTML directly
-  if (parts.length === 1 && parts[0].type === 'html') {
+  // If no tweets found, just render the HTML directly (fast path)
+  const hasTweets = elements.some(e => e.type === 'tweet')
+  if (!hasTweets) {
     return <div className={className} dangerouslySetInnerHTML={{ __html: html }} />
   }
 
   return (
     <div className={className}>
-      {parts.map((part, i) => {
-        if (part.type === 'tweet') {
-          return <TweetEmbed key={`tweet-${i}`} tweetUrl={part.content} />
+      {elements.map((el, i) => {
+        if (el.type === 'tweet') {
+          return <TweetEmbed key={`tweet-${i}`} tweetUrl={el.content} />
         }
-        return <div key={`html-${i}`} dangerouslySetInnerHTML={{ __html: part.content }} />
+        return <span key={`html-${i}`} dangerouslySetInnerHTML={{ __html: el.content }} />
       })}
     </div>
   )
