@@ -40,7 +40,7 @@ export function TweetEmbed({ tweetUrl }: TweetEmbedProps) {
     <div style={{ margin: '12px 0', display: 'flex', justifyContent: 'center' }}>
       <iframe
         ref={iframeRef}
-        src={`https://platform.twitter.com/embed/Tweet.html?id=${tweetId}&dnt=true&theme=light`}
+        src={`https://platform.twitter.com/embed/Tweet.html?id=${tweetId}&dnt=true&theme=light&hideThread=true&hideCard=false`}
         style={{
           border: 'none',
           borderRadius: '12px',
