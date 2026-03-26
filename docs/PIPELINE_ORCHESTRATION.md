@@ -348,9 +348,13 @@ Banner → Intro → TOC → Article Cards → LINKS → GAMES → POLL → Sign
 | `src/lib/supabase-server.ts` | Server-side Supabase client (API routes) |
 | `src/app/newsletter/[slug]/page.tsx` | Website newsletter renderer (includes all 4 new sections) |
 | `src/app/api/beehiiv-export/route.ts` | Export API endpoint |
-| `src/app/api/poll/vote/route.ts` | Vote recording API — upserts vote + redirects to results |
+| `src/app/api/poll/vote/route.ts` | Vote recording API — inserts vote (one per subscriber), redirects to results with returnTo |
 | `src/app/api/poll/feedback/route.ts` | Additional feedback submission API |
-| `src/app/poll/results/page.tsx` | Vote confirmation page — shows results, percentage bars, feedback textarea |
+| `src/app/api/auth/sync-subscriber/route.ts` | Syncs Supabase auth user with Beehiiv subscriber — subscribes if checkbox checked, stores beehiiv_subscriber_id in profiles |
+| `src/app/poll/results/page.tsx` | Vote confirmation page — shows results, percentage bars, feedback textarea, "already voted" notice |
+| `src/components/VoteButton.tsx` | Auth-aware vote button — checks localStorage/Supabase for subscriber ID, opens sign-in modal if needed, persists pending vote across reload |
+| `src/components/AuthSyncHandler.tsx` | Client component for post-Google-OAuth subscriber sync (reads ?sync=true param) |
+| `src/components/SignInModal.tsx` | Sign-in modal (OTP + Google) — auto-checked newsletter checkbox, calls sync-subscriber after OTP verify |
 | `src/components/CopyBeehiivButton.tsx` | Admin clipboard button |
 | `public/thumbnails/links-*.png` | Permanent LINKS section banners (In Other News, AI Tools, AI Jobs) |
 | `public/thumbnails/games-ai-or-real.png` | Permanent GAMES section banner |
@@ -371,37 +375,58 @@ Banner → Intro → TOC → Article Cards → LINKS → GAMES → POLL → Sign
 | `polls` | Stores all polls and games. Fields: `id` (uuid PK), `newsletter_slug`, `type` (poll/game), `question`, `options` (jsonb), `correct_answer` (nullable), `created_at` |
 | `poll_votes` | One vote per subscriber per poll. Fields: `id`, `poll_id` (FK), `subscriber_id`, `answer`, `created_at`. UNIQUE on `(poll_id, subscriber_id)` |
 | `poll_feedback` | Optional text feedback. Fields: `id`, `poll_id` (FK), `subscriber_id`, `feedback`, `created_at` |
+| `profiles` | Maps Supabase auth users to Beehiiv subscriber IDs. Fields: `id` (uuid PK, FK → auth.users), `email`, `beehiiv_subscriber_id`, `created_at`, `updated_at`. Auto-created on user signup via trigger. |
 
-### Vote Flow
+### Vote Flow — Email (Beehiiv)
 
 ```
-Email subscriber clicks poll option
+Subscriber clicks poll option in email
   ↓
 https://thoriumvalley.com/api/poll/vote?poll={id}&answer=Yes&sid={{subscriber_id}}
   ↓
-Beehiiv replaces {{subscriber_id}} with actual subscriber ID
+Beehiiv replaces {{subscriber_id}} with actual subscriber ID at send time
   ↓
-/api/poll/vote upserts vote in poll_votes table
+/api/poll/vote checks if subscriber already voted:
+  - YES → redirects to results with "already_voted=true" (shows original answer)
+  - NO → inserts vote → redirects to results
   ↓
-Redirects to /poll/results?poll={id}&sid={sid}&answer=Yes
-  ↓
-Results page shows:
-  ✅ "Your response has been recorded." (polls)
-  ✅/❌ "You are correct!/incorrect!" (games)
-  + percentage bars for all options
-  + Additional feedback textarea
-  + Continue button → thoriumvalley.com
+Results page shows ✅/❌ + percentage bars + feedback textarea
+Continue → homepage (no returnTo in email links)
 ```
 
-### Key Rules
-- **Email links** use `{{subscriber_id}}` — this is a **Beehiiv merge tag** that gets replaced per subscriber at send time
-- **Website links** use `website-visitor` as the subscriber ID (no Beehiiv merge tag on the website)
-- Votes are **upserted** (if they click again, their previous vote is updated, not duplicated)
+### Vote Flow — Website (Auth-Aware)
+
+```
+User clicks vote option on newsletter page
+  ↓
+VoteButton (client component) checks for subscriber ID:
+  1. localStorage cache ("tv_subscriber_id")
+  2. Supabase session → profiles table → beehiiv_subscriber_id
+  ↓
+If subscriber ID found → navigate to /api/poll/vote?...&sid={real_id}&returnTo={current_page}
+If NOT found → save pending vote to localStorage → open SignInModal
+  ↓
+User signs in (OTP or Google OAuth):
+  - OTP: after verify, calls /api/auth/sync-subscriber → subscribes to Beehiiv (if checkbox checked) → stores beehiiv_subscriber_id in profiles + localStorage
+  - Google: saves checkbox to localStorage → redirects to /auth/callback → AuthSyncHandler calls /api/auth/sync-subscriber on page load
+  ↓
+Page reloads → VoteButton detects pending vote in localStorage → auto-completes vote
+  ↓
+Results page → Continue → redirects back to the newsletter page (via returnTo param)
+```
+
+### Key Rules — ALWAYS ENFORCE
+- **One vote per subscriber per poll** — votes are INSERTED, not upserted. Duplicate attempts show "already voted" notice with original answer.
+- **Email links** use `{{subscriber_id}}` — Beehiiv merge tag replaced per subscriber at send time
+- **Website links** use `VoteButton` component — checks auth, prompts sign-in if needed, uses real `beehiiv_subscriber_id` (NOT `website-visitor`)
+- **Sign-in auto-subscribes to Beehiiv** — the newsletter checkbox is auto-checked. On sign-in, `/api/auth/sync-subscriber` calls the Beehiiv API and stores the returned subscriber ID in the `profiles` table.
+- **Both OTP and Google OAuth** trigger subscriber sync — OTP calls sync directly after verify; Google OAuth uses `AuthSyncHandler` component after redirect
 - In **GAMES**, image clicks and Option A/B links go to the vote API — NOT to the source URLs
 - Source URLs (gemini/unsplash) are ONLY used in **Yesterday's Results** (where the answer is revealed)
 - The AI agent creates polls in Supabase during ingestion and stores the returned `id` as `game_poll_id` / `poll_id` in the newsletter JSON
 - For **poll results**, the AI agent queries Supabase `poll_votes` to get aggregated counts instead of asking the user for manual input
-- The **results page** shows a feedback textarea. When the subscriber types feedback and clicks Continue, it is saved to `poll_feedback` table BEFORE redirecting to thoriumvalley.com
+- The **results page** shows a feedback textarea. When the subscriber types feedback and clicks Continue, it is saved to `poll_feedback` table BEFORE redirecting
+- **Continue button** redirects to `returnTo` param (newsletter page for website users, homepage for email users)
 
 ### How AI Agents Interact with Supabase (MCP)
 
