@@ -6,6 +6,7 @@ import { RecommendedNewsletters } from '@/components/RecommendedNewsletters';
 import { FooterNew } from '@/components/footer-new';
 import { Navigation } from '@/components/navigation';
 import { CopyBeehiivButton } from '@/components/CopyBeehiivButton';
+import { VoteButton } from '@/components/VoteButton';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -317,17 +318,17 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', padding: '12px 15px 0' }}>
               <div style={{ textAlign: 'center' }}>
-                <a href={newsletter.games.game_poll_id ? `/api/poll/vote?poll=${newsletter.games.game_poll_id}&answer=${encodeURIComponent('Option A')}&sid=website-visitor` : '#'} style={{ display: 'block' }}>
+                <VoteButton pollId={newsletter.games.game_poll_id || ''} answer="Option A" style={{ display: 'block' }}>
                   <Image src={newsletter.games.image_a} alt="Option A" width={350} height={500} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: '6px' }} />
-                </a>
+                </VoteButton>
                 <p style={{ fontFamily: SERIF, fontWeight: 500, fontSize: '20px', color: '#2A2A2A', padding: '8px 0', margin: 0, letterSpacing: '-0.03em' }}>
                   Option A
                 </p>
               </div>
               <div style={{ textAlign: 'center' }}>
-                <a href={newsletter.games.game_poll_id ? `/api/poll/vote?poll=${newsletter.games.game_poll_id}&answer=${encodeURIComponent('Option B')}&sid=website-visitor` : '#'} style={{ display: 'block' }}>
+                <VoteButton pollId={newsletter.games.game_poll_id || ''} answer="Option B" style={{ display: 'block' }}>
                   <Image src={newsletter.games.image_b} alt="Option B" width={350} height={500} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: '6px' }} />
-                </a>
+                </VoteButton>
                 <p style={{ fontFamily: SERIF, fontWeight: 500, fontSize: '20px', color: '#2A2A2A', padding: '8px 0', margin: 0, letterSpacing: '-0.03em' }}>
                   Option B
                 </p>
@@ -338,9 +339,9 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
                 Which image is real?
               </p>
               <p style={{ fontFamily: SANS, fontSize: '16px', margin: 0, padding: '4px 0' }}>
-                <a href={newsletter.games.game_poll_id ? `/api/poll/vote?poll=${newsletter.games.game_poll_id}&answer=${encodeURIComponent('Option A')}&sid=website-visitor` : '#'} style={{ color: ACCENT, textDecoration: 'none', fontWeight: 600 }}>Option A</a>
+                <VoteButton pollId={newsletter.games.game_poll_id || ''} answer="Option A" style={{ color: ACCENT, textDecoration: 'none', fontWeight: 600 }}>Option A</VoteButton>
                 <span style={{ color: '#999', padding: '0 8px' }}>|</span>
-                <a href={newsletter.games.game_poll_id ? `/api/poll/vote?poll=${newsletter.games.game_poll_id}&answer=${encodeURIComponent('Option B')}&sid=website-visitor` : '#'} style={{ color: ACCENT, textDecoration: 'none', fontWeight: 600 }}>Option B</a>
+                <VoteButton pollId={newsletter.games.game_poll_id || ''} answer="Option B" style={{ color: ACCENT, textDecoration: 'none', fontWeight: 600 }}>Option B</VoteButton>
               </p>
 
             </div>
@@ -367,7 +368,7 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
                 {newsletter.poll.options.map((opt, i) => (
-                  <a key={i} href={newsletter.poll?.poll_id ? `/api/poll/vote?poll=${newsletter.poll.poll_id}&answer=${encodeURIComponent(opt)}&sid=website-visitor` : '#'} style={{
+                  <VoteButton key={i} pollId={newsletter.poll?.poll_id || ''} answer={opt} style={{
                     fontFamily: SANS,
                     fontSize: '16px',
                     fontWeight: 500,
@@ -375,7 +376,7 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
                     textDecoration: 'none',
                   }}>
                     {opt}
-                  </a>
+                  </VoteButton>
                 ))}
               </div>
               <p style={{ fontFamily: SANS, fontSize: '13px', color: '#999', margin: 0, padding: '12px 0 0' }}>

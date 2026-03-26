@@ -33,7 +33,10 @@ export async function GET(request: Request) {
 
     const { error } = await supabase.auth.exchangeCodeForSession(code)
     if (!error) {
-      return NextResponse.redirect(`${origin}${next}`)
+      // Add sync param so client-side code can call sync-subscriber API
+      const redirectUrl = new URL(`${origin}${next}`)
+      redirectUrl.searchParams.set('sync', 'true')
+      return NextResponse.redirect(redirectUrl.toString())
     }
   }
 

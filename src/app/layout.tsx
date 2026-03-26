@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Suspense } from 'react';
 import Script from 'next/script';
+import { AuthSyncHandler } from '@/components/AuthSyncHandler';
 import './globals.css';
 
 export const viewport: Viewport = {
@@ -100,7 +101,10 @@ export default function RootLayout({
         </noscript>
       </head>
       <body className="bg-[#ffffff] text-[#1b1b1b] antialiased">
-        <Suspense fallback={null}>{children}</Suspense>
+        <Suspense fallback={null}>
+          <AuthSyncHandler />
+          {children}
+        </Suspense>
       </body>
     </html>
   );

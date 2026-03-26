@@ -61,6 +61,22 @@ export function SignInModal({ isOpen, onClose }: SignInModalProps) {
         }
     }
 
+    const syncSubscriber = async (subscribe: boolean) => {
+        try {
+            const res = await fetch('/api/auth/sync-subscriber', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ subscribeNewsletter: subscribe }),
+            })
+            if (res.ok) {
+                const data = await res.json()
+                if (data.subscriber_id) {
+                    localStorage.setItem('tv_subscriber_id', data.subscriber_id)
+                }
+            }
+        } catch { /* silently fail */ }
+    }
+
     const handleVerifyOtp = async (e: React.FormEvent) => {
         e.preventDefault()
         setIsLoading(true)
@@ -81,6 +97,7 @@ export function SignInModal({ isOpen, onClose }: SignInModalProps) {
                 }
                 throw error
             }
+            await syncSubscriber(subscribeNewsletter)
             onClose()
             window.location.reload()
         } catch (err: unknown) {
@@ -95,6 +112,8 @@ export function SignInModal({ isOpen, onClose }: SignInModalProps) {
         setError(null)
 
         try {
+            // Store newsletter preference for after redirect
+            localStorage.setItem('tv_subscribe_newsletter', subscribeNewsletter ? 'true' : 'false')
             const supabase = createClient()
             const { error } = await supabase.auth.signInWithOAuth({
                 provider: 'google',
