@@ -27,6 +27,7 @@ function PollResultsContent() {
   const sid = searchParams.get('sid')
   const userAnswer = searchParams.get('answer')
   const error = searchParams.get('error')
+  const returnTo = searchParams.get('returnTo') || '/'
 
   const [poll, setPoll] = useState<PollData | null>(null)
   const [results, setResults] = useState<VoteResult[]>([])
@@ -281,7 +282,7 @@ function PollResultsContent() {
             if (feedback.trim() && !feedbackSent && sid) {
               await handleFeedback()
             }
-            window.location.href = 'https://thoriumvalley.com'
+            window.location.href = returnTo.startsWith('/') ? returnTo : '/'
           }}
           style={{
             display: 'block',

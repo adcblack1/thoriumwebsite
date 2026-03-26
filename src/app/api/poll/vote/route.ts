@@ -6,6 +6,7 @@ export async function GET(req: NextRequest) {
   const pollId = searchParams.get('poll')
   const answer = searchParams.get('answer')
   const sid = searchParams.get('sid')
+  const returnTo = searchParams.get('returnTo') || '/'
 
   // Validate
   if (!pollId || !answer || !sid) {
@@ -14,7 +15,7 @@ export async function GET(req: NextRequest) {
 
   // Don't process if sid is the literal merge tag (not replaced by Beehiiv)
   if (sid.includes('{{') || sid.includes('subscriber_id')) {
-    return NextResponse.redirect(new URL(`/poll/results?poll=${pollId}&answer=${encodeURIComponent(answer)}&error=invalid_subscriber`, req.url))
+    return NextResponse.redirect(new URL(`/poll/results?poll=${pollId}&answer=${encodeURIComponent(answer)}&error=invalid_subscriber&returnTo=${encodeURIComponent(returnTo)}`, req.url))
   }
 
   const supabase = createServerClient()
@@ -29,11 +30,11 @@ export async function GET(req: NextRequest) {
 
   if (error) {
     console.error('Vote error:', error)
-    return NextResponse.redirect(new URL(`/poll/results?poll=${pollId}&answer=${encodeURIComponent(answer)}&error=vote_failed`, req.url))
+    return NextResponse.redirect(new URL(`/poll/results?poll=${pollId}&answer=${encodeURIComponent(answer)}&error=vote_failed&returnTo=${encodeURIComponent(returnTo)}`, req.url))
   }
 
   // Redirect to results page
   return NextResponse.redirect(
-    new URL(`/poll/results?poll=${pollId}&sid=${sid}&answer=${encodeURIComponent(answer)}`, req.url)
+    new URL(`/poll/results?poll=${pollId}&sid=${sid}&answer=${encodeURIComponent(answer)}&returnTo=${encodeURIComponent(returnTo)}`, req.url)
   )
 }
