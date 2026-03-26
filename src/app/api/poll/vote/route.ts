@@ -20,13 +20,25 @@ export async function GET(req: NextRequest) {
 
   const supabase = createServerClient()
 
-  // Upsert the vote (update if subscriber already voted)
+  // Check if this subscriber already voted on this poll
+  const { data: existingVote } = await supabase
+    .from('poll_votes')
+    .select('answer')
+    .eq('poll_id', pollId)
+    .eq('subscriber_id', sid)
+    .single()
+
+  if (existingVote) {
+    // Already voted — redirect to results showing their original answer
+    return NextResponse.redirect(
+      new URL(`/poll/results?poll=${pollId}&sid=${sid}&answer=${encodeURIComponent(existingVote.answer)}&already_voted=true&returnTo=${encodeURIComponent(returnTo)}`, req.url)
+    )
+  }
+
+  // Insert the vote (first time only)
   const { error } = await supabase
     .from('poll_votes')
-    .upsert(
-      { poll_id: pollId, subscriber_id: sid, answer },
-      { onConflict: 'poll_id,subscriber_id' }
-    )
+    .insert({ poll_id: pollId, subscriber_id: sid, answer })
 
   if (error) {
     console.error('Vote error:', error)

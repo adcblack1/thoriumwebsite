@@ -28,6 +28,7 @@ function PollResultsContent() {
   const userAnswer = searchParams.get('answer')
   const error = searchParams.get('error')
   const returnTo = searchParams.get('returnTo') || '/'
+  const alreadyVoted = searchParams.get('already_voted') === 'true'
 
   const [poll, setPoll] = useState<PollData | null>(null)
   const [results, setResults] = useState<VoteResult[]>([])
@@ -177,6 +178,11 @@ function PollResultsContent() {
             {poll.question}
           </p>
 
+          {alreadyVoted && (
+            <p style={{ fontFamily: SANS, fontSize: '14px', color: '#e67e22', margin: '0 0 12px', padding: '10px 14px', backgroundColor: '#fef9e7', borderRadius: '8px', border: '1px solid #f9e79f' }}>
+              You&apos;ve already voted on this poll. Your original answer is shown below.
+            </p>
+          )}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
             {results.map((r) => {
               const isUserChoice = r.answer === userAnswer
