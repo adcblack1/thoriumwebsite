@@ -65,23 +65,55 @@ When ingesting a new newsletter, add a JSON object to `src/data/newsletters-db.j
 
 ```json
 {
-  "id": "february-22-2026",
-  "slug": "february-22-2026",
-  "title": "Thorium Valley | February 22, 2026",
-  "date": "February 22, 2026",
+  "id": "march-25-2026",
+  "slug": "march-25-2026",
+  "title": "Thorium Valley | March 25, 2026",
+  "date": "March 25, 2026",
   "intro": "Welcome back. ...",
   "toc": ["Article 1 title", "Article 2 title", "Article 3 title"],
   "article_slugs": ["article-1-slug", "article-2-slug", "article-3-slug"],
   "sign_off": "That's all for today...",
   "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
-  "banner_image_url": "/thumbnails/banner-2026-02-22.png",
-  "published_at": "2026-02-22T13:00:00.000Z",
-  "updated_at": "2026-02-22T13:00:00.000Z",
-  "status": "published"
+  "banner_image_url": "/thumbnails/banner-2026-03-25.png",
+  "published_at": "2026-03-25T13:00:00.000Z",
+  "updated_at": "2026-03-25T13:00:00.000Z",
+  "status": "published",
+  "links": {
+    "news": [
+      { "prefix": "Epic Games ", "link_text": "lays off 1,000+ workers", "rest": " — CEO insists AI isn't to blame", "url": "https://..." }
+    ],
+    "tools": [
+      { "name": "Figma", "desc": "AI agents can now design on Figma's canvas.", "url": "https://..." }
+    ],
+    "jobs": [
+      { "company": "OpenAI", "role": "Product Marketing Manager", "url": "https://..." }
+    ]
+  },
+  "games": {
+    "game_poll_id": "UUID-FROM-SUPABASE",
+    "image_a": "/thumbnails/kicker-2026-03-25-ai.jpeg",
+    "image_b": "/thumbnails/kicker-2026-03-25-real.jpg",
+    "link_a": "https://gemini.google.com/share/...",
+    "link_b": "https://unsplash.com/photos/..."
+  },
+  "poll": {
+    "poll_id": "UUID-FROM-SUPABASE",
+    "question": "Would you trust an AI agent to work unsupervised?",
+    "options": ["Yes", "No", "Other"]
+  },
+  "poll_results": null,
+  "yesterdays_results": {
+    "ai_image": "/thumbnails/kicker-PREV-DATE-ai.jpeg",
+    "real_image": "/thumbnails/kicker-PREV-DATE-real.jpg",
+    "ai_source": "https://gemini.google.com/share/...",
+    "real_source": "https://unsplash.com/photos/..."
+  }
 }
 ```
 
-> **IMPORTANT:** The `article_slugs` must exactly match slugs in `articles-db.json`. The website uses these slugs to link newsletter articles to their full article pages. Each article's `hero_image_url` in the newsletter links to `/articles/{slug}`.
+> **IMPORTANT:** The `article_slugs` must exactly match slugs in `articles-db.json`. The website uses these slugs to link newsletter articles to their full article pages.
+>
+> **Optional fields:** `links`, `games`, `poll`, `poll_results`, and `yesterdays_results` are all optional. Set to `null` when not applicable for that issue. See `PIPELINE_ORCHESTRATION.md` for scheduling rules (which issues get which sections).
 
 ---
 
@@ -102,8 +134,11 @@ Our 11 website categories map to newsletter section labels like this:
 | Enterprise | ENTERPRISE |
 | Culture | CULTURE |
 | Governance | GOVERNANCE |
+| Links | LINKS |
+| Games | GAMES |
+| Poll | WHAT DO YOU THINK? |
 
-The label is displayed in `#5170ff` (Thorium Valley blue) above the article title.
+The label is displayed in `#5170ff` (Thorium Valley blue) above the section content.
 
 ---
 
@@ -191,11 +226,19 @@ Output:
   ],
   "links": {
     "news": [
-      { "text": "Google strikes deal with", "link_text": "Ormat for 150MW of geothermal energy", "url": "https://example.com" }
+      { "link_text": "Google strikes deal with Ormat", "rest": " for 150MW of geothermal energy", "url": "https://example.com" }
     ],
-    "products": [],
-    "jobs": []
-  }
+    "tools": [
+      { "name": "Example Tool", "desc": "Short description of what the tool does.", "url": "https://example.com" }
+    ],
+    "jobs": [
+      { "company": "OpenAI", "role": "AI Deployment Engineer", "url": "https://example.com" }
+    ]
+  },
+  "games": null,
+  "poll": null,
+  "poll_results": null,
+  "yesterdays_results": null
 }
 ```
 

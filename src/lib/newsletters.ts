@@ -15,6 +15,43 @@ export interface Newsletter {
     published_at: string;
     updated_at: string;
     status: 'draft' | 'published';
+
+    // LINKS section (every newsletter)
+    links?: {
+        news: { prefix?: string; link_text: string; rest: string; url: string }[];
+        tools: { name: string; desc: string; url: string }[];
+        jobs: { company: string; role: string; url: string }[];
+    };
+
+    // GAMES section — "AI or Real?" (every newsletter)
+    games?: {
+        game_poll_id?: string;  // Supabase poll ID for vote tracking
+        image_a: string;
+        image_b: string;
+        link_a?: string;   // source URL (gemini) — used in Yesterday's Results only
+        link_b?: string;   // source URL (unsplash) — used in Yesterday's Results only
+    };
+
+    // POLL section (every other newsletter)
+    poll?: {
+        poll_id?: string;  // Supabase poll ID for vote tracking
+        question: string;
+        options: string[];
+    } | null;
+
+    // POLL RESULTS (from previous newsletter's poll)
+    poll_results?: {
+        question: string;
+        results: { option: string; pct: number }[];
+    } | null;
+
+    // YESTERDAY'S RESULTS (from previous newsletter's games)
+    yesterdays_results?: {
+        ai_image: string;
+        real_image: string;
+        ai_source: string;
+        real_source: string;
+    } | null;
 }
 
 const DB_PATH = path.join(process.cwd(), 'src/data/newsletters-db.json');
@@ -81,6 +118,11 @@ export function addNewsletter(input: {
     banner_image_url?: string;
     published_at?: string;
     status?: 'draft' | 'published';
+    links?: Newsletter['links'];
+    games?: Newsletter['games'];
+    poll?: Newsletter['poll'];
+    poll_results?: Newsletter['poll_results'];
+    yesterdays_results?: Newsletter['yesterdays_results'];
 }): Newsletter {
     const newsletters = readDB();
     const slug = input.date
@@ -103,6 +145,11 @@ export function addNewsletter(input: {
         published_at: input.published_at || now,
         updated_at: now,
         status: input.status || 'published',
+        ...(input.links && { links: input.links }),
+        ...(input.games && { games: input.games }),
+        ...(input.poll !== undefined && { poll: input.poll }),
+        ...(input.poll_results !== undefined && { poll_results: input.poll_results }),
+        ...(input.yesterdays_results !== undefined && { yesterdays_results: input.yesterdays_results }),
     };
 
     newsletters.push(newsletter);

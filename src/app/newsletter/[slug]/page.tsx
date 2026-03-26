@@ -223,6 +223,168 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
           );
         })}
 
+        {/* ══════ LINKS SECTION ══════ */}
+        {newsletter.links && (
+          <div style={{
+            border: '1px solid #CDCDCD',
+            borderRadius: '10px',
+            margin: '20px 0',
+            padding: 0,
+            overflow: 'hidden',
+          }}>
+            {/* Category label */}
+            <div style={{ padding: `10px ${PAD} 0`, textAlign: 'left' }}>
+              <p style={{ fontFamily: SANS, color: ACCENT, fontSize: '16px', fontWeight: 400, lineHeight: '1.5', padding: '10px 0', margin: 0 }}>
+                LINKS
+              </p>
+            </div>
+
+            {/* In Other News */}
+            {newsletter.links.news && newsletter.links.news.length > 0 && (
+              <>
+                <div style={{ padding: '8px 15px 20px', textAlign: 'center' }}>
+                  <Image src="/thumbnails/links-in-other-news.png" alt="In Other News" width={780} height={60} style={{ display: 'block', width: '100%', height: 'auto' }} />
+                </div>
+                <div className="nl-body" style={{ padding: `0 ${PAD}`, textAlign: 'left', wordBreak: 'break-word' }}>
+                  <ul style={{ fontFamily: SANS, margin: 0, padding: '0 0 0 20px', color: '#2D2D2D', lineHeight: '1.5', listStyle: 'none', fontSize: '16px', fontWeight: 500 }}>
+                    {newsletter.links.news.map((item, i) => (
+                      <li key={i} style={{ margin: '10px 0 0 0', padding: '0 0 0 24px', fontSize: '16px', lineHeight: '1.5', position: 'relative' }}>
+                        <span style={{ color: ACCENT, fontWeight: 700, fontSize: '16px', position: 'absolute', left: 0 }}>+</span>
+                        {item.prefix && <>{item.prefix}</>}<a href={item.url} style={{ color: ACCENT, textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">{item.link_text}</a>{item.rest}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            )}
+
+            {/* AI Tools */}
+            {newsletter.links.tools && newsletter.links.tools.length > 0 && (
+              <>
+                <div style={{ padding: '16px 15px 20px', textAlign: 'center' }}>
+                  <Image src="/thumbnails/links-ai-tools.png" alt="AI Tools" width={780} height={60} style={{ display: 'block', width: '100%', height: 'auto' }} />
+                </div>
+                <div className="nl-body" style={{ padding: `0 ${PAD}`, textAlign: 'left', wordBreak: 'break-word' }}>
+                  <ul style={{ fontFamily: SANS, margin: 0, padding: '0 0 0 20px', color: '#2D2D2D', lineHeight: '1.5', listStyle: 'none', fontSize: '16px', fontWeight: 500 }}>
+                    {newsletter.links.tools.map((item, i) => (
+                      <li key={i} style={{ margin: '10px 0 0 0', padding: '0 0 0 24px', fontSize: '16px', lineHeight: '1.5', position: 'relative' }}>
+                        <span style={{ color: ACCENT, fontWeight: 700, fontSize: '16px', position: 'absolute', left: 0 }}>+</span>
+                        <a href={item.url} style={{ color: ACCENT, textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">{item.name}</a>: {item.desc}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            )}
+
+            {/* AI Jobs */}
+            {newsletter.links.jobs && newsletter.links.jobs.length > 0 && (
+              <>
+                <div style={{ padding: '16px 15px 20px', textAlign: 'center' }}>
+                  <Image src="/thumbnails/links-ai-jobs.png" alt="AI Jobs" width={780} height={60} style={{ display: 'block', width: '100%', height: 'auto' }} />
+                </div>
+                <div className="nl-body" style={{ padding: `0 ${PAD} 15px`, textAlign: 'left', wordBreak: 'break-word' }}>
+                  <ul style={{ fontFamily: SANS, margin: 0, padding: '0 0 0 20px', color: '#2D2D2D', lineHeight: '1.5', listStyle: 'none', fontSize: '16px', fontWeight: 500 }}>
+                    {newsletter.links.jobs.map((item, i) => (
+                      <li key={i} style={{ margin: '10px 0 0 0', padding: '0 0 0 24px', fontSize: '16px', lineHeight: '1.5', position: 'relative' }}>
+                        <span style={{ color: ACCENT, fontWeight: 700, fontSize: '16px', position: 'absolute', left: 0 }}>+</span>
+                        <a href={item.url} style={{ color: ACCENT, textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">{item.company}</a> — {item.role}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            )}
+          </div>
+        )}
+
+        {/* ══════ GAMES SECTION ══════ */}
+        {newsletter.games && (
+          <div style={{
+            border: '1px solid #CDCDCD',
+            borderRadius: '10px',
+            margin: '20px 0',
+            padding: 0,
+            overflow: 'hidden',
+          }}>
+            <div style={{ padding: `10px ${PAD} 0`, textAlign: 'left' }}>
+              <p style={{ fontFamily: SANS, color: ACCENT, fontSize: '16px', fontWeight: 400, lineHeight: '1.5', padding: '10px 0', margin: 0 }}>
+                GAMES
+              </p>
+            </div>
+            <div style={{ padding: '8px 15px', textAlign: 'center' }}>
+              <Image src="/thumbnails/games-ai-or-real.png" alt="AI or Real" width={780} height={100} style={{ display: 'block', width: '100%', height: 'auto' }} />
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', padding: '12px 15px 0' }}>
+              <div style={{ textAlign: 'center' }}>
+                <a href={newsletter.games.game_poll_id ? `/api/poll/vote?poll=${newsletter.games.game_poll_id}&answer=${encodeURIComponent('Option A')}&sid=website-visitor` : '#'} style={{ display: 'block' }}>
+                  <Image src={newsletter.games.image_a} alt="Option A" width={350} height={500} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: '6px' }} />
+                </a>
+                <p style={{ fontFamily: SERIF, fontWeight: 500, fontSize: '20px', color: '#2A2A2A', padding: '8px 0', margin: 0, letterSpacing: '-0.03em' }}>
+                  Option A
+                </p>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <a href={newsletter.games.game_poll_id ? `/api/poll/vote?poll=${newsletter.games.game_poll_id}&answer=${encodeURIComponent('Option B')}&sid=website-visitor` : '#'} style={{ display: 'block' }}>
+                  <Image src={newsletter.games.image_b} alt="Option B" width={350} height={500} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: '6px' }} />
+                </a>
+                <p style={{ fontFamily: SERIF, fontWeight: 500, fontSize: '20px', color: '#2A2A2A', padding: '8px 0', margin: 0, letterSpacing: '-0.03em' }}>
+                  Option B
+                </p>
+              </div>
+            </div>
+            <div style={{ padding: `8px ${PAD} 15px`, textAlign: 'center' }}>
+              <p style={{ fontFamily: SANS, fontSize: '16px', fontWeight: 500, color: '#2D2D2D', margin: 0, padding: '4px 0' }}>
+                Which image is real?
+              </p>
+              <p style={{ fontFamily: SANS, fontSize: '16px', margin: 0, padding: '4px 0' }}>
+                <a href={newsletter.games.game_poll_id ? `/api/poll/vote?poll=${newsletter.games.game_poll_id}&answer=${encodeURIComponent('Option A')}&sid=website-visitor` : '#'} style={{ color: ACCENT, textDecoration: 'none', fontWeight: 600 }}>Option A</a>
+                <span style={{ color: '#999', padding: '0 8px' }}>|</span>
+                <a href={newsletter.games.game_poll_id ? `/api/poll/vote?poll=${newsletter.games.game_poll_id}&answer=${encodeURIComponent('Option B')}&sid=website-visitor` : '#'} style={{ color: ACCENT, textDecoration: 'none', fontWeight: 600 }}>Option B</a>
+              </p>
+
+            </div>
+          </div>
+        )}
+
+        {/* ══════ POLL SECTION ══════ */}
+        {newsletter.poll && (
+          <div style={{
+            border: '1px solid #CDCDCD',
+            borderRadius: '10px',
+            margin: '20px 0',
+            padding: 0,
+            overflow: 'hidden',
+          }}>
+            <div style={{ padding: `10px ${PAD} 0`, textAlign: 'left' }}>
+              <p style={{ fontFamily: SANS, color: ACCENT, fontSize: '16px', fontWeight: 400, lineHeight: '1.5', padding: '10px 0', margin: 0 }}>
+                WHAT DO YOU THINK?
+              </p>
+            </div>
+            <div style={{ padding: `0 ${PAD} 20px`, textAlign: 'left' }}>
+              <p style={{ fontFamily: SERIF, fontWeight: 500, fontSize: '20px', color: '#2A2A2A', padding: '8px 0 12px', margin: 0, lineHeight: '1.3' }}>
+                {newsletter.poll.question}
+              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+                {newsletter.poll.options.map((opt, i) => (
+                  <a key={i} href={newsletter.poll?.poll_id ? `/api/poll/vote?poll=${newsletter.poll.poll_id}&answer=${encodeURIComponent(opt)}&sid=website-visitor` : '#'} style={{
+                    fontFamily: SANS,
+                    fontSize: '16px',
+                    fontWeight: 500,
+                    color: ACCENT,
+                    textDecoration: 'none',
+                  }}>
+                    {opt}
+                  </a>
+                ))}
+              </div>
+              <p style={{ fontFamily: SANS, fontSize: '13px', color: '#999', margin: 0, padding: '12px 0 0' }}>
+                Vote by selecting an answer!
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* ── SIGN-OFF ── */}
         <div style={{ padding: `0 ${PAD}`, borderTop: '1px solid #CDCDCD', marginTop: '10px' }}>
           <p style={{ fontFamily: SANS, fontSize: '16px', lineHeight: '1.5', color: '#2D2D2D', padding: '20px 0 10px', margin: 0 }}>
@@ -232,6 +394,29 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
             Written by {newsletter.writers}
           </p>
         </div>
+
+        {/* ══════ YESTERDAY'S RESULTS (no border) ══════ */}
+        {newsletter.yesterdays_results && (
+          <div style={{ margin: '20px 0', padding: 0 }}>
+            <div style={{ textAlign: 'center', padding: '0 15px' }}>
+              <Image src="/thumbnails/yesterdays-results.png" alt="Yesterday's Results" width={780} height={60} style={{ display: 'block', width: '100%', height: 'auto' }} />
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', padding: '12px 15px 0' }}>
+              <div style={{ textAlign: 'center' }}>
+                <Image src={newsletter.yesterdays_results.ai_image} alt="AI Image" width={350} height={500} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: '6px' }} />
+                <a href={newsletter.yesterdays_results.ai_source} target="_blank" rel="noopener noreferrer" style={{ fontFamily: SANS, fontSize: '14px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: ACCENT, textDecoration: 'none', display: 'block', padding: '8px 0' }}>
+                  AI IMAGE
+                </a>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <Image src={newsletter.yesterdays_results.real_image} alt="Real Image" width={350} height={500} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: '6px' }} />
+                <a href={newsletter.yesterdays_results.real_source} target="_blank" rel="noopener noreferrer" style={{ fontFamily: SANS, fontSize: '14px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: ACCENT, textDecoration: 'none', display: 'block', padding: '8px 0' }}>
+                  REAL IMAGE
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* ── SUBSCRIBE ── */}
         <div style={{ margin: '20px 0', padding: `20px ${PAD}`, border: '1px solid #CDCDCD', borderRadius: '10px', textAlign: 'center' }}>

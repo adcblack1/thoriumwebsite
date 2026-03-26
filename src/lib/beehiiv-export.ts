@@ -15,7 +15,7 @@
  * - NO Next.js components (<Image>, <Link>) — plain HTML only
  */
 
-import { getNewsletterBySlug, getNewsletters } from './newsletters';
+import { getNewsletterBySlug, getNewsletters, type Newsletter } from './newsletters';
 import { getArticleBySlug, getArticles, type Article } from './articles';
 
 // ── Design Tokens ──
@@ -110,6 +110,99 @@ function minify(html: string): string {
     .trim();
 }
 
+// ── Section Generators ──
+
+function generateLinksHtml(newsletter: Newsletter): string {
+  if (!newsletter.links) return '';
+  const { news, tools, jobs } = newsletter.links;
+  let html = `<div class="tv-card">`;
+  html += `<div style="padding:10px 15px 0;text-align:left"><p class="tv-cat">LINKS</p></div>`;
+
+  if (news && news.length > 0) {
+    html += `<div style="padding:8px 15px 20px;text-align:center"><img src="${abs('/thumbnails/links-in-other-news.png')}" alt="In Other News" width="780" class="tv-img"></div>`;
+    html += `<div class="tv-pad" style="text-align:left;word-break:break-word"><ul class="tv-ul">`;
+    news.forEach(item => {
+      html += `<li class="tv-li"><span class="tv-li-mark">+</span>${item.prefix || ''}<a class="tv-a" href="${item.url}">${item.link_text}</a>${item.rest}</li>`;    });
+    html += `</ul></div>`;
+  }
+
+  if (tools && tools.length > 0) {
+    html += `<div style="padding:16px 15px 20px;text-align:center"><img src="${abs('/thumbnails/links-ai-tools.png')}" alt="AI Tools" width="780" class="tv-img"></div>`;
+    html += `<div class="tv-pad" style="text-align:left;word-break:break-word"><ul class="tv-ul">`;
+    tools.forEach(item => {
+      html += `<li class="tv-li"><span class="tv-li-mark">+</span><a class="tv-a" href="${item.url}">${item.name}</a>: ${item.desc}</li>`;
+    });
+    html += `</ul></div>`;
+  }
+
+  if (jobs && jobs.length > 0) {
+    html += `<div style="padding:16px 15px 20px;text-align:center"><img src="${abs('/thumbnails/links-ai-jobs.png')}" alt="AI Jobs" width="780" class="tv-img"></div>`;
+    html += `<div class="tv-pad" style="text-align:left;word-break:break-word;padding-bottom:15px"><ul class="tv-ul">`;
+    jobs.forEach(item => {
+      html += `<li class="tv-li"><span class="tv-li-mark">+</span><a class="tv-a" href="${item.url}">${item.company}</a> — ${item.role}</li>`;
+    });
+    html += `</ul></div>`;
+  }
+
+  html += `</div>`;
+  return html;
+}
+
+function generateGamesHtml(newsletter: Newsletter): string {
+  if (!newsletter.games) return '';
+  const g = newsletter.games;
+  const BASE = 'https://thoriumvalley.com';
+  const voteA = g.game_poll_id ? `${BASE}/api/poll/vote?poll=${g.game_poll_id}&answer=${encodeURIComponent('Option A')}&sid={{subscriber_id}}` : '#';
+  const voteB = g.game_poll_id ? `${BASE}/api/poll/vote?poll=${g.game_poll_id}&answer=${encodeURIComponent('Option B')}&sid={{subscriber_id}}` : '#';
+  return `<div class="tv-card">` +
+    `<div style="padding:10px 15px 0;text-align:left"><p class="tv-cat">GAMES</p></div>` +
+    `<div style="padding:8px 15px;text-align:center"><img src="${abs('/thumbnails/games-ai-or-real.png')}" alt="AI or Real" width="780" class="tv-img"></div>` +
+    `<div style="padding:12px 15px 0"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>` +
+    `<td width="50%" style="padding:0 6px 0 0;text-align:center;vertical-align:top">` +
+    `<a href="${voteA}" style="display:block;text-decoration:none"><img src="${abs(g.image_a)}" alt="Option A" width="100%" class="tv-img" style="border-radius:6px"></a>` +
+    `<p class="tv-h3" style="text-align:center;padding:8px 0;font-size:20px">Option A</p></td>` +
+    `<td width="50%" style="padding:0 0 0 6px;text-align:center;vertical-align:top">` +
+    `<a href="${voteB}" style="display:block;text-decoration:none"><img src="${abs(g.image_b)}" alt="Option B" width="100%" class="tv-img" style="border-radius:6px"></a>` +
+    `<p class="tv-h3" style="text-align:center;padding:8px 0;font-size:20px">Option B</p></td>` +
+    `</tr></table></div>` +
+    `<div class="tv-pad" style="padding-bottom:15px;text-align:center">` +
+    `<p class="tv-p" style="text-align:center">Which image is real?</p>` +
+    `<p class="tv-p" style="text-align:center"><a class="tv-a" href="${voteA}" style="font-weight:600">Option A</a><span style="color:#999;padding:0 8px">|</span><a class="tv-a" href="${voteB}" style="font-weight:600">Option B</a></p>` +
+    `</div></div>`;
+}
+
+function generatePollHtml(newsletter: Newsletter): string {
+  if (!newsletter.poll) return '';
+  const p = newsletter.poll;
+  const BASE = 'https://thoriumvalley.com';
+  const optionLinks = p.options.map(opt =>
+    `<p style="margin:0;padding:3px 0"><a class="tv-a" href="${p.poll_id ? `${BASE}/api/poll/vote?poll=${p.poll_id}&answer=${encodeURIComponent(opt)}&sid={{subscriber_id}}` : '#'}" style="font-family:${SANS};font-size:16px;font-weight:500">${opt}</a></p>`
+  ).join('');
+  return `<div class="tv-card">` +
+    `<div style="padding:10px 15px 0;text-align:left"><p class="tv-cat">WHAT DO YOU THINK?</p></div>` +
+    `<div class="tv-pad" style="padding-bottom:20px;text-align:left">` +
+    `<p class="tv-h3" style="text-align:left;font-weight:500;padding:8px 0 12px">${p.question}</p>` +
+    `<div style="text-align:left">${optionLinks}</div>` +
+    `<p style="font-family:${SANS};font-size:13px;color:#999;margin:0;padding:12px 0 0;text-align:left">Vote by selecting an answer!</p>` +
+    `</div></div>`;
+}
+
+function generateYesterdaysResultsHtml(newsletter: Newsletter): string {
+  if (!newsletter.yesterdays_results) return '';
+  const yr = newsletter.yesterdays_results;
+  const labelStyle = `font-family:${SANS};font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:${ACCENT};text-decoration:none;display:block;padding:8px 0;text-align:center`;
+  return `<div style="margin:20px 0;padding:0">` +
+    `<div style="text-align:center;padding:0 15px"><img src="${abs('/thumbnails/yesterdays-results.png')}" alt="Yesterday's Results" width="780" class="tv-img"></div>` +
+    `<div style="padding:12px 15px 0"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>` +
+    `<td width="50%" style="padding:0 6px 0 0;text-align:center;vertical-align:top">` +
+    `<img src="${abs(yr.ai_image)}" alt="AI Image" width="100%" class="tv-img" style="border-radius:6px">` +
+    `<a href="${yr.ai_source}" style="${labelStyle}">AI IMAGE</a></td>` +
+    `<td width="50%" style="padding:0 0 0 6px;text-align:center;vertical-align:top">` +
+    `<img src="${abs(yr.real_image)}" alt="Real Image" width="100%" class="tv-img" style="border-radius:6px">` +
+    `<a href="${yr.real_source}" style="${labelStyle}">REAL IMAGE</a></td>` +
+    `</tr></table></div></div>`;
+}
+
 // ── Newsletter Export ──
 
 export function exportNewsletterForBeehiiv(slug: string): { html: string; title: string } | null {
@@ -164,9 +257,17 @@ export function exportNewsletterForBeehiiv(slug: string): { html: string; title:
   const footerHtml = `<div class="tv-pad" style="text-align:center"><p class="tv-footer">That's all for today's Thorium Valley. See you tomorrow.</p></div>`;
 
   // Assemble with <style> block
+  // New section HTML
+  const linksHtml = generateLinksHtml(newsletter);
+  const gamesHtml = generateGamesHtml(newsletter);
+  const pollHtml = generatePollHtml(newsletter);
+  const yesterdaysResultsHtml = generateYesterdaysResultsHtml(newsletter);
+
   const fullHtml = `<style>${minify(EMAIL_CSS)}</style>` +
     `<div class="tv-wrap">` +
-    bannerHtml + introHtml + tocHtml + articleCardsHtml + signOffHtml + footerHtml +
+    bannerHtml + introHtml + tocHtml + articleCardsHtml +
+    linksHtml + gamesHtml + pollHtml +
+    signOffHtml + yesterdaysResultsHtml + footerHtml +
     `</div>`;
 
   return { html: minify(fullHtml), title: newsletter.title };
