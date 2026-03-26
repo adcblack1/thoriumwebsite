@@ -1,5 +1,6 @@
 import { getArticles, getArticleBySlug } from '@/lib/articles';
 import { SubscribeCTA } from '@/components/SubscribeCTA';
+import { ArticleContent } from '@/components/ArticleContent';
 import { SubscribeForm } from '@/components/subscribe-form';
 import { FadeIn } from '@/components/FadeIn';
 import { Navigation } from '@/components/navigation';
@@ -255,23 +256,19 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                             }
                         }
                     `}} />
-                    <div
+                    <ArticleContent
                         className="article-body prose prose-lg max-w-none
               prose-headings:text-[#1b1b1b] prose-headings:font-bold
               prose-p:text-[#1b1b1b]
               prose-strong:text-[#1b1b1b]
               prose-ul:text-[#1b1b1b] prose-ol:text-[#1b1b1b]
               prose-blockquote:border-l-[#5170ff] prose-blockquote:text-[#1b1b1b]/80"
-                        dangerouslySetInnerHTML={{
-                            __html: (article.content || '<p>Content not available.</p>')
+                        html={(article.content || '<p>Content not available.</p>')
                                 .replace(/Our Valley View/g, 'Valley View')
-                                // Standalone: <p><strong>Valley View</strong></p> → block heading
                                 .replace(/<p>\s*<strong>Valley View:?<\/strong>\s*<\/p>/g, '<h2 class="valley-view-heading">Valley View</h2>')
-                                // Inline: <p><strong>Valley View:</strong> text</p> → block heading + text in its own <p>
                                 .replace(/<p>\s*<strong>Valley View:?<\/strong>\s*([\s\S]*?)<\/p>/g, '<h2 class="valley-view-heading">Valley View</h2><p>$1</p>')
                                 .replace(/<p>---<\/p>/g, '')
-                                .replace(/<hr\s*\/?>/g, ''),
-                        }}
+                                .replace(/<hr\s*\/?>/g, '')}
                     />
                 </FadeIn>
 
