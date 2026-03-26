@@ -68,10 +68,11 @@ No pipeline action required in this phase — content arrives ready for ingestio
 For each article:
 1. Parse category, title, tags from the `.md` file
 2. Convert markdown body → valid HTML (see ARTICLE_FORMAT.md rules)
-3. Extract the condensed `newsletter_content` from the newsletter `.md`
-4. Generate: `id`, `slug`, `reading_time`, `published_at`, `updated_at`
-5. Set `thumbnail_url` to renamed path
-6. Append to `src/data/articles-db.json`
+3. **Tweet Embeds:** Convert any `{{tweet:URL}}` markers to `<div class="tweet-embed" data-tweet-url="URL"></div>`. Place the embed div AFTER the paragraph that references the tweet. Max 2 per article. Do NOT include tweet embeds in `newsletter_content`.
+4. Extract the condensed `newsletter_content` from the newsletter `.md`
+5. Generate: `id`, `slug`, `reading_time`, `published_at`, `updated_at`
+6. Set `thumbnail_url` to renamed path
+7. Append to `src/data/articles-db.json`
 
 ### 2c. Newsletter → `newsletters-db.json`
 1. Extract: `intro`, `toc`, `sign_off`, `writers`

@@ -7,6 +7,7 @@ import { FooterNew } from '@/components/footer-new';
 import { Navigation } from '@/components/navigation';
 import { CopyBeehiivButton } from '@/components/CopyBeehiivButton';
 import { VoteButton } from '@/components/VoteButton';
+import { ArticleContent } from '@/components/ArticleContent';
 import Link from 'next/link';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
@@ -210,14 +211,11 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
               )}
 
               {/* Body content — prefer newsletter_content (condensed), fall back to full content */}
-              <div
+              <ArticleContent
                 className="nl-body"
-                style={{ padding: `0 ${PAD}`, textAlign: 'left', wordBreak: 'break-word' }}
-                dangerouslySetInnerHTML={{
-                  __html: ((article as any).newsletter_content || article.content || '<p>Content not available.</p>')
-                    .replace(/<p[^>]*><strong[^>]*>Our Valley View<\/strong><\/p>/gi,
-                      '<div class="vv-header" style="padding:16px 0 4px;"><img src="/thumbnails/valley-view-header.png" alt="Our Valley View" style="display:block;max-width:200px;height:auto;padding:0;" /></div>'),
-                }}
+                html={((article as any).newsletter_content || article.content || '<p>Content not available.</p>')
+                  .replace(/<p[^>]*><strong[^>]*>Our Valley View<\/strong><\/p>/gi,
+                    '<div class="vv-header" style="padding:16px 0 4px;"><img src="/thumbnails/valley-view-header.png" alt="Our Valley View" style="display:block;max-width:200px;height:auto;padding:0;" /></div>')}
               />
 
             </div>

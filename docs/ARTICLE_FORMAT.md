@@ -102,9 +102,37 @@ The `content` field must be **valid HTML**. Use these elements:
 
 ### Do NOT use:
 - `<h1>` — the page title is rendered separately
-- `<script>` or `<style>` — stripped for security
+- `<style>` — stripped for security
 - Markdown — convert to HTML
 - Raw URLs — wrap in `<a>` tags
+
+### X (Twitter) Post Embeds
+
+When an article **links to an X/Twitter post** (e.g., `https://x.com/user/status/123` or `https://twitter.com/user/status/123`), insert a tweet embed block **immediately after** the paragraph containing the reference.
+
+**In the article markdown** (before ingestion), use the `{{tweet:URL}}` syntax:
+```markdown
+The company announced the feature on X.
+
+{{tweet:https://x.com/claudeai/status/2038195789601374705}}
+
+Users have been testing it since launch.
+```
+
+**In the HTML `content` field** (after ingestion), convert to:
+```html
+<p>The company announced the feature on X.</p>
+<div class="tweet-embed" data-tweet-url="https://x.com/claudeai/status/2038195789601374705"></div>
+<p>Users have been testing it since launch.</p>
+```
+
+**Rules:**
+- Only embed tweets that are **direct sources** cited in the article (not every X link)
+- Place the embed **after** the paragraph that references the tweet, not inline
+- Use `<div class="tweet-embed" data-tweet-url="URL">` — the website renderer will load the Twitter widget script and render it as a rich card
+- In the **Beehiiv email export**, tweet embeds render as a styled blockquote with the tweet URL linked
+- Maximum **2 tweet embeds per article** to avoid cluttering the reading experience
+- The `newsletter_content` (condensed version) should NOT include tweet embeds — keep it text-only
 
 ### Valley View Section (REQUIRED)
 
