@@ -306,20 +306,22 @@ export function exportArticleForBeehiiv(slug: string): { html: string; title: st
 // Uses fully inline styles (no <style> block) — same format as NW3 FINAL_HTML
 
 export function exportWelcomeForBeehiiv(): { html: string; title: string } {
-  const { data: newsletters } = getNewsletters({ limit: 1, sort: 'newest' });
-  const latestNL = newsletters[0];
+  const { data: allArticles } = getArticles({ limit: 50, sort: 'newest' });
 
-  const { data: allArticles } = getArticles({ limit: 20, sort: 'newest' });
-  const nlSlugs = new Set(latestNL?.article_slugs || []);
-  const recentArticles = allArticles
-    .filter((a: any) => !nlSlugs.has(a.slug))
-    .slice(0, 3);
+  // Hardcoded welcome email content (updated March 27, 2026)
+  const welcomeSlugs = [
+    'openclaw-reached-a-billion-people-with-one-update',
+    'metas-rogue-ai-agent-is-everyones-problem-now',
+    'claude-now-works-while-youre-away-sort-of'
+  ];
+  const recentArticles = welcomeSlugs
+    .map(s => allArticles.find((a: any) => a.slug === s))
+    .filter(Boolean);
 
-  const firstNLArticle = latestNL?.article_slugs?.[0]
-    ? allArticles.find((a: any) => a.slug === latestNL.article_slugs[0])
-    : null;
-  const nlTitle = firstNLArticle?.title || latestNL?.toc?.[0] || 'Our latest newsletter';
-  const nlUrl = `${BASE_URL}/newsletter/${latestNL?.slug}`;
+  const nlSlug = 'march-27-2026';
+  const firstNLArticle = allArticles.find((a: any) => a.slug === 'nobody-wants-an-ai-data-center-next-door');
+  const nlTitle = firstNLArticle?.title || 'Our latest newsletter';
+  const nlUrl = `${BASE_URL}/newsletter/${nlSlug}`;
 
   // Inline style constants (matching NW3 FINAL_HTML exactly)
   const P = `font-family:${SANS};font-size:16px;line-height:1.5;color:${TEXT};padding:10px 0;margin:0;font-weight:500;`;
