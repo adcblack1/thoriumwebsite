@@ -1,5 +1,160 @@
 [
   {
+    "id": "march-27-2026",
+    "slug": "march-27-2026",
+    "title": "Thorium Valley | March 27, 2026",
+    "date": "March 27, 2026",
+    "intro": "",
+    "toc": [
+      "The $710 billion AI buildout hits a wall: neighbors",
+      "Morningstar scored 130 companies on AI survival",
+      "Your AI chatbot is a yes-man — and you like it that way"
+    ],
+    "article_slugs": [
+      "nobody-wants-an-ai-data-center-next-door",
+      "morningstar-scored-130-companies-on-ai-survival",
+      "your-ai-chatbot-is-a-yes-man-and-you-like-it-that-way"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-03-27.png",
+    "published_at": "2026-03-27T13:00:00.000Z",
+    "updated_at": "2026-03-27T15:38:15.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Jensen Huang says 'I think we've achieved AGI'",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/899086/jensen-huang-nvidia-agi",
+          "rest": "on Lex Fridman's podcast, then immediately walks it back"
+        },
+        {
+          "link_text": "Baltimore sues xAI over Grok deepfakes",
+          "url": "https://reut.rs/3PZbzKk",
+          "rest": ", alleging the chatbot generates nonconsensual explicit images — including of children"
+        },
+        {
+          "link_text": "OpenAI secures an extra $10 billion",
+          "url": "https://www.cnbc.com/2026/03/24/openai-secures-an-extra-10-billion-in-record-funding-round-cfo-friar-says.html",
+          "rest": ", bringing its record fundraise north of $120 billion"
+        },
+        {
+          "link_text": "Anthropic and the Pentagon face off in court",
+          "url": "https://www.npr.org/2026/03/24/nx-s1-5759276/anthropic-pentagon-claude-preliminary-injunction-hearing",
+          "rest": "— judge says the government's ban on Claude \"looks like punishment\""
+        },
+        {
+          "link_text": "Legal AI startup Harvey hits $11 billion valuation",
+          "url": "https://www.prnewswire.com/news-releases/harvey-raises-at-11-billion-valuation-to-scale-agents-across-law-firms-and-enterprises-302724309.html",
+          "rest": "with 25,000+ custom agents running workflows across 100,000 lawyers"
+        },
+        {
+          "link_text": "Arm unveils its first-ever custom chip",
+          "url": "https://today.reuters.com/business/media-telecom/arm-unveils-new-ai-chip-expects-it-add-billions-annual-revenue-2026-03-24/",
+          "rest": ", the AGI CPU, with Meta as lead partner — expects billions in new revenue"
+        },
+        {
+          "link_text": "Huawei claims its new Atlas 350 accelerator",
+          "url": "https://www.tomshardware.com/pc-components/gpus/huawei-unveils-new-atlas-350-ai-accelerator-with-1-56-pflops-of-fp4-compute-and-up-to-112gb-of-hbm-claims-2-8x-more-performance-than-nvidias-h20",
+          "rest": "delivers 2.8x more performance than Nvidia's H20"
+        },
+        {
+          "link_text": "A delivery robot crashed through a Chicago bus shelter",
+          "url": "https://www.cbsnews.com/chicago/news/delivery-robot-crashes-into-west-town-bus-shelter/",
+          "rest": ", shattering glass onto the sidewalk in viral video"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Figma",
+          "url": "https://www.figma.com/blog/the-figma-canvas-is-now-open-to-agents/",
+          "desc": "AI agents from Claude Code, Codex, and Cursor can now design directly on the Figma canvas using your team's existing design system"
+        },
+        {
+          "name": "Gemini Live",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-live/",
+          "desc": "Google launched Gemini 3.1 Flash Live, a new voice model with lower latency and support for 200+ languages across Search, Gemini, and the Live API"
+        },
+        {
+          "name": "Google TV",
+          "url": "https://blog.google/products-and-platforms/platforms/google-tv/new-gemini-features-march-2026/",
+          "desc": "Gemini on Google TV now delivers richer visual answers, narrated deep dives on topics, and real-time sports briefs on your biggest screen"
+        },
+        {
+          "name": "Linear",
+          "url": "https://linear.app/changelog/2026-03-24-introducing-linear-agent",
+          "desc": "The project management tool launched Linear Agent, which understands your roadmap, synthesizes context across issues and code, and takes action directly in your workspace"
+        },
+        {
+          "name": "ElevenLabs",
+          "url": "https://elevenlabs.io/blog/guardrails",
+          "desc": "Guardrails 2.0 gives enterprise teams configurable safety controls for voice agents, with real-time protections that keep agents on-brand and compliant at scale"
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Netflix",
+          "role": "Research Scientist, AI for Member Systems",
+          "url": "https://www.flexionis.wuaze.com/job/research-scientist-5-6-ai-for-member-systems-2"
+        },
+        {
+          "company": "McKinsey",
+          "role": "Director of Data Science, Analytics Innovation",
+          "url": "https://www.mckinsey.com/careers/search-jobs/jobs/directorofdatascience-analyticsinnovationretailcpg-96613?appsource=Circa"
+        },
+        {
+          "company": "RevenueCat",
+          "role": "Agentic AI Developer Advocate",
+          "url": "https://www.thesaraslist.com/jobs/agentic-ai-developer-advocate-revenuecat-2a783896"
+        },
+        {
+          "company": "GM Motorsports",
+          "role": "Staff Data Scientist",
+          "url": "https://www.motorsportjobs.com/en/job/staff-data-scientist-gm-motorsports"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "6c21b704-0f4a-41aa-8586-b1104d69f0b6",
+      "image_a": "/thumbnails/kicker-2026-03-27-real.jpg",
+      "image_b": "/thumbnails/kicker-2026-03-27-ai.jpeg",
+      "link_a": "https://unsplash.com/photos/a-person-walks-along-a-wooded-path-beside-a-stream-leV1WkdqYik",
+      "link_b": "https://gemini.google.com/share/8c57f490dff2"
+    },
+    "poll": {
+      "poll_id": "5eeb9e4e-313b-420a-b283-4871209e6d18",
+      "question": "Would you trust an AI agent to work on your computer unsupervised?",
+      "options": [
+        "Yes",
+        "No",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "Would you trust an AI agent to work on your computer unsupervised?",
+      "results": [
+        {
+          "option": "Yes",
+          "pct": 67
+        },
+        {
+          "option": "No",
+          "pct": 33
+        },
+        {
+          "option": "Other",
+          "pct": 0
+        }
+      ]
+    },
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-03-25-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-03-25-real.jpg",
+      "ai_source": "https://gemini.google.com/share/1c3f2c1b98fd",
+      "real_source": "https://unsplash.com/photos/a-butterfly-and-bee-on-lavender-flowers-qWyelajhfSc"
+    }
+  },
+  {
     "id": "march-20-2026",
     "slug": "march-20-2026",
     "title": "Thorium Valley | March 20, 2026",
@@ -161,27 +316,100 @@
     "status": "published",
     "links": {
       "news": [
-        { "link_text": "OpenAI kills Sora", "rest": " as compute crunch forces hard choices — Disney's $1B deal goes with it", "url": "https://www.businessinsider.com/openai-discontinues-sora-video-app-amid-robotics-shift-compute-limitations-2026-3" },
-        { "link_text": "Arm unveils its first-ever AI chip", "rest": ", expects it to add $15 billion in annual revenue with Meta as lead partner", "url": "https://today.reuters.com/business/media-telecom/arm-unveils-new-ai-chip-expects-it-add-billions-annual-revenue-2026-03-24/" },
-        { "prefix": "Epic Games ", "link_text": "lays off 1,000+ workers", "rest": " — CEO Tim Sweeney insists AI isn't to blame", "url": "https://gizmodo.com/epic-games-laying-off-1000-employees-swears-ai-is-not-to-blame-2000737581" },
-        { "link_text": "OpenAI raises another $10 billion", "rest": ", pushing its record funding round north of $120 billion", "url": "https://www.cnbc.com/2026/03/24/openai-secures-an-extra-10-billion-in-record-funding-round-cfo-friar-says.html" },
-        { "prefix": "Bipartisan senators ", "link_text": "demand Commerce Department investigate", "rest": " whether Jensen Huang's smuggling denial misled regulators", "url": "https://srnnews.com/us-lawmakers-ask-whether-nvidia-ceos-smuggling-remarks-misled-regulators/" },
-        { "prefix": "Jensen Huang tells Lex Fridman ", "link_text": "\"I think we've achieved AGI\"", "rest": " — his definition: an AI that can start a billion-dollar company", "url": "https://awesomeagents.ai/news/jensen-huang-agi-arrived/" },
-        { "prefix": "Kleiner Perkins ", "link_text": "raises $3.5 billion to go all in on AI", "rest": ", nearly doubling its last fundraise", "url": "https://techcrunch.com/2026/03/24/with-3-5b-in-fresh-capital-kleiner-perkins-is-going-all-in-on-ai/" },
-        { "prefix": "Meta ", "link_text": "acqui-hires the team behind agentic AI startup Dreamer", "rest": ", including former Google and Meta exec Hugo Barra", "url": "https://siliconangle.com/2026/03/23/meta-acqui-hires-co-founders-agentic-ai-startup-dreamer/" }
+        {
+          "link_text": "OpenAI kills Sora",
+          "rest": " as compute crunch forces hard choices — Disney's $1B deal goes with it",
+          "url": "https://www.businessinsider.com/openai-discontinues-sora-video-app-amid-robotics-shift-compute-limitations-2026-3"
+        },
+        {
+          "link_text": "Arm unveils its first-ever AI chip",
+          "rest": ", expects it to add $15 billion in annual revenue with Meta as lead partner",
+          "url": "https://today.reuters.com/business/media-telecom/arm-unveils-new-ai-chip-expects-it-add-billions-annual-revenue-2026-03-24/"
+        },
+        {
+          "prefix": "Epic Games ",
+          "link_text": "lays off 1,000+ workers",
+          "rest": " — CEO Tim Sweeney insists AI isn't to blame",
+          "url": "https://gizmodo.com/epic-games-laying-off-1000-employees-swears-ai-is-not-to-blame-2000737581"
+        },
+        {
+          "link_text": "OpenAI raises another $10 billion",
+          "rest": ", pushing its record funding round north of $120 billion",
+          "url": "https://www.cnbc.com/2026/03/24/openai-secures-an-extra-10-billion-in-record-funding-round-cfo-friar-says.html"
+        },
+        {
+          "prefix": "Bipartisan senators ",
+          "link_text": "demand Commerce Department investigate",
+          "rest": " whether Jensen Huang's smuggling denial misled regulators",
+          "url": "https://srnnews.com/us-lawmakers-ask-whether-nvidia-ceos-smuggling-remarks-misled-regulators/"
+        },
+        {
+          "prefix": "Jensen Huang tells Lex Fridman ",
+          "link_text": "\"I think we've achieved AGI\"",
+          "rest": " — his definition: an AI that can start a billion-dollar company",
+          "url": "https://awesomeagents.ai/news/jensen-huang-agi-arrived/"
+        },
+        {
+          "prefix": "Kleiner Perkins ",
+          "link_text": "raises $3.5 billion to go all in on AI",
+          "rest": ", nearly doubling its last fundraise",
+          "url": "https://techcrunch.com/2026/03/24/with-3-5b-in-fresh-capital-kleiner-perkins-is-going-all-in-on-ai/"
+        },
+        {
+          "prefix": "Meta ",
+          "link_text": "acqui-hires the team behind agentic AI startup Dreamer",
+          "rest": ", including former Google and Meta exec Hugo Barra",
+          "url": "https://siliconangle.com/2026/03/23/meta-acqui-hires-co-founders-agentic-ai-startup-dreamer/"
+        }
       ],
       "tools": [
-        { "name": "Figma", "desc": "AI agents like Claude Code, Codex, and Cursor can now design directly on Figma's canvas — creating and editing components tied to your existing design system via a new MCP tool", "url": "https://aihola.com/article/figma-ai-agents-canvas-mcp" },
-        { "name": "Claude Code", "desc": "Auto mode lets Claude run longer coding tasks with fewer interruptions, sitting between manual approvals and full skip-permissions with safeguards monitoring actions before they run", "url": "https://claude.com/blog/auto-mode" },
-        { "name": "GitHub Copilot", "desc": "You can now @mention Copilot directly in pull requests to fix failing tests, address review comments, or make changes — it spins up its own cloud environment, validates, and pushes", "url": "https://github.blog/changelog/2026-03-24-ask-copilot-to-make-changes-to-any-pull-request/" },
-        { "name": "Google TV", "desc": "Gemini now powers richer visual answers on your TV — ask about a game and get live scores with streaming links, or dive into narrated deep dives on topics like health and economics", "url": "https://blog.google/products-and-platforms/platforms/google-tv/new-gemini-features-march-2026/" },
-        { "name": "Linear", "desc": "Linear Agent understands your roadmap, issues, and codebase — ask it to draft project updates, triage new issues, or save recurring workflows as reusable skills", "url": "https://linear.app/changelog/2026-03-24-introducing-linear-agent" }
+        {
+          "name": "Figma",
+          "desc": "AI agents like Claude Code, Codex, and Cursor can now design directly on Figma's canvas — creating and editing components tied to your existing design system via a new MCP tool",
+          "url": "https://aihola.com/article/figma-ai-agents-canvas-mcp"
+        },
+        {
+          "name": "Claude Code",
+          "desc": "Auto mode lets Claude run longer coding tasks with fewer interruptions, sitting between manual approvals and full skip-permissions with safeguards monitoring actions before they run",
+          "url": "https://claude.com/blog/auto-mode"
+        },
+        {
+          "name": "GitHub Copilot",
+          "desc": "You can now @mention Copilot directly in pull requests to fix failing tests, address review comments, or make changes — it spins up its own cloud environment, validates, and pushes",
+          "url": "https://github.blog/changelog/2026-03-24-ask-copilot-to-make-changes-to-any-pull-request/"
+        },
+        {
+          "name": "Google TV",
+          "desc": "Gemini now powers richer visual answers on your TV — ask about a game and get live scores with streaming links, or dive into narrated deep dives on topics like health and economics",
+          "url": "https://blog.google/products-and-platforms/platforms/google-tv/new-gemini-features-march-2026/"
+        },
+        {
+          "name": "Linear",
+          "desc": "Linear Agent understands your roadmap, issues, and codebase — ask it to draft project updates, triage new issues, or save recurring workflows as reusable skills",
+          "url": "https://linear.app/changelog/2026-03-24-introducing-linear-agent"
+        }
       ],
       "jobs": [
-        { "company": "OpenAI", "role": "Product Marketing Manager, ChatGPT for Work", "url": "https://www.flexionis.wuaze.com/job/product-marketing-manager-chatgpt-for-work" },
-        { "company": "Netflix", "role": "Research Scientist, AI for Member Systems", "url": "https://www.flexionis.wuaze.com/job/research-scientist-5-6-ai-for-member-systems-2" },
-        { "company": "Regeneron", "role": "Senior Director, AI Strategy & Operations", "url": "https://careers.biospace.com/job/3038380/senior-director-ai-strategy-and-operations/" },
-        { "company": "Airbnb", "role": "Product Manager, Merchandising Platform", "url": "https://careers.airbnb.com/positions/7724793/" }
+        {
+          "company": "OpenAI",
+          "role": "Product Marketing Manager, ChatGPT for Work",
+          "url": "https://www.flexionis.wuaze.com/job/product-marketing-manager-chatgpt-for-work"
+        },
+        {
+          "company": "Netflix",
+          "role": "Research Scientist, AI for Member Systems",
+          "url": "https://www.flexionis.wuaze.com/job/research-scientist-5-6-ai-for-member-systems-2"
+        },
+        {
+          "company": "Regeneron",
+          "role": "Senior Director, AI Strategy & Operations",
+          "url": "https://careers.biospace.com/job/3038380/senior-director-ai-strategy-and-operations/"
+        },
+        {
+          "company": "Airbnb",
+          "role": "Product Manager, Merchandising Platform",
+          "url": "https://careers.airbnb.com/positions/7724793/"
+        }
       ]
     },
     "games": {
@@ -194,7 +422,11 @@
     "poll": {
       "poll_id": "5e47d1d0-2fb5-471c-9234-aa7f0664a7db",
       "question": "Would you trust an AI agent to work on your computer unsupervised?",
-      "options": ["Yes", "No", "Other"]
+      "options": [
+        "Yes",
+        "No",
+        "Other"
+      ]
     },
     "poll_results": null,
     "yesterdays_results": null
