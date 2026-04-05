@@ -544,7 +544,7 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
             {newsletter.sign_off}
           </p>
           <p style={{ fontFamily: SANS, fontSize: '14px', color: '#666', fontStyle: 'italic', padding: '0 0 10px', margin: 0 }}>
-            Written by Thorium Valley Crew
+            Written by the Thorium Valley Crew
           </p>
         </div>
 
