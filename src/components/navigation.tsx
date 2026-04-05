@@ -221,14 +221,6 @@ export function Navigation({ variant = "hero", scrolledTheme = "white", scrollTh
                                 <span className={`absolute bottom-0 left-0 w-0 h-0.5 ${isHeroDark ? 'bg-[#1b1b1b]' : 'bg-white'} group-hover:w-full transition-all duration-300`} />
                             </Link>
                             <Link
-                                href="mailto:sponsors@thoriumvalley.com"
-                                className="text-base font-normal transition-all hover:opacity-70 relative group"
-                                style={{ color: isHeroDark ? '#1b1b1b' : 'white' }}
-                            >
-                                Partnerships
-                                <span className={`absolute bottom-0 left-0 w-0 h-0.5 ${isHeroDark ? 'bg-[#1b1b1b]' : 'bg-white'} group-hover:w-full transition-all duration-300`} />
-                            </Link>
-                            <Link
                                 href="/about"
                                 className="text-base font-normal transition-all hover:opacity-70 relative group"
                                 style={{ color: isHeroDark ? '#1b1b1b' : 'white' }}

@@ -11,8 +11,11 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: 'Thorium Valley',
-  description: 'Daily AI briefings for professionals. No hype, just signal.',
+  title: {
+    default: 'Thorium Valley',
+    template: '%s - Thorium Valley',
+  },
+  description: 'Daily AI news and analysis for professionals who need to stay ahead. Join thousands of readers tracking the future of artificial intelligence. Subscribe.',
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: '48x48' },
@@ -23,7 +26,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Thorium Valley',
-    description: 'AI Is Eating the World',
+    description: 'AI Is Eating the World. Our free, daily briefing keeps you ahead on AI.',
+    siteName: 'Thorium Valley',
     images: ['/og-image.png'],
   },
 };
@@ -48,8 +52,13 @@ export default function RootLayout({
                   "@type": "WebSite",
                   "name": "Thorium Valley",
                   "url": "https://www.thoriumvalley.com",
-                  "description": "Thorium Valley is a free daily AI newsletter that delivers curated news briefings for professionals. No hype, just signal.",
-                  "publisher": { "@type": "Organization", "name": "Thorium Valley" }
+                  "description": "Daily AI news and analysis for professionals who need to stay ahead. Join thousands of readers tracking the future of artificial intelligence.",
+                  "publisher": { "@type": "Organization", "name": "Thorium Valley" },
+                  "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://www.thoriumvalley.com/articles?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                  }
                 },
                 {
                   "@type": "Organization",
@@ -57,16 +66,33 @@ export default function RootLayout({
                   "url": "https://www.thoriumvalley.com",
                   "logo": "https://www.thoriumvalley.com/Transparent%20White%20Text%20Logo%20New.png",
                   "description": "Thorium Valley is a daily AI news briefing service that keeps professionals ahead of the curve in artificial intelligence.",
-                  "sameAs": []
+                  "sameAs": [
+                    "https://www.instagram.com/thoriumvalley"
+                  ]
                 },
                 {
-                  "@type": "WebApplication",
-                  "name": "Thorium Valley",
-                  "url": "https://www.thoriumvalley.com",
-                  "applicationCategory": "NewsApplication",
-                  "description": "Thorium Valley delivers free daily AI news briefings. Subscribe to stay ahead in artificial intelligence with curated articles, market analysis, and governance coverage.",
-                  "operatingSystem": "All",
-                  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+                  "@type": "SiteNavigationElement",
+                  "name": "Subscribe",
+                  "url": "https://www.thoriumvalley.com/subscribe",
+                  "description": "Subscribe to Thorium Valley's free daily AI newsletter."
+                },
+                {
+                  "@type": "SiteNavigationElement",
+                  "name": "All Articles",
+                  "url": "https://www.thoriumvalley.com/articles",
+                  "description": "Read the latest AI news, analysis, and deep dives."
+                },
+                {
+                  "@type": "SiteNavigationElement",
+                  "name": "Newsletter",
+                  "url": "https://www.thoriumvalley.com/newsletter",
+                  "description": "Browse the Thorium Valley newsletter archive."
+                },
+                {
+                  "@type": "SiteNavigationElement",
+                  "name": "About",
+                  "url": "https://www.thoriumvalley.com/about",
+                  "description": "Learn about Thorium Valley and its mission."
                 }
               ]
             })

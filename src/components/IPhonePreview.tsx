@@ -30,8 +30,8 @@ export function IPhonePreview() {
       .catch(console.error);
   }, []);
 
-  // Strip "Welcome back." from intro if present
-  const introText = data?.intro?.replace(/^Welcome back\.\s*/i, '') || '';
+  // Strip greeting from intro if present
+  const introText = data?.intro?.replace(/^(Good Morning Thorium Valley[,.]|Welcome back[^,.]*[,.])\s*/i, '') || '';
 
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -294,7 +294,7 @@ export function IPhonePreview() {
 
             <div className="ip-bd">
               <p>
-                <strong>Welcome back.</strong> {introText.slice(0, 350)}
+                <strong>Good Morning Thorium Valley.</strong> {introText.slice(0, 350)}
               </p>
             </div>
           </div>

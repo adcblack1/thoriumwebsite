@@ -68,9 +68,14 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
     .nl-body blockquote { border-left: 3px solid ${ACCENT} !important; margin: 10px 0 !important; padding: 4px 15px !important; color: rgba(45,45,45,0.8) !important; }
     .nl-body a { color: ${ACCENT} !important; text-decoration: none !important; }
     .nl-body img { padding: 0 20px !important; max-width: 100% !important; height: auto !important; box-sizing: border-box !important; }
-    .nl-body .vv-header img { padding: 0 !important; }
+    .nl-body .vv-header img { padding: 0 !important; width: 100% !important; max-width: none !important; margin: 0 !important; }
+    .nl-body > p:first-of-type::first-letter, .nl-body > div:first-child > p:first-of-type::first-letter { font-family: 'Times New Roman', 'Times', serif !important; font-size: 3.5em !important; float: left !important; line-height: 0.8 !important; padding-right: 8px !important; padding-top: 4px !important; color: #5170ff !important; font-weight: bold !important; }
+    .intro-dropcap { font-family: 'Times New Roman', 'Times', serif !important; font-size: 3.5em !important; float: left !important; line-height: 0.8 !important; padding-right: 8px !important; padding-top: 4px !important; color: #5170ff !important; font-weight: bold !important; }
     @media (max-width: 780px) {
       .nl-shell-wrap { padding-left: 12px !important; padding-right: 12px !important; }
+      .toc-header-img { width: 50% !important; }
+      .nl-header-section { padding-top: 5.5rem !important; }
+      .nl-header-title { font-size: 22px !important; }
     }
   `;
 
@@ -88,11 +93,11 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
     <>
       <Navigation scrollThreshold={150} heroBorder heroTheme="dark" scrolledTheme="blue" />
       {/* Simple newsletter header */}
-      <section className="bg-white pt-40 lg:pt-48 pb-8">
+      <section className="nl-header-section bg-white pt-40 lg:pt-48 pb-8">
         <div className="max-w-[780px] mx-auto px-6">
           <h1
-            className="font-inter font-semibold text-[#1b1b1b] mb-2"
-            style={{ fontSize: '18px', letterSpacing: '-0.02em', lineHeight: 1.3 }}
+            className="nl-header-title font-times font-semibold text-[#1b1b1b] mb-2"
+            style={{ fontSize: '28px', letterSpacing: '-0.02em', lineHeight: 1.3 }}
           >
             {newsletter.toc?.[0] || newsletter.title}
           </h1>
@@ -139,31 +144,93 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
           </div>
         )}
 
-        {/* ── INTRO ── */}
-        <div style={{ padding: `0 ${PAD}`, textAlign: 'left', wordBreak: 'break-word' }}>
-          <p
-            style={{ fontFamily: SANS, fontWeight: 500, color: '#2D2D2D', fontSize: '16px', lineHeight: '1.6', padding: '12px 0', margin: 0 }}
-            dangerouslySetInnerHTML={{
-              __html: newsletter.intro.startsWith('Welcome back.')
-                ? `<strong style="font-weight:700">Welcome back.</strong>${newsletter.intro.slice('Welcome back.'.length)}`
-                : newsletter.intro
-            }}
-          />
-        </div>
-
-        {/* ── TABLE OF CONTENTS ── */}
+        {/* ── TABLE OF CONTENTS (right after banner) ── */}
         <div style={{ padding: `24px ${PAD} 0` }}>
-          <p style={{ fontFamily: SANS, fontWeight: 700, fontSize: '16px', color: '#2D2D2D', padding: '10px 0 6px', margin: 0 }}>
-            IN TODAY&apos;S NEWSLETTER
-          </p>
+          <img src="/thumbnails/toc-header.png" alt="In Today's Edition" className="toc-header-img" style={{ display: 'block', width: '35%', height: 'auto', padding: '10px 0 6px' }} />
           {newsletter.toc.map((item, i) => (
             <h2 key={i} style={{ fontFamily: SERIF, fontWeight: 400, fontSize: '26px', lineHeight: '1.3', color: '#2A2A2A', padding: '2px 0', margin: 0, letterSpacing: '-0.05em' }}>
-              <a href={`#article-${i + 1}`} style={{ color: 'inherit', textDecoration: 'none' }}>
-                <span style={{ color: ACCENT }}>{i + 1}.</span>&nbsp;{item}
+              <a href={`#article-${i + 1}`} style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'baseline', gap: '8px' }}>
+                <img src="/thumbnails/toc-bullet.png" alt="" style={{ width: '14px', height: '14px', flexShrink: 0, alignSelf: 'center' }} /><span>{item}</span>
               </a>
             </h2>
           ))}
+
+          {/* Secondary TOC items */}
+          <div style={{ display: 'flex', gap: '20px', padding: '14px 0 0', flexWrap: 'wrap' }}>
+            {newsletter.links?.news && newsletter.links.news.length > 0 && (
+              <a href="#links-section" style={{ fontFamily: SANS, fontSize: '14px', fontWeight: 500, color: 'rgba(27,27,27,0.5)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <img src="/thumbnails/toc-bullet.png" alt="" style={{ width: '10px', height: '10px', opacity: 0.4 }} />What else happened today?
+              </a>
+            )}
+            {newsletter.links?.tools && newsletter.links.tools.length > 0 && (
+              <a href="#tools-section" style={{ fontFamily: SANS, fontSize: '14px', fontWeight: 500, color: 'rgba(27,27,27,0.5)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <img src="/thumbnails/toc-bullet.png" alt="" style={{ width: '10px', height: '10px', opacity: 0.4 }} />What AI tools should I be using?
+              </a>
+            )}
+          </div>
         </div>
+
+        {/* ── INTRO (split into paragraphs, after TOC) ── */}
+        <div style={{ borderBottom: '1px solid rgba(27,27,27,0.1)', margin: `16px ${PAD} 0` }} />
+        <div className="nl-intro" style={{ padding: `20px ${PAD} 0`, textAlign: 'left', wordBreak: 'break-word' }}>
+          {(() => {
+            let paragraphs = newsletter.intro.split('\n\n');
+            // Merge greeting-only paragraph with the next one so drop cap flows into content
+            const greetOnly = /^(Good Morning Thorium Valley[,.]|Welcome back[^,.]*[,.])\s*$/;
+            if (paragraphs.length > 1 && greetOnly.test(paragraphs[0])) {
+              paragraphs = [paragraphs[0].trimEnd() + ' ' + paragraphs[1], ...paragraphs.slice(2)];
+            }
+            return paragraphs.map((paragraph, idx) => {
+              if (idx === 0) {
+                const greetMatch = paragraph.match(/^(Good Morning Thorium Valley[,.]|Welcome back[^,.]*[,.])/);
+                return (
+                  <p key={idx} style={{ fontFamily: SANS, fontWeight: 500, color: '#2D2D2D', fontSize: '16px', lineHeight: '1.6', padding: '8px 0', margin: 0 }}
+                    dangerouslySetInnerHTML={{
+                      __html: greetMatch
+                        ? `<span class="intro-dropcap">${greetMatch[0][0]}</span>${greetMatch[0].slice(1).replace(/,$/, '.')} ${paragraph.slice(greetMatch[0].length).trimStart()}`
+                        : paragraph
+                    }}
+                  />
+                );
+              }
+              return (
+                <p key={idx} style={{ fontFamily: SANS, fontWeight: 500, color: '#2D2D2D', fontSize: '16px', lineHeight: '1.6', padding: '8px 0', margin: 0 }}
+                  dangerouslySetInnerHTML={{ __html: paragraph }}
+                />
+              );
+            });
+          })()}
+        </div>
+
+        {/* ── QUICK POLL (below TOC) ── */}
+        {newsletter.poll && (
+          <div style={{ padding: `8px ${PAD} 24px` }}>
+            <p style={{ fontFamily: SANS, fontWeight: 500, color: '#2D2D2D', fontSize: '16px', lineHeight: '1.6', margin: 0 }}>
+              Quickly before we dive in — <em>{newsletter.poll.question}</em>
+            </p>
+            <style dangerouslySetInnerHTML={{ __html: `@media(max-width:780px){ .poll-options { flex-direction: column !important; gap: 8px !important; } }` }} />
+            <div className="poll-options" style={{ display: 'flex', gap: '16px', marginTop: '10px' }}>
+              {[...newsletter.poll.options, ...(!newsletter.poll.options.some((o: string) => o.toLowerCase() === 'other') ? ['Other'] : [])].map((option: string) => (
+                <VoteButton
+                  key={option}
+                  pollId={newsletter.poll!.poll_id || ''}
+                  answer={option}
+                  style={{
+                    fontFamily: SANS,
+                    fontSize: '14px',
+                    fontWeight: 700,
+                    color: ACCENT,
+                    textDecoration: 'none',
+                    letterSpacing: '0.04em',
+                    textTransform: 'uppercase' as const,
+                  }}
+                >
+                  {option}
+                </VoteButton>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* ── ARTICLE CARDS ── */}
         {articles.map((article, articleIndex) => {
@@ -178,6 +245,21 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
               overflow: 'hidden',
               scrollMarginTop: '100px',
             }}>
+
+              {/* Hero image */}
+              {article.thumbnail_url && (
+                <div style={{ padding: '0', textAlign: 'center' }}>
+                  <Link href={`/articles/${article.slug}`} style={{ display: 'block' }}>
+                    <Image
+                      src={article.thumbnail_url}
+                      alt={article.title}
+                      width={604}
+                      height={340}
+                      style={{ display: 'block', width: '100%', height: 'auto' }}
+                    />
+                  </Link>
+                </div>
+              )}
 
               {/* Category label */}
               <div style={{ padding: `10px ${PAD} 0`, textAlign: 'left' }}>
@@ -195,28 +277,40 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
                 </h1>
               </div>
 
-              {/* Hero image */}
-              {article.thumbnail_url && (
-                <div style={{ padding: '12px 25px', textAlign: 'center' }}>
-                  <Link href={`/articles/${article.slug}`} style={{ display: 'block' }}>
-                    <Image
-                      src={article.thumbnail_url}
-                      alt={article.title}
-                      width={604}
-                      height={340}
-                      style={{ display: 'block', width: '100%', height: 'auto' }}
-                    />
-                  </Link>
-                </div>
-              )}
+              {/* Share buttons */}
+              {(() => {
+                const articleUrl = `https://thoriumvalley.com/articles/${article.slug}`;
+                const shareText = encodeURIComponent(article.title);
+                const shareUrl = encodeURIComponent(articleUrl);
+                return (
+                  <div style={{ padding: `8px ${PAD} 0`, display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <span style={{ fontFamily: SANS, fontSize: '11px', fontWeight: 500, color: 'rgba(27,27,27,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Share</span>
+                    <a href={`https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`} target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(27,27,27,0.4)', textDecoration: 'none' }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+                    </a>
+                    <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`} target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(27,27,27,0.4)', textDecoration: 'none' }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+                    </a>
+                    <a href={`mailto:?subject=${shareText}&body=${shareUrl}`} style={{ color: 'rgba(27,27,27,0.4)', textDecoration: 'none' }}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+                    </a>
+                  </div>
+                );
+              })()}
+
+              {/* Divider */}
+              <div style={{ borderBottom: '1px solid rgba(27,27,27,0.1)', margin: `12px ${PAD} 0` }} />
 
               {/* Body content — prefer newsletter_content (condensed), fall back to full content */}
               <div style={{ padding: `0 ${PAD}`, textAlign: 'left', wordBreak: 'break-word' }}>
                 <ArticleContent
                   className="nl-body"
                   html={((article as any).newsletter_content || article.content || '<p>Content not available.</p>')
+                    .replace(/valley-view-header\.png/g, 'into-the-valley.png')
                     .replace(/<p[^>]*><strong[^>]*>Our Valley View<\/strong><\/p>/gi,
-                      '<div class="vv-header" style="padding:16px 0 4px;"><img src="/thumbnails/valley-view-header.png" alt="Our Valley View" style="display:block;max-width:200px;height:auto;padding:0;" /></div>')}
+                      '<div class="vv-header" style="padding:0;"><img src="/thumbnails/into-the-valley.png" alt="Into the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')
+                    .replace(/<p[^>]*><strong[^>]*>OUR VALLEY VIEW<\/strong><\/p>/gi,
+                      '<div class="vv-header" style="padding:0;"><img src="/thumbnails/into-the-valley.png" alt="Into the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')}
                 />
               </div>
 
@@ -224,67 +318,66 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
           );
         })}
 
-        {/* ══════ LINKS SECTION ══════ */}
-        {newsletter.links && (
-          <div style={{
+        {/* ══════ IN OTHER NEWS + JOBS ══════ */}
+        {newsletter.links && (newsletter.links.news?.length || newsletter.links.jobs?.length) && (
+          <div id="links-section" style={{
+            backgroundColor: 'transparent',
             border: '1px solid #CDCDCD',
             borderRadius: '10px',
             margin: '20px 0',
             padding: 0,
             overflow: 'hidden',
           }}>
-            {/* Category label */}
-            <div style={{ padding: `10px ${PAD} 0`, textAlign: 'left' }}>
-              <p style={{ fontFamily: SANS, color: ACCENT, fontSize: '16px', fontWeight: 400, lineHeight: '1.5', padding: '10px 0', margin: 0 }}>
-                LINKS
-              </p>
+            {/* Hero image */}
+            <div style={{ padding: 0, textAlign: 'center' }}>
+              <Image
+                src="/thumbnails/news-header.png"
+                alt="In Other News"
+                width={780}
+                height={340}
+                style={{ display: 'block', width: '100%', height: 'auto' }}
+              />
             </div>
 
-            {/* In Other News */}
+            {/* Category + Headline */}
+            <div style={{ padding: `16px ${PAD} 0`, textAlign: 'left' }}>
+              <p style={{ fontFamily: SANS, color: ACCENT, fontSize: '16px', fontWeight: 400, lineHeight: '1.5', padding: '0', margin: 0 }}>
+                IN OTHER NEWS
+              </p>
+            </div>
+            <div style={{ padding: `4px ${PAD} 0`, textAlign: 'left' }}>
+              <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: '30px', lineHeight: '1.2', color: '#2A2A2A', margin: 0, padding: 0, letterSpacing: '-0.05em' }}>
+                What else happened today
+              </h1>
+            </div>
+
+            {/* Divider */}
+            <div style={{ borderBottom: '1px solid rgba(27,27,27,0.1)', margin: `12px ${PAD} 0` }} />
+
+            {/* News links */}
             {newsletter.links.news && newsletter.links.news.length > 0 && (
-              <>
-                <div style={{ padding: '8px 15px 20px', textAlign: 'center' }}>
-                  <Image src="/thumbnails/links-in-other-news.png" alt="In Other News" width={780} height={60} style={{ display: 'block', width: '100%', height: 'auto' }} />
-                </div>
-                <div className="nl-body" style={{ padding: `0 ${PAD}`, textAlign: 'left', wordBreak: 'break-word' }}>
-                  <ul style={{ fontFamily: SANS, margin: 0, padding: '0 0 0 20px', color: '#2D2D2D', lineHeight: '1.5', listStyle: 'none', fontSize: '16px', fontWeight: 500 }}>
-                    {newsletter.links.news.map((item, i) => (
-                      <li key={i} style={{ margin: '10px 0 0 0', padding: '0 0 0 24px', fontSize: '16px', lineHeight: '1.5', position: 'relative' }}>
-                        <span style={{ color: ACCENT, fontWeight: 700, fontSize: '16px', position: 'absolute', left: 0 }}>+</span>
-                        {item.prefix && <>{item.prefix}</>}<a href={item.url} style={{ color: ACCENT, textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">{item.link_text}</a>{item.rest}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </>
+              <div style={{ padding: `8px ${PAD} 16px`, textAlign: 'left', wordBreak: 'break-word' }}>
+                <ul style={{ fontFamily: SANS, margin: 0, padding: '0 0 0 20px', color: '#2D2D2D', lineHeight: '1.5', listStyle: 'none', fontSize: '16px', fontWeight: 500 }}>
+                  {newsletter.links.news.map((item, i) => (
+                    <li key={i} style={{ margin: '10px 0 0 0', padding: '0 0 0 24px', fontSize: '16px', lineHeight: '1.5', position: 'relative' }}>
+                      <span style={{ color: ACCENT, fontWeight: 700, fontSize: '16px', position: 'absolute', left: 0 }}>+</span>
+                      {item.prefix && <>{item.prefix}</>}<a href={item.url} style={{ color: ACCENT, textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">{item.link_text}</a>{item.rest}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
 
-            {/* AI Tools */}
-            {newsletter.links.tools && newsletter.links.tools.length > 0 && (
-              <>
-                <div style={{ padding: '16px 15px 20px', textAlign: 'center' }}>
-                  <Image src="/thumbnails/links-ai-tools.png" alt="AI Tools" width={780} height={60} style={{ display: 'block', width: '100%', height: 'auto' }} />
-                </div>
-                <div className="nl-body" style={{ padding: `0 ${PAD}`, textAlign: 'left', wordBreak: 'break-word' }}>
-                  <ul style={{ fontFamily: SANS, margin: 0, padding: '0 0 0 20px', color: '#2D2D2D', lineHeight: '1.5', listStyle: 'none', fontSize: '16px', fontWeight: 500 }}>
-                    {newsletter.links.tools.map((item, i) => (
-                      <li key={i} style={{ margin: '10px 0 0 0', padding: '0 0 0 24px', fontSize: '16px', lineHeight: '1.5', position: 'relative' }}>
-                        <span style={{ color: ACCENT, fontWeight: 700, fontSize: '16px', position: 'absolute', left: 0 }}>+</span>
-                        <a href={item.url} style={{ color: ACCENT, textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">{item.name}</a>: {item.desc}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </>
-            )}
-
-            {/* AI Jobs */}
+            {/* Jobs segue */}
             {newsletter.links.jobs && newsletter.links.jobs.length > 0 && (
               <>
-                <div style={{ padding: '16px 15px 20px', textAlign: 'center' }}>
-                  <Image src="/thumbnails/links-ai-jobs.png" alt="AI Jobs" width={780} height={60} style={{ display: 'block', width: '100%', height: 'auto' }} />
+                <div style={{ borderBottom: '1px solid rgba(27,27,27,0.06)', margin: `0 ${PAD}` }} />
+                <div style={{ padding: `14px ${PAD} 4px`, textAlign: 'left' }}>
+                  <p style={{ fontFamily: SANS, color: '#2A2A2A', fontSize: '13px', fontWeight: 700, letterSpacing: '0.06em', margin: 0 }}>
+                    WHO&apos;S HIRING IN AI
+                  </p>
                 </div>
-                <div className="nl-body" style={{ padding: `0 ${PAD} 15px`, textAlign: 'left', wordBreak: 'break-word' }}>
+                <div style={{ padding: `0 ${PAD} 20px`, textAlign: 'left', wordBreak: 'break-word' }}>
                   <ul style={{ fontFamily: SANS, margin: 0, padding: '0 0 0 20px', color: '#2D2D2D', lineHeight: '1.5', listStyle: 'none', fontSize: '16px', fontWeight: 500 }}>
                     {newsletter.links.jobs.map((item, i) => (
                       <li key={i} style={{ margin: '10px 0 0 0', padding: '0 0 0 24px', fontSize: '16px', lineHeight: '1.5', position: 'relative' }}>
@@ -299,24 +392,44 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
           </div>
         )}
 
-        {/* ══════ GAMES SECTION ══════ */}
+        {/* ══════ GAMES SECTION (new location) ══════ */}
         {newsletter.games && (
           <div style={{
+            backgroundColor: 'transparent',
             border: '1px solid #CDCDCD',
             borderRadius: '10px',
             margin: '20px 0',
             padding: 0,
             overflow: 'hidden',
           }}>
-            <div style={{ padding: `10px ${PAD} 0`, textAlign: 'left' }}>
-              <p style={{ fontFamily: SANS, color: ACCENT, fontSize: '16px', fontWeight: 400, lineHeight: '1.5', padding: '10px 0', margin: 0 }}>
+            {/* Hero image */}
+            <div style={{ padding: 0, textAlign: 'center' }}>
+              <Image
+                src="/thumbnails/games-header.png"
+                alt="Games"
+                width={780}
+                height={340}
+                style={{ display: 'block', width: '100%', height: 'auto' }}
+              />
+            </div>
+
+            {/* Category + Headline */}
+            <div style={{ padding: `16px ${PAD} 0`, textAlign: 'left' }}>
+              <p style={{ fontFamily: SANS, color: ACCENT, fontSize: '16px', fontWeight: 400, lineHeight: '1.5', padding: '0', margin: 0 }}>
                 GAMES
               </p>
             </div>
-            <div style={{ padding: '8px 15px', textAlign: 'center' }}>
-              <Image src="/thumbnails/games-ai-or-real.png" alt="AI or Real" width={780} height={100} style={{ display: 'block', width: '100%', height: 'auto' }} />
+            <div style={{ padding: `4px ${PAD} 0`, textAlign: 'left' }}>
+              <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: '30px', lineHeight: '1.2', color: '#2A2A2A', margin: 0, padding: 0, letterSpacing: '-0.05em' }}>
+                AI or real — can you tell the difference?
+              </h1>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', padding: '12px 15px 0' }}>
+
+            {/* Divider */}
+            <div style={{ borderBottom: '1px solid rgba(27,27,27,0.1)', margin: `12px ${PAD} 0` }} />
+
+            {/* Today's game images */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', padding: `16px ${PAD} 0` }}>
               <div style={{ textAlign: 'center' }}>
                 <VoteButton pollId={newsletter.games.game_poll_id || ''} answer="Option A" style={{ display: 'block' }}>
                   <Image src={newsletter.games.image_a} alt="Option A" width={350} height={500} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: '6px' }} />
@@ -334,7 +447,7 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
                 </p>
               </div>
             </div>
-            <div style={{ padding: `8px ${PAD} 15px`, textAlign: 'center' }}>
+            <div style={{ padding: `0 ${PAD} 16px`, textAlign: 'center' }}>
               <p style={{ fontFamily: SANS, fontSize: '16px', fontWeight: 500, color: '#2D2D2D', margin: 0, padding: '4px 0' }}>
                 Which image is real?
               </p>
@@ -343,48 +456,87 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
                 <span style={{ color: '#999', padding: '0 8px' }}>|</span>
                 <VoteButton pollId={newsletter.games.game_poll_id || ''} answer="Option B" style={{ color: ACCENT, textDecoration: 'none', fontWeight: 600 }}>Option B</VoteButton>
               </p>
-
             </div>
+
+            {/* Yesterday's Results divider */}
+            <div style={{ padding: '8px 0', textAlign: 'center' }}>
+              <img src="/thumbnails/yesterdays-results.png" alt="Yesterday's Results" style={{ display: 'block', width: '100%', height: 'auto', padding: 0 }} />
+            </div>
+
+            {/* Yesterday's images with source links */}
+            {newsletter.yesterdays_results && (
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', padding: `8px ${PAD} 20px` }}>
+                <div style={{ textAlign: 'center' }}>
+                  <Image src={newsletter.yesterdays_results.ai_image} alt="AI Image" width={350} height={500} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: '6px' }} />
+                  <a href={newsletter.yesterdays_results.ai_source} target="_blank" rel="noopener noreferrer" style={{ fontFamily: SANS, fontSize: '13px', fontWeight: 600, color: ACCENT, textDecoration: 'none', display: 'block', padding: '6px 0' }}>
+                    AI IMAGE
+                  </a>
+                </div>
+                <div style={{ textAlign: 'center' }}>
+                  <Image src={newsletter.yesterdays_results.real_image} alt="Real Image" width={350} height={500} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: '6px' }} />
+                  <a href={newsletter.yesterdays_results.real_source} target="_blank" rel="noopener noreferrer" style={{ fontFamily: SANS, fontSize: '13px', fontWeight: 600, color: ACCENT, textDecoration: 'none', display: 'block', padding: '6px 0' }}>
+                    REAL IMAGE
+                  </a>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
-        {/* ══════ POLL SECTION ══════ */}
-        {newsletter.poll && (
-          <div style={{
+        {/* ══════ TOOLS WE'RE WATCHING ══════ */}
+        {newsletter.links?.tools && newsletter.links.tools.length > 0 && (
+          <div id="tools-section" style={{
+            backgroundColor: 'transparent',
             border: '1px solid #CDCDCD',
             borderRadius: '10px',
             margin: '20px 0',
             padding: 0,
             overflow: 'hidden',
           }}>
-            <div style={{ padding: `10px ${PAD} 0`, textAlign: 'left' }}>
-              <p style={{ fontFamily: SANS, color: ACCENT, fontSize: '16px', fontWeight: 400, lineHeight: '1.5', padding: '10px 0', margin: 0 }}>
-                WHAT DO YOU THINK?
+            {/* Hero image */}
+            <div style={{ padding: 0, textAlign: 'center' }}>
+              <Image
+                src="/thumbnails/tools-header.png"
+                alt="Tools We're Watching"
+                width={780}
+                height={340}
+                style={{ display: 'block', width: '100%', height: 'auto' }}
+              />
+            </div>
+
+            {/* Section headline */}
+            <div style={{ padding: `16px ${PAD} 0`, textAlign: 'left' }}>
+              <p style={{ fontFamily: SANS, color: ACCENT, fontSize: '16px', fontWeight: 400, lineHeight: '1.5', padding: '0', margin: 0 }}>
+                AI TOOLS
               </p>
             </div>
-            <div style={{ padding: `0 ${PAD} 20px`, textAlign: 'left' }}>
-              <p style={{ fontFamily: SERIF, fontWeight: 500, fontSize: '20px', color: '#2A2A2A', padding: '8px 0 12px', margin: 0, lineHeight: '1.3' }}>
-                {newsletter.poll.question}
-              </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-                {newsletter.poll.options.map((opt, i) => (
-                  <VoteButton key={i} pollId={newsletter.poll?.poll_id || ''} answer={opt} style={{
-                    fontFamily: SANS,
-                    fontSize: '16px',
-                    fontWeight: 500,
-                    color: ACCENT,
-                    textDecoration: 'none',
-                  }}>
-                    {opt}
-                  </VoteButton>
-                ))}
-              </div>
-              <p style={{ fontFamily: SANS, fontSize: '13px', color: '#999', margin: 0, padding: '12px 0 0' }}>
-                Vote by selecting an answer!
-              </p>
+            <div style={{ padding: `4px ${PAD} 0`, textAlign: 'left' }}>
+              <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: '30px', lineHeight: '1.2', color: '#2A2A2A', margin: 0, padding: 0, letterSpacing: '-0.05em' }}>
+                What our editors are paying attention to today
+              </h1>
+            </div>
+
+            {/* Divider */}
+            <div style={{ borderBottom: '1px solid rgba(27,27,27,0.1)', margin: `12px ${PAD} 0` }} />
+
+            {/* Tools list */}
+            <div style={{ padding: `8px ${PAD} 20px`, textAlign: 'left', wordBreak: 'break-word' }}>
+              {newsletter.links.tools.map((item, i) => (
+                <div key={i} style={{ padding: '10px 0', borderBottom: i < newsletter.links!.tools!.length - 1 ? '1px solid rgba(27,27,27,0.06)' : 'none' }}>
+                  <p style={{ fontFamily: SANS, fontSize: '16px', fontWeight: 500, color: '#2D2D2D', lineHeight: '1.5', margin: 0 }}>
+                    <a href={item.url} style={{ color: ACCENT, textDecoration: 'none', fontWeight: 700 }} target="_blank" rel="noopener noreferrer">{item.name}</a> — {item.desc}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         )}
+
+        {/* Old LINKS section removed — content now in dedicated cards above */}
+
+        {/* Old GAMES section removed — now in dedicated card above */}
+
+        {/* Old POLL section removed — now inline at top */}
 
         {/* ── SIGN-OFF ── */}
         <div style={{ padding: `0 ${PAD}`, borderTop: '1px solid #CDCDCD', marginTop: '10px' }}>
@@ -392,32 +544,11 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
             {newsletter.sign_off}
           </p>
           <p style={{ fontFamily: SANS, fontSize: '14px', color: '#666', fontStyle: 'italic', padding: '0 0 10px', margin: 0 }}>
-            Written by {newsletter.writers}
+            Written by Thorium Valley Crew
           </p>
         </div>
 
-        {/* ══════ YESTERDAY'S RESULTS (no border) ══════ */}
-        {newsletter.yesterdays_results && (
-          <div style={{ margin: '20px 0', padding: 0 }}>
-            <div style={{ textAlign: 'center', padding: '0 15px' }}>
-              <Image src="/thumbnails/yesterdays-results.png" alt="Yesterday's Results" width={780} height={60} style={{ display: 'block', width: '100%', height: 'auto' }} />
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', padding: '12px 15px 0' }}>
-              <div style={{ textAlign: 'center' }}>
-                <Image src={newsletter.yesterdays_results.ai_image} alt="AI Image" width={350} height={500} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: '6px' }} />
-                <a href={newsletter.yesterdays_results.ai_source} target="_blank" rel="noopener noreferrer" style={{ fontFamily: SANS, fontSize: '14px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: ACCENT, textDecoration: 'none', display: 'block', padding: '8px 0' }}>
-                  AI IMAGE
-                </a>
-              </div>
-              <div style={{ textAlign: 'center' }}>
-                <Image src={newsletter.yesterdays_results.real_image} alt="Real Image" width={350} height={500} style={{ display: 'block', width: '100%', height: 'auto', borderRadius: '6px' }} />
-                <a href={newsletter.yesterdays_results.real_source} target="_blank" rel="noopener noreferrer" style={{ fontFamily: SANS, fontSize: '14px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', color: ACCENT, textDecoration: 'none', display: 'block', padding: '8px 0' }}>
-                  REAL IMAGE
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
+        {/* Old YESTERDAY'S RESULTS removed — now in games card */}
 
         {/* ── SUBSCRIBE ── */}
         <div style={{ margin: '20px 0', padding: `20px ${PAD}`, border: '1px solid #CDCDCD', borderRadius: '10px', textAlign: 'center' }}>

@@ -12,7 +12,6 @@ export function Header() {
 
   const navLinks = [
     { href: '/newsletter', label: 'Newsletter' },
-    { href: 'mailto:sponsors@thoriumvalley.com', label: 'Partnerships' },
     { href: '/about', label: 'About' },
   ];
 

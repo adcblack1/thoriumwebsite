@@ -1,3 +1,4 @@
+import React from 'react';
 import { getNewsletters } from '@/lib/newsletters';
 import { getArticles, getArticleBySlug, getCategorySections } from '@/lib/articles';
 import { HeroSection } from '@/components/hero-section';
@@ -79,13 +80,23 @@ export default async function HomePage() {
       <section className="relative bg-white rounded-t-[48px] -mt-12 overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-3 pt-24 pb-20">
 
+          {/* TV Editions Header Image */}
+          <div className="border-t border-[#1b1b1b]/25 mb-8"></div>
+          <div className="mb-6 flex justify-center">
+            <img
+              src="/tv-editions-header.png"
+              alt="TV Editions"
+              style={{ height: '45px', width: 'auto', display: 'block' }}
+            />
+          </div>
+          <div className="border-t border-[#1b1b1b]/25 mb-10"></div>
+
           {featuredNL ? (
             <>
               {/* DESKTOP LAYOUT - 3 columns: left list | featured center | 2 right */}
               <div className="hidden md:grid md:grid-cols-[280px_1fr_280px] gap-10">
                 {/* LEFT column: small newsletter items stacked vertically */}
                 <div className="flex flex-col gap-4 border-r border-[#1b1b1b]/25 pr-6">
-                  <h2 className="font-times text-5xl lg:text-6xl font-bold uppercase mb-4" style={{ letterSpacing: '-0.05em', color: '#5170ff' }}>Newsletter</h2>
                   {recentNL.slice(2, 7).map((item, index) => (
                     <Link key={item.id} href={`${item.linkPrefix}/${item.slug}`} className="group">
                       <article className={`cursor-pointer flex gap-3 ${index !== 0 ? "pt-3 border-t border-[#1b1b1b]/25" : ""} ${index !== 4 ? "pb-3" : ""}`}>
@@ -147,7 +158,7 @@ export default async function HomePage() {
                         {featuredNL.headlines.slice(1).map((hl, i) => (
                           <Link key={i} href={`${featuredNL.linkPrefix}/${featuredNL.slug}#article-${i + 2}`} className="hp-nl-hl block">
                             <p className="text-[#1b1b1b]/60 text-base font-inter font-medium leading-snug transition-colors">
-                              <span className="text-[#5170ff] font-medium">+</span> {hl}
+                              <span className="text-[#5170ff] font-medium">✦</span> {hl}
                             </p>
                           </Link>
                         ))}
@@ -190,7 +201,7 @@ export default async function HomePage() {
               {/* MOBILE LAYOUT */}
               <div className="md:hidden">
                 {/* Section Header */}
-                <h2 className="font-times text-5xl font-bold uppercase mb-8" style={{ letterSpacing: '-0.05em', color: '#5170ff' }}>Newsletter</h2>
+
 
                 {/* Featured Newsletter */}
                 <article className="cursor-pointer mb-6">
@@ -222,7 +233,7 @@ export default async function HomePage() {
                       {featuredNL.headlines.slice(1).map((hl, i) => (
                         <Link key={i} href={`${featuredNL.linkPrefix}/${featuredNL.slug}#article-${i + 2}`} className="hp-nl-hl block">
                           <p className="text-[#1b1b1b]/60 text-sm font-inter font-medium transition-colors">
-                            <span className="text-[#5170ff] font-medium">+</span> {hl}
+                            <span className="text-[#5170ff] font-medium">✦</span> {hl}
                           </p>
                         </Link>
                       ))}
@@ -234,44 +245,36 @@ export default async function HomePage() {
                 {/* Divider */}
                 <div className="border-t border-[#1b1b1b]/25 my-6"></div>
 
-                {/* 2nd and 3rd newsletters — full width, cropped thumbnails */}
-                <div>
-                  {recentNL.slice(0, 2).map((item, index) => (
-                    <article key={item.id} className={`cursor-pointer ${index !== 0 ? 'pt-6 mt-6 border-t border-[#1b1b1b]/25' : ''}`}>
-                      <Link href={`${item.linkPrefix}/${item.slug}`} className="group block">
-                        <div className="relative overflow-hidden bg-[#1b1b1b]/5 mb-3" style={{ aspectRatio: '16/5' }}>
-                          {item.thumbnail_url ? (
-                            <Image
-                              src={item.thumbnail_url}
-                              alt={item.title}
-                              fill
-                              className="object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
-                              <span className="text-[#1b1b1b]/30 text-xs">Newsletter</span>
-                            </div>
-                          )}
-                          <ThumbnailOverlay />
-                        </div>
-                      </Link>
-                      <Link href={`${item.linkPrefix}/${item.slug}`} className="hp-nl-title block">
-                        <h3 className="font-bold font-times leading-tight text-[#1b1b1b] transition-colors" style={{ fontSize: '22px' }}>
-                          {item.title}
-                        </h3>
-                      </Link>
-                      {item.headlines.length > 1 && (
-                        <div className="mt-1.5 space-y-0.5">
-                          {item.headlines.slice(1).map((hl, i) => (
-                            <Link key={i} href={`${item.linkPrefix}/${item.slug}#article-${i + 2}`} className="hp-nl-hl block">
-                              <p className="text-[#1b1b1b]/60 text-sm font-inter font-medium transition-colors">
-                                <span className="text-[#5170ff] font-medium">+</span> {hl}
-                              </p>
-                            </Link>
-                          ))}
-                        </div>
-                      )}
-                    </article>
+                {/* 2nd and 3rd newsletters — side by side */}
+                <div className="grid grid-cols-[1fr_1px_1fr] gap-4">
+                  {recentNL.slice(0, 2).map((item, idx) => (
+                    <React.Fragment key={item.id}>
+                      {idx === 1 && <div className="bg-[#1b1b1b]/15" />}
+                      <article className="cursor-pointer">
+                        <Link href={`${item.linkPrefix}/${item.slug}`} className="group block">
+                          <div className="relative overflow-hidden bg-[#1b1b1b]/5 mb-3" style={{ aspectRatio: '4/3' }}>
+                            {item.thumbnail_url ? (
+                              <Image
+                                src={item.thumbnail_url}
+                                alt={item.title}
+                                fill
+                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                              />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
+                                <span className="text-[#1b1b1b]/30 text-xs">Newsletter</span>
+                              </div>
+                            )}
+                            <ThumbnailOverlay />
+                          </div>
+                        </Link>
+                        <Link href={`${item.linkPrefix}/${item.slug}`} className="hp-nl-title block">
+                          <h3 className="font-bold font-times leading-tight text-[#1b1b1b] transition-colors" style={{ fontSize: '20px' }}>
+                            {item.title}
+                          </h3>
+                        </Link>
+                      </article>
+                    </React.Fragment>
                   ))}
                 </div>
 
@@ -316,7 +319,7 @@ export default async function HomePage() {
                 <Link
                   href="/newsletter"
                   className="inline-flex items-center gap-2 transition-colors font-semibold font-inter uppercase"
-                  style={{ color: '#5170ff' }}
+                  style={{ color: '#1b1b1b' }}
                 >
                   View all editions
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -339,9 +342,11 @@ export default async function HomePage() {
       <section className="bg-white">
         <div className="max-w-7xl mx-auto px-3 pt-8 pb-20">
           {/* Section Header */}
-          <h2 className="font-times text-5xl lg:text-6xl font-bold mb-8 uppercase" style={{ letterSpacing: '-0.05em', color: '#5170ff' }}>
-            Latest Articles
+          <div className="border-t border-[#1b1b1b]/25 mb-8"></div>
+          <h2 className="font-times mb-6 uppercase text-center italic" style={{ letterSpacing: '-0.07em', color: '#1b1b1b', fontWeight: 900, fontStyle: 'italic', fontSize: 'clamp(30px, 4vw, 45px)' }}>
+            <span style={{ color: '#5170ff' }}>Latest</span> Articles
           </h2>
+          <div className="border-t border-[#1b1b1b]/25 mb-10"></div>
 
           {featuredArticle && (
             <>
@@ -516,7 +521,7 @@ export default async function HomePage() {
                 <Link
                   href="/articles"
                   className="inline-flex items-center gap-2 transition-colors font-semibold font-inter uppercase"
-                  style={{ color: '#5170ff' }}
+                  style={{ color: '#1b1b1b' }}
                 >
                   View all articles
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -529,104 +534,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════ */}
-      {/* CATEGORY SECTIONS – Dynamic, only populated cats   */}
-      {/* ═══════════════════════════════════════════════════ */}
-      {categorySections.length > 0 && (
-        <section className="bg-white">
-          <div className="max-w-7xl mx-auto px-3 pb-20">
-            {categorySections.map((section) => (
-              <div key={section.category} className="mb-16">
-                {/* Category Header */}
-                <div className="flex items-end justify-between mb-6 border-b border-[#1b1b1b]/25 pb-3">
-                  <h2 className="font-times text-4xl lg:text-5xl font-bold uppercase" style={{ letterSpacing: '-0.05em', color: '#5170ff' }}>
-                    {section.category}
-                  </h2>
-                  <Link
-                    href={`/articles?category=${encodeURIComponent(section.category)}`}
-                    className="inline-flex items-center gap-2 text-sm font-inter font-semibold uppercase hover:underline transition-colors"
-                    style={{ color: '#5170ff' }}
-                  >
-                    View all
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Link>
-                </div>
 
-                {/* DESKTOP: 4 articles in a row */}
-                <div className="hidden md:grid md:grid-cols-4 gap-6">
-                  {section.articles.slice(0, 4).map((article) => (
-                    <Link key={article.slug} href={`/articles/${article.slug}`} className="group">
-                      <article className="cursor-pointer">
-                        <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
-                          {article.thumbnail_url ? (
-                            <Image
-                              src={article.thumbnail_url}
-                              alt={article.title}
-                              fill
-                              className="object-cover"
-                            />
-                          ) : (
-                            <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
-                              <span className="text-[#1b1b1b]/30 text-xs">Article</span>
-                            </div>
-                          )}
-                          <ThumbnailOverlay />
-                        </div>
-                        <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-[#5170ff] transition-colors line-clamp-2">
-                          {article.title}
-                        </h3>
-                        {article.published_at && (
-                          <p className="text-xs font-inter font-medium mt-1" style={{ color: 'rgba(27,27,27,0.55)' }}>
-                            {formatDate(article.published_at)}
-                          </p>
-                        )}
-                      </article>
-                    </Link>
-                  ))}
-                </div>
 
-                {/* MOBILE: Horizontal scroll */}
-                <div className="md:hidden -mx-3">
-                  <div className="flex gap-4 overflow-x-auto px-3 pb-4 snap-x snap-mandatory" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
-                    <style dangerouslySetInnerHTML={{ __html: '.cat-scroll::-webkit-scrollbar { display: none; }' }} />
-                    {section.articles.map((article) => (
-                      <Link key={article.slug} href={`/articles/${article.slug}`} className="group snap-start">
-                        <article className="cursor-pointer" style={{ width: '280px', flexShrink: 0 }}>
-                          <div className="relative overflow-hidden bg-[#1b1b1b]/5 mb-2" style={{ width: '280px', height: '160px' }}>
-                            {article.thumbnail_url ? (
-                              <Image
-                                src={article.thumbnail_url}
-                                alt={article.title}
-                                fill
-                                className="object-cover"
-                              />
-                            ) : (
-                              <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
-                                <span className="text-[#1b1b1b]/30 text-xs">Article</span>
-                              </div>
-                            )}
-                          </div>
-                          <h3 className="font-bold font-times text-base leading-snug text-[#1b1b1b] group-hover:text-[#5170ff] transition-colors line-clamp-2">
-                            {article.title}
-                          </h3>
-                          {article.published_at && (
-                            <p className="text-xs font-inter font-medium mt-1" style={{ color: 'rgba(27,27,27,0.55)' }}>
-                              {formatDate(article.published_at)}
-                            </p>
-                          )}
-                        </article>
-                      </Link>
-                    ))}
-
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
 
       <FooterNew />
     </div>

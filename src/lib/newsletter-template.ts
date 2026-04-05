@@ -324,7 +324,7 @@ ${edition.banner_image_url ? `
 <!-- INTRO -->
 <tr><td align="left" style="padding:0 15px;text-align:left;word-break:break-word;">
   <p style="font-family:${TV.bodyFont};font-weight:400;color:${TV.textSecondary};font-size:16px;line-height:1.6;padding:8px 0;margin:0;">
-    <strong>Welcome back.</strong> ${edition.intro}<br/>
+    <strong>Good Morning Thorium Valley,</strong> ${edition.intro}<br/>
     <em>—</em> ${edition.editor || 'Thorium Valley'}
   </p>
 </td></tr>

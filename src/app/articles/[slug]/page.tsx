@@ -198,12 +198,16 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                             font-family: var(--font-times), 'Times New Roman MT', 'Times New Roman', 'Times', serif !important;
                             font-size: 36px !important;
                             font-weight: 500 !important;
+                            font-style: normal;
                             letter-spacing: -0.04em;
                             line-height: 1.15 !important;
                             margin-top: 2em !important;
                             margin-bottom: 0.8em !important;
                             color: #1b1b1b;
                             display: block;
+                        }
+                        .article-body .valley-view-heading em {
+                            font-style: italic;
                         }
                         .article-body .valley-view-inline {
                             font-family: var(--font-times), 'Times New Roman MT', 'Times New Roman', 'Times', serif !important;
@@ -264,9 +268,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               prose-ul:text-[#1b1b1b] prose-ol:text-[#1b1b1b]
               prose-blockquote:border-l-[#5170ff] prose-blockquote:text-[#1b1b1b]/80"
                         html={(article.content || '<p>Content not available.</p>')
+                                .replace(/valley-view-header\.png/g, 'into-the-valley.png')
                                 .replace(/Our Valley View/g, 'Valley View')
-                                .replace(/<p>\s*<strong>Valley View:?<\/strong>\s*<\/p>/g, '<h2 class="valley-view-heading">Valley View</h2>')
-                                .replace(/<p>\s*<strong>Valley View:?<\/strong>\s*([\s\S]*?)<\/p>/g, '<h2 class="valley-view-heading">Valley View</h2><p>$1</p>')
+                                .replace(/<div[^>]*class="vv-header"[^>]*>[\s\S]*?<\/div>/g, '<div style="text-align:center;margin:2em 0 1em;"><img src="/thumbnails/into-the-valley.png" alt="Valley View" style="display:inline-block;width:100%;height:auto;" /></div>')
+                                .replace(/<p>\s*<strong>Valley View:?<\/strong>\s*<\/p>/g, '<div style="text-align:center;margin:2em 0 1em;"><img src="/thumbnails/into-the-valley.png" alt="Valley View" style="display:inline-block;width:100%;height:auto;" /></div>')
+                                .replace(/<p>\s*<strong>Valley View:?<\/strong>\s*([\s\S]*?)<\/p>/g, '<div style="text-align:center;margin:2em 0 1em;"><img src="/thumbnails/into-the-valley.png" alt="Valley View" style="display:inline-block;width:100%;height:auto;" /></div><p>$1</p>')
                                 .replace(/<p>---<\/p>/g, '')
                                 .replace(/<hr\s*\/?>/g, '')}
                     />

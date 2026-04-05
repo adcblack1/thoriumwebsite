@@ -132,6 +132,23 @@ export function getCategories(): string[] {
     return CATEGORY_ORDER.filter((cat) => cats.has(cat));
 }
 
+// Canonical display order for company filter tags (read from company-tags.json)
+const COMPANY_ORDER: string[] = (() => {
+    try {
+        return JSON.parse(
+            fs.readFileSync(path.join(process.cwd(), 'src/data/company-tags.json'), 'utf-8')
+        );
+    } catch {
+        return [];
+    }
+})();
+
+export function getCompanies(): string[] {
+    const allPublished = readDB().filter((a) => a.status === 'published');
+    const allTags = new Set(allPublished.flatMap((a) => a.tags || []));
+    return COMPANY_ORDER.filter((company) => allTags.has(company));
+}
+
 // ── Write functions ──
 
 function generateSlug(title: string): string {

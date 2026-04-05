@@ -33,7 +33,7 @@ export default function AboutPage() {
           </FadeIn>
           <FadeIn delay={200}>
             <p className="text-sm font-inter font-medium block mt-3" style={{ color: 'rgba(255,255,255,0.4)' }}>
-              Written by Jason Chen
+              Written by the Thorium Valley team
             </p>
 
             {/* Share buttons */}

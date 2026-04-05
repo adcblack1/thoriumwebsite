@@ -21,29 +21,40 @@ export function SubscribeForm({ variant = "hero", className = "", redirectOnSucc
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
+        if (!email) return
         setLoading(true)
         setMessage(null)
 
         try {
-            const formData = new FormData()
-            formData.append("email", email)
+            // Create subscriber first, then redirect straight to step 2
+            const res = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email }),
+            })
+            const data = await res.json()
 
-            const result = await subscribeAction(null, formData)
-
-            if (result?.error) {
-                setMessage({ type: "error", text: result.error })
-                setLoading(false)
-            } else if (result?.success) {
-                setEmail("")
-                setLoading(false)
-                setSucceeded(true)
-                // Fire Meta Pixel Lead event
-                trackLead();
-                if (redirectOnSuccess) {
-                    setTimeout(() => router.push("/"), 2000)
-                }
+            if (data.subscriber_id) {
+                trackLead()
+                // Store subscriber info so /subscribe can pick it up
+                localStorage.setItem('tv_subscribe_progress', JSON.stringify({
+                    formData: {
+                        email,
+                        first_name: data.data?.first_name || '',
+                        main_goal: data.data?.main_goal || '',
+                        seniority: data.data?.seniority || '',
+                        job_function: data.data?.job_function || '',
+                        industry: data.data?.industry || '',
+                        company_size: data.data?.company_size || '',
+                        ai_tools: data.data?.ai_tools || [],
+                        child_newsletters: data.data?.child_newsletters || ['the-catalyst', 'the-lab', 'the-operator'],
+                    },
+                    step: 2,
+                    subscriberId: data.subscriber_id,
+                }))
+                router.push('/subscribe?step=2')
             } else {
-                setMessage({ type: "error", text: "Something went wrong. Please try again." })
+                setMessage({ type: "error", text: data.error || "Something went wrong." })
                 setLoading(false)
             }
         } catch {

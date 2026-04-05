@@ -55,7 +55,7 @@ export function ArticleContent({ html, className }: ArticleContentProps) {
         if (el.type === 'tweet') {
           return <TweetEmbed key={`tweet-${i}`} tweetUrl={el.content} />
         }
-        return <span key={`html-${i}`} dangerouslySetInnerHTML={{ __html: el.content }} />
+        return <div key={`html-${i}`} dangerouslySetInnerHTML={{ __html: el.content }} />
       })}
     </div>
   )

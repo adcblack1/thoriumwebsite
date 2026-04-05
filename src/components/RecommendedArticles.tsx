@@ -28,7 +28,7 @@ export function RecommendedArticles({ currentSlug, currentCategory, limit = 3 }:
         <section className="mt-16 mb-16">
             {/* Section Header — matches front page category headers */}
             <div className="mb-6 border-b border-[#1b1b1b]/25 pb-3">
-                <h2 className="font-times text-4xl lg:text-5xl font-bold uppercase" style={{ letterSpacing: '-0.05em', color: '#5170ff' }}>
+                <h2 className="font-times text-4xl lg:text-5xl font-bold uppercase" style={{ letterSpacing: '-0.05em', color: '#1b1b1b' }}>
                     More Articles
                 </h2>
             </div>

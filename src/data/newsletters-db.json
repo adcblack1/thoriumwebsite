@@ -1,10 +1,319 @@
 [
   {
+    "id": "april-02-2026",
+    "slug": "april-02-2026",
+    "title": "A leaked model name crashed an entire sector",
+    "date": "April 2, 2026",
+    "intro": "Good Morning Thorium Valley. OpenAI bought a talk show. After a year of dead products, sycophancy backlash, and Forbes cataloging a graveyard of unfinished deals, I guess they figured if you can't win the narrative, buy the narrator.\n\nOracle laid off 30,000 people and told the SEC that AI code generation made them replaceable. Most companies at least dress that up as \"restructuring.\" Stock's already down 25% this year, so the bar for a better strategy wasn't exactly high.\n\nAnd a Texas CEO who fired 80% of his staff for refusing to use AI says he'd do it again without thinking twice. So much for the careful rollout everyone keeps promising. No shortage of conviction in today's stories. The receipts? Harder to come by.",
+    "toc": [
+      "OpenAI bought a talk show. Now what?",
+      "Oracle traded 30,000 jobs for AI data centers",
+      "The CEO who fired 80% for AI has no regrets"
+    ],
+    "article_slugs": [
+      "openai-bought-a-talk-show-now-what",
+      "oracle-traded-30000-jobs-for-ai-data-centers",
+      "the-ceo-who-fired-80-percent-for-ai-has-no-regrets"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-04-02.png",
+    "published_at": "2026-04-02T13:00:00.000Z",
+    "updated_at": "2026-04-02T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Jack Dorsey says AI should replace middle managers",
+          "rest": " after Block cuts 4,000 jobs",
+          "url": "http://www.coindesk.com/tech/2026/04/01/jack-dorsey-says-ai-should-replace-corporate-hierarchy-after-block-cuts-4-000-jobs"
+        },
+        {
+          "prefix": "Anthropic accidentally ",
+          "link_text": "leaked 512,000 lines of Claude Code's source code",
+          "rest": " via a misconfigured npm package — a developer rewrote the whole thing overnight with AI",
+          "url": "https://fortune.com/2026/03/31/anthropic-source-code-claude-code-data-leak-second-security-lapse-days-after-accidentally-revealing-mythos/"
+        },
+        {
+          "prefix": "A federal court ",
+          "link_text": "blocked the Trump administration's ban on Anthropic",
+          "rest": " for government contractors",
+          "url": "https://www.mondaq.com/unitedstates/government-contracts-procurement-ppp/1767292/update-federal-court-enjoins-trump-administrations-anthropic-ban-for-government-contractors"
+        },
+        {
+          "prefix": "Los Alamos National Lab ",
+          "link_text": "installed ChatGPT on a nuclear supercomputer",
+          "rest": " — here's what happened",
+          "url": "https://www.vox.com/technology/484250/los-alamos-nuclear-ai-openai-chatgpt"
+        },
+        {
+          "prefix": "GitHub Copilot caught ",
+          "link_text": "sneaking ads into developers' pull requests",
+          "rest": " — over 11,000 repos affected",
+          "url": "https://officechai.com/ai/user-discovers-that-github-copilot-edited-an-ad-into-their-pr-company-responds/"
+        },
+        {
+          "prefix": "Governor Newsom signs ",
+          "link_text": "executive order to strengthen AI protections",
+          "rest": " as the White House rolls back federal standards",
+          "url": "https://www.gov.ca.gov/2026/03/30/as-trump-rolls-back-protections-governor-newsom-signs-first-of-its-kind-executive-order-to-strengthen-ai-protections-and-responsible-use/"
+        },
+        {
+          "prefix": "Rhoda AI ",
+          "link_text": "exits stealth with $450 million",
+          "rest": " to bring robots out of the lab and into the real world",
+          "url": "https://www.intelligence360.news/rhoda-ai-exits-stealth-with-450-million-series-a-to-bring-robots-out-of-the-lab-and-into-the-real-world/"
+        },
+        {
+          "prefix": "A dietician was ",
+          "link_text": "struck off the UK register for using ChatGPT",
+          "rest": " to answer questions during a remote NHS job interview from Nigeria",
+          "url": "http://www.dailymail.co.uk/news/article-15700965/Dietician-struck-UK-register-using-ChatGPT-real-time-answers-remote-interview-NHS-job-Nigeria.html"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Gemini",
+          "desc": "Google now lets you import your full chat history and saved memories from ChatGPT and Claude directly into Gemini — so you can switch without starting over",
+          "url": "https://www.ghacks.net/2026/03/31/google-adds-chatgpt-and-claude-import-tools-to-gemini-for-memory-and-chat-history/"
+        },
+        {
+          "name": "Gmail AI Inbox",
+          "desc": "A new AI-powered view in Gmail prioritizes your important messages, generates to-do lists, and groups updates by topic so you don't have to read every email yourself",
+          "url": "https://9to5google.com/2026/03/31/gmail-ai-inbox-beta-ultra/"
+        },
+        {
+          "name": "Telegram",
+          "desc": "The messaging app now has a built-in AI text editor that can fix grammar, rewrite your messages in different styles, or translate them — all right in the chat bar before you hit send",
+          "url": "https://telegram.org/blog/ai-editor-mighty-polls-and-more"
+        },
+        {
+          "name": "GitHub Copilot CLI",
+          "desc": "A new /fleet command lets Copilot break a coding task into pieces and work on multiple files simultaneously with parallel agents — like having a whole dev team in your terminal",
+          "url": "https://github.blog/ai-and-ml/github-copilot/run-multiple-agents-at-once-with-fleet-in-copilot-cli/"
+        },
+        {
+          "name": "Google Vids",
+          "desc": "Google's video creation tool now lets you create customizable AI avatars you can direct, plus free users get 10 AI-generated video clips per month",
+          "url": "https://9to5google.com/2026/04/02/google-vids-ai-avatars/"
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Walt Disney Imagineering",
+          "role": "Executive, AI Platform Engineering",
+          "url": "https://wdwnt.com/2026/03/walt-disney-imagineering-hiring-ai-executive/"
+        },
+        {
+          "company": "Anthropic",
+          "role": "Research Engineer, Frontier Red Team (Hardware Lead)",
+          "url": "https://flexionis.wuaze.com/job/research-engineer-frontier-red-team-hardware-lead"
+        },
+        {
+          "company": "Netflix",
+          "role": "Principal ML Architect, Content Promotion & Distribution",
+          "url": "https://flexionis.wuaze.com/job/principal-machine-learning-architect-l7-content-promotion-distribution-6"
+        },
+        {
+          "company": "Humana",
+          "role": "Lead, AI Product Management",
+          "url": "https://careers.humana.com/us/en/job/R-410731/Lead-AI-Product-Management"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "dd9e403c-cdaa-4fff-950f-aebc729152c4",
+      "image_a": "/thumbnails/kicker-2026-04-02-ai.jpeg",
+      "image_b": "/thumbnails/kicker-2026-04-02-real.jpg",
+      "link_a": "https://gemini.google.com/share/a1b7e3de01f5",
+      "link_b": "https://unsplash.com/photos/gray-concrete-road-between-green-trees-during-daytime-X4AAT4a3y28"
+    },
+    "poll": {
+      "poll_id": "787df239-6506-4d79-b866-f29f93ddda02",
+      "question": "Would you trust an AI agent to work on your computer unsupervised?",
+      "options": [
+        "Already do",
+        "Not a chance",
+        "Maybe someday",
+        "Other"
+      ]
+    },
+    "poll_results": null,
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-03-29-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-03-29-real.jpg",
+      "ai_source": "https://gemini.google.com/share/be9c2825e946",
+      "real_source": "https://unsplash.com/photos/a-majestic-tiered-waterfall-cascades-down-a-rocky-mountainside-0E6MhYNr7qY"
+    }
+  },
+  {
+    "id": "march-29-2026",
+    "slug": "march-29-2026",
+    "title": "Thorium Valley | March 29, 2026",
+    "date": "March 29, 2026",
+    "intro": "Good Morning Thorium Valley.\n\nAnthropic didn't ship a product last week — it leaked a slide. That was enough to wipe billions off cybersecurity stocks in a single afternoon.\n\nOver at xAI, the last of Elon Musk's eleven original co-founders just walked out, leaving a $250 billion company with no one from its founding team still around.\n\nAnd Google is borrowing from the telecom playbook with a new tool that ports your ChatGPT history straight into Gemini — switching chatbots is now as easy as switching carriers. In AI right now, a rumor moves markets, talent walks, and loyalty is up for grabs.",
+    "toc": [
+      "A leaked AI model name crashed an entire sector",
+      "Every person who built xAI has left",
+      "Google wants you to dump ChatGPT — and made it easy"
+    ],
+    "article_slugs": [
+      "a-leaked-model-name-crashed-an-entire-sector",
+      "every-person-who-built-xai-has-left",
+      "google-wants-you-to-dump-chatgpt-and-made-it-easy"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-03-29.png",
+    "published_at": "2026-03-29T13:00:00.000Z",
+    "updated_at": "2026-03-29T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Judge blocks Pentagon's ban on Anthropic",
+          "url": "https://www.npr.org/2026/03/26/nx-s1-5762971/judge-temporarily-blocks-anthropic-ban",
+          "rest": ", calling it 'classic First Amendment retaliation'"
+        },
+        {
+          "link_text": "Meta boosts its Texas AI data center bet to $10 billion",
+          "url": "https://www.cnbc.com/2026/03/26/meta-to-spend-10-billion-on-ai-data-center-in-el-paso-1gw-by-2028.html",
+          "rest": ", up from $1.5B last year"
+        },
+        {
+          "prefix": "Physical Intelligence, a two-year-old robotics startup, is ",
+          "link_text": "in talks for an $11 billion valuation",
+          "url": "https://www.bloomberg.com/news/articles/2026-03-27/ex-deepmind-staffers-robotics-startup-in-talks-for-11-billion-valuation?srnd=homepage-americas",
+          "rest": " — double what it was four months ago"
+        },
+        {
+          "prefix": "Eli Lilly signs a ",
+          "link_text": "$2.75 billion deal with AI drug developer Insilico Medicine",
+          "url": "https://reut.rs/4lUIiMW",
+          "rest": ""
+        },
+        {
+          "prefix": "Epstein victims ",
+          "link_text": "sue Google, claiming AI Mode exposed their personal information",
+          "url": "https://gizmodo.com/epstein-victims-sue-google-claim-ai-mode-exposed-personal-information-2000739177",
+          "rest": " to the public"
+        },
+        {
+          "prefix": "Defense AI startup Shield AI ",
+          "link_text": "raises $1.5B at a $12.7 billion valuation",
+          "url": "https://techcrunch.com/2026/03/26/defense-startup-shield-ai-lands-12-7b-valuation-up-140-after-u-s-air-force-deal/",
+          "rest": " after landing a U.S. Air Force deal"
+        },
+        {
+          "prefix": "A Florida man ",
+          "link_text": "used ChatGPT to sell his house for $955K",
+          "url": "https://timesofindia.indiatimes.com/world/us/florida-man-sells-family-home-for-954800-using-chatgpt-100000-above-agent-estimates/articleshow/129872126.cms",
+          "rest": " — $100,000 above what real estate agents estimated"
+        },
+        {
+          "prefix": "Someone ",
+          "link_text": "used Claude to reverse-engineer the Apollo 11 moon landing code",
+          "url": "https://www.airealist.ai/p/reverse-engineering-the-apollo-11",
+          "rest": " — 40,000 lines of 1960s assembly for a computer with 4KB of RAM"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Codex",
+          "url": "https://the-decoder.com/openais-codex-gets-a-plugin-marketplace-for-slack-notion-figma-and-more/",
+          "desc": "OpenAI's coding agent now has a plugin marketplace that connects to Slack, Figma, Notion, Gmail, and Google Drive — so it can plan projects, pull designs, and message your team, not just write code"
+        },
+        {
+          "name": "Notion",
+          "url": "https://www.notion.com/releases/2026-03-26",
+          "desc": "Version 3.4 adds dashboards for your databases, a presentation mode that turns any doc into a slideshow, and a redesigned sidebar — plus AI agents that can build dashboards for you on command"
+        },
+        {
+          "name": "Gemini",
+          "url": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-drop-march-2026/",
+          "desc": "Google's March Drop brings free Personal Intelligence to all U.S. users, Lyria 3 Pro for composing 3-minute music tracks, and faster Gemini Live conversations that hold context twice as long"
+        },
+        {
+          "name": "Google Ads",
+          "url": "https://searchengineland.com/google-brings-its-veo-video-generation-model-to-google-ads-globally-472836",
+          "desc": "Advertisers can now use Google's Veo video model to turn static images into 10-second video ads for YouTube — no video production team required"
+        },
+        {
+          "name": "Glean",
+          "url": "https://docs.glean.com/administration/assistant/features/agentic-engine",
+          "desc": "The enterprise AI assistant upgraded to a full agentic engine that plans, iterates, and pulls from all your company's knowledge sources to answer complex work questions personalized to your role"
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Anthropic",
+          "role": "Contract Recruiter, Legal",
+          "url": "https://flexionis.wuaze.com/job/contract-recruiter-legal"
+        },
+        {
+          "company": "Hugging Face",
+          "role": "AI Public Policy Manager",
+          "url": "https://flexionis.wuaze.com/job/ai-public-policy-manager-washington-dc"
+        },
+        {
+          "company": "Waymo",
+          "role": "Group Product Manager, London",
+          "url": "https://bulldogjob.com/companies/jobs/234057-group-product-manager-london-waymo"
+        },
+        {
+          "company": "McKinsey",
+          "role": "Director of Data Science, Analytics Innovation",
+          "url": "https://www.mckinsey.com/careers/search-jobs/jobs/directorofdatascience-analyticsinnovationretailcpg-96613?appsource=Circa"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "cbe79af3-9f10-430d-b6cc-89a6f5c15ffa",
+      "image_a": "/thumbnails/kicker-2026-03-29-real.jpg",
+      "image_b": "/thumbnails/kicker-2026-03-29-ai.jpeg",
+      "link_a": "https://unsplash.com/photos/a-majestic-tiered-waterfall-cascades-down-a-rocky-mountainside-0E6MhYNr7qY",
+      "link_b": "https://gemini.google.com/share/be9c2825e946"
+    },
+    "poll": {
+      "poll_id": "f17b3410-6a77-41a6-acc4-2500abd133df",
+      "question": "Would you trust an AI agent to work on your computer unsupervised?",
+      "options": [
+        "Already do",
+        "Not a chance",
+        "Maybe someday",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "Would you trust an AI agent to work on your computer unsupervised?",
+      "results": [
+        {
+          "option": "Yes",
+          "pct": 100
+        },
+        {
+          "option": "No",
+          "pct": 0
+        },
+        {
+          "option": "Other",
+          "pct": 0
+        }
+      ]
+    },
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-03-27-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-03-27-real.jpg",
+      "ai_source": "https://gemini.google.com/share/8c57f490dff2",
+      "real_source": "https://unsplash.com/photos/a-person-walks-along-a-wooded-path-beside-a-stream-leV1WkdqYik"
+    }
+  },
+  {
     "id": "march-27-2026",
     "slug": "march-27-2026",
     "title": "Thorium Valley | March 27, 2026",
     "date": "March 27, 2026",
-    "intro": "",
+    "intro": "Good Morning Thorium Valley,\n\nThe AI boom is running into friction on every front. A half-trillion-dollar data center buildout is facing something the tech industry didn't budget for: organized neighbors, bipartisan opposition, and a moratorium bill from Sanders and AOC that's dead on arrival but signals something real.\n\nMorningstar just stress-tested 132 companies through an AI lens and triggered the largest moat reclassification in its 20-year history — Adobe, Salesforce, and Oracle among the casualties.\n\nAnd Stanford researchers found that chatbots are telling you what you want to hear, hardening false beliefs over time. The worst part? Users prefer it that way.",
     "toc": [
       "The $710 billion AI buildout hits a wall: neighbors",
       "Morningstar scored 130 companies on AI survival",
@@ -17,7 +326,7 @@
     ],
     "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
     "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
-    "banner_image_url": "/thumbnails/banner-2026-03-27.png",
+    "banner_image_url": "/thumbnails/banner-march27-v4.png",
     "published_at": "2026-03-27T13:00:00.000Z",
     "updated_at": "2026-03-27T15:38:15.000Z",
     "status": "published",
@@ -26,7 +335,7 @@
         {
           "link_text": "Jensen Huang says 'I think we've achieved AGI'",
           "url": "https://www.theverge.com/ai-artificial-intelligence/899086/jensen-huang-nvidia-agi",
-          "rest": "on Lex Fridman's podcast, then immediately walks it back"
+          "rest": " on Lex Fridman's podcast, then immediately walks it back"
         },
         {
           "link_text": "Baltimore sues xAI over Grok deepfakes",
@@ -41,12 +350,12 @@
         {
           "link_text": "Anthropic and the Pentagon face off in court",
           "url": "https://www.npr.org/2026/03/24/nx-s1-5759276/anthropic-pentagon-claude-preliminary-injunction-hearing",
-          "rest": "— judge says the government's ban on Claude \"looks like punishment\""
+          "rest": " — judge says the government's ban on Claude \"looks like punishment\""
         },
         {
           "link_text": "Legal AI startup Harvey hits $11 billion valuation",
           "url": "https://www.prnewswire.com/news-releases/harvey-raises-at-11-billion-valuation-to-scale-agents-across-law-firms-and-enterprises-302724309.html",
-          "rest": "with 25,000+ custom agents running workflows across 100,000 lawyers"
+          "rest": " with 25,000+ custom agents running workflows across 100,000 lawyers"
         },
         {
           "link_text": "Arm unveils its first-ever custom chip",
@@ -56,7 +365,7 @@
         {
           "link_text": "Huawei claims its new Atlas 350 accelerator",
           "url": "https://www.tomshardware.com/pc-components/gpus/huawei-unveils-new-atlas-350-ai-accelerator-with-1-56-pflops-of-fp4-compute-and-up-to-112gb-of-hbm-claims-2-8x-more-performance-than-nvidias-h20",
-          "rest": "delivers 2.8x more performance than Nvidia's H20"
+          "rest": " delivers 2.8x more performance than Nvidia's H20"
         },
         {
           "link_text": "A delivery robot crashed through a Chicago bus shelter",
@@ -125,9 +434,9 @@
       "poll_id": "5eeb9e4e-313b-420a-b283-4871209e6d18",
       "question": "Would you trust an AI agent to work on your computer unsupervised?",
       "options": [
-        "Yes",
-        "No",
-        "Other"
+        "Already do",
+        "Not a chance",
+        "Maybe someday"
       ]
     },
     "poll_results": {
@@ -159,7 +468,7 @@
     "slug": "march-20-2026",
     "title": "Thorium Valley | March 20, 2026",
     "date": "March 20, 2026",
-    "intro": "Welcome back. An AI agent at Meta leaked restricted employee data last week — not from a hack, but because the agent didn't know it shouldn't. Existing security tools couldn't distinguish normal behavior from a breach until the damage was done, and that's a problem every company deploying agents is about to face. Microsoft is retreating on a different front: over 11,000 people starred a GitHub project to rip AI out of Windows, and the company is now pulling Copilot from consumer apps while quietly redirecting everything toward enterprise, where the money is. Washington wants to write one AI rulebook for all of it, which might be the most consequential story here if anyone can agree on what goes in it.",
+    "intro": "Good Morning Thorium Valley.\n\nAn AI agent at Meta leaked restricted employee data last week — not from a hack, but because the agent didn't know it shouldn't. Existing security tools couldn't distinguish normal behavior from a breach until the damage was done, and that's a problem every company deploying agents is about to face.\n\nMicrosoft is retreating on a different front: over 11,000 people starred a GitHub project to rip AI out of Windows, and the company is now pulling Copilot from consumer apps while quietly redirecting everything toward enterprise, where the money is.\n\nWashington wants to write one AI rulebook for all of it, which might be the most consequential story here if anyone can agree on what goes in it.",
     "toc": [
       "Meta's rogue AI agent is everyone's problem now",
       "Microsoft is done shoving Copilot into everything",
@@ -182,7 +491,7 @@
     "slug": "march-10-2026",
     "title": "Thorium Valley | March 10, 2026",
     "date": "March 10, 2026",
-    "intro": "Welcome back. A survey of nearly 6,000 executives found over 80% of firms report zero productivity gains from AI—even as 70% actively use it and half a trillion dollars flows into infrastructure this year. Goldman coined a term for the disconnect: \"AI-nxiety.\" Nvidia is stepping back too, with Jensen Huang saying the company is done funding AI labs. He framed it as IPO timing, though the less comfortable read involves a chipmaker bankrolling its own biggest customers. Then two OpenAI engineers built an internal data agent with the same tools the company sells externally—and it quietly became the most-used product in the building. Somewhere between the trillion-dollar uncertainty and the 82-second query, there's probably a realistic picture of where AI actually stands.",
+    "intro": "Good Morning Thorium Valley.\n\nA survey of nearly 6,000 executives found over 80% of firms report zero productivity gains from AI—even as 70% actively use it and half a trillion dollars flows into infrastructure this year. Goldman coined a term for the disconnect: \"AI-nxiety.\"\n\nNvidia is stepping back too, with Jensen Huang saying the company is done funding AI labs. He framed it as IPO timing, though the less comfortable read involves a chipmaker bankrolling its own biggest customers.\n\nThen two OpenAI engineers built an internal data agent with the same tools the company sells externally—and it quietly became the most-used product in the building. Somewhere between the trillion-dollar uncertainty and the 82-second query, there's probably a realistic picture of where AI actually stands.",
     "toc": [
       "Goldman can't find AI's productivity boost",
       "Nvidia says it's done investing in AI labs",
@@ -205,7 +514,7 @@
     "slug": "march-04-2026",
     "title": "Thorium Valley | March 04, 2026",
     "date": "March 04, 2026",
-    "intro": "Welcome back. OpenAI is having a week where every headline looks great until you read the second paragraph. The company replaced Anthropic as the Pentagon's AI provider—then Sam Altman called his own deal \"opportunistic and sloppy\" and rushed to add the surveillance guardrails it had skipped. GPT-5.3 Instant arrives with OpenAI conceding its chatbot was preachy and over-cautious—a fix that conveniently lands the same week Claude hit No. 1 on the App Store. And that $110B funding round? Nvidia slashed its commitment by 70%, Amazon tied big chunks to milestone triggers, and Microsoft sat it out entirely. Three massive moves, three sets of fine print.",
+    "intro": "Good Morning Thorium Valley.\n\nOpenAI is having a week where every headline looks great until you read the second paragraph. The company replaced Anthropic as the Pentagon's AI provider—then Sam Altman called his own deal \"opportunistic and sloppy\" and rushed to add the surveillance guardrails it had skipped.\n\nGPT-5.3 Instant arrives with OpenAI conceding its chatbot was preachy and over-cautious—a fix that conveniently lands the same week Claude hit No. 1 on the App Store.\n\nAnd that $110B funding round? Nvidia slashed its commitment by 70%, Amazon tied big chunks to milestone triggers, and Microsoft sat it out entirely. Three massive moves, three sets of fine print.",
     "toc": [
       "OpenAI calls its own Pentagon deal 'sloppy'",
       "ChatGPT just got a personality and accuracy overhaul",
@@ -228,7 +537,7 @@
     "slug": "february-27-2026",
     "title": "Thorium Valley | February 27, 2026",
     "date": "February 27, 2026",
-    "intro": "Welcome back. The Pentagon has given Anthropic until Friday to drop Claude's safety restrictions for military use — or face the Defense Production Act or a blacklist from federal contractors. The legal footing is shaky, but the pressure is real. Meanwhile, Anthropic just plugged Claude Cowork into Salesforce, Slack, Excel, and a dozen other enterprise tools, betting that AI agents failed in 2025 not because the idea was wrong but because the approach was. And Google quietly shipped something Apple promised two years ago and never delivered: Gemini can now book your Uber, order your DoorDash, and run real errands inside Android apps. It still asks before it spends your money, though.",
+    "intro": "Good Morning Thorium Valley.\n\nThe Pentagon has given Anthropic until Friday to drop Claude's safety restrictions for military use — or face the Defense Production Act or a blacklist from federal contractors. The legal footing is shaky, but the pressure is real.\n\nMeanwhile, Anthropic just plugged Claude Cowork into Salesforce, Slack, Excel, and a dozen other enterprise tools, betting that AI agents failed in 2025 not because the idea was wrong but because the approach was.\n\nAnd Google quietly shipped something Apple promised two years ago and never delivered: Gemini can now book your Uber, order your DoorDash, and run real errands inside Android apps. It still asks before it spends your money, though.",
     "toc": [
       "Anthropic's Friday deadline: bend or break",
       "Claude Cowork plugs into your entire workflow",
@@ -251,7 +560,7 @@
     "slug": "february-24-2026",
     "title": "Thorium Valley | February 24, 2026",
     "date": "February 24, 2026",
-    "intro": "Welcome back. Artificial Analysis just overhauled its Intelligence Index — the scorecard many use to rank AI models — and the results are humbling. They replaced older academic-style benchmarks with real-world evaluations, and suddenly top models are scoring 50 or below on a 100-point scale. Some of these same models were posting scores in the high 80s on the old tests. Turns out they'd gotten really good at passing exams without necessarily being useful. The AI equivalent of acing the SAT but struggling to file your taxes.",
+    "intro": "Good Morning Thorium Valley.\n\nArtificial Analysis just overhauled its Intelligence Index — the scorecard many use to rank AI models — and the results are humbling. They replaced older academic-style benchmarks with real-world evaluations, and suddenly top models are scoring 50 or below on a 100-point scale.\n\nSome of these same models were posting scores in the high 80s on the old tests. Turns out they'd gotten really good at passing exams without necessarily being useful. The AI equivalent of acing the SAT but struggling to file your taxes.",
     "toc": [
       "Apple Paid Google $1B. Siri Still Doesn't Work.",
       "Most AI Agent Projects Are Headed for the Trash",
@@ -274,7 +583,7 @@
     "slug": "february-23-2026",
     "title": "Thorium Valley | February 23, 2026",
     "date": "February 23, 2026",
-    "intro": "Welcome back. Jensen Huang is doing the tech CEO equivalent of shaking a wrapped present in front of you. In an interview last week, the NVIDIA chief <a href=\"https://www.kedglobal.com/artificial-intelligence/newsView/ked202602190001\" style=\"color:#5170ff;text-decoration:none;\">teased</a> that \"a chip that will surprise the world\" will be unveiled at GTC next month. No specifics—that would ruin the buildup. But the AI chip race is moving fast enough that even a grain of salt might be underselling the hype.",
+    "intro": "Good Morning Thorium Valley.\n\nJensen Huang is doing the tech CEO equivalent of shaking a wrapped present in front of you. In an interview last week, the NVIDIA chief <a href=\"https://www.kedglobal.com/artificial-intelligence/newsView/ked202602190001\" style=\"color:#5170ff;text-decoration:none;\">teased</a> that \"a chip that will surprise the world\" will be unveiled at GTC next month.\n\nNo specifics—that would ruin the buildup. But the AI chip race is moving fast enough that even a grain of salt might be underselling the hype.",
     "toc": [
       "The Most Popular AI Tool Is a Security Disaster",
       "China's AI Video App Just Lawyered Up Hollywood",
@@ -297,7 +606,7 @@
     "slug": "march-25-2026",
     "title": "Thorium Valley | March 25, 2026",
     "date": "March 25, 2026",
-    "intro": "Welcome back. A federal judge accused the Pentagon of trying to \"cripple\" Anthropic for refusing to strip safety guardrails from Claude — the sharpest language yet in a case that could reshape how the government wields power over AI companies. Anthropic, meanwhile, is still shipping: Claude Dispatch now works your desktop while you're away, though its 50% success rate means you'll want to check its homework. And OpenClaw just skipped the slow rollout entirely — Tencent pushed it to WeChat's 1.4 billion users in a single update. No new app. No waitlist. Jensen Huang is calling it the most popular open-source project in human history.",
+    "intro": "Good Morning Thorium Valley.\n\nA federal judge accused the Pentagon of trying to \"cripple\" Anthropic for refusing to strip safety guardrails from Claude — the sharpest language yet in a case that could reshape how the government wields power over AI companies.\n\nAnthropic, meanwhile, is still shipping: Claude Dispatch now works your desktop while you're away, though its 50% success rate means you'll want to check its homework.\n\nAnd OpenClaw just skipped the slow rollout entirely — Tencent pushed it to WeChat's 1.4 billion users in a single update. No new app. No waitlist. Jensen Huang is calling it the most popular open-source project in human history.",
     "toc": [
       "Judge says Pentagon was out to 'punish' Anthropic",
       "Claude now works while you're away. Sort of.",

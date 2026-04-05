@@ -8,9 +8,10 @@ interface WireframeGlobeProps {
     className?: string
     mobileYOffset?: number
     desktopYOffset?: number
+    mobileScale?: number
 }
 
-export default function WireframeGlobe({ className = "", mobileYOffset = -20, desktopYOffset = 0 }: WireframeGlobeProps) {
+export default function WireframeGlobe({ className = "", mobileYOffset = -20, desktopYOffset = 0, mobileScale = 1.8 }: WireframeGlobeProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const containerRef = useRef<HTMLDivElement>(null)
 
@@ -37,7 +38,7 @@ export default function WireframeGlobe({ className = "", mobileYOffset = -20, de
 
         let { w, h } = resize()
         const isMobile = w < 768
-        const radius = Math.min(w, h) / (isMobile ? 1.8 : 2.5)
+        const radius = Math.min(w, h) / (isMobile ? mobileScale : 2.5)
 
         const projection = d3
             .geoOrthographic()
@@ -101,7 +102,7 @@ export default function WireframeGlobe({ className = "", mobileYOffset = -20, de
             h = dims.h
             const nowMobile = w < 768
             projection.translate([w / 2, nowMobile ? h / 2 + mobileYOffset : h / 2 + desktopYOffset])
-            projection.scale(Math.min(w, h) / (nowMobile ? 1.8 : 2.5))
+            projection.scale(Math.min(w, h) / (nowMobile ? mobileScale : 2.5))
             render()
         }
         window.addEventListener("resize", handleResize)

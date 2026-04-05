@@ -8,6 +8,7 @@ import { SubscribeCTA } from '@/components/SubscribeCTA';
 import { FadeIn } from '@/components/FadeIn';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+import companyTags from '@/data/company-tags.json';
 
 interface Article {
     id: string;
@@ -15,6 +16,7 @@ interface Article {
     title: string;
     subtitle?: string;
     category: string;
+    tags?: string[];
     thumbnail_url?: string;
     published_at: string;
     reading_time?: number;
@@ -33,6 +35,7 @@ export default function ArticlesPage() {
     const [articles, setArticles] = useState<Article[]>([]);
     const [categories, setCategories] = useState<string[]>([]);
     const [activeCategory, setActiveCategory] = useState('All');
+    const [activeCompany, setActiveCompany] = useState('All');
 
     useEffect(() => {
         fetch('/api/articles?limit=100')
@@ -60,9 +63,11 @@ export default function ArticlesPage() {
         }
     }, [searchParams, categories]);
 
-    const filtered = activeCategory === 'All'
-        ? articles
-        : articles.filter(a => a.category === activeCategory);
+    const filtered = articles.filter(a => {
+        const matchCategory = activeCategory === 'All' || a.category === activeCategory;
+        const matchCompany = activeCompany === 'All' || (a.tags || []).includes(activeCompany);
+        return matchCategory && matchCompany;
+    });
 
     return (
         <>
@@ -72,37 +77,74 @@ export default function ArticlesPage() {
             <div className="bg-white h-[80px] lg:h-[155px]" />
 
             {/* Header + Category filters on blue bg — starts right below the navbar border */}
-            <section style={{ backgroundColor: '#5170ff' }} className="pt-10 lg:pt-14 pb-0 -mt-px">
+            <section style={{ backgroundColor: '#000000' }} className="pt-10 lg:pt-14 pb-0 -mt-px">
                 <div className="max-w-7xl lg:max-w-5xl mx-auto px-6 pb-6">
                     <FadeIn>
                         <h1
-                            className="font-times font-bold text-4xl lg:text-6xl uppercase"
+                            className="font-times font-bold text-4xl lg:text-6xl uppercase text-center"
                             style={{ letterSpacing: '-0.05em', lineHeight: 1.08, color: '#ffffff' }}
                         >
-                            All Articles
+                            All <span style={{ color: '#ffffff' }}>Articles</span>
                         </h1>
                     </FadeIn>
                 </div>
 
+                {/* Company filters */}
+                <div className="relative" style={{ backgroundColor: '#000000' }}>
+                    <div className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none lg:hidden" style={{ background: 'linear-gradient(to left, #000000 20%, transparent)' }} />
+                    <div className="max-w-7xl lg:max-w-5xl mx-auto px-6 border-b border-white/20">
+                        <div className="flex gap-6 overflow-x-auto py-3" style={{ scrollbarWidth: 'none' }}>
+                            <button
+                                onClick={() => setActiveCompany('All')}
+                                className="font-inter text-xs font-semibold uppercase tracking-wider pb-2 whitespace-nowrap relative group"
+                                style={{ color: activeCompany === 'All' ? '#5170ff' : '#ffffff' }}
+                            >
+                                All
+                                <span
+                                    className="absolute bottom-0 left-0 h-0.5 transition-all duration-300" style={{ backgroundColor: '#5170ff', width: activeCompany === 'All' ? '100%' : '0%' }}
+                                />
+                                {activeCompany !== 'All' && (
+                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#5170ff' }} />
+                                )}
+                            </button>
+                            {(companyTags as string[]).map(company => (
+                                <button
+                                    key={company}
+                                    onClick={() => setActiveCompany(company)}
+                                    className="font-inter text-xs font-semibold uppercase tracking-wider pb-2 whitespace-nowrap relative group"
+                                    style={{ color: activeCompany === company ? '#5170ff' : '#ffffff' }}
+                                >
+                                    {company}
+                                    <span
+                                        className="absolute bottom-0 left-0 h-0.5 transition-all duration-300" style={{ backgroundColor: '#5170ff', width: activeCompany === company ? '100%' : '0%' }}
+                                    />
+                                    {activeCompany !== company && (
+                                        <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#5170ff' }} />
+                                    )}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
                 {/* Category filters */}
-                <div className="sticky top-0 z-20 relative" style={{ backgroundColor: '#5170ff' }}>
+                <div className="sticky top-0 z-20 relative" style={{ backgroundColor: '#000000' }}>
                     {/* Right fade for mobile scroll hint */}
-                    <div className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none lg:hidden" style={{ background: 'linear-gradient(to left, #5170ff 20%, transparent)' }} />
+                    <div className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none lg:hidden" style={{ background: 'linear-gradient(to left, #000000 20%, transparent)' }} />
                     <div className="max-w-7xl lg:max-w-5xl mx-auto px-6 border-b border-white/20">
                         <div className="flex gap-6 overflow-x-auto py-3" style={{ scrollbarWidth: 'none' }}>
                             <style dangerouslySetInnerHTML={{ __html: '.cat-filters::-webkit-scrollbar { display: none; }' }} />
                             <button
                                 onClick={() => setActiveCategory('All')}
                                 className="font-inter text-xs font-semibold uppercase tracking-wider pb-2 whitespace-nowrap relative group"
-                                style={{ color: '#ffffff' }}
+                                style={{ color: activeCategory === 'All' ? '#5170ff' : '#ffffff' }}
                             >
                                 All
                                 <span
-                                    className="absolute bottom-0 left-0 h-0.5 bg-white transition-all duration-300"
-                                    style={{ width: activeCategory === 'All' ? '100%' : '0%' }}
+                                    className="absolute bottom-0 left-0 h-0.5 transition-all duration-300" style={{ backgroundColor: '#5170ff', width: activeCategory === 'All' ? '100%' : '0%' }}
                                 />
                                 {activeCategory !== 'All' && (
-                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300" />
+                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#5170ff' }} />
                                 )}
                             </button>
                             {categories.map(cat => (
@@ -110,15 +152,14 @@ export default function ArticlesPage() {
                                     key={cat}
                                     onClick={() => setActiveCategory(cat)}
                                     className="font-inter text-xs font-semibold uppercase tracking-wider pb-2 whitespace-nowrap relative group"
-                                    style={{ color: '#ffffff' }}
+                                    style={{ color: activeCategory === cat ? '#5170ff' : '#ffffff' }}
                                 >
                                     {cat}
                                     <span
-                                        className="absolute bottom-0 left-0 h-0.5 bg-white transition-all duration-300"
-                                        style={{ width: activeCategory === cat ? '100%' : '0%' }}
+                                        className="absolute bottom-0 left-0 h-0.5 transition-all duration-300" style={{ backgroundColor: '#5170ff', width: activeCategory === cat ? '100%' : '0%' }}
                                     />
                                     {activeCategory !== cat && (
-                                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white group-hover:w-full transition-all duration-300" />
+                                        <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#5170ff' }} />
                                     )}
                                 </button>
                             ))}
@@ -127,61 +168,139 @@ export default function ArticlesPage() {
                 </div>
             </section>
 
-            {/* All articles – vertical list */}
-            <section className="bg-white py-10">
-                <div className="max-w-7xl lg:max-w-5xl mx-auto px-6 article-list">
-                    {filtered.map((article, index) => (
-                        <Link key={article.slug} href={`/articles/${article.slug}`} className="group block">
-                            <article className={`flex gap-5 lg:gap-8 lg:flex-row-reverse pb-6 ${index !== 0 ? 'pt-6 border-t border-[#1b1b1b]/25' : ''}`}>
-                                <div className="w-20 lg:w-80 aspect-square lg:aspect-video flex-shrink-0 self-start bg-[#1b1b1b]/5 overflow-hidden relative">
-                                    {article.thumbnail_url ? (
-                                        <Image
-                                            src={article.thumbnail_url}
-                                            alt={article.title}
-                                            fill
-                                            className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                        />
-                                    ) : (
-                                        <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
-                                            <span className="text-[#1b1b1b]/30 text-xs">Article</span>
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="flex-1 min-w-0 flex flex-col justify-center">
-                                    <span className="font-inter font-semibold uppercase tracking-wider block text-[10px] lg:text-sm mb-1 lg:mb-2" style={{ color: '#5170ff' }}>
-                                        {article.category}
+            {/* Featured top 5 grid */}
+            {filtered.length > 0 && (
+                <section className="bg-white pt-10 pb-16">
+                    <div className="max-w-7xl mx-auto px-6">
+                        <div className="border-t border-[#1b1b1b]/25 mb-10"></div>
+                        <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+                            {/* Hero article — left half */}
+                            <Link href={`/articles/${filtered[0].slug}`} className="group block lg:w-[48%] flex-shrink-0">
+                                <article className="h-full flex flex-col">
+                                    <div className="relative w-full flex-1 min-h-[280px] lg:min-h-[360px] overflow-hidden bg-[#1b1b1b]/5">
+                                        {filtered[0].thumbnail_url && (
+                                            <Image
+                                                src={filtered[0].thumbnail_url}
+                                                alt={filtered[0].title}
+                                                fill
+                                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                                priority
+                                            />
+                                        )}
+                                    </div>
+                                    <span className="font-inter font-semibold uppercase tracking-wider block text-[10px] lg:text-xs mt-4 mb-1" style={{ color: '#5170ff' }}>
+                                        {filtered[0].category}
                                     </span>
-                                    <h3 className="font-bold font-times leading-snug text-[#1b1b1b] group-hover:text-[#5170ff] transition-colors line-clamp-2 text-sm" style={{ letterSpacing: '-0.03em' }}>
-                                        {article.title}
+                                    <h3 className="font-times font-bold text-xl lg:text-[28px] leading-tight text-[#1b1b1b] group-hover:text-[#5170ff] transition-colors" style={{ letterSpacing: '-0.04em' }}>
+                                        {filtered[0].title}
                                     </h3>
-                                    {article.subtitle && (
-                                        <p className="font-inter text-xs lg:text-sm mt-1 lg:mt-2 line-clamp-1 text-[#1b1b1b]/55 group-hover:text-[#5170ff] transition-colors">
-                                            {article.subtitle}
+                                    {filtered[0].subtitle && (
+                                        <p className="font-inter text-sm mt-2 line-clamp-2 text-[#1b1b1b]/55">
+                                            {filtered[0].subtitle}
                                         </p>
                                     )}
-                                    <time className="font-inter font-medium block text-[10px] lg:text-sm mt-1 lg:mt-2" style={{ color: 'rgba(27,27,27,0.4)' }}>
-                                        {formatDate(article.published_at)}
+                                    <time className="font-inter font-medium block text-xs mt-2" style={{ color: 'rgba(27,27,27,0.4)' }}>
+                                        {formatDate(filtered[0].published_at)}
                                     </time>
-                                </div>
-                            </article>
-                        </Link>
-                    ))}
+                                </article>
+                            </Link>
 
-                    {/* Desktop font size override + hover blue */}
-                    <style dangerouslySetInnerHTML={{
-                        __html: `
-                      @media(min-width:1024px){.article-list h3{font-size:26px!important}}
-                      .article-list .group:hover h3,
-                      .article-list .group:hover p{color:#5170ff!important}
-                    `}} />
-
-                    {filtered.length === 0 && (
-                        <div className="py-20 text-center">
-                            <p className="font-inter text-[#1b1b1b]/40">No articles in this category yet.</p>
+                            {/* 4 smaller articles — right half, 2×2 grid */}
+                            <div className="flex-1 grid grid-cols-2 gap-6 lg:gap-x-8 lg:gap-y-10">
+                                {filtered.slice(1, 5).map(article => (
+                                    <Link key={article.slug} href={`/articles/${article.slug}`} className="group block">
+                                        <article>
+                                            <div className="relative w-full aspect-[16/9] overflow-hidden bg-[#1b1b1b]/5">
+                                                {article.thumbnail_url && (
+                                                    <Image
+                                                        src={article.thumbnail_url}
+                                                        alt={article.title}
+                                                        fill
+                                                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                                    />
+                                                )}
+                                            </div>
+                                            <span className="font-inter font-semibold uppercase tracking-wider block text-[10px] lg:text-xs mt-3 mb-1" style={{ color: '#5170ff' }}>
+                                                {article.category}
+                                            </span>
+                                            <h3 className="font-times font-bold text-sm lg:text-lg leading-snug text-[#1b1b1b] group-hover:text-[#5170ff] transition-colors" style={{ letterSpacing: '-0.03em' }}>
+                                                {article.title}
+                                            </h3>
+                                            <time className="font-inter font-medium block text-[10px] lg:text-xs mt-1" style={{ color: 'rgba(27,27,27,0.4)' }}>
+                                                {formatDate(article.published_at)}
+                                            </time>
+                                        </article>
+                                    </Link>
+                                ))}
+                            </div>
                         </div>
-                    )}
-                </div>
-            </section>
+                    </div>
+                </section>
+            )}
+
+            {/* Remaining articles – vertical list */}
+            {filtered.length > 5 && (
+                <section className="bg-white pt-4 pb-10">
+                    <div className="max-w-7xl lg:max-w-5xl mx-auto px-6">
+                        <div className="border-t border-[#1b1b1b]/25 pt-8">
+                            <div className="article-list">
+                                {filtered.slice(5).map((article, index) => (
+                                    <Link key={article.slug} href={`/articles/${article.slug}`} className="group block">
+                                        <article className={`flex gap-5 lg:gap-8 lg:flex-row-reverse pb-6 ${index !== 0 ? 'pt-6 border-t border-[#1b1b1b]/25' : ''}`}>
+                                            <div className="w-20 lg:w-80 aspect-square lg:aspect-video flex-shrink-0 self-start bg-[#1b1b1b]/5 overflow-hidden relative">
+                                                {article.thumbnail_url ? (
+                                                    <Image
+                                                        src={article.thumbnail_url}
+                                                        alt={article.title}
+                                                        fill
+                                                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                                    />
+                                                ) : (
+                                                    <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
+                                                        <span className="text-[#1b1b1b]/30 text-xs">Article</span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div className="flex-1 min-w-0 flex flex-col justify-center">
+                                                <span className="font-inter font-semibold uppercase tracking-wider block text-[10px] lg:text-sm mb-1 lg:mb-2" style={{ color: '#5170ff' }}>
+                                                    {article.category}
+                                                </span>
+                                                <h3 className="font-bold font-times leading-snug text-[#1b1b1b] group-hover:text-[#5170ff] transition-colors line-clamp-2 text-sm" style={{ letterSpacing: '-0.03em' }}>
+                                                    {article.title}
+                                                </h3>
+                                                {article.subtitle && (
+                                                    <p className="font-inter text-xs lg:text-sm mt-1 lg:mt-2 line-clamp-1 text-[#1b1b1b]/55 group-hover:text-[#5170ff] transition-colors">
+                                                        {article.subtitle}
+                                                    </p>
+                                                )}
+                                                <time className="font-inter font-medium block text-[10px] lg:text-sm mt-1 lg:mt-2" style={{ color: 'rgba(27,27,27,0.4)' }}>
+                                                    {formatDate(article.published_at)}
+                                                </time>
+                                            </div>
+                                        </article>
+                                    </Link>
+                                ))}
+
+                                {/* Desktop font size override + hover blue */}
+                                <style dangerouslySetInnerHTML={{
+                                    __html: `
+                                  @media(min-width:1024px){.article-list h3{font-size:26px!important}}
+                                  .article-list .group:hover h3,
+                                  .article-list .group:hover p{color:#5170ff!important}
+                                `}} />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {filtered.length === 0 && (
+                <section className="bg-white py-20">
+                    <div className="max-w-7xl lg:max-w-5xl mx-auto px-6 text-center">
+                        <p className="font-inter text-[#1b1b1b]/40">No articles in this category yet.</p>
+                    </div>
+                </section>
+            )}
 
             <FooterNew />
         </>

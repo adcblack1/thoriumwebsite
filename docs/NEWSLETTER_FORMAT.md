@@ -158,7 +158,7 @@ The label is displayed in `#5170ff` (Thorium Valley blue) above the section cont
 >
 > These are stored separately in the articles database. The newsletter should always use the condensed version.
 
-> **Valley View Image:** In newsletters, the `<p><strong>Our Valley View</strong></p>` heading is automatically replaced with a branded image (`/thumbnails/valley-view-header.png`) at render time — both on the website and in the Beehiiv HTML export. **No manual changes needed.** Just keep using the standard `<p><strong>Our Valley View</strong></p>` format in the article database and the system handles the rest.
+> **Valley View Image:** In newsletters, the `<p><strong>Our Valley View</strong></p>` heading is automatically replaced with a branded image (`/thumbnails/into-the-valley.png`) at render time — both on the website and in the Beehiiv HTML export. **No manual changes needed.** Just keep using the standard `<p><strong>Our Valley View</strong></p>` format in the article database and the system handles the rest.
 
 ---
 
