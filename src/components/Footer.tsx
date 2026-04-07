@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { Twitter, Linkedin, Youtube } from 'lucide-react';
+import { Twitter, Youtube } from 'lucide-react';
 import { NewsletterForm } from './NewsletterForm';
 
 export function Footer() {
@@ -34,15 +34,7 @@ export function Footer() {
               >
                 <Twitter className="w-5 h-5" />
               </a>
-              <a
-                href="https://linkedin.com/company/thoriumvalley"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-[#5170ff] transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
+
               <a
                 href="https://youtube.com/@thoriumvalley"
                 target="_blank"
