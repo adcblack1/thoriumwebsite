@@ -64,14 +64,7 @@ export function HeroSection() {
                         Free forever. Unsubscribe anytime. Thorium Valley.
                     </p>
 
-                    <div className="mt-8 lg:mt-4">
-                        <img
-                            src="/thumbnails/started-at.png"
-                            alt="Started at Stanford University"
-                            className="transition-opacity duration-500"
-                            style={{ width: '420px', height: 'auto', opacity: isScrolled ? 0.45 : 0.7 }}
-                        />
-                    </div>
+
                 </section>
             </main>
         </>

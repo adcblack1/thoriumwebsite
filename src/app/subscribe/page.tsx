@@ -83,14 +83,14 @@ const CHILD_NEWSLETTERS = [
     id: 'the-catalyst',
     name: 'The Catalyst',
     logo: '/images/catalyst-logo.png',
-    description: 'How businesses and people are implementing AI — and how to do it yourself.',
+    description: 'How businesses and people are implementing AI and how to do it yourself.',
     frequency: 'Biweekly',
   },
   {
     id: 'the-lab',
     name: 'The Lab',
     logo: '/images/lab-logo.png',
-    description: 'Interesting and useful AI tools — and whether they\'re worth trying out.',
+    description: 'Interesting and useful AI tools and whether they\'re worth trying out.',
     frequency: 'Biweekly',
   },
   {
@@ -352,7 +352,7 @@ export default function SubscribePage() {
             </div>
 
             <h2 className="font-times font-bold text-2xl lg:text-4xl" style={{ color: '#ffffff' }}>
-              One last step — confirm your email
+              One last step: confirm your email
             </h2>
             <p className="text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>
               Check your inbox. We just sent you a confirmation.
@@ -743,13 +743,7 @@ function StepEmail({
         Free forever. Unsubscribe anytime.
       </p>
 
-      <div className="mt-8 lg:mt-4">
-        <img
-          src="/thumbnails/started-at.png"
-          alt="Started at Stanford University"
-          style={{ width: '420px', height: 'auto', opacity: 0.7 }}
-        />
-      </div>
+
     </div>
   );
 }
@@ -909,7 +903,7 @@ function StepIndustry({
   return (
     <div>
       <StepHeading>Your industry</StepHeading>
-      <StepSubtext>Almost there — two more quick ones.</StepSubtext>
+      <StepSubtext>Almost there. Two more quick ones.</StepSubtext>
 
       <div className="flex flex-col gap-4">
         <div>
@@ -1117,7 +1111,7 @@ function StepConfirm({ onBack }: { onBack: () => void }) {
         </svg>
       </div>
 
-      <StepHeading>One last step — confirm your email</StepHeading>
+      <StepHeading>One last step: confirm your email</StepHeading>
       <p className="text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>
         Check your inbox. We just sent you a confirmation.
       </p>
