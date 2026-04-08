@@ -43,7 +43,7 @@ export function AuthSyncHandler() {
               industry: subData.industry || '',
               company_size: subData.company_size || '',
               ai_tools: subData.ai_tools || [],
-              child_newsletters: subData.child_newsletters || ['the-catalyst', 'the-lab'],
+              child_newsletters: subData.child_newsletters || ['thorium-valley', 'the-catalyst', 'the-lab'],
             }
 
             // Figure out which step they should resume at

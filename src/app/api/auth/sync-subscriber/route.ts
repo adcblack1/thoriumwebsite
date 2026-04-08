@@ -56,7 +56,7 @@ export async function POST(request: Request) {
         .from('subscribers')
         .insert({
           email,
-          child_newsletters: ['the-catalyst', 'the-lab'],
+          child_newsletters: ['thorium-valley', 'the-catalyst', 'the-lab'],
         })
         .select('*')
         .single()

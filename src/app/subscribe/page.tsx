@@ -93,13 +93,7 @@ const CHILD_NEWSLETTERS = [
     description: 'Interesting and useful AI tools and whether they\'re worth trying out.',
     frequency: 'Biweekly',
   },
-  {
-    id: 'the-operator',
-    name: 'The Operator',
-    logo: '/images/operator-logo.png',
-    description: 'Showcasing what people are building with AI agents, with explanations and tutorials on how to do it yourself.',
-    frequency: 'Biweekly',
-  },
+
 ];
 
 // ============================================
@@ -140,7 +134,7 @@ export default function SubscribePage() {
     industry: '',
     company_size: '',
     ai_tools: [],
-    child_newsletters: ['the-catalyst', 'the-lab', 'the-operator'],
+    child_newsletters: ['thorium-valley', 'the-catalyst', 'the-lab'],
   });
 
   // ── Restore from localStorage on mount ──
@@ -214,7 +208,7 @@ export default function SubscribePage() {
           industry: existing.industry || '',
           company_size: existing.company_size || '',
           ai_tools: existing.ai_tools || [],
-          child_newsletters: existing.child_newsletters || ['the-catalyst', 'the-lab', 'the-operator'],
+          child_newsletters: existing.child_newsletters || ['the-catalyst', 'the-lab'],
         };
         setFormData(restored);
 
@@ -339,57 +333,87 @@ export default function SubscribePage() {
   // ── Render ───────────────────────────────
 
   // Step 8: Confirmation — white page with header/footer
+  // All available newsletters for cross-sell
+  const ALL_NEWSLETTERS = [
+    {
+      id: 'thorium-valley',
+      name: 'Thorium Valley',
+      logo: '/Transparent White Logo.png',
+      description: 'Our flagship daily newsletter covering everything happening in AI. News, tools, and what it means for you.',
+      frequency: 'Daily',
+      useBlendMode: false,
+    },
+    ...CHILD_NEWSLETTERS.map(nl => ({ ...nl, useBlendMode: true })),
+  ];
+
+  const missingNewsletters = ALL_NEWSLETTERS.filter(
+    nl => !formData.child_newsletters.includes(nl.id)
+  );
+
   if (step === 8) {
     return (
       <>
         <Navigation variant="hero" heroTheme="dark" scrolledTheme="white" heroBorder={true} />
         <main className="min-h-screen bg-white flex items-center justify-center px-5 pt-24 pb-16">
-          <div className="w-full max-w-lg rounded-2xl bg-[#1b1b1b] p-8 lg:p-12 flex flex-col items-center gap-4 text-center">
-            <div className="w-16 h-16 rounded-full bg-[#5170ff]/20 flex items-center justify-center mb-2">
-              <svg className="w-8 h-8 text-[#5170ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
+          <div className="w-full max-w-lg flex flex-col gap-6">
+            {/* Confirmation card */}
+            <div className="rounded-2xl bg-[#1b1b1b] p-8 lg:p-12 flex flex-col items-center gap-4 text-center">
+              <div className="w-16 h-16 rounded-full bg-[#5170ff]/20 flex items-center justify-center mb-2">
+                <svg className="w-8 h-8 text-[#5170ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+
+              <h2 className="font-times font-bold text-2xl lg:text-4xl" style={{ color: '#ffffff' }}>
+                One last step: confirm your email
+              </h2>
+              <p className="text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                Check your inbox. We just sent you a confirmation.
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-3 w-full mt-4">
+                <a
+                  href="https://mail.google.com/mail/u/0/#search/from%3Anews%40mail.thoriumvalley.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-full bg-white text-sm font-semibold hover:bg-white/90 active:scale-[0.98] transition-all"
+                  style={{ color: '#1b1b1b' }}
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
+                    <path d="M2 6l10 7 10-7" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
+                    <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth={2} />
+                  </svg>
+                  Open Gmail
+                </a>
+                <a
+                  href="https://outlook.live.com/mail/0/inbox?search=from%3Anews%40mail.thoriumvalley.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-full border-2 border-white/30 text-sm font-semibold hover:border-white/50 active:scale-[0.98] transition-all"
+                  style={{ color: '#ffffff' }}
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
+                    <path d="M2 6l10 7 10-7" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
+                    <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth={2} />
+                  </svg>
+                  Open Outlook
+                </a>
+              </div>
+
+              <p className="text-xs mt-4" style={{ color: 'rgba(255,255,255,0.4)' }}>
+                Don&apos;t see it? Check your spam, promotions, or junk folder.
+              </p>
             </div>
 
-            <h2 className="font-times font-bold text-2xl lg:text-4xl" style={{ color: '#ffffff' }}>
-              One last step: confirm your email
-            </h2>
-            <p className="text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>
-              Check your inbox. We just sent you a confirmation.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-3 w-full mt-4">
-              <a
-                href="https://mail.google.com/mail/u/0/#search/from%3Anews%40mail.thoriumvalley.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-full bg-white text-sm font-semibold hover:bg-white/90 active:scale-[0.98] transition-all"
-                style={{ color: '#1b1b1b' }}
-              >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                  <path d="M2 6l10 7 10-7" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
-                  <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth={2} />
-                </svg>
-                Open Gmail
-              </a>
-              <a
-                href="https://outlook.live.com/mail/0/inbox?search=from%3Anews%40mail.thoriumvalley.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-full border-2 border-white/30 text-sm font-semibold hover:border-white/50 active:scale-[0.98] transition-all"
-                style={{ color: '#ffffff' }}
-              >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-                  <path d="M2 6l10 7 10-7" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
-                  <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth={2} />
-                </svg>
-                Open Outlook
-              </a>
-            </div>
-
-            <p className="text-xs mt-4" style={{ color: 'rgba(255,255,255,0.4)' }}>
-              Don&apos;t see it? Check your spam, promotions, or junk folder.
-            </p>
+            {/* Cross-sell: newsletters they didn't pick */}
+            {missingNewsletters.length > 0 && (
+              <CrossSellSection
+                missing={missingNewsletters}
+                subscriberId={subscriberId}
+                formData={formData}
+                updateField={updateField}
+              />
+            )}
           </div>
         </main>
         <FooterNew />
@@ -404,12 +428,12 @@ export default function SubscribePage() {
         <WireframeGlobe desktopYOffset={-40} mobileYOffset={-65} mobileScale={1.65} />
       </div>
 
-      {/* Progress bar */}
+      {/* Progress bar — starts after newsletter selection (step 2) */}
       <div className="relative z-20 w-full h-1 bg-white/10">
         <motion.div
           className="h-full bg-[#5170ff]"
           initial={{ width: '0%' }}
-          animate={{ width: `${(step / 8) * 100}%` }}
+          animate={{ width: `${step <= 2 ? 0 : ((step - 2) / 6) * 100}%` }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         />
       </div>
@@ -629,32 +653,92 @@ function StyledSelect({
   onChange,
   options,
   placeholder,
+  isOpen,
+  onToggle,
+  onClose,
+  id,
 }: {
   value: string;
   onChange: (v: string) => void;
   options: string[];
   placeholder: string;
+  isOpen?: boolean;
+  onToggle?: () => void;
+  onClose?: () => void;
+  id?: string;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Close on outside click
+  useEffect(() => {
+    if (!isOpen) return;
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        onClose?.();
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [isOpen, onClose]);
+
   return (
-    <select
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      className="w-full px-4 py-3.5 rounded-full bg-white/10 border border-white/20 text-white text-sm outline-none appearance-none cursor-pointer focus:border-[#5170ff] transition-colors"
-      style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='rgba(255,255,255,0.6)' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E")`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'right 16px center',
-      }}
-    >
-      <option value="" disabled style={{ color: '#666', background: '#1b1b1b' }}>
-        {placeholder}
-      </option>
-      {options.map((opt) => (
-        <option key={opt} value={opt} style={{ color: '#fff', background: '#1b1b1b' }}>
-          {opt}
-        </option>
-      ))}
-    </select>
+    <div ref={ref} className="relative" id={id}>
+      <button
+        type="button"
+        onClick={onToggle}
+        className={`w-full px-5 py-3.5 rounded-full bg-white/10 border text-sm text-left outline-none cursor-pointer transition-all duration-200 flex items-center justify-between ${
+          isOpen ? 'border-[#5170ff] bg-white/[0.12]' : value ? 'border-white/30' : 'border-white/20'
+        }`}
+      >
+        <span style={{ color: value ? '#fff' : 'rgba(255,255,255,0.4)' }}>
+          {value || placeholder}
+        </span>
+        <svg
+          className="w-3.5 h-3.5 flex-shrink-0 transition-transform duration-200"
+          style={{ color: 'rgba(255,255,255,0.5)', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+          fill="currentColor"
+          viewBox="0 0 16 16"
+        >
+          <path d="M8 11L3 6h10z" />
+        </svg>
+      </button>
+
+      {isOpen && (
+        <div
+          className="absolute left-0 right-0 mt-2 rounded-2xl border border-white/15 bg-[#1a1a1a] overflow-hidden z-50"
+          style={{
+            boxShadow: '0 12px 40px rgba(0,0,0,0.5)',
+            animation: 'dropdownIn 0.15s ease-out',
+          }}
+        >
+          <style dangerouslySetInnerHTML={{ __html: `
+            @keyframes dropdownIn {
+              from { opacity: 0; transform: translateY(-6px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+          `}} />
+          <div className="max-h-[240px] overflow-y-auto py-1.5" style={{ scrollbarWidth: 'thin', scrollbarColor: 'rgba(255,255,255,0.15) transparent' }}>
+            {options.map((opt) => (
+              <button
+                key={opt}
+                type="button"
+                onClick={() => {
+                  onChange(opt);
+                  onClose?.();
+                }}
+                className={`w-full text-left px-5 py-2.5 text-sm transition-colors duration-100 ${
+                  value === opt
+                    ? 'text-[#5170ff] bg-[#5170ff]/10 font-medium'
+                    : 'text-white/80 hover:bg-white/[0.06] hover:text-white'
+                }`}
+              >
+                {opt}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -735,7 +819,7 @@ function StepEmail({
           </div>
         </form>
         {error && (
-          <p className="mt-3 text-sm text-center text-red-300">{error}</p>
+          <p className="mt-3 text-sm text-center text-red-400">{error}</p>
         )}
       </div>
 
@@ -818,7 +902,7 @@ function StepGoal({
       </div>
 
       {error && (
-        <p className="mt-3 text-sm text-center text-red-300">{error}</p>
+        <p className="mt-3 text-sm text-center text-red-400">{error}</p>
       )}
 
       <NavButtons onNext={onNext} onBack={onBack} loading={loading} />
@@ -843,6 +927,8 @@ function StepRole({
   loading: boolean;
   error: string | null;
 }) {
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
   return (
     <div>
       <StepHeading>Tell us about your role</StepHeading>
@@ -855,9 +941,15 @@ function StepRole({
           </label>
           <StyledSelect
             value={formData.seniority}
-            onChange={(v) => updateField('seniority', v)}
+            onChange={(v) => {
+              updateField('seniority', v);
+              setTimeout(() => setOpenDropdown('job_function'), 100);
+            }}
             options={SENIORITY}
             placeholder="Select your level"
+            isOpen={openDropdown === 'seniority'}
+            onToggle={() => setOpenDropdown(openDropdown === 'seniority' ? null : 'seniority')}
+            onClose={() => setOpenDropdown(null)}
           />
         </div>
 
@@ -870,12 +962,15 @@ function StepRole({
             onChange={(v) => updateField('job_function', v)}
             options={JOB_FUNCTIONS}
             placeholder="Select your function"
+            isOpen={openDropdown === 'job_function'}
+            onToggle={() => setOpenDropdown(openDropdown === 'job_function' ? null : 'job_function')}
+            onClose={() => setOpenDropdown(null)}
           />
         </div>
       </div>
 
       {error && (
-        <p className="mt-3 text-sm text-center text-red-300">{error}</p>
+        <p className="mt-3 text-sm text-center text-red-400">{error}</p>
       )}
 
       <NavButtons onNext={onNext} onBack={onBack} loading={loading} />
@@ -900,6 +995,8 @@ function StepIndustry({
   loading: boolean;
   error: string | null;
 }) {
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+
   return (
     <div>
       <StepHeading>Your industry</StepHeading>
@@ -912,9 +1009,15 @@ function StepIndustry({
           </label>
           <StyledSelect
             value={formData.industry}
-            onChange={(v) => updateField('industry', v)}
+            onChange={(v) => {
+              updateField('industry', v);
+              setTimeout(() => setOpenDropdown('company_size'), 100);
+            }}
             options={INDUSTRIES}
             placeholder="Select your industry"
+            isOpen={openDropdown === 'industry'}
+            onToggle={() => setOpenDropdown(openDropdown === 'industry' ? null : 'industry')}
+            onClose={() => setOpenDropdown(null)}
           />
         </div>
 
@@ -927,12 +1030,15 @@ function StepIndustry({
             onChange={(v) => updateField('company_size', v)}
             options={COMPANY_SIZES}
             placeholder="Select company size"
+            isOpen={openDropdown === 'company_size'}
+            onToggle={() => setOpenDropdown(openDropdown === 'company_size' ? null : 'company_size')}
+            onClose={() => setOpenDropdown(null)}
           />
         </div>
       </div>
 
       {error && (
-        <p className="mt-3 text-sm text-center text-red-300">{error}</p>
+        <p className="mt-3 text-sm text-center text-red-400">{error}</p>
       )}
 
       <NavButtons onNext={onNext} onBack={onBack} loading={loading} />
@@ -1035,6 +1141,13 @@ function StepNewsletters({
     }
   };
 
+  const handleSkip = () => {
+    // Remove child newsletters but keep thorium-valley if present
+    const keepTV = formData.child_newsletters.includes('thorium-valley');
+    updateField('child_newsletters', keepTV ? ['thorium-valley'] : []);
+    onNext();
+  };
+
   return (
     <div>
       <StepHeading>Cover all bases of AI</StepHeading>
@@ -1090,7 +1203,7 @@ function StepNewsletters({
       <div className="mt-6 space-y-3">
         <PrimaryButton onClick={onNext} disabled={loading}>Subscribe</PrimaryButton>
         <button
-          onClick={onNext}
+          onClick={handleSkip}
           className="w-full py-3 text-sm text-white/60 hover:text-white transition-colors"
         >
           Maybe later
@@ -1149,6 +1262,116 @@ function StepConfirm({ onBack }: { onBack: () => void }) {
       </p>
 
       <BackButton onClick={onBack} />
+    </div>
+  );
+}
+
+// ── Cross-sell Section ─────────────────────
+
+interface CrossSellNewsletter {
+  id: string;
+  name: string;
+  logo: string;
+  description: string;
+  frequency: string;
+  useBlendMode?: boolean;
+}
+
+function CrossSellSection({
+  missing,
+  subscriberId,
+  formData,
+  updateField,
+}: {
+  missing: CrossSellNewsletter[];
+  subscriberId: string | null;
+  formData: FormData;
+  updateField: <K extends keyof FormData>(key: K, value: FormData[K]) => void;
+}) {
+  const [addedIds, setAddedIds] = useState<string[]>([]);
+  const [loadingId, setLoadingId] = useState<string | null>(null);
+
+  const handleAdd = async (newsletterId: string) => {
+    if (!subscriberId || loadingId) return;
+    setLoadingId(newsletterId);
+
+    try {
+      const res = await fetch('/api/subscribe/add-newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subscriber_id: subscriberId, newsletter_id: newsletterId }),
+      });
+
+      if (res.ok) {
+        setAddedIds(prev => [...prev, newsletterId]);
+        // Update formData so it reflects the new selection
+        updateField('child_newsletters', [...formData.child_newsletters, newsletterId]);
+      }
+    } catch {
+      console.error('Failed to add newsletter:', newsletterId);
+    } finally {
+      setLoadingId(null);
+    }
+  };
+
+  // Filter out any that were just added
+  const remaining = missing.filter(nl => !addedIds.includes(nl.id));
+  if (remaining.length === 0 && addedIds.length > 0) {
+    return (
+      <div className="rounded-2xl border border-[#1b1b1b]/10 bg-[#f8f8f8] p-6 text-center">
+        <p className="text-sm font-inter font-medium text-[#1b1b1b]">
+          ✓ You&apos;re subscribed to all our newsletters!
+        </p>
+      </div>
+    );
+  }
+
+  if (remaining.length === 0) return null;
+
+  return (
+    <div className="rounded-2xl border border-[#1b1b1b]/10 bg-[#f8f8f8] p-6">
+      <h3 className="font-times font-bold text-lg text-[#1b1b1b] mb-1">
+        Also from Thorium Valley
+      </h3>
+      <p className="text-xs font-inter text-[#1b1b1b]/50 mb-4">
+        Get more AI coverage with our other newsletters
+      </p>
+
+      <div className="flex flex-col gap-3">
+        {remaining.map(nl => {
+          const isLoading = loadingId === nl.id;
+          return (
+            <div
+              key={nl.id}
+              className="flex items-center gap-3 p-3 rounded-xl border border-[#1b1b1b]/10 bg-white"
+            >
+              <img
+                src={nl.logo}
+                alt={nl.name}
+                className="h-10 w-auto object-contain flex-shrink-0"
+                style={nl.id !== 'thorium-valley' ? { filter: 'invert(1)' } : undefined}
+              />
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-inter font-semibold text-[#1b1b1b]">{nl.name}</p>
+                <p className="text-[11px] font-inter text-[#1b1b1b]/50 leading-snug">{nl.description}</p>
+              </div>
+              <button
+                onClick={() => handleAdd(nl.id)}
+                disabled={isLoading}
+                className="flex-shrink-0 px-4 py-2 rounded-full bg-[#5170ff] text-white text-xs font-semibold hover:bg-[#3d5ce0] active:scale-[0.97] transition-all disabled:opacity-50"
+              >
+                {isLoading ? '...' : 'Add'}
+              </button>
+            </div>
+          );
+        })}
+      </div>
+
+      {addedIds.length > 0 && (
+        <p className="text-[11px] font-inter text-[#5170ff] mt-3 text-center">
+          ✓ {addedIds.length} newsletter{addedIds.length > 1 ? 's' : ''} added
+        </p>
+      )}
     </div>
   );
 }

@@ -8,6 +8,7 @@ import { SubscribeCTA } from '@/components/SubscribeCTA';
 import { SubscribeForm } from '@/components/subscribe-form';
 import { FadeIn } from '@/components/FadeIn';
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 interface NewsletterItem {
   id: string;
@@ -29,6 +30,23 @@ function formatDate(dateStr: string) {
 
 export default function NewsletterArchivePage() {
   const [newsletters, setNewsletters] = useState<NewsletterItem[]>([]);
+  const searchParams = useSearchParams();
+  const [activePub, setActivePub] = useState('Thorium Valley');
+  const [selected, setSelected] = useState<string[]>(['thorium-valley', 'the-catalyst', 'the-lab']);
+
+  // Read ?pub= from URL on mount
+  useEffect(() => {
+    const pubParam = searchParams.get('pub');
+    if (pubParam) {
+      const validPubs = ['Thorium Valley', 'The Catalyst', 'The Lab'];
+      const match = validPubs.find(p => p === pubParam);
+      if (match) setActivePub(match);
+    }
+  }, [searchParams]);
+
+  const toggleNewsletter = (id: string) => {
+    setSelected(prev => prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]);
+  };
 
   useEffect(() => {
     fetch('/api/newsletters?limit=50')
@@ -44,18 +62,18 @@ export default function NewsletterArchivePage() {
       {/* White area behind the navbar */}
       <div className="bg-white h-[80px] lg:h-[155px]" />
 
-      {/* Header – blue bg matching /articles */}
-      <section style={{ backgroundColor: '#000000' }} className="pt-10 lg:pt-14 pb-8 -mt-px px-6">
-        <div className="max-w-7xl lg:max-w-5xl mx-auto">
+      {/* Header – black bg */}
+      <section style={{ backgroundColor: '#000000' }} className="pt-10 lg:pt-14 pb-0 -mt-px px-6">
+        <div className="max-w-7xl lg:max-w-5xl mx-auto pb-6">
           <FadeIn>
             <h1
               className="font-times font-bold text-4xl lg:text-6xl uppercase text-center"
               style={{ letterSpacing: '-0.05em', lineHeight: 1.08, color: '#ffffff' }}
             >
-              Newsletter <span style={{ color: '#ffffff' }}>Editions</span>
+              Newsletters
             </h1>
-            <p className="font-inter mt-3 text-sm lg:text-base text-center" style={{ color: 'rgba(255,255,255,0.75)' }}>
-              AI is eating the world. Stay ahead with our free daily briefing.
+            <p className="font-inter mt-3 text-center leading-snug" style={{ fontSize: 'clamp(20px, 1.8vw, 24px)', fontWeight: 500, color: 'rgba(255,255,255,0.75)' }}>
+              Subscribe to our newsletters to cover<br />every base of AI.
             </p>
             <div className="mt-4 max-w-md mx-auto newsletter-cta">
               <style dangerouslySetInnerHTML={{ __html: '.newsletter-cta button[type="submit"] { background: #5170ff !important; color: #fff !important; }' }} />
@@ -63,124 +81,328 @@ export default function NewsletterArchivePage() {
             </div>
           </FadeIn>
         </div>
+
+        {/* 4 Newsletter cards – row on desktop, 2×2 on mobile */}
+        <div className="max-w-7xl lg:max-w-5xl mx-auto px-6 pb-8">
+          {/* DESKTOP: 4 across */}
+          <div className="hidden md:flex flex-nowrap gap-4 items-stretch">
+            {[
+              { id: 'thorium-valley', name: 'Thorium Valley', logo: '/Transparent White Logo.png', desc: 'Our flagship daily newsletter covering everything happening in AI. News, tools, and what it means for you.', freq: 'Daily', flagship: true },
+              { id: 'the-catalyst', name: 'The Catalyst', logo: '/images/catalyst-logo.png', desc: 'How businesses and people are implementing AI and how to do it yourself.', freq: 'Biweekly' },
+              { id: 'the-lab', name: 'The Lab', logo: '/images/lab-logo.png', desc: 'Interesting and useful AI tools and whether they\'re worth trying out.', freq: 'Biweekly' },
+            ].map((nl) => {
+              const isSelected = selected.includes(nl.id);
+              return (
+                <button
+                  key={nl.name}
+                  type="button"
+                  onClick={() => toggleNewsletter(nl.id)}
+                  className={`flex-1 text-left rounded-xl p-5 flex flex-col transition-all duration-200 border ${
+                    isSelected ? 'border-[#5170ff] bg-[#5170ff]/[0.08]' : 'border-white/25'
+                  }`}
+                >
+                  <div className="flex items-start justify-between mb-0">
+                    {nl.flagship ? (
+                      <img src={nl.logo} alt={nl.name} className="h-12 mb-4 w-auto object-contain" />
+                    ) : (
+                      <div className="h-20 w-auto flex items-center">
+                        <img src={nl.logo} alt={nl.name} className="h-20 w-auto object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
+                      </div>
+                    )}
+                    <span className={`text-[10px] px-2 py-0.5 rounded-full font-inter font-medium uppercase tracking-wider flex-shrink-0 ${
+                      isSelected ? 'bg-[#5170ff]/20 text-[#5170ff]' : 'bg-white/10 text-white/60'
+                    }`}>
+                      {nl.freq}
+                    </span>
+                  </div>
+                  <p className="text-xs font-inter leading-relaxed flex-1 mb-3" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                    {nl.desc}
+                  </p>
+                  <div className="flex items-center gap-1.5 mt-auto">
+                    <div className={`w-4 h-4 rounded flex items-center justify-center transition-colors ${
+                      isSelected ? 'bg-[#5170ff]' : 'border border-white/30'
+                    }`}>
+                      {isSelected && (
+                        <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </div>
+                    <span className={`text-xs font-inter font-medium ${isSelected ? 'text-[#5170ff]' : 'text-white/40'}`}>
+                      Selected
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* MOBILE: horizontal scroll – compact cards, last one peeks */}
+          <div className="md:hidden flex gap-3 overflow-x-auto pb-2 -mx-6 px-6" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
+            <style dangerouslySetInnerHTML={{ __html: '.md\\:hidden::-webkit-scrollbar { display: none; }' }} />
+            {[
+              { id: 'thorium-valley', name: 'Thorium Valley', logo: '/Transparent White Logo.png', desc: 'Our flagship daily newsletter covering everything happening in AI.', freq: 'Daily', flagship: true },
+              { id: 'the-catalyst', name: 'The Catalyst', logo: '/images/catalyst-logo.png', desc: 'How businesses and people are implementing AI and how to do it yourself.', freq: 'Biweekly' },
+              { id: 'the-lab', name: 'The Lab', logo: '/images/lab-logo.png', desc: 'Interesting and useful AI tools and whether they\'re worth trying out.', freq: 'Biweekly' },
+            ].map((nl) => {
+              const isSelected = selected.includes(nl.id);
+              return (
+                <button
+                  key={nl.name}
+                  type="button"
+                  onClick={() => toggleNewsletter(nl.id)}
+                  className={`flex-shrink-0 w-[60%] text-left rounded-xl p-4 flex flex-col transition-all duration-200 border ${
+                    isSelected ? 'border-[#5170ff] bg-[#5170ff]/[0.08]' : 'border-white/25'
+                  }`}
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    {nl.flagship ? (
+                      <img src={nl.logo} alt={nl.name} className="h-7 w-auto object-contain" />
+                    ) : (
+                      <img src={nl.logo} alt={nl.name} className="h-9 w-auto object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
+                    )}
+                    <span className={`text-[8px] px-1.5 py-0.5 rounded-full font-inter font-medium uppercase tracking-wider flex-shrink-0 ${
+                      isSelected ? 'bg-[#5170ff]/20 text-[#5170ff]' : 'bg-white/10 text-white/60'
+                    }`}>
+                      {nl.freq}
+                    </span>
+                  </div>
+                  <p className="text-xs font-inter leading-snug flex-1 mt-1 mb-2" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                    {nl.desc}
+                  </p>
+                  <div className="flex items-center gap-1 mt-auto">
+                    <div className={`w-3.5 h-3.5 rounded flex items-center justify-center transition-colors ${
+                      isSelected ? 'bg-[#5170ff]' : 'border border-white/30'
+                    }`}>
+                      {isSelected && (
+                        <svg className="w-2 h-2 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </div>
+                    <span className={`text-[10px] font-inter font-medium ${isSelected ? 'text-[#5170ff]' : 'text-white/40'}`}>
+                      Selected
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Section break */}
+        <div className="max-w-7xl lg:max-w-5xl mx-auto px-6">
+          <div className="border-t border-white/20" />
+        </div>
+
+        {/* Publication filter bar */}
+        <div className="sticky top-0 z-20 relative" style={{ backgroundColor: '#000000' }}>
+          <div className="max-w-7xl lg:max-w-5xl mx-auto px-6 border-b border-white/20">
+            <div className="flex gap-8 overflow-x-auto py-3 md:justify-center" style={{ scrollbarWidth: 'none' }}>
+              {(['Thorium Valley', 'The Catalyst', 'The Lab'] as const).map(pub => (
+                <button
+                  key={pub}
+                  onClick={() => setActivePub(pub)}
+                  className="font-inter text-xs font-semibold uppercase tracking-wider pb-2 whitespace-nowrap relative group"
+                  style={{ color: activePub === pub ? '#5170ff' : '#ffffff' }}
+                >
+                  {pub}
+                  <span
+                    className="absolute bottom-0 left-0 h-0.5 transition-all duration-300"
+                    style={{ backgroundColor: '#5170ff', width: activePub === pub ? '100%' : '0%' }}
+                  />
+                  {activePub !== pub && (
+                    <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#5170ff' }} />
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+          {/* Right fade hint on mobile */}
+          <div className="md:hidden absolute right-0 top-0 bottom-0 w-12 pointer-events-none" style={{ background: 'linear-gradient(to right, transparent, #000000)' }} />
+        </div>
       </section>
 
       {/* Newsletter list */}
-      <section className="bg-white py-10 px-6">
-        <div className="max-w-7xl lg:max-w-5xl mx-auto newsletter-list">
+      <section className="bg-white pt-10 pb-16 px-6">
+        <div className="max-w-7xl mx-auto">
 
-          {/* Featured (latest) newsletter */}
-          {newsletters.length > 0 && (() => {
-            const featured = newsletters[0];
-            return (
-              <Link href={`/newsletter/${featured.slug}`} className="group block mb-8">
-                <article className="flex flex-col md:flex-row gap-6">
-                  {/* Large thumbnail */}
-                  <div className="w-full md:w-1/2 aspect-video bg-[#1b1b1b]/5 overflow-hidden relative">
-                    {featured.thumbnail_url ? (
-                      <Image
-                        src={featured.thumbnail_url}
-                        alt={featured.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
-                        <span className="text-[#1b1b1b]/30">Newsletter</span>
+          {activePub !== 'Thorium Valley' ? (
+            <div className="py-20 text-center">
+              <p className="font-inter text-[#1b1b1b]/40 text-lg">Coming soon.</p>
+            </div>
+          ) : newsletters.length === 0 ? (
+            <div className="py-20 text-center">
+              <p className="font-inter text-[#1b1b1b]/40">No newsletters yet.</p>
+            </div>
+          ) : (
+            <>
+              <div className="border-t border-[#1b1b1b]/25 mb-6" />
+
+              {/* ─── DESKTOP: hero grid (1 big + 4 in 2×2) then rows of 4 ─── */}
+              <div className="hidden lg:block">
+                <div className="flex gap-8">
+                  {/* Hero – left */}
+                  <Link href={`/newsletter/${newsletters[0].slug}`} className="group block w-[48%] flex-shrink-0">
+                    <article className="h-full flex flex-col">
+                      <div className="relative w-full flex-1 min-h-[360px] overflow-hidden bg-[#1b1b1b]/5">
+                        {newsletters[0].thumbnail_url && (
+                          <Image src={newsletters[0].thumbnail_url} alt={newsletters[0].title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" priority />
+                        )}
                       </div>
-                    )}
+                      <h3 className="font-times font-bold text-[28px] leading-tight text-[#1b1b1b] group-hover:text-[#5170ff] transition-colors mt-4" style={{ letterSpacing: '-0.04em' }}>
+                        {newsletters[0].title}
+                      </h3>
+                      {newsletters[0].toc && newsletters[0].toc.length > 1 && (
+                        <div className="mt-2 space-y-1">
+                          {newsletters[0].toc.slice(1, 3).map((hl, i) => (
+                            <p key={i} className="font-inter text-sm font-medium text-[#1b1b1b]/70">
+                              <span style={{ color: '#5170ff' }}>✦</span> {hl}
+                            </p>
+                          ))}
+                        </div>
+                      )}
+                      <time className="font-inter font-medium block text-xs mt-2" style={{ color: 'rgba(27,27,27,0.4)' }}>
+                        {formatDate(newsletters[0].published_at)}
+                      </time>
+                    </article>
+                  </Link>
+
+                  {/* 4 smaller – right 2×2 */}
+                  {newsletters.length > 1 && (
+                    <div className="flex-1 grid grid-cols-2 gap-x-8 gap-y-10">
+                      {newsletters.slice(1, 5).map(nl => (
+                        <Link key={nl.slug} href={`/newsletter/${nl.slug}`} className="group block">
+                          <article>
+                            <div className="relative w-full aspect-[16/9] overflow-hidden bg-[#1b1b1b]/5">
+                              {nl.thumbnail_url && (
+                                <Image src={nl.thumbnail_url} alt={nl.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                              )}
+                            </div>
+                            <h3 className="font-times font-bold text-lg leading-snug text-[#1b1b1b] group-hover:text-[#5170ff] transition-colors mt-3" style={{ letterSpacing: '-0.03em' }}>
+                              {nl.title}
+                            </h3>
+                            <time className="font-inter font-medium block text-xs mt-1" style={{ color: 'rgba(27,27,27,0.4)' }}>
+                              {formatDate(nl.published_at)}
+                            </time>
+                          </article>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Remaining – vertical list */}
+                {newsletters.length > 5 && (
+                  <div className="border-t border-[#1b1b1b]/25 mt-10">
+                    {newsletters.slice(5).map((nl, index) => (
+                      <Link key={nl.slug} href={`/newsletter/${nl.slug}`} className="group block">
+                        <article className={`flex gap-8 py-8 ${index !== 0 ? 'border-t border-[#1b1b1b]/25' : ''}`}>
+                          {/* Text – left */}
+                          <div className="flex-1 min-w-0 flex flex-col justify-center">
+                            <h3 className="font-times font-bold text-[26px] leading-snug text-[#1b1b1b] group-hover:text-[#5170ff] transition-colors" style={{ letterSpacing: '-0.03em' }}>
+                              {nl.title}
+                            </h3>
+                            {nl.toc && nl.toc.length > 1 && (
+                              <div className="mt-2 space-y-1">
+                                {nl.toc.slice(1, 3).map((hl, i) => (
+                                  <p key={i} className="font-inter text-sm font-medium text-[#1b1b1b]/70">
+                                    <span style={{ color: '#5170ff' }}>✦</span> {hl}
+                                  </p>
+                                ))}
+                              </div>
+                            )}
+                            <time className="font-inter font-medium block text-sm mt-2" style={{ color: 'rgba(27,27,27,0.4)' }}>
+                              {formatDate(nl.published_at)}
+                            </time>
+                          </div>
+                          {/* Thumbnail – right */}
+                          <div className="w-72 aspect-video flex-shrink-0 bg-[#1b1b1b]/5 overflow-hidden relative">
+                            {nl.thumbnail_url ? (
+                              <Image src={nl.thumbnail_url} alt={nl.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
+                                <span className="text-[#1b1b1b]/30 text-xs">Newsletter</span>
+                              </div>
+                            )}
+                          </div>
+                        </article>
+                      </Link>
+                    ))}
                   </div>
-                  {/* Content */}
-                  <div className="flex-1 flex flex-col justify-center">
-                    <span className="font-inter text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: '#5170ff' }}>Latest Edition</span>
-                    <h3
-                      className="font-bold font-times leading-snug text-[#1b1b1b] group-hover:text-[#5170ff] transition-colors"
-                      style={{ fontSize: 'clamp(22px, 3vw, 34px)', letterSpacing: '-0.03em' }}
-                    >
-                      {featured.title}
+                )}
+              </div>
+
+              {/* ─── MOBILE: front-page style ─── */}
+              <div className="lg:hidden">
+                {/* Big featured */}
+                <Link href={`/newsletter/${newsletters[0].slug}`} className="group block mb-6">
+                  <article>
+                    <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-4">
+                      {newsletters[0].thumbnail_url && (
+                        <Image src={newsletters[0].thumbnail_url} alt={newsletters[0].title} fill priority className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                      )}
+                    </div>
+                    <h3 className="font-bold font-times leading-tight text-[#1b1b1b] group-hover:text-[#5170ff] transition-colors" style={{ fontSize: '28px' }}>
+                      {newsletters[0].title}
                     </h3>
-                    {featured.toc && featured.toc.length > 1 && (
-                      <div className="mt-3 space-y-1">
-                        {featured.toc.slice(1, 3).map((hl, i) => (
+                    {newsletters[0].toc && newsletters[0].toc.length > 1 && (
+                      <div className="mt-2 space-y-1">
+                        {newsletters[0].toc.slice(1, 3).map((hl, i) => (
                           <p key={i} className="font-inter text-sm font-medium text-[#1b1b1b]/70">
                             <span style={{ color: '#5170ff' }}>✦</span> {hl}
                           </p>
                         ))}
                       </div>
                     )}
-                    <time className="font-inter font-medium block text-sm mt-3" style={{ color: 'rgba(27,27,27,0.4)' }}>
-                      {formatDate(featured.published_at)}
+                    <time className="font-inter font-medium block text-xs mt-2" style={{ color: 'rgba(27,27,27,0.4)' }}>
+                      {formatDate(newsletters[0].published_at)}
                     </time>
-                  </div>
-                </article>
-              </Link>
-            );
-          })()}
-
-          {/* Divider */}
-          {newsletters.length > 1 && <div className="border-t border-[#1b1b1b]/25 mb-6"></div>}
-
-          {/* Remaining newsletters */}
-          {newsletters.slice(1).map((newsletter, index) => (
-            <article key={newsletter.id} className={`flex gap-5 pb-6 ${index !== 0 ? 'pt-6 border-t border-[#1b1b1b]/25' : ''}`}>
-              {/* Thumbnail */}
-              <Link href={`/newsletter/${newsletter.slug}`} className="group w-20 lg:w-56 aspect-square lg:aspect-video flex-shrink-0 self-start bg-[#1b1b1b]/5 overflow-hidden relative block">
-                {newsletter.thumbnail_url ? (
-                  <Image
-                    src={newsletter.thumbnail_url}
-                    alt={newsletter.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
-                    <span className="text-[#1b1b1b]/30 text-xs">Newsletter</span>
-                  </div>
-                )}
-              </Link>
-
-              {/* Content */}
-              <div className="flex-1 min-w-0 flex flex-col justify-center">
-                <Link href={`/newsletter/${newsletter.slug}`} className="nl-title-link">
-                  <h3
-                    className="font-bold font-times leading-snug text-[#1b1b1b] line-clamp-2 text-sm transition-colors"
-                    style={{ letterSpacing: '-0.03em' }}
-                  >
-                    {newsletter.title}
-                  </h3>
+                  </article>
                 </Link>
-                {/* + headlines (toc) */}
-                {newsletter.toc && newsletter.toc.length > 1 && (
-                  <div className="mt-1.5 lg:mt-2 space-y-0.5">
-                    {newsletter.toc.slice(1, 3).map((hl, i) => (
-                      <Link key={i} href={`/newsletter/${newsletter.slug}#article-${i + 2}`} className="nl-hl-link block">
-                        <p className="font-inter text-[10px] lg:text-sm font-medium line-clamp-1 text-[#1b1b1b] transition-colors">
-                          <span style={{ color: '#5170ff' }}>✦</span> {hl}
-                        </p>
-                      </Link>
-                    ))}
-                  </div>
+
+                {/* Remaining – thumbnail + title rows */}
+                {newsletters.length > 1 && (
+                  <>
+                    <div className="border-t border-[#1b1b1b]/25 my-6" />
+                    <div className="space-y-6">
+                      {newsletters.slice(1).map((nl, index) => (
+                        <Link key={nl.slug} href={`/newsletter/${nl.slug}`} className="group">
+                          <article className={`cursor-pointer flex gap-4 pb-4 ${index !== 0 ? 'pt-4 border-t border-[#1b1b1b]/25' : ''}`}>
+                            <div className="w-28 aspect-[4/3] flex-shrink-0 bg-[#1b1b1b]/5 overflow-hidden relative">
+                              {nl.thumbnail_url ? (
+                                <Image src={nl.thumbnail_url} alt={nl.title} fill className="object-cover" />
+                              ) : (
+                                <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
+                                  <span className="text-[#1b1b1b]/30 text-xs">Newsletter</span>
+                                </div>
+                              )}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <h3 className="font-medium font-times leading-snug text-[#1b1b1b] group-hover:text-[#5170ff] transition-colors line-clamp-3" style={{ fontSize: '20px', fontWeight: 500 }}>
+                                {nl.title}
+                              </h3>
+                              {nl.toc && nl.toc.length > 1 && (
+                                <div className="mt-1 space-y-0.5">
+                                  {nl.toc.slice(1, 3).map((hl, i) => (
+                                    <p key={i} className="font-inter text-xs font-medium text-[#1b1b1b]/70 line-clamp-1">
+                                      <span style={{ color: '#5170ff' }}>✦</span> {hl}
+                                    </p>
+                                  ))}
+                                </div>
+                              )}
+                              <time className="font-inter font-medium block text-xs mt-1" style={{ color: 'rgba(27,27,27,0.4)' }}>
+                                {formatDate(nl.published_at)}
+                              </time>
+                            </div>
+                          </article>
+                        </Link>
+                      ))}
+                    </div>
+                  </>
                 )}
-                <time className="font-inter font-medium block text-[10px] lg:text-sm mt-1 lg:mt-2" style={{ color: 'rgba(27,27,27,0.4)' }}>
-                  {formatDate(newsletter.published_at)}
-                </time>
               </div>
-            </article>
-          ))}
-
-          {/* Desktop font size + independent hover */}
-          <style dangerouslySetInnerHTML={{
-            __html: `
-            @media(min-width:1024px){.newsletter-list h3{font-size:26px!important}}
-            .nl-title-link:hover h3{color:#5170ff!important}
-            .nl-hl-link:hover p{color:#5170ff!important}
-            .nl-hl-link:hover p span{color:#5170ff!important}
-          `}} />
-
-          {newsletters.length === 0 && (
-            <div className="py-20 text-center">
-              <p className="font-inter text-[#1b1b1b]/40">No newsletters yet.</p>
-            </div>
+            </>
           )}
         </div>
       </section>

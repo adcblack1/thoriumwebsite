@@ -47,7 +47,7 @@ export function SubscribeForm({ variant = "hero", className = "", redirectOnSucc
                         industry: data.data?.industry || '',
                         company_size: data.data?.company_size || '',
                         ai_tools: data.data?.ai_tools || [],
-                        child_newsletters: data.data?.child_newsletters || ['the-catalyst', 'the-lab', 'the-operator'],
+                        child_newsletters: data.data?.child_newsletters || ['thorium-valley', 'the-catalyst', 'the-lab'],
                     },
                     step: 2,
                     subscriberId: data.subscriber_id,

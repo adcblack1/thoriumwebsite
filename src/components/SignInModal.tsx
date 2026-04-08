@@ -86,7 +86,7 @@ export function SignInModal({ isOpen, onClose }: SignInModalProps) {
                         industry: subData.industry || '',
                         company_size: subData.company_size || '',
                         ai_tools: subData.ai_tools || [],
-                        child_newsletters: subData.child_newsletters || ['the-catalyst', 'the-lab'],
+                        child_newsletters: subData.child_newsletters || ['thorium-valley', 'the-catalyst', 'the-lab'],
                     }
 
                     let resumeStep = 2

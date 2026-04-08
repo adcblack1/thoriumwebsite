@@ -9,7 +9,7 @@ const supabase = () =>
 
 // GET /api/subscribers/export?newsletter=the-catalyst
 // Returns a CSV of subscribers for a specific child newsletter.
-// Valid newsletters: the-catalyst, the-lab, the-operator
+// Valid newsletters: the-catalyst, the-lab
 // Add ?format=json for JSON output instead.
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const validNewsletters = ['the-catalyst', 'the-lab', 'the-operator'];
+  const validNewsletters = ['the-catalyst', 'the-lab'];
 
   if (newsletter && !validNewsletters.includes(newsletter)) {
     return NextResponse.json(

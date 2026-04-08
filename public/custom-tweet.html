@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Tweet Preview</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .tweet-card {
+      background: #ffffff;
+      border: 1px solid #e1e8ed;
+      border-radius: 16px;
+      max-width: 550px;
+      width: 100%;
+      padding: 16px;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #0f1419;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+
+    .tweet-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .tweet-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tweet-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: #1a1a2e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tweet-avatar svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    .tweet-name-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tweet-name {
+      font-weight: 700;
+      font-size: 15px;
+      color: #0f1419;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .tweet-verified {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+    }
+
+    .tweet-handle {
+      font-size: 14px;
+      color: #536471;
+      font-weight: 400;
+    }
+
+    .tweet-x-logo {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .tweet-body {
+      font-size: 15px;
+      line-height: 1.55;
+      color: #0f1419;
+      margin-bottom: 16px;
+      white-space: pre-wrap;
+    }
+
+    .tweet-timestamp {
+      font-size: 14px;
+      color: #536471;
+      padding-top: 12px;
+      border-top: 1px solid #eff3f4;
+      margin-top: 12px;
+    }
+
+    .tweet-timestamp a {
+      color: #536471;
+      text-decoration: none;
+    }
+
+    .tweet-timestamp a:hover {
+      text-decoration: underline;
+    }
+
+    .tweet-actions {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 12px;
+      max-width: 400px;
+    }
+
+    .tweet-action {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #536471;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .tweet-action svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .tweet-action:hover {
+      color: #1d9bf0;
+    }
+
+    .tweet-action.retweet:hover { color: #00ba7c; }
+    .tweet-action.like:hover { color: #f91880; }
+
+    /* Controls below */
+    .controls {
+      max-width: 550px;
+      width: 100%;
+      margin-top: 24px;
+      padding: 16px;
+      background: white;
+      border-radius: 12px;
+      border: 1px solid #e1e8ed;
+    }
+
+    .controls h3 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #0f1419;
+    }
+
+    .controls button {
+      padding: 8px 16px;
+      background: #0f1419;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .controls button:hover {
+      background: #2f3336;
+    }
+
+    .page-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+  <div class="tweet-card" id="tweetCard">
+    <div class="tweet-header">
+      <div class="tweet-header-left">
+        <!-- Claude Avatar -->
+        <div class="tweet-avatar">
+          <img src="/claude-avatar.png" alt="Claude" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" />
+        </div>
+        <div class="tweet-name-wrap">
+          <span class="tweet-name">
+            Claude
+            <!-- Blue verified badge -->
+            <svg class="tweet-verified" viewBox="0 0 22 22" fill="none">
+              <circle cx="11" cy="11" r="11" fill="#1d9bf0"/>
+              <path d="M9.5 14.25L6.75 11.5L7.8 10.45L9.5 12.15L14.2 7.45L15.25 8.5L9.5 14.25Z" fill="white"/>
+            </svg>
+          </span>
+          <span class="tweet-handle">@claudeai</span>
+        </div>
+      </div>
+      <!-- X logo -->
+      <svg class="tweet-x-logo" viewBox="0 0 24 24" fill="#0f1419">
+        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+      </svg>
+    </div>
+
+    <div class="tweet-body">You could stare at a blank doc for 45 minutes or you could ask Claude and have a decent first draft before your coffee gets cold. Your call.</div>
+
+    <div class="tweet-timestamp">
+      <a href="#">4:32 PM · Feb 20, 2026</a> · <span style="font-weight:500;color:#0f1419;">1.2M</span> Views
+    </div>
+
+    <div class="tweet-actions">
+      <div class="tweet-action">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M1.751 10c.04-.893.688-1.657 1.563-1.845l10.18-2.186a.5.5 0 0 1 .59.39l.7 3.24a.5.5 0 0 1-.39.59L4.212 12.374A2 2 0 0 1 1.751 10z" fill="none"/>
+          <path stroke-linecap="round" d="M14.046 6.398l.702 3.242M3.5 21v-8"/>
+        </svg>
+        <span>847</span>
+      </div>
+      <div class="tweet-action retweet">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.7 3.7L22 6l-2.3 2.3M4.3 20.3L2 18l2.3-2.3M22 6H8a4 4 0 0 0-4 4M2 18h14a4 4 0 0 0 4-4"/>
+        </svg>
+        <span>4,218</span>
+      </div>
+      <div class="tweet-action like">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+        </svg>
+        <span>23.4K</span>
+      </div>
+      <div class="tweet-action">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <h3>📋 Export Options</h3>
+    <button onclick="copyHTML()">Copy Tweet HTML</button>
+    <button onclick="window.print()" style="margin-left:8px;background:#536471;">Print / Save as PDF</button>
+  </div>
+</div>
+
+<script>
+function copyHTML() {
+  const el = document.getElementById('tweetCard');
+  const html = el.outerHTML;
+  navigator.clipboard.writeText(html).then(() => {
+    alert('Tweet HTML copied to clipboard!');
+  });
+}
+</script>
+</body>
+</html>

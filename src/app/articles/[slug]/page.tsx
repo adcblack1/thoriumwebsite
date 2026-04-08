@@ -218,6 +218,18 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                             line-height: 2.0 !important;
                             margin-top: 3em !important;
                         }
+                        .article-body blockquote.twitter-tweet,
+                        .article-body .twitter-tweet-rendered,
+                        .article-body div:has(> blockquote.twitter-tweet),
+                        .article-body div:has(> iframe[src*="twitter"]),
+                        .article-body div:has(> iframe[src*="x.com"]) {
+                            margin-bottom: 2em !important;
+                        }
+                        .article-body iframe[src*="twitter"],
+                        .article-body iframe[src*="x.com"],
+                        .article-body iframe[src*="platform.twitter"] {
+                            margin-bottom: 2em !important;
+                        }
                         /* ── MOBILE OVERRIDES ── */
                         @media (max-width: 768px) {
                             .article-body p {
@@ -260,11 +272,11 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               prose-ul:text-[#1b1b1b] prose-ol:text-[#1b1b1b]
               prose-blockquote:border-l-[#5170ff] prose-blockquote:text-[#1b1b1b]/80"
                         html={(article.content || '<p>Content not available.</p>')
-                                .replace(/valley-view-header\.png/g, 'into-the-valley.png')
+                                .replace(/valley-view-header\.png/g, 'IN THE VALLEY NEWS.png')
                                 .replace(/Our Valley View/g, 'Valley View')
-                                .replace(/<div[^>]*class="vv-header"[^>]*>[\s\S]*?<\/div>/g, '<div style="text-align:center;margin:2em 0 1em;"><img src="/thumbnails/into-the-valley.png" alt="Valley View" style="display:inline-block;width:100%;height:auto;" /></div>')
-                                .replace(/<p>\s*<strong>Valley View:?<\/strong>\s*<\/p>/g, '<div style="text-align:center;margin:2em 0 1em;"><img src="/thumbnails/into-the-valley.png" alt="Valley View" style="display:inline-block;width:100%;height:auto;" /></div>')
-                                .replace(/<p>\s*<strong>Valley View:?<\/strong>\s*([\s\S]*?)<\/p>/g, '<div style="text-align:center;margin:2em 0 1em;"><img src="/thumbnails/into-the-valley.png" alt="Valley View" style="display:inline-block;width:100%;height:auto;" /></div><p>$1</p>')
+                                .replace(/<div[^>]*class="vv-header"[^>]*>[\s\S]*?<\/div>/g, '<div style="text-align:center;margin:2em 0 1em;"><img src="/IN THE VALLEY NEWS.png" alt="In the Valley" style="display:inline-block;width:100%;height:auto;" /></div>')
+                                .replace(/<p>\s*<strong>Valley View:?<\/strong>\s*<\/p>/g, '<div style="text-align:center;margin:2em 0 1em;"><img src="/IN THE VALLEY NEWS.png" alt="In the Valley" style="display:inline-block;width:100%;height:auto;" /></div>')
+                                .replace(/<p>\s*<strong>Valley View:?<\/strong>\s*([\s\S]*?)<\/p>/g, '<div style="text-align:center;margin:2em 0 1em;"><img src="/IN THE VALLEY NEWS.png" alt="In the Valley" style="display:inline-block;width:100%;height:auto;" /></div><p>$1</p>')
                                 .replace(/<p>---<\/p>/g, '')
                                 .replace(/<hr\s*\/?>/g, '')}
                     />
