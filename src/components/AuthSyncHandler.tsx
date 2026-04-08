@@ -48,14 +48,15 @@ export function AuthSyncHandler() {
 
             // Figure out which step they should resume at
             // Step 2 = newsletters, 3 = name, 4 = goal, 5 = role, 6 = industry, 7 = ai tools
-            let resumeStep = 2 // New subscribers start at newsletter selection
-            if (subData.email) {
+            let resumeStep = 2 // Always start at newsletter selection for new users
+            if (!data.is_new && subData.email) {
+              // Returning subscriber — skip to where they left off
               if (!subData.first_name) resumeStep = 3
               else if (!subData.main_goal) resumeStep = 4
               else if (!subData.seniority || !subData.job_function) resumeStep = 5
               else if (!subData.industry || !subData.company_size) resumeStep = 6
               else if (!subData.ai_tools || subData.ai_tools.length === 0) resumeStep = 7
-              else resumeStep = 8 // All done — shouldn't hit this since survey_complete would be true
+              else resumeStep = 8
             }
 
             localStorage.setItem('tv_subscribe_progress', JSON.stringify({

@@ -90,7 +90,7 @@ export function SignInModal({ isOpen, onClose }: SignInModalProps) {
                     }
 
                     let resumeStep = 2
-                    if (subData.email) {
+                    if (!data.is_new && subData.email) {
                         if (!subData.first_name) resumeStep = 3
                         else if (!subData.main_goal) resumeStep = 4
                         else if (!subData.seniority || !subData.job_function) resumeStep = 5

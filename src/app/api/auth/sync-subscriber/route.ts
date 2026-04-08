@@ -47,8 +47,10 @@ export async function POST(request: Request) {
       .single()
 
     let subscriberRecord = existingSub
+    let isNewSubscriber = false
 
     if (!existingSub) {
+      isNewSubscriber = true
       // Create new subscriber record
       const { data: newSub, error: insertErr } = await supabase
         .from('subscribers')
@@ -153,9 +155,10 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
-      subscriber_id: `supabase-${user.id}`, // Return immediately, Beehiiv ID will be set in background
+      subscriber_id: `supabase-${user.id}`,
       supabase_subscriber_id: subscriberRecord?.id || null,
       survey_complete: !!surveyComplete,
+      is_new: isNewSubscriber,
       subscriber_data: subscriberRecord || null,
     })
   } catch (err) {
