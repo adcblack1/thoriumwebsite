@@ -73,6 +73,40 @@ export function SignInModal({ isOpen, onClose }: SignInModalProps) {
                 if (data.subscriber_id) {
                     localStorage.setItem('tv_subscriber_id', data.subscriber_id)
                 }
+
+                // If survey is incomplete, redirect to /subscribe
+                if (!data.survey_complete && data.supabase_subscriber_id) {
+                    const subData = data.subscriber_data || {}
+                    const formData = {
+                        email: subData.email || '',
+                        first_name: subData.first_name || '',
+                        main_goal: subData.main_goal || '',
+                        seniority: subData.seniority || '',
+                        job_function: subData.job_function || '',
+                        industry: subData.industry || '',
+                        company_size: subData.company_size || '',
+                        ai_tools: subData.ai_tools || [],
+                        child_newsletters: subData.child_newsletters || ['the-catalyst', 'the-lab'],
+                    }
+
+                    let resumeStep = 2
+                    if (subData.email) {
+                        if (!subData.first_name) resumeStep = 3
+                        else if (!subData.main_goal) resumeStep = 4
+                        else if (!subData.seniority || !subData.job_function) resumeStep = 5
+                        else if (!subData.industry || !subData.company_size) resumeStep = 6
+                        else if (!subData.ai_tools || subData.ai_tools.length === 0) resumeStep = 7
+                        else resumeStep = 8
+                    }
+
+                    localStorage.setItem('tv_subscribe_progress', JSON.stringify({
+                        formData,
+                        step: resumeStep,
+                        subscriberId: data.supabase_subscriber_id,
+                    }))
+                    window.location.href = `/subscribe?step=${resumeStep}`
+                    return
+                }
             }
         } catch { /* silently fail */ }
     }

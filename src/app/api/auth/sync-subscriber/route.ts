@@ -110,12 +110,65 @@ export async function POST(request: Request) {
       console.error('Profile upsert error:', profileError)
     }
 
+    // ── Also upsert into subscribers table so survey data is connected ──
+    // Extract first name from Google profile if available
+    const firstName = user.user_metadata?.full_name?.split(' ')[0] || user.user_metadata?.name?.split(' ')[0] || ''
+
+    // Check if subscriber record already exists
+    const { data: existingSub } = await supabase
+      .from('subscribers')
+      .select('*')
+      .eq('email', email)
+      .single()
+
+    let subscriberRecord = existingSub
+
+    if (!existingSub) {
+      // Create new subscriber record
+      const { data: newSub, error: insertErr } = await supabase
+        .from('subscribers')
+        .insert({
+          email,
+          first_name: firstName,
+          child_newsletters: ['the-catalyst', 'the-lab'],
+        })
+        .select('*')
+        .single()
+
+      if (insertErr) {
+        console.error('Subscriber insert error:', insertErr)
+      } else {
+        subscriberRecord = newSub
+      }
+    } else if (!existingSub.first_name && firstName) {
+      // Backfill first name from Google if missing
+      await supabase
+        .from('subscribers')
+        .update({ first_name: firstName, updated_at: new Date().toISOString() })
+        .eq('id', existingSub.id)
+      subscriberRecord = { ...existingSub, first_name: firstName }
+    }
+
+    // Check if survey is complete
+    const surveyComplete = subscriberRecord &&
+      subscriberRecord.first_name &&
+      subscriberRecord.main_goal &&
+      subscriberRecord.seniority &&
+      subscriberRecord.job_function &&
+      subscriberRecord.industry &&
+      subscriberRecord.company_size &&
+      subscriberRecord.ai_tools && (subscriberRecord.ai_tools as string[]).length > 0
+
     return NextResponse.json({
       success: true,
       subscriber_id: beehiivSubscriberId,
+      supabase_subscriber_id: subscriberRecord?.id || null,
+      survey_complete: !!surveyComplete,
+      subscriber_data: subscriberRecord || null,
     })
   } catch (err) {
     console.error('Sync subscriber error:', err)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
+
