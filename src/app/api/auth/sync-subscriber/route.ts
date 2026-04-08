@@ -37,81 +37,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'No email found' }, { status: 400 })
     }
 
-    let beehiivSubscriberId: string | null = null
-
-    // Subscribe to Beehiiv if checkbox was checked
-    const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY
-    const BEEHIIV_PUBLICATION_ID = process.env.BEEHIIV_PUBLICATION_ID
-
-    if (subscribeNewsletter && BEEHIIV_API_KEY && BEEHIIV_PUBLICATION_ID) {
-      try {
-        const beehiivRes = await fetch(
-          `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions`,
-          {
-            method: 'POST',
-            headers: {
-              Authorization: `Bearer ${BEEHIIV_API_KEY}`,
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              email,
-              reactivate_existing: true,
-              send_welcome_email: false, // They're already on the site
-              utm_source: 'website_signin',
-            }),
-          }
-        )
-
-        if (beehiivRes.ok) {
-          const beehiivData = await beehiivRes.json()
-          beehiivSubscriberId = beehiivData?.data?.id || null
-        }
-      } catch (err) {
-        console.error('Beehiiv subscribe error:', err)
-      }
-    }
-
-    // If we didn't get a subscriber ID from subscribing, try to look them up
-    if (!beehiivSubscriberId && BEEHIIV_API_KEY && BEEHIIV_PUBLICATION_ID) {
-      try {
-        const lookupRes = await fetch(
-          `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions?email=${encodeURIComponent(email)}`,
-          {
-            headers: { Authorization: `Bearer ${BEEHIIV_API_KEY}` },
-          }
-        )
-        if (lookupRes.ok) {
-          const lookupData = await lookupRes.json()
-          if (lookupData?.data?.length > 0) {
-            beehiivSubscriberId = lookupData.data[0].id
-          }
-        }
-      } catch (err) {
-        console.error('Beehiiv lookup error:', err)
-      }
-    }
-
-    // Fall back to Supabase user ID if Beehiiv isn't configured
-    if (!beehiivSubscriberId) {
-      beehiivSubscriberId = `supabase-${user.id}`
-    }
-
-    // Update profiles table
-    const { error: profileError } = await supabase
-      .from('profiles')
-      .upsert({
-        id: user.id,
-        email,
-        beehiiv_subscriber_id: beehiivSubscriberId,
-        updated_at: new Date().toISOString(),
-      })
-
-    if (profileError) {
-      console.error('Profile upsert error:', profileError)
-    }
-
-    // ── Also upsert into subscribers table so survey data is connected ──
-    // Extract first name from Google profile if available
+    // ── Fast path: check/create subscriber first ──
     const firstName = user.user_metadata?.full_name?.split(' ')[0] || user.user_metadata?.name?.split(' ')[0] || ''
 
     // Check if subscriber record already exists
@@ -159,9 +85,84 @@ export async function POST(request: Request) {
       subscriberRecord.company_size &&
       subscriberRecord.ai_tools && (subscriberRecord.ai_tools as string[]).length > 0
 
+    // ── Fire Beehiiv sync in background (don't await — don't block redirect) ──
+    const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY
+    const BEEHIIV_PUBLICATION_ID = process.env.BEEHIIV_PUBLICATION_ID
+
+    const beehiivSync = async () => {
+      let beehiivSubscriberId: string | null = null
+
+      if (subscribeNewsletter && BEEHIIV_API_KEY && BEEHIIV_PUBLICATION_ID) {
+        try {
+          const beehiivRes = await fetch(
+            `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions`,
+            {
+              method: 'POST',
+              headers: {
+                Authorization: `Bearer ${BEEHIIV_API_KEY}`,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                email,
+                reactivate_existing: true,
+                send_welcome_email: false,
+                utm_source: 'website_signin',
+              }),
+            }
+          )
+          if (beehiivRes.ok) {
+            const beehiivData = await beehiivRes.json()
+            beehiivSubscriberId = beehiivData?.data?.id || null
+          }
+        } catch (err) {
+          console.error('Beehiiv subscribe error:', err)
+        }
+      }
+
+      // If we didn't get a subscriber ID from subscribing, try to look them up
+      if (!beehiivSubscriberId && BEEHIIV_API_KEY && BEEHIIV_PUBLICATION_ID) {
+        try {
+          const lookupRes = await fetch(
+            `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUBLICATION_ID}/subscriptions?email=${encodeURIComponent(email)}`,
+            {
+              headers: { Authorization: `Bearer ${BEEHIIV_API_KEY}` },
+            }
+          )
+          if (lookupRes.ok) {
+            const lookupData = await lookupRes.json()
+            if (lookupData?.data?.length > 0) {
+              beehiivSubscriberId = lookupData.data[0].id
+            }
+          }
+        } catch (err) {
+          console.error('Beehiiv lookup error:', err)
+        }
+      }
+
+      if (!beehiivSubscriberId) {
+        beehiivSubscriberId = `supabase-${user.id}`
+      }
+
+      // Update profiles table with Beehiiv ID
+      await supabase
+        .from('profiles')
+        .upsert({
+          id: user.id,
+          email,
+          beehiiv_subscriber_id: beehiivSubscriberId,
+          updated_at: new Date().toISOString(),
+        })
+        .then(({ error }) => {
+          if (error) console.error('Profile upsert error:', error)
+        })
+    }
+
+    // Fire and forget — don't block the response
+    beehiivSync().catch(err => console.error('Background beehiiv sync error:', err))
+
     return NextResponse.json({
       success: true,
-      subscriber_id: beehiivSubscriberId,
+      subscriber_id: `supabase-${user.id}`, // Return immediately, Beehiiv ID will be set in background
       supabase_subscriber_id: subscriberRecord?.id || null,
       survey_complete: !!surveyComplete,
       subscriber_data: subscriberRecord || null,
@@ -171,4 +172,3 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
   }
 }
-
