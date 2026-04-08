@@ -38,7 +38,6 @@ export async function POST(request: Request) {
     }
 
     // ── Fast path: check/create subscriber first ──
-    const firstName = user.user_metadata?.full_name?.split(' ')[0] || user.user_metadata?.name?.split(' ')[0] || ''
 
     // Check if subscriber record already exists
     const { data: existingSub } = await supabase
@@ -55,7 +54,6 @@ export async function POST(request: Request) {
         .from('subscribers')
         .insert({
           email,
-          first_name: firstName,
           child_newsletters: ['the-catalyst', 'the-lab'],
         })
         .select('*')
@@ -66,13 +64,6 @@ export async function POST(request: Request) {
       } else {
         subscriberRecord = newSub
       }
-    } else if (!existingSub.first_name && firstName) {
-      // Backfill first name from Google if missing
-      await supabase
-        .from('subscribers')
-        .update({ first_name: firstName, updated_at: new Date().toISOString() })
-        .eq('id', existingSub.id)
-      subscriberRecord = { ...existingSub, first_name: firstName }
     }
 
     // Check if survey is complete
