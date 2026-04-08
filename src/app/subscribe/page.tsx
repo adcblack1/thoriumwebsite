@@ -208,7 +208,7 @@ export default function SubscribePage() {
           industry: existing.industry || '',
           company_size: existing.company_size || '',
           ai_tools: existing.ai_tools || [],
-          child_newsletters: existing.child_newsletters || ['the-catalyst', 'the-lab'],
+          child_newsletters: existing.child_newsletters || ['thorium-valley', 'the-catalyst', 'the-lab'],
         };
         setFormData(restored);
 
