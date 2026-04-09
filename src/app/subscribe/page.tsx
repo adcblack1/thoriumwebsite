@@ -495,7 +495,7 @@ export default function SubscribePage() {
       </div>
 
       {/* Main content */}
-      <div className="flex-1 flex items-center justify-center px-5 relative z-10 -mt-16 lg:mt-0">
+      <div className={`flex-1 flex items-center justify-center px-5 relative z-10 lg:mt-0 ${step <= 1 ? '-mt-16' : ''}`}>
         <div className={`w-full ${step === 9 ? 'max-w-4xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
