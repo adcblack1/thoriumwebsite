@@ -34,12 +34,25 @@ export default function NewsletterArchivePage() {
   const [activePub, setActivePub] = useState('Thorium Valley');
   const [selected, setSelected] = useState<string[]>(['thorium-valley', 'the-catalyst', 'the-lab']);
 
-  // Read ?pub= from URL on mount
+  // Read ?pub= or ?category= from URL on mount
   useEffect(() => {
     const pubParam = searchParams.get('pub');
+    const categoryParam = searchParams.get('category');
+    
     if (pubParam) {
       const validPubs = ['Thorium Valley', 'The Catalyst', 'The Lab'];
       const match = validPubs.find(p => p === pubParam);
+      if (match) setActivePub(match);
+    } else if (categoryParam) {
+      const categoryMap: Record<string, string> = {
+        'catalyst': 'The Catalyst',
+        'the-catalyst': 'The Catalyst',
+        'lab': 'The Lab',
+        'the-lab': 'The Lab',
+        'thorium-valley': 'Thorium Valley',
+        'tv': 'Thorium Valley',
+      };
+      const match = categoryMap[categoryParam.toLowerCase()];
       if (match) setActivePub(match);
     }
   }, [searchParams]);
