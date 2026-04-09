@@ -14,14 +14,14 @@ const NEWSLETTERS = [
   {
     id: 'the-catalyst',
     name: 'The Catalyst',
-    logo: '/images/catalyst-logo.png',
+    logo: '/images/catalyst-logo-dark.png',
     description: 'How businesses and people are implementing AI and how to do it yourself.',
     frequency: 'Biweekly',
   },
   {
     id: 'the-lab',
     name: 'The Lab',
-    logo: '/images/lab-logo.png',
+    logo: '/images/lab-logo-dark.png',
     description: 'Interesting and useful AI tools and whether they\'re worth trying out.',
     frequency: 'Biweekly',
   },

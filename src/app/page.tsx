@@ -466,7 +466,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-3 pt-2 pb-16">
           <div className="border-t border-[#1b1b1b]/25 mb-4"></div>
           <div className="mb-3 flex justify-center">
-            <img src="/images/catalyst-logo.png" alt="The Catalyst" style={{ height: '120px', width: 'auto', display: 'block', filter: 'invert(1)' }} />
+            <img src="/images/catalyst-logo-dark.png" alt="The Catalyst" style={{ height: '120px', width: 'auto', display: 'block' }} />
           </div>
           <div className="border-t border-[#1b1b1b]/25 mb-6"></div>
 
@@ -519,7 +519,7 @@ export default async function HomePage() {
         <div className="max-w-7xl mx-auto px-3 pt-2 pb-16">
           <div className="border-t border-[#1b1b1b]/25 mb-4"></div>
           <div className="mb-3 flex justify-center">
-            <img src="/images/lab-logo.png" alt="The Lab" style={{ height: '120px', width: 'auto', display: 'block', filter: 'invert(1)' }} />
+            <img src="/images/lab-logo-dark.png" alt="The Lab" style={{ height: '120px', width: 'auto', display: 'block' }} />
           </div>
           <div className="border-t border-[#1b1b1b]/25 mb-6"></div>
 

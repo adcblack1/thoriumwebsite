@@ -97,12 +97,13 @@ export default function NewsletterArchivePage() {
 
         {/* 4 Newsletter cards – row on desktop, 2×2 on mobile */}
         <div className="max-w-7xl lg:max-w-5xl mx-auto px-6 pb-8">
+          <div className="rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8">
           {/* DESKTOP: 4 across */}
           <div className="hidden md:flex flex-nowrap gap-4 items-stretch">
             {[
               { id: 'thorium-valley', name: 'Thorium Valley', logo: '/Transparent White Logo.png', desc: 'Our flagship daily newsletter covering everything happening in AI. News, tools, and what it means for you.', freq: 'Daily', flagship: true },
-              { id: 'the-catalyst', name: 'The Catalyst', logo: '/images/catalyst-logo.png', desc: 'How businesses and people are implementing AI and how to do it yourself.', freq: 'Biweekly' },
-              { id: 'the-lab', name: 'The Lab', logo: '/images/lab-logo.png', desc: 'Interesting and useful AI tools and whether they\'re worth trying out.', freq: 'Biweekly' },
+              { id: 'the-catalyst', name: 'The Catalyst', logo: '/images/catalyst-logo-dark.png', desc: 'How businesses and people are implementing AI and how to do it yourself.', freq: 'Biweekly' },
+              { id: 'the-lab', name: 'The Lab', logo: '/images/lab-logo-dark.png', desc: 'Interesting and useful AI tools and whether they\'re worth trying out.', freq: 'Biweekly' },
             ].map((nl) => {
               const isSelected = selected.includes(nl.id);
               return (
@@ -152,12 +153,12 @@ export default function NewsletterArchivePage() {
           </div>
 
           {/* MOBILE: horizontal scroll – compact cards, last one peeks */}
-          <div className="md:hidden flex gap-3 overflow-x-auto pb-2 -mx-6 px-6" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
+          <div className="md:hidden flex gap-3 overflow-x-auto pb-2 -mx-2 px-2" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
             <style dangerouslySetInnerHTML={{ __html: '.md\\:hidden::-webkit-scrollbar { display: none; }' }} />
             {[
               { id: 'thorium-valley', name: 'Thorium Valley', logo: '/Transparent White Logo.png', desc: 'Our flagship daily newsletter covering everything happening in AI.', freq: 'Daily', flagship: true },
-              { id: 'the-catalyst', name: 'The Catalyst', logo: '/images/catalyst-logo.png', desc: 'How businesses and people are implementing AI and how to do it yourself.', freq: 'Biweekly' },
-              { id: 'the-lab', name: 'The Lab', logo: '/images/lab-logo.png', desc: 'Interesting and useful AI tools and whether they\'re worth trying out.', freq: 'Biweekly' },
+              { id: 'the-catalyst', name: 'The Catalyst', logo: '/images/catalyst-logo-dark.png', desc: 'How businesses and people are implementing AI and how to do it yourself.', freq: 'Biweekly' },
+              { id: 'the-lab', name: 'The Lab', logo: '/images/lab-logo-dark.png', desc: 'Interesting and useful AI tools and whether they\'re worth trying out.', freq: 'Biweekly' },
             ].map((nl) => {
               const isSelected = selected.includes(nl.id);
               return (
@@ -202,6 +203,7 @@ export default function NewsletterArchivePage() {
                 </button>
               );
             })}
+          </div>
           </div>
         </div>
 
