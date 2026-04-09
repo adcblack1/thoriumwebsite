@@ -593,8 +593,13 @@ export default function SubscribePage() {
               {step === 9 && (
                 <div className="flex flex-col items-center gap-6">
                   <div className="text-center mb-1">
-                    <p className="text-xs font-inter font-semibold uppercase tracking-widest mb-2" style={{ color: '#5170ff' }}>Recommended for you</p>
-                    <StepHeading>AI tools picked for you</StepHeading>
+                    <p className="text-xs font-inter font-semibold uppercase tracking-widest mb-2" style={{ color: '#5170ff' }}>AI TOOLS</p>
+                    <h2 className="font-times font-bold text-2xl lg:text-3xl text-white" style={{ letterSpacing: '-0.03em' }}>
+                      We picked these tools for <em>you</em>
+                    </h2>
+                    <p className="text-xs font-inter mt-3 max-w-md mx-auto leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)' }}>
+                      We don&apos;t partner with a tool unless we&apos;ve used it before. These are the ones we recommend for your goals and background.
+                    </p>
                   </div>
 
                   {/* Cards - side by side on desktop, stacked on mobile (Littlebird first) */}
