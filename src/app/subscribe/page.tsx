@@ -606,10 +606,9 @@ export default function SubscribePage() {
                   </div>
 
                   {/* Cards - side by side on desktop, stacked on mobile (Littlebird first) */}
-                  <div className="w-full flex flex-col lg:flex-row items-center lg:items-end justify-center gap-5 lg:gap-5">
+                  <div className="w-full flex flex-col lg:flex-row items-stretch justify-center gap-5">
                     {[SPONSORED_TOOLS[1], SPONSORED_TOOLS[0], SPONSORED_TOOLS[2]].map((tool, i) => {
                       const desktopOrder = i === 0 ? 'lg:order-2' : i === 1 ? 'lg:order-1' : 'lg:order-3';
-                      const isDesktopCenter = i === 0;
 
                       return (
                         <a
@@ -617,18 +616,12 @@ export default function SubscribePage() {
                           href={tool.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`block rounded-xl overflow-hidden transition-all group hover:shadow-lg hover:shadow-white/10 ${
-                            desktopOrder
-                          } ${
-                            isDesktopCenter
-                              ? 'lg:flex-1 lg:max-w-[340px] lg:z-10'
-                              : 'lg:flex-1 lg:max-w-[280px] lg:scale-[0.92] lg:opacity-70 lg:hover:opacity-100'
-                          } w-full`}
+                          className={`block rounded-xl overflow-hidden transition-all group hover:shadow-lg hover:shadow-white/10 ${desktopOrder} w-full lg:flex-1`}
                           style={{ background: '#ffffff' }}
                         >
                           {/* Headline */}
                           <div className="px-5 pt-5 pb-3">
-                            <h3 className="font-times text-[#1b1b1b] leading-tight" style={{ fontWeight: 500, letterSpacing: '-0.05em', fontSize: isDesktopCenter ? '20px' : '17px' }}>
+                            <h3 className="font-times text-[#1b1b1b] leading-tight" style={{ fontWeight: 500, letterSpacing: '-0.05em', fontSize: '18px' }}>
                               {tool.primary}
                             </h3>
                           </div>
@@ -638,7 +631,7 @@ export default function SubscribePage() {
                               src={tool.image}
                               alt={tool.name}
                               className="w-full rounded-lg object-cover"
-                              style={{ height: isDesktopCenter ? '160px' : '130px' }}
+                              style={{ height: '150px' }}
                             />
                           </div>
                           {/* Subtext */}
