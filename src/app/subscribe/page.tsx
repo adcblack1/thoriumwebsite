@@ -493,7 +493,7 @@ export default function SubscribePage() {
 
       {/* Main content */}
       <div className="flex-1 flex items-center justify-center px-5 relative z-10">
-        <div className={`w-full ${step === 9 ? 'max-w-3xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 9 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
+        <div className={`w-full ${step === 9 ? 'max-w-2xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={step}
@@ -603,10 +603,8 @@ export default function SubscribePage() {
                   </div>
 
                   {/* Cards - side by side on desktop, stacked on mobile (Littlebird first) */}
-                  <div className="w-full flex flex-col lg:flex-row items-center lg:items-stretch justify-center gap-4 lg:gap-0">
-                    {/* Reorder: on mobile Littlebird first, desktop: Chronicle | Littlebird | Galaxy */}
+                  <div className="w-full flex flex-col lg:flex-row items-center lg:items-end justify-center gap-4 lg:gap-3">
                     {[SPONSORED_TOOLS[1], SPONSORED_TOOLS[0], SPONSORED_TOOLS[2]].map((tool, i) => {
-                      const isCenter = i === 0; // Littlebird is first in mobile order
                       const desktopOrder = i === 0 ? 'lg:order-2' : i === 1 ? 'lg:order-1' : 'lg:order-3';
                       const isDesktopCenter = i === 0;
 
@@ -616,30 +614,30 @@ export default function SubscribePage() {
                           href={tool.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`block rounded-xl overflow-hidden border transition-all group hover:border-[#5170ff]/50 ${
+                          className={`block rounded-xl overflow-hidden transition-all group hover:shadow-lg hover:shadow-white/5 ${
                             desktopOrder
                           } ${
                             isDesktopCenter
-                              ? 'lg:w-[240px] lg:scale-100 lg:z-10 border-[#5170ff]/40 lg:mx-[-8px]'
-                              : 'lg:w-[200px] lg:scale-[0.88] lg:opacity-80 lg:hover:opacity-100 border-white/10'
+                              ? 'lg:w-[220px] lg:z-10'
+                              : 'lg:w-[180px] lg:scale-[0.92] lg:opacity-75 lg:hover:opacity-100'
                           } w-full max-w-[320px]`}
-                          style={{ background: 'rgba(255,255,255,0.05)' }}
+                          style={{ background: '#ffffff' }}
                         >
                           {/* Gradient thumbnail header */}
                           <div
-                            className={`w-full ${isDesktopCenter ? 'h-28 lg:h-32' : 'h-24 lg:h-28'} flex items-center justify-center`}
-                            style={{ background: `linear-gradient(135deg, ${tool.accent}33, ${tool.accent}11)` }}
+                            className={`w-full ${isDesktopCenter ? 'h-24 lg:h-28' : 'h-20 lg:h-24'} flex items-center justify-center`}
+                            style={{ background: `linear-gradient(135deg, ${tool.accent}, ${tool.accent}99)` }}
                           >
-                            <span className="font-times font-bold text-white text-lg lg:text-xl" style={{ letterSpacing: '-0.03em' }}>
+                            <span className="font-times font-bold text-white text-lg lg:text-xl drop-shadow-sm" style={{ letterSpacing: '-0.03em' }}>
                               {tool.name}
                             </span>
                           </div>
                           {/* Card body */}
                           <div className="p-4">
-                            <p className="font-times font-bold text-white text-sm leading-snug mb-2" style={{ letterSpacing: '-0.02em' }}>
+                            <p className="font-times font-bold text-[#1b1b1b] text-sm leading-snug mb-2" style={{ letterSpacing: '-0.02em' }}>
                               {tool.primary}
                             </p>
-                            <p className="font-inter text-white/50 text-xs leading-relaxed">
+                            <p className="font-inter text-[#1b1b1b]/60 text-xs leading-relaxed">
                               {tool.subtext}
                             </p>
                             <span className="inline-block mt-3 text-[#5170ff] text-xs font-inter font-semibold group-hover:underline">
