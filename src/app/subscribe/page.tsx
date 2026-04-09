@@ -388,7 +388,7 @@ export default function SubscribePage() {
       <>
         <Navigation variant="hero" heroTheme="dark" scrolledTheme="white" heroBorder={true} />
         <main className="min-h-screen bg-white flex items-center justify-center px-5 pt-24 pb-16">
-          <div className="w-full max-w-lg flex flex-col gap-6">
+          <div className="w-full max-w-4xl flex flex-col gap-6">
             {/* Confirmation card */}
             <div className="rounded-2xl bg-[#1b1b1b] p-8 lg:p-12 flex flex-col items-center gap-4 text-center">
               <div className="w-16 h-16 rounded-full bg-[#5170ff]/20 flex items-center justify-center mb-2">
@@ -438,37 +438,44 @@ export default function SubscribePage() {
               </p>
             </div>
 
-            {/* Personalized tools */}
-            <div className="rounded-2xl bg-[#1b1b1b] p-6">
-              <h3 className="font-times font-bold text-lg text-white mb-4 text-center">
-                Your personalized tools
+            {/* Personalized tools – same layout as step 9 but white bg */}
+            <div className="text-center mb-4 mt-2">
+              <p className="text-xs font-inter font-semibold uppercase tracking-widest mb-2" style={{ color: '#5170ff' }}>AI TOOLS</p>
+              <h3 className="font-times text-2xl lg:text-3xl" style={{ fontWeight: 500, letterSpacing: '-0.05em', color: '#1b1b1b' }}>
+                We picked these tools for <em>you</em>
               </h3>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                {[SPONSORED_TOOLS[1], SPONSORED_TOOLS[0], SPONSORED_TOOLS[2]].map((tool) => (
+            </div>
+            <div className="w-full flex flex-col lg:flex-row items-stretch justify-center gap-5">
+              {[SPONSORED_TOOLS[1], SPONSORED_TOOLS[0], SPONSORED_TOOLS[2]].map((tool, i) => {
+                const desktopOrder = i === 0 ? 'lg:order-2' : i === 1 ? 'lg:order-1' : 'lg:order-3';
+                return (
                   <a
                     key={tool.name}
                     href={tool.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block rounded-xl overflow-hidden border border-white/10 hover:border-[#5170ff]/30 transition-all group flex-1"
-                    style={{ background: '#1b1b1b' }}
+                    className={`block rounded-xl overflow-hidden transition-all group hover:shadow-lg border border-[#1b1b1b]/10 ${desktopOrder} w-full lg:flex-1 ${
+                      i !== 0 ? 'lg:scale-[0.92]' : 'lg:z-10'
+                    }`}
+                    style={{ background: '#ffffff' }}
                   >
-                    <div
-                      className="w-full h-20 flex items-center justify-center"
-                      style={{ background: `linear-gradient(135deg, ${tool.accent}33, ${tool.accent}11)` }}
-                    >
-                      <span className="font-times font-bold text-white text-base" style={{ letterSpacing: '-0.03em' }}>
-                        {tool.name}
+                    <div className="px-5 pt-5 pb-3">
+                      <h3 className="font-times text-[#1b1b1b] leading-tight" style={{ fontWeight: 500, letterSpacing: '-0.05em', fontSize: '22px' }}>
+                        {tool.primary}
+                      </h3>
+                    </div>
+                    <div className="px-4">
+                      <img src={tool.image} alt={tool.name} className="w-full rounded-lg" style={{ objectFit: 'contain' }} />
+                    </div>
+                    <div className="px-5 pt-3 pb-5">
+                      <p className="font-inter text-[#1b1b1b]/50 text-xs leading-relaxed">{tool.subtext}</p>
+                      <span className="inline-block mt-2 text-[#5170ff] text-xs font-inter font-semibold group-hover:underline">
+                        Try {tool.name} →
                       </span>
                     </div>
-                    <div className="p-3">
-                      <p className="font-times font-bold text-white text-xs leading-snug mb-1">{tool.primary}</p>
-                      <p className="font-inter text-white/50 text-[10px] leading-relaxed">{tool.subtext}</p>
-                      <span className="inline-block mt-2 text-[#5170ff] text-[10px] font-inter font-semibold group-hover:underline">Try it →</span>
-                    </div>
                   </a>
-                ))}
-              </div>
+                );
+              })}
             </div>
           </div>
         </main>
