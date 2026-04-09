@@ -28,15 +28,15 @@ export default function ConfirmedPage() {
       <Navigation variant="hero" heroTheme="dark" scrolledTheme="white" heroBorder={true} />
       <main className="min-h-screen bg-white flex items-center justify-center px-5 pt-24 pb-16">
         <div className="w-full max-w-lg rounded-2xl bg-[#1b1b1b] p-8 lg:p-12 flex flex-col items-center gap-4 text-center">
-          {/* Checkmark icon */}
-          <div className="w-16 h-16 rounded-full bg-[#5170ff]/20 flex items-center justify-center mb-2">
-            <svg className="w-8 h-8 text-[#5170ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-            </svg>
-          </div>
+          {/* TV Logo */}
+          <img
+            src="/Transparent White Logo.png"
+            alt="Thorium Valley"
+            className="h-14 w-auto object-contain mb-2"
+          />
 
           <h2 className="font-times font-bold text-2xl lg:text-4xl" style={{ color: '#ffffff' }}>
-            You&apos;re all set
+            You&apos;re all set!
           </h2>
           <p className="text-sm" style={{ color: '#ffffff' }}>
             Your subscription is confirmed. Your first edition arrives tomorrow morning.
