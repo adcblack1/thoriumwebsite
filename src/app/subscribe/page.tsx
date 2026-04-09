@@ -16,6 +16,7 @@ const SPONSORED_TOOLS = [
     primary: 'Professional presentations with a prompt.',
     subtext: 'Chronicle is Loveable for slide decks. Turn your ideas into polished presentations in seconds.',
     url: 'https://chr.so/thorium-valley',
+    image: '/thumbnails/chronicle.jpg',
     accent: '#F59E0B',
   },
   {
@@ -23,6 +24,7 @@ const SPONSORED_TOOLS = [
     primary: "If you've ever forgotten what someone said in a meeting, use Littlebird.",
     subtext: 'Littlebird is your AI memory for every meeting, tab, and thing you worked on.',
     url: 'https://try.littlebird.ai/thorium-valley',
+    image: '/thumbnails/littlebird.webp',
     featured: true,
     accent: '#4A9B8E',
   },
@@ -31,6 +33,7 @@ const SPONSORED_TOOLS = [
     primary: 'Use one subscription for every AI.',
     subtext: 'Galaxy.ai lets you use Claude, Perplexity, Gemini, ChatGPT all under a single subscription.',
     url: 'https://try.galaxy.ai/thorium-valley',
+    image: '/thumbnails/galaxy.png',
     accent: '#7C3AED',
   },
 ];
@@ -592,18 +595,18 @@ export default function SubscribePage() {
               {/* Step 9: Recommended tools */}
               {step === 9 && (
                 <div className="flex flex-col items-center gap-6">
-                  <div className="text-center mb-1">
+                  <div className="text-center mb-2">
                     <p className="text-xs font-inter font-semibold uppercase tracking-widest mb-2" style={{ color: '#5170ff' }}>AI TOOLS</p>
-                    <h2 className="font-times font-bold text-2xl lg:text-3xl text-white" style={{ letterSpacing: '-0.03em' }}>
+                    <h2 className="font-times text-2xl lg:text-3xl text-white" style={{ fontWeight: 500, letterSpacing: '-0.05em' }}>
                       We picked these tools for <em>you</em>
                     </h2>
-                    <p className="text-xs font-inter mt-3 max-w-md mx-auto leading-relaxed" style={{ color: 'rgba(255,255,255,0.45)' }}>
-                      We don&apos;t partner with a tool unless we&apos;ve used it before. These are the ones we recommend for your goals and background.
+                    <p className="text-xs font-inter mt-3 max-w-sm mx-auto leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                      These are the ones we recommend for your goals and background.
                     </p>
                   </div>
 
                   {/* Cards - side by side on desktop, stacked on mobile (Littlebird first) */}
-                  <div className="w-full flex flex-col lg:flex-row items-center lg:items-end justify-center gap-4 lg:gap-3">
+                  <div className="w-full flex flex-col lg:flex-row items-center lg:items-end justify-center gap-5 lg:gap-4">
                     {[SPONSORED_TOOLS[1], SPONSORED_TOOLS[0], SPONSORED_TOOLS[2]].map((tool, i) => {
                       const desktopOrder = i === 0 ? 'lg:order-2' : i === 1 ? 'lg:order-1' : 'lg:order-3';
                       const isDesktopCenter = i === 0;
@@ -614,34 +617,37 @@ export default function SubscribePage() {
                           href={tool.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`block rounded-xl overflow-hidden transition-all group hover:shadow-lg hover:shadow-white/5 ${
+                          className={`block rounded-xl overflow-hidden transition-all group hover:shadow-lg hover:shadow-white/10 ${
                             desktopOrder
                           } ${
                             isDesktopCenter
-                              ? 'lg:w-[220px] lg:z-10'
-                              : 'lg:w-[180px] lg:scale-[0.92] lg:opacity-75 lg:hover:opacity-100'
-                          } w-full max-w-[320px]`}
+                              ? 'lg:w-[260px] lg:z-10'
+                              : 'lg:w-[210px] lg:scale-[0.90] lg:opacity-70 lg:hover:opacity-100'
+                          } w-full max-w-[340px]`}
                           style={{ background: '#ffffff' }}
                         >
-                          {/* Gradient thumbnail header */}
-                          <div
-                            className={`w-full ${isDesktopCenter ? 'h-24 lg:h-28' : 'h-20 lg:h-24'} flex items-center justify-center px-4`}
-                            style={{ background: `linear-gradient(135deg, ${tool.accent}, ${tool.accent}99)` }}
-                          >
-                            <span className="font-times font-bold text-white text-lg lg:text-xl drop-shadow-sm" style={{ letterSpacing: '-0.03em' }}>
-                              {tool.name}
-                            </span>
-                          </div>
-                          {/* Card body */}
-                          <div className="p-4">
-                            <h3 className="font-times font-bold italic text-[#1b1b1b] text-base lg:text-lg leading-tight mb-2" style={{ letterSpacing: '-0.02em' }}>
+                          {/* Headline */}
+                          <div className="px-5 pt-5 pb-3">
+                            <h3 className="font-times text-[#1b1b1b] leading-tight" style={{ fontWeight: 500, letterSpacing: '-0.05em', fontSize: isDesktopCenter ? '18px' : '16px' }}>
                               {tool.primary}
                             </h3>
-                            <p className="font-inter text-[#1b1b1b]/60 text-[11px] leading-relaxed">
+                          </div>
+                          {/* Screenshot thumbnail */}
+                          <div className="px-4">
+                            <img
+                              src={tool.image}
+                              alt={tool.name}
+                              className="w-full rounded-lg object-cover"
+                              style={{ height: isDesktopCenter ? '140px' : '110px' }}
+                            />
+                          </div>
+                          {/* Subtext */}
+                          <div className="px-5 pt-3 pb-5">
+                            <p className="font-inter text-[#1b1b1b]/50 text-[11px] leading-relaxed">
                               {tool.subtext}
                             </p>
-                            <span className="inline-block mt-3 text-[#5170ff] text-xs font-inter font-semibold group-hover:underline">
-                              Try it →
+                            <span className="inline-block mt-2 text-[#5170ff] text-xs font-inter font-semibold group-hover:underline">
+                              Try {tool.name} →
                             </span>
                           </div>
                         </a>
