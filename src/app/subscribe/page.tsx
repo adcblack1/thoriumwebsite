@@ -625,7 +625,7 @@ export default function SubscribePage() {
                         >
                           {/* Gradient thumbnail header */}
                           <div
-                            className={`w-full ${isDesktopCenter ? 'h-24 lg:h-28' : 'h-20 lg:h-24'} flex items-center justify-center`}
+                            className={`w-full ${isDesktopCenter ? 'h-24 lg:h-28' : 'h-20 lg:h-24'} flex items-center justify-center px-4`}
                             style={{ background: `linear-gradient(135deg, ${tool.accent}, ${tool.accent}99)` }}
                           >
                             <span className="font-times font-bold text-white text-lg lg:text-xl drop-shadow-sm" style={{ letterSpacing: '-0.03em' }}>
@@ -634,10 +634,10 @@ export default function SubscribePage() {
                           </div>
                           {/* Card body */}
                           <div className="p-4">
-                            <p className="font-times font-bold text-[#1b1b1b] text-sm leading-snug mb-2" style={{ letterSpacing: '-0.02em' }}>
+                            <h3 className="font-times font-bold italic text-[#1b1b1b] text-base lg:text-lg leading-tight mb-2" style={{ letterSpacing: '-0.02em' }}>
                               {tool.primary}
-                            </p>
-                            <p className="font-inter text-[#1b1b1b]/60 text-xs leading-relaxed">
+                            </h3>
+                            <p className="font-inter text-[#1b1b1b]/60 text-[11px] leading-relaxed">
                               {tool.subtext}
                             </p>
                             <span className="inline-block mt-3 text-[#5170ff] text-xs font-inter font-semibold group-hover:underline">
