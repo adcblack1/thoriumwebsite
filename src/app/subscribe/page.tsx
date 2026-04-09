@@ -9,6 +9,32 @@ import { Navigation } from '@/components/navigation';
 import { FooterNew } from '@/components/footer-new';
 import { trackLead } from '@/lib/meta-pixel';
 
+// Sponsored tools shown after survey
+const SPONSORED_TOOLS = [
+  {
+    name: 'Chronicle',
+    primary: 'Professional presentations with a prompt.',
+    subtext: 'Chronicle is Loveable for slide decks. Turn your ideas into polished presentations in seconds.',
+    url: 'https://chr.so/thorium-valley',
+    accent: '#F59E0B',
+  },
+  {
+    name: 'Littlebird',
+    primary: "If you've ever forgotten what someone said in a meeting, use Littlebird.",
+    subtext: 'Littlebird is your AI memory for every meeting, tab, and thing you worked on.',
+    url: 'https://try.littlebird.ai/thorium-valley',
+    featured: true,
+    accent: '#4A9B8E',
+  },
+  {
+    name: 'Galaxy.ai',
+    primary: 'Use one subscription for every AI.',
+    subtext: 'Galaxy.ai lets you use Claude, Perplexity, Gemini, ChatGPT all under a single subscription.',
+    url: 'https://try.galaxy.ai/thorium-valley',
+    accent: '#7C3AED',
+  },
+];
+
 // ============================================
 // FLOW CONFIGURATION
 // ============================================
@@ -290,12 +316,14 @@ export default function SubscribePage() {
         });
       } else if (step === 7) {
         await updateSubscriber({ ai_tools: formData.ai_tools });
-      } else if (step === 8) {
+      } else if (step >= 8 && step <= 10) {
+        // Loading/tools steps — no data to save
+      } else if (step === 11) {
         return; // Final step, no next
       }
 
       setDirection(1);
-      setStep(prev => Math.min(prev + 1, 8));
+      setStep(prev => Math.min(prev + 1, 11));
     } catch {
       setError('Something went wrong. Please try again.');
     }
@@ -312,6 +340,25 @@ export default function SubscribePage() {
     setDirection(-1);
     setStep(prev => prev - 1);
   };
+
+  // Auto-advance for loading steps (8 and 10)
+  useEffect(() => {
+    if (step === 8) {
+      const delay = 3000 + Math.random() * 2000; // 3-5 seconds
+      const timer = setTimeout(() => {
+        setDirection(1);
+        setStep(9);
+      }, delay);
+      return () => clearTimeout(timer);
+    }
+    if (step === 10) {
+      const timer = setTimeout(() => {
+        setDirection(1);
+        setStep(11);
+      }, 2500);
+      return () => clearTimeout(timer);
+    }
+  }, [step]);
 
   // ── Animation ────────────────────────────
 
@@ -332,25 +379,8 @@ export default function SubscribePage() {
 
   // ── Render ───────────────────────────────
 
-  // Step 8: Confirmation — white page with header/footer
-  // All available newsletters for cross-sell
-  const ALL_NEWSLETTERS = [
-    {
-      id: 'thorium-valley',
-      name: 'Thorium Valley',
-      logo: '/Transparent White Logo.png',
-      description: 'Our flagship daily newsletter covering everything happening in AI. News, tools, and what it means for you.',
-      frequency: 'Daily',
-      useBlendMode: false,
-    },
-    ...CHILD_NEWSLETTERS.map(nl => ({ ...nl, useBlendMode: true })),
-  ];
-
-  const missingNewsletters = ALL_NEWSLETTERS.filter(
-    nl => !formData.child_newsletters.includes(nl.id)
-  );
-
-  if (step === 8) {
+  // Step 11: Confirmation — white page with header/footer + personalized tools
+  if (step === 11) {
     return (
       <>
         <Navigation variant="hero" heroTheme="dark" scrolledTheme="white" heroBorder={true} />
@@ -405,15 +435,32 @@ export default function SubscribePage() {
               </p>
             </div>
 
-            {/* Cross-sell: newsletters they didn't pick */}
-            {missingNewsletters.length > 0 && (
-              <CrossSellSection
-                missing={missingNewsletters}
-                subscriberId={subscriberId}
-                formData={formData}
-                updateField={updateField}
-              />
-            )}
+            {/* Personalized tools */}
+            <div className="rounded-2xl border border-[#1b1b1b]/10 bg-[#f8f8f8] p-6">
+              <h3 className="font-times font-bold text-lg text-[#1b1b1b] mb-4 text-center">
+                Your personalized tools
+              </h3>
+              <div className="flex flex-col gap-3">
+                {SPONSORED_TOOLS.map(tool => (
+                  <a
+                    key={tool.name}
+                    href={tool.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-4 p-4 rounded-xl border border-[#1b1b1b]/10 bg-white hover:border-[#5170ff]/30 hover:shadow-sm transition-all group"
+                  >
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style={{ backgroundColor: tool.accent }}>
+                      {tool.name.charAt(0)}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-inter font-bold text-[#1b1b1b]">{tool.name}</p>
+                      <p className="text-xs font-inter text-[#1b1b1b]/60 mt-0.5 leading-snug">{tool.subtext}</p>
+                    </div>
+                    <span className="text-[#5170ff] text-xs font-semibold whitespace-nowrap mt-1 group-hover:underline">Try →</span>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </main>
         <FooterNew />
@@ -433,14 +480,14 @@ export default function SubscribePage() {
         <motion.div
           className="h-full bg-[#5170ff]"
           initial={{ width: '0%' }}
-          animate={{ width: `${step <= 2 ? 0 : ((step - 2) / 6) * 100}%` }}
+          animate={{ width: `${step <= 2 ? 0 : Math.min(((step - 2) / 9) * 100, 100)}%` }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         />
       </div>
 
       {/* Main content */}
       <div className="flex-1 flex items-center justify-center px-5 relative z-10">
-        <div className={`w-full max-w-md ${step >= 2 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
+        <div className={`w-full ${step === 9 ? 'max-w-xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={step}
@@ -516,6 +563,89 @@ export default function SubscribePage() {
                   onBack={goBack}
                   loading={loading}
                 />
+              )}
+
+              {/* Step 8: Loading — finding tools */}
+              {step === 8 && (
+                <div className="flex flex-col items-center gap-6 py-12">
+                  <div className="relative">
+                    <div className="w-14 h-14 rounded-full border-2 border-[#5170ff]/30" />
+                    <div className="absolute inset-0 w-14 h-14 rounded-full border-2 border-[#5170ff] border-t-transparent animate-spin" />
+                  </div>
+                  <div className="text-center">
+                    <h2 className="font-times font-bold text-xl lg:text-2xl mb-2" style={{ color: '#ffffff' }}>
+                      Finding the best tools for you...
+                    </h2>
+                    <p className="text-sm animate-pulse" style={{ color: 'rgba(255,255,255,0.4)' }}>
+                      Personalizing your experience
+                    </p>
+                  </div>
+                </div>
+              )}
+
+              {/* Step 9: Recommended tools */}
+              {step === 9 && (
+                <div className="flex flex-col items-center gap-5">
+                  <div className="text-center mb-2">
+                    <p className="text-xs font-inter font-semibold uppercase tracking-widest mb-2" style={{ color: '#5170ff' }}>Recommended for you</p>
+                    <StepHeading>AI tools picked for you</StepHeading>
+                    <p className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.5)' }}>Based on your survey responses</p>
+                  </div>
+
+                  <div className="w-full flex flex-col gap-3">
+                    {SPONSORED_TOOLS.map(tool => (
+                      <a
+                        key={tool.name}
+                        href={tool.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`block w-full rounded-xl border transition-all group hover:scale-[1.01] ${
+                          tool.featured
+                            ? 'border-[#5170ff]/40 bg-[#5170ff]/10 p-5'
+                            : 'border-white/10 bg-white/5 p-4'
+                        }`}
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold text-xs" style={{ backgroundColor: tool.accent }}>
+                            {tool.name.charAt(0)}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2">
+                              <h4 className="font-inter font-bold text-white text-sm">{tool.name}</h4>
+                              {tool.featured && (
+                                <span className="text-[10px] font-inter font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#5170ff]/20 text-[#5170ff]">Featured</span>
+                              )}
+                            </div>
+                            <p className="font-inter text-white text-[13px] font-medium leading-snug mt-1">{tool.primary}</p>
+                            <p className="font-inter text-white/40 text-xs leading-snug mt-1">{tool.subtext}</p>
+                          </div>
+                          <span className="text-[#5170ff] text-xs font-semibold whitespace-nowrap mt-1 group-hover:underline">Try →</span>
+                        </div>
+                      </a>
+                    ))}
+                  </div>
+
+                  <PrimaryButton onClick={goNext}>Continue</PrimaryButton>
+                </div>
+              )}
+
+              {/* Step 10: Thank you loading */}
+              {step === 10 && (
+                <div className="flex flex-col items-center gap-6 py-12">
+                  <div className="relative">
+                    <svg className="w-12 h-12 text-[#5170ff] animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div className="text-center">
+                    <h2 className="font-times font-bold text-xl lg:text-2xl mb-2" style={{ color: '#ffffff' }}>
+                      Thanks for completing the survey!
+                    </h2>
+                    <p className="text-sm animate-pulse" style={{ color: 'rgba(255,255,255,0.4)' }}>
+                      Setting up your experience...
+                    </p>
+                  </div>
+                </div>
               )}
             </motion.div>
           </AnimatePresence>
@@ -1213,165 +1343,4 @@ function StepNewsletters({
   );
 }
 
-// ── Step 8: Confirmation ───────────────────
 
-function StepConfirm({ onBack }: { onBack: () => void }) {
-  return (
-    <div className="flex flex-col items-center gap-4 text-center">
-      <div className="w-16 h-16 rounded-full bg-[#5170ff]/20 flex items-center justify-center mb-2">
-        <svg className="w-8 h-8 text-[#5170ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      </div>
-
-      <StepHeading>One last step: confirm your email</StepHeading>
-      <p className="text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>
-        Check your inbox. We just sent you a confirmation.
-      </p>
-
-      <div className="flex flex-col sm:flex-row gap-3 w-full mt-4">
-        <a
-          href="https://mail.google.com/mail/u/0/#search/from%3Anews%40mail.thoriumvalley.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-full bg-white text-[#1b1b1b] text-sm font-semibold hover:bg-white/90 active:scale-[0.98] transition-all"
-        >
-          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-            <path d="M2 6l10 7 10-7" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
-            <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth={2} />
-          </svg>
-          Open Gmail
-        </a>
-        <a
-          href="https://outlook.live.com/mail/0/inbox?search=from%3Anews%40mail.thoriumvalley.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-full bg-white/20 border border-white/30 text-sm font-semibold hover:bg-white/25 active:scale-[0.98] transition-all"
-          style={{ color: '#ffffff' }}
-        >
-          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-            <path d="M2 6l10 7 10-7" stroke="currentColor" strokeWidth={2} strokeLinecap="round" />
-            <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" strokeWidth={2} />
-          </svg>
-          Open Outlook
-        </a>
-      </div>
-
-      <p className="text-xs mt-4" style={{ color: 'rgba(255,255,255,0.4)' }}>
-        Don&apos;t see it? Check your spam, promotions, or junk folder.
-      </p>
-
-      <BackButton onClick={onBack} />
-    </div>
-  );
-}
-
-// ── Cross-sell Section ─────────────────────
-
-interface CrossSellNewsletter {
-  id: string;
-  name: string;
-  logo: string;
-  description: string;
-  frequency: string;
-  useBlendMode?: boolean;
-}
-
-function CrossSellSection({
-  missing,
-  subscriberId,
-  formData,
-  updateField,
-}: {
-  missing: CrossSellNewsletter[];
-  subscriberId: string | null;
-  formData: FormData;
-  updateField: <K extends keyof FormData>(key: K, value: FormData[K]) => void;
-}) {
-  const [addedIds, setAddedIds] = useState<string[]>([]);
-  const [loadingId, setLoadingId] = useState<string | null>(null);
-
-  const handleAdd = async (newsletterId: string) => {
-    if (!subscriberId || loadingId) return;
-    setLoadingId(newsletterId);
-
-    try {
-      const res = await fetch('/api/subscribe/add-newsletter', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ subscriber_id: subscriberId, newsletter_id: newsletterId }),
-      });
-
-      if (res.ok) {
-        setAddedIds(prev => [...prev, newsletterId]);
-        // Update formData so it reflects the new selection
-        updateField('child_newsletters', [...formData.child_newsletters, newsletterId]);
-      }
-    } catch {
-      console.error('Failed to add newsletter:', newsletterId);
-    } finally {
-      setLoadingId(null);
-    }
-  };
-
-  // Filter out any that were just added
-  const remaining = missing.filter(nl => !addedIds.includes(nl.id));
-  if (remaining.length === 0 && addedIds.length > 0) {
-    return (
-      <div className="rounded-2xl border border-[#1b1b1b]/10 bg-[#f8f8f8] p-6 text-center">
-        <p className="text-sm font-inter font-medium text-[#1b1b1b]">
-          ✓ You&apos;re subscribed to all our newsletters!
-        </p>
-      </div>
-    );
-  }
-
-  if (remaining.length === 0) return null;
-
-  return (
-    <div className="rounded-2xl border border-[#1b1b1b]/10 bg-[#f8f8f8] p-6">
-      <h3 className="font-times font-bold text-lg text-[#1b1b1b] mb-1">
-        Also from Thorium Valley
-      </h3>
-      <p className="text-xs font-inter text-[#1b1b1b]/50 mb-4">
-        Get more AI coverage with our other newsletters
-      </p>
-
-      <div className="flex flex-col gap-3">
-        {remaining.map(nl => {
-          const isLoading = loadingId === nl.id;
-          return (
-            <div
-              key={nl.id}
-              className="flex items-center gap-3 p-3 rounded-xl border border-[#1b1b1b]/10 bg-white"
-            >
-              <img
-                src={nl.logo}
-                alt={nl.name}
-                className="h-10 w-auto object-contain flex-shrink-0"
-                style={nl.id !== 'thorium-valley' ? { filter: 'invert(1)' } : undefined}
-              />
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-inter font-semibold text-[#1b1b1b]">{nl.name}</p>
-                <p className="text-[11px] font-inter text-[#1b1b1b]/50 leading-snug">{nl.description}</p>
-              </div>
-              <button
-                onClick={() => handleAdd(nl.id)}
-                disabled={isLoading}
-                className="flex-shrink-0 px-4 py-2 rounded-full bg-[#5170ff] text-white text-xs font-semibold hover:bg-[#3d5ce0] active:scale-[0.97] transition-all disabled:opacity-50"
-              >
-                {isLoading ? '...' : 'Add'}
-              </button>
-            </div>
-          );
-        })}
-      </div>
-
-      {addedIds.length > 0 && (
-        <p className="text-[11px] font-inter text-[#5170ff] mt-3 text-center">
-          ✓ {addedIds.length} newsletter{addedIds.length > 1 ? 's' : ''} added
-        </p>
-      )}
-    </div>
-  );
-}
