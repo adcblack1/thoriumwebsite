@@ -496,7 +496,7 @@ export default function SubscribePage() {
 
       {/* Main content */}
       <div className="flex-1 flex items-center justify-center px-5 relative z-10">
-        <div className={`w-full ${step === 9 ? 'max-w-2xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
+        <div className={`w-full ${step === 9 ? 'max-w-4xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={step}
@@ -597,16 +597,16 @@ export default function SubscribePage() {
                 <div className="flex flex-col items-center gap-6">
                   <div className="text-center mb-2">
                     <p className="text-xs font-inter font-semibold uppercase tracking-widest mb-2" style={{ color: '#5170ff' }}>AI TOOLS</p>
-                    <h2 className="font-times text-2xl lg:text-3xl text-white" style={{ fontWeight: 500, letterSpacing: '-0.05em' }}>
+                    <h2 className="font-times text-2xl lg:text-3xl" style={{ fontWeight: 500, letterSpacing: '-0.05em', color: '#ffffff' }}>
                       We picked these tools for <em>you</em>
                     </h2>
-                    <p className="text-xs font-inter mt-3 max-w-sm mx-auto leading-relaxed" style={{ color: 'rgba(255,255,255,0.5)' }}>
+                    <p className="text-xs font-inter mt-3 max-w-sm mx-auto leading-relaxed" style={{ color: '#ffffff' }}>
                       These are the ones we recommend for your goals and background.
                     </p>
                   </div>
 
                   {/* Cards - side by side on desktop, stacked on mobile (Littlebird first) */}
-                  <div className="w-full flex flex-col lg:flex-row items-center lg:items-end justify-center gap-5 lg:gap-4">
+                  <div className="w-full flex flex-col lg:flex-row items-center lg:items-end justify-center gap-5 lg:gap-5">
                     {[SPONSORED_TOOLS[1], SPONSORED_TOOLS[0], SPONSORED_TOOLS[2]].map((tool, i) => {
                       const desktopOrder = i === 0 ? 'lg:order-2' : i === 1 ? 'lg:order-1' : 'lg:order-3';
                       const isDesktopCenter = i === 0;
@@ -621,14 +621,14 @@ export default function SubscribePage() {
                             desktopOrder
                           } ${
                             isDesktopCenter
-                              ? 'lg:w-[260px] lg:z-10'
-                              : 'lg:w-[210px] lg:scale-[0.90] lg:opacity-70 lg:hover:opacity-100'
-                          } w-full max-w-[340px]`}
+                              ? 'lg:flex-1 lg:max-w-[340px] lg:z-10'
+                              : 'lg:flex-1 lg:max-w-[280px] lg:scale-[0.92] lg:opacity-70 lg:hover:opacity-100'
+                          } w-full`}
                           style={{ background: '#ffffff' }}
                         >
                           {/* Headline */}
                           <div className="px-5 pt-5 pb-3">
-                            <h3 className="font-times text-[#1b1b1b] leading-tight" style={{ fontWeight: 500, letterSpacing: '-0.05em', fontSize: isDesktopCenter ? '18px' : '16px' }}>
+                            <h3 className="font-times text-[#1b1b1b] leading-tight" style={{ fontWeight: 500, letterSpacing: '-0.05em', fontSize: isDesktopCenter ? '20px' : '17px' }}>
                               {tool.primary}
                             </h3>
                           </div>
@@ -638,7 +638,7 @@ export default function SubscribePage() {
                               src={tool.image}
                               alt={tool.name}
                               className="w-full rounded-lg object-cover"
-                              style={{ height: isDesktopCenter ? '140px' : '110px' }}
+                              style={{ height: isDesktopCenter ? '160px' : '130px' }}
                             />
                           </div>
                           {/* Subtext */}
