@@ -111,29 +111,30 @@ export default function NewsletterArchivePage() {
                   type="button"
                   onClick={() => toggleNewsletter(nl.id)}
                   className={`flex-1 text-left rounded-xl p-5 flex flex-col transition-all duration-200 border ${
-                    isSelected ? 'border-[#5170ff] bg-[#5170ff]/[0.08]' : 'border-white/25'
+                    isSelected ? 'border-[#5170ff] shadow-md shadow-[#5170ff]/10' : 'border-[#1b1b1b]/15'
                   }`}
+                  style={{ background: '#ffffff' }}
                 >
                   <div className="flex items-start justify-between mb-0">
                     {nl.flagship ? (
-                      <img src={nl.logo} alt={nl.name} className="h-12 mb-4 w-auto object-contain" />
+                      <img src={nl.logo} alt={nl.name} className="h-12 mb-4 w-auto object-contain" style={{ filter: 'brightness(0)' }} />
                     ) : (
                       <div className="h-20 w-auto flex items-center">
-                        <img src={nl.logo} alt={nl.name} className="h-20 w-auto object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
+                        <img src={nl.logo} alt={nl.name} className="h-20 w-auto object-contain" />
                       </div>
                     )}
                     <span className={`text-[10px] px-2 py-0.5 rounded-full font-inter font-medium uppercase tracking-wider flex-shrink-0 ${
-                      isSelected ? 'bg-[#5170ff]/20 text-[#5170ff]' : 'bg-white/10 text-white/60'
+                      isSelected ? 'bg-[#5170ff]/15 text-[#5170ff]' : 'bg-[#1b1b1b]/8 text-[#1b1b1b]/50'
                     }`}>
                       {nl.freq}
                     </span>
                   </div>
-                  <p className="text-xs font-inter leading-relaxed flex-1 mb-3" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                  <p className="text-xs font-inter leading-relaxed flex-1 mb-3" style={{ color: 'rgba(27,27,27,0.55)' }}>
                     {nl.desc}
                   </p>
                   <div className="flex items-center gap-1.5 mt-auto">
                     <div className={`w-4 h-4 rounded flex items-center justify-center transition-colors ${
-                      isSelected ? 'bg-[#5170ff]' : 'border border-white/30'
+                      isSelected ? 'bg-[#5170ff]' : 'border border-[#1b1b1b]/25'
                     }`}>
                       {isSelected && (
                         <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
@@ -141,7 +142,7 @@ export default function NewsletterArchivePage() {
                         </svg>
                       )}
                     </div>
-                    <span className={`text-xs font-inter font-medium ${isSelected ? 'text-[#5170ff]' : 'text-white/40'}`}>
+                    <span className={`text-xs font-inter font-medium ${isSelected ? 'text-[#5170ff]' : 'text-[#1b1b1b]/40'}`}>
                       Selected
                     </span>
                   </div>
@@ -165,27 +166,28 @@ export default function NewsletterArchivePage() {
                   type="button"
                   onClick={() => toggleNewsletter(nl.id)}
                   className={`flex-shrink-0 w-[60%] text-left rounded-xl p-4 flex flex-col transition-all duration-200 border ${
-                    isSelected ? 'border-[#5170ff] bg-[#5170ff]/[0.08]' : 'border-white/25'
+                    isSelected ? 'border-[#5170ff] shadow-md shadow-[#5170ff]/10' : 'border-[#1b1b1b]/15'
                   }`}
+                  style={{ background: '#ffffff' }}
                 >
                   <div className="flex items-center justify-between mb-1">
                     {nl.flagship ? (
-                      <img src={nl.logo} alt={nl.name} className="h-7 w-auto object-contain" />
+                      <img src={nl.logo} alt={nl.name} className="h-7 w-auto object-contain" style={{ filter: 'brightness(0)' }} />
                     ) : (
-                      <img src={nl.logo} alt={nl.name} className="h-9 w-auto object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
+                      <img src={nl.logo} alt={nl.name} className="h-9 w-auto object-contain" />
                     )}
                     <span className={`text-[8px] px-1.5 py-0.5 rounded-full font-inter font-medium uppercase tracking-wider flex-shrink-0 ${
-                      isSelected ? 'bg-[#5170ff]/20 text-[#5170ff]' : 'bg-white/10 text-white/60'
+                      isSelected ? 'bg-[#5170ff]/15 text-[#5170ff]' : 'bg-[#1b1b1b]/8 text-[#1b1b1b]/50'
                     }`}>
                       {nl.freq}
                     </span>
                   </div>
-                  <p className="text-xs font-inter leading-snug flex-1 mt-1 mb-2" style={{ color: 'rgba(255,255,255,0.6)' }}>
+                  <p className="text-xs font-inter leading-snug flex-1 mt-1 mb-2" style={{ color: 'rgba(27,27,27,0.55)' }}>
                     {nl.desc}
                   </p>
                   <div className="flex items-center gap-1 mt-auto">
                     <div className={`w-3.5 h-3.5 rounded flex items-center justify-center transition-colors ${
-                      isSelected ? 'bg-[#5170ff]' : 'border border-white/30'
+                      isSelected ? 'bg-[#5170ff]' : 'border border-[#1b1b1b]/25'
                     }`}>
                       {isSelected && (
                         <svg className="w-2 h-2 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
@@ -193,7 +195,7 @@ export default function NewsletterArchivePage() {
                         </svg>
                       )}
                     </div>
-                    <span className={`text-[10px] font-inter font-medium ${isSelected ? 'text-[#5170ff]' : 'text-white/40'}`}>
+                    <span className={`text-[10px] font-inter font-medium ${isSelected ? 'text-[#5170ff]' : 'text-[#1b1b1b]/40'}`}>
                       Selected
                     </span>
                   </div>

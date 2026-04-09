@@ -623,7 +623,7 @@ export default function SubscribePage() {
                         >
                           {/* Headline */}
                           <div className="px-5 pt-5 pb-3">
-                            <h3 className="font-times text-[#1b1b1b] leading-tight" style={{ fontWeight: 500, letterSpacing: '-0.05em', fontSize: '18px' }}>
+                            <h3 className="font-times text-[#1b1b1b] leading-tight" style={{ fontWeight: 500, letterSpacing: '-0.05em', fontSize: '22px' }}>
                               {tool.primary}
                             </h3>
                           </div>
@@ -633,12 +633,12 @@ export default function SubscribePage() {
                               src={tool.image}
                               alt={tool.name}
                               className="w-full rounded-lg object-cover"
-                              style={{ height: '150px' }}
+                              style={{ height: '180px' }}
                             />
                           </div>
                           {/* Subtext */}
                           <div className="px-5 pt-3 pb-5">
-                            <p className="font-inter text-[#1b1b1b]/50 text-[11px] leading-relaxed">
+                            <p className="font-inter text-[#1b1b1b]/50 text-xs leading-relaxed">
                               {tool.subtext}
                             </p>
                             <span className="inline-block mt-2 text-[#5170ff] text-xs font-inter font-semibold group-hover:underline">
