@@ -600,9 +600,7 @@ export default function SubscribePage() {
                     <h2 className="font-times text-2xl lg:text-3xl" style={{ fontWeight: 500, letterSpacing: '-0.05em', color: '#ffffff' }}>
                       We picked these tools for <em>you</em>
                     </h2>
-                    <p className="text-xs font-inter mt-3 max-w-sm mx-auto leading-relaxed" style={{ color: '#ffffff' }}>
-                      These are the ones we recommend for your goals and background.
-                    </p>
+
                   </div>
 
                   {/* Cards - side by side on desktop, stacked on mobile (Littlebird first) */}
