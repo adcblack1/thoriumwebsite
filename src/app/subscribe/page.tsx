@@ -436,27 +436,33 @@ export default function SubscribePage() {
             </div>
 
             {/* Personalized tools */}
-            <div className="rounded-2xl border border-[#1b1b1b]/10 bg-[#f8f8f8] p-6">
-              <h3 className="font-times font-bold text-lg text-[#1b1b1b] mb-4 text-center">
+            <div className="rounded-2xl bg-[#1b1b1b] p-6">
+              <h3 className="font-times font-bold text-lg text-white mb-4 text-center">
                 Your personalized tools
               </h3>
-              <div className="flex flex-col gap-3">
-                {SPONSORED_TOOLS.map(tool => (
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                {[SPONSORED_TOOLS[1], SPONSORED_TOOLS[0], SPONSORED_TOOLS[2]].map((tool) => (
                   <a
                     key={tool.name}
                     href={tool.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-start gap-4 p-4 rounded-xl border border-[#1b1b1b]/10 bg-white hover:border-[#5170ff]/30 hover:shadow-sm transition-all group"
+                    className="block rounded-xl overflow-hidden border border-white/10 hover:border-[#5170ff]/30 transition-all group flex-1"
+                    style={{ background: '#1b1b1b' }}
                   >
-                    <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style={{ backgroundColor: tool.accent }}>
-                      {tool.name.charAt(0)}
+                    <div
+                      className="w-full h-20 flex items-center justify-center"
+                      style={{ background: `linear-gradient(135deg, ${tool.accent}33, ${tool.accent}11)` }}
+                    >
+                      <span className="font-times font-bold text-white text-base" style={{ letterSpacing: '-0.03em' }}>
+                        {tool.name}
+                      </span>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-inter font-bold text-[#1b1b1b]">{tool.name}</p>
-                      <p className="text-xs font-inter text-[#1b1b1b]/60 mt-0.5 leading-snug">{tool.subtext}</p>
+                    <div className="p-3">
+                      <p className="font-times font-bold text-white text-xs leading-snug mb-1">{tool.primary}</p>
+                      <p className="font-inter text-white/50 text-[10px] leading-relaxed">{tool.subtext}</p>
+                      <span className="inline-block mt-2 text-[#5170ff] text-[10px] font-inter font-semibold group-hover:underline">Try it →</span>
                     </div>
-                    <span className="text-[#5170ff] text-xs font-semibold whitespace-nowrap mt-1 group-hover:underline">Try →</span>
                   </a>
                 ))}
               </div>
@@ -487,7 +493,7 @@ export default function SubscribePage() {
 
       {/* Main content */}
       <div className="flex-1 flex items-center justify-center px-5 relative z-10">
-        <div className={`w-full ${step === 9 ? 'max-w-xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
+        <div className={`w-full ${step === 9 ? 'max-w-3xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 9 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={step}
@@ -585,44 +591,59 @@ export default function SubscribePage() {
 
               {/* Step 9: Recommended tools */}
               {step === 9 && (
-                <div className="flex flex-col items-center gap-5">
-                  <div className="text-center mb-2">
+                <div className="flex flex-col items-center gap-6">
+                  <div className="text-center mb-1">
                     <p className="text-xs font-inter font-semibold uppercase tracking-widest mb-2" style={{ color: '#5170ff' }}>Recommended for you</p>
                     <StepHeading>AI tools picked for you</StepHeading>
-                    <p className="text-sm mt-1" style={{ color: 'rgba(255,255,255,0.5)' }}>Based on your survey responses</p>
                   </div>
 
-                  <div className="w-full flex flex-col gap-3">
-                    {SPONSORED_TOOLS.map(tool => (
-                      <a
-                        key={tool.name}
-                        href={tool.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`block w-full rounded-xl border transition-all group hover:scale-[1.01] ${
-                          tool.featured
-                            ? 'border-[#5170ff]/40 bg-[#5170ff]/10 p-5'
-                            : 'border-white/10 bg-white/5 p-4'
-                        }`}
-                      >
-                        <div className="flex items-start gap-3">
-                          <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold text-xs" style={{ backgroundColor: tool.accent }}>
-                            {tool.name.charAt(0)}
+                  {/* Cards - side by side on desktop, stacked on mobile (Littlebird first) */}
+                  <div className="w-full flex flex-col lg:flex-row items-center lg:items-stretch justify-center gap-4 lg:gap-0">
+                    {/* Reorder: on mobile Littlebird first, desktop: Chronicle | Littlebird | Galaxy */}
+                    {[SPONSORED_TOOLS[1], SPONSORED_TOOLS[0], SPONSORED_TOOLS[2]].map((tool, i) => {
+                      const isCenter = i === 0; // Littlebird is first in mobile order
+                      const desktopOrder = i === 0 ? 'lg:order-2' : i === 1 ? 'lg:order-1' : 'lg:order-3';
+                      const isDesktopCenter = i === 0;
+
+                      return (
+                        <a
+                          key={tool.name}
+                          href={tool.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`block rounded-xl overflow-hidden border transition-all group hover:border-[#5170ff]/50 ${
+                            desktopOrder
+                          } ${
+                            isDesktopCenter
+                              ? 'lg:w-[240px] lg:scale-100 lg:z-10 border-[#5170ff]/40 lg:mx-[-8px]'
+                              : 'lg:w-[200px] lg:scale-[0.88] lg:opacity-80 lg:hover:opacity-100 border-white/10'
+                          } w-full max-w-[320px]`}
+                          style={{ background: 'rgba(255,255,255,0.05)' }}
+                        >
+                          {/* Gradient thumbnail header */}
+                          <div
+                            className={`w-full ${isDesktopCenter ? 'h-28 lg:h-32' : 'h-24 lg:h-28'} flex items-center justify-center`}
+                            style={{ background: `linear-gradient(135deg, ${tool.accent}33, ${tool.accent}11)` }}
+                          >
+                            <span className="font-times font-bold text-white text-lg lg:text-xl" style={{ letterSpacing: '-0.03em' }}>
+                              {tool.name}
+                            </span>
                           </div>
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2">
-                              <h4 className="font-inter font-bold text-white text-sm">{tool.name}</h4>
-                              {tool.featured && (
-                                <span className="text-[10px] font-inter font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#5170ff]/20 text-[#5170ff]">Featured</span>
-                              )}
-                            </div>
-                            <p className="font-inter text-white text-[13px] font-medium leading-snug mt-1">{tool.primary}</p>
-                            <p className="font-inter text-white/40 text-xs leading-snug mt-1">{tool.subtext}</p>
+                          {/* Card body */}
+                          <div className="p-4">
+                            <p className="font-times font-bold text-white text-sm leading-snug mb-2" style={{ letterSpacing: '-0.02em' }}>
+                              {tool.primary}
+                            </p>
+                            <p className="font-inter text-white/50 text-xs leading-relaxed">
+                              {tool.subtext}
+                            </p>
+                            <span className="inline-block mt-3 text-[#5170ff] text-xs font-inter font-semibold group-hover:underline">
+                              Try it →
+                            </span>
                           </div>
-                          <span className="text-[#5170ff] text-xs font-semibold whitespace-nowrap mt-1 group-hover:underline">Try →</span>
-                        </div>
-                      </a>
-                    ))}
+                        </a>
+                      );
+                    })}
                   </div>
 
                   <PrimaryButton onClick={goNext}>Continue</PrimaryButton>
