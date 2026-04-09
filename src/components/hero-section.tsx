@@ -25,7 +25,7 @@ export function HeroSection() {
 
             {/* HERO SECTION - Changes from black to white based on scroll */}
             <main
-                className={`relative min-h-screen lg:min-h-[97vh] flex items-center justify-center overflow-hidden pt-52 lg:pt-48 pb-10 lg:pb-24 transition-colors duration-500 ${isScrolled ? 'bg-white' : 'bg-black'
+                className={`relative min-h-screen lg:min-h-[97vh] flex items-center justify-center overflow-hidden pt-32 lg:pt-48 pb-10 lg:pb-24 transition-colors duration-500 ${isScrolled ? 'bg-white' : 'bg-black'
                     }`}
             >
 

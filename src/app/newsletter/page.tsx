@@ -77,7 +77,8 @@ export default function NewsletterArchivePage() {
 
       {/* Header – black bg */}
       <section style={{ backgroundColor: '#000000' }} className="pt-10 lg:pt-14 pb-0 -mt-px px-6">
-        <div className="max-w-7xl lg:max-w-5xl mx-auto pb-6">
+        <div className="max-w-7xl lg:max-w-5xl mx-auto pb-8">
+          <div className="rounded-2xl md:border md:border-white/10 bg-black/60 backdrop-blur-xl p-4 lg:p-10">
           <FadeIn>
             <h1
               className="font-times font-bold text-4xl lg:text-6xl uppercase text-center"
@@ -85,25 +86,23 @@ export default function NewsletterArchivePage() {
             >
               Newsletters
             </h1>
-            <p className="font-inter mt-3 text-center leading-snug" style={{ fontSize: 'clamp(20px, 1.8vw, 24px)', fontWeight: 500, color: 'rgba(255,255,255,0.75)' }}>
-              Subscribe to our newsletters to cover<br />every base of AI.
+            <style dangerouslySetInnerHTML={{ __html: '@media(max-width:767px){.nl-subtext{font-size:20px!important;font-weight:400!important;}}' }} />
+            <p className="nl-subtext font-inter mt-3 text-center leading-snug" style={{ fontSize: 'clamp(20px, 1.8vw, 24px)', fontWeight: 500, color: 'rgba(255,255,255,0.75)' }}>
+              Subscribe to our newsletters to cover every base of AI.
             </p>
             <div className="mt-4 max-w-md mx-auto newsletter-cta">
               <style dangerouslySetInnerHTML={{ __html: '.newsletter-cta button[type="submit"] { background: #5170ff !important; color: #fff !important; }' }} />
               <SubscribeForm variant="hero" />
             </div>
           </FadeIn>
-        </div>
 
-        {/* 4 Newsletter cards – row on desktop, 2×2 on mobile */}
-        <div className="max-w-7xl lg:max-w-5xl mx-auto px-6 pb-8">
-          <div className="rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8">
-          {/* DESKTOP: 4 across */}
-          <div className="hidden md:flex flex-nowrap gap-4 items-stretch">
+          <div className="mt-8">
+          {/* DESKTOP: 3 across – TV center, depth on sides */}
+          <div className="hidden md:flex flex-nowrap gap-4 items-stretch justify-center">
             {[
-              { id: 'thorium-valley', name: 'Thorium Valley', logo: '/Transparent White Logo.png', desc: 'Our flagship daily newsletter covering everything happening in AI. News, tools, and what it means for you.', freq: 'Daily', flagship: true },
-              { id: 'the-catalyst', name: 'The Catalyst', logo: '/images/catalyst-logo-dark.png', desc: 'How businesses and people are implementing AI and how to do it yourself.', freq: 'Biweekly' },
-              { id: 'the-lab', name: 'The Lab', logo: '/images/lab-logo-dark.png', desc: 'Interesting and useful AI tools and whether they\'re worth trying out.', freq: 'Biweekly' },
+              { id: 'the-catalyst', name: 'The Catalyst', logo: '/images/catalyst-logo-dark.png', desc: 'How businesses and people are implementing AI and how to do it yourself.', freq: 'Biweekly', order: 'order-1', depth: true, logoH: 'h-20' },
+              { id: 'thorium-valley', name: 'Thorium Valley', logo: '/Transparent Black Logo.png', desc: 'Our flagship daily newsletter covering everything happening in AI. News, tools, and what it means for you.', freq: 'Daily', flagship: true, order: 'order-2', depth: false, logoH: 'h-12' },
+              { id: 'the-lab', name: 'The Lab', logo: '/images/lab-logo-dark.png', desc: 'Interesting and useful AI tools and whether they\'re worth trying out.', freq: 'Biweekly', order: 'order-3', depth: true, logoH: 'h-20' },
             ].map((nl) => {
               const isSelected = selected.includes(nl.id);
               return (
@@ -111,17 +110,17 @@ export default function NewsletterArchivePage() {
                   key={nl.name}
                   type="button"
                   onClick={() => toggleNewsletter(nl.id)}
-                  className={`flex-1 text-left rounded-xl p-5 flex flex-col transition-all duration-200 border ${
+                  className={`flex-1 text-left rounded-xl p-5 flex flex-col transition-all duration-200 border text-[#1b1b1b] ${nl.order} ${
                     isSelected ? 'border-[#5170ff] shadow-md shadow-[#5170ff]/10' : 'border-[#1b1b1b]/15'
-                  }`}
-                  style={{ background: '#ffffff' }}
+                  } ${nl.depth ? 'scale-[0.88]' : 'z-10'}`}
+                  style={{ background: '#ffffff', color: '#1b1b1b' }}
                 >
                   <div className="flex items-start justify-between mb-0">
                     {nl.flagship ? (
-                      <img src={nl.logo} alt={nl.name} className="h-12 mb-4 w-auto object-contain" style={{ filter: 'brightness(0)' }} />
+                      <img src={nl.logo} alt={nl.name} className={`${nl.logoH} mb-4 w-auto object-contain`} />
                     ) : (
-                      <div className="h-20 w-auto flex items-center">
-                        <img src={nl.logo} alt={nl.name} className="h-20 w-auto object-contain" />
+                      <div className={`${nl.logoH} w-auto flex items-center`}>
+                        <img src={nl.logo} alt={nl.name} className={`${nl.logoH} w-auto object-contain`} />
                       </div>
                     )}
                     <span className={`text-[10px] px-2 py-0.5 rounded-full font-inter font-medium uppercase tracking-wider flex-shrink-0 ${
@@ -130,7 +129,7 @@ export default function NewsletterArchivePage() {
                       {nl.freq}
                     </span>
                   </div>
-                  <p className="text-xs font-inter leading-relaxed flex-1 mb-3" style={{ color: 'rgba(27,27,27,0.55)' }}>
+                  <p className="text-xs font-inter leading-relaxed flex-1 mb-3" style={{ color: '#1b1b1b' }}>
                     {nl.desc}
                   </p>
                   <div className="flex items-center gap-1.5 mt-auto">
@@ -152,13 +151,13 @@ export default function NewsletterArchivePage() {
             })}
           </div>
 
-          {/* MOBILE: horizontal scroll – compact cards, last one peeks */}
-          <div className="md:hidden flex gap-3 overflow-x-auto pb-2 -mx-2 px-2" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
+          {/* MOBILE: horizontal scroll – TV first */}
+          <div className="md:hidden flex gap-3 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
             <style dangerouslySetInnerHTML={{ __html: '.md\\:hidden::-webkit-scrollbar { display: none; }' }} />
             {[
-              { id: 'thorium-valley', name: 'Thorium Valley', logo: '/Transparent White Logo.png', desc: 'Our flagship daily newsletter covering everything happening in AI.', freq: 'Daily', flagship: true },
-              { id: 'the-catalyst', name: 'The Catalyst', logo: '/images/catalyst-logo-dark.png', desc: 'How businesses and people are implementing AI and how to do it yourself.', freq: 'Biweekly' },
-              { id: 'the-lab', name: 'The Lab', logo: '/images/lab-logo-dark.png', desc: 'Interesting and useful AI tools and whether they\'re worth trying out.', freq: 'Biweekly' },
+              { id: 'thorium-valley', name: 'Thorium Valley', logo: '/Transparent Black Logo.png', desc: 'Our flagship daily newsletter covering everything happening in AI.', freq: 'Daily', flagship: true, logoH: 'h-8' },
+              { id: 'the-catalyst', name: 'The Catalyst', logo: '/images/catalyst-logo-dark.png', desc: 'How businesses and people are implementing AI and how to do it yourself.', freq: 'Biweekly', logoH: 'h-12' },
+              { id: 'the-lab', name: 'The Lab', logo: '/images/lab-logo-dark.png', desc: 'Interesting and useful AI tools and whether they\'re worth trying out.', freq: 'Biweekly', logoH: 'h-12' },
             ].map((nl) => {
               const isSelected = selected.includes(nl.id);
               return (
@@ -166,16 +165,16 @@ export default function NewsletterArchivePage() {
                   key={nl.name}
                   type="button"
                   onClick={() => toggleNewsletter(nl.id)}
-                  className={`flex-shrink-0 w-[60%] text-left rounded-xl p-4 flex flex-col transition-all duration-200 border ${
+                  className={`flex-shrink-0 w-[55%] text-left rounded-xl p-4 flex flex-col transition-all duration-200 border text-[#1b1b1b] ${
                     isSelected ? 'border-[#5170ff] shadow-md shadow-[#5170ff]/10' : 'border-[#1b1b1b]/15'
                   }`}
-                  style={{ background: '#ffffff' }}
+                  style={{ background: '#ffffff', color: '#1b1b1b' }}
                 >
-                  <div className="flex items-center justify-between mb-1">
+                  <div className={`flex items-center justify-between ${nl.flagship ? 'mb-2' : 'mb-0'}`}>
                     {nl.flagship ? (
-                      <img src={nl.logo} alt={nl.name} className="h-7 w-auto object-contain" style={{ filter: 'brightness(0)' }} />
+                      <img src={nl.logo} alt={nl.name} className={`${nl.logoH} w-auto object-contain`} />
                     ) : (
-                      <img src={nl.logo} alt={nl.name} className="h-9 w-auto object-contain" />
+                      <img src={nl.logo} alt={nl.name} className={`${nl.logoH} w-auto object-contain`} />
                     )}
                     <span className={`text-[8px] px-1.5 py-0.5 rounded-full font-inter font-medium uppercase tracking-wider flex-shrink-0 ${
                       isSelected ? 'bg-[#5170ff]/15 text-[#5170ff]' : 'bg-[#1b1b1b]/8 text-[#1b1b1b]/50'
@@ -183,7 +182,7 @@ export default function NewsletterArchivePage() {
                       {nl.freq}
                     </span>
                   </div>
-                  <p className="text-xs font-inter leading-snug flex-1 mt-1 mb-2" style={{ color: 'rgba(27,27,27,0.55)' }}>
+                  <p className="text-xs font-inter leading-snug flex-1 mb-2" style={{ color: '#1b1b1b' }}>
                     {nl.desc}
                   </p>
                   <div className="flex items-center gap-1 mt-auto">
@@ -204,8 +203,9 @@ export default function NewsletterArchivePage() {
               );
             })}
           </div>
-          </div>
-        </div>
+          </div>{/* end mt-8 */}
+          </div>{/* end glass panel */}
+        </div>{/* end max-w */}
 
         {/* Section break */}
         <div className="max-w-7xl lg:max-w-5xl mx-auto px-6">
@@ -244,6 +244,27 @@ export default function NewsletterArchivePage() {
       <section className="bg-white pt-10 pb-16 px-6">
         <div className="max-w-7xl mx-auto">
 
+          {/* Logo header – matches front page style */}
+          <div className="border-t border-[#1b1b1b]/25 mb-4"></div>
+          <div className="mb-3 flex justify-center">
+            <img
+              src={
+                activePub === 'The Catalyst'
+                  ? '/images/catalyst-logo-dark.png'
+                  : activePub === 'The Lab'
+                    ? '/images/lab-logo-dark.png'
+                    : '/Transparent Black Logo.png'
+              }
+              alt={activePub}
+              style={{
+                height: activePub === 'Thorium Valley' ? 'clamp(65px, 8vw, 85px)' : '120px',
+                width: 'auto',
+                display: 'block',
+              }}
+            />
+          </div>
+          <div className="border-t border-[#1b1b1b]/25 mb-6"></div>
+
           {activePub !== 'Thorium Valley' ? (
             <div className="py-20 text-center">
               <p className="font-inter text-[#1b1b1b]/40 text-lg">Coming soon.</p>
@@ -254,7 +275,7 @@ export default function NewsletterArchivePage() {
             </div>
           ) : (
             <>
-              <div className="border-t border-[#1b1b1b]/25 mb-6" />
+
 
               {/* ─── DESKTOP: hero grid (1 big + 4 in 2×2) then rows of 4 ─── */}
               <div className="hidden lg:block">

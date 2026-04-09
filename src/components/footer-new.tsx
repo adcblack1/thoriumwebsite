@@ -41,7 +41,7 @@ export function FooterNew() {
                         <span className="text-base font-bold block mb-4" style={{ color: 'white' }}>Stay Updated</span>
                         <nav className="flex flex-col gap-3">
                             <Link href="/newsletter" className="text-white hover:text-white/80 transition-colors text-base" style={{ color: 'white' }}>
-                                Newsletter
+                                Newsletters
                             </Link>
                             <Link href="/articles" className="text-white hover:text-white/80 transition-colors text-base" style={{ color: 'white' }}>
                                 Articles

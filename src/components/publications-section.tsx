@@ -134,11 +134,13 @@ export function PublicationsSection() {
       <div className="max-w-7xl mx-auto px-3 pt-4 pb-8">
         <div className="border-t border-[#1b1b1b]/25 mb-16" />
 
+        <div className="rounded-2xl border border-black/10 bg-black p-6 lg:p-10 max-w-5xl mx-auto">
+
         <h2
           className="font-times mb-4 uppercase text-center"
           style={{
             letterSpacing: '-0.07em',
-            color: '#1b1b1b',
+            color: '#ffffff',
             fontWeight: 900,
             fontSize: 'clamp(42px, 5vw, 55px)',
           }}
@@ -146,10 +148,11 @@ export function PublicationsSection() {
           Newsletters
         </h2>
 
-        {/* Subscribe form replacing subtext */}
+        {/* Subscribe form */}
         <div className="max-w-lg mx-auto mb-10">
-          <p className="text-center font-inter text-[#1b1b1b] leading-snug mb-5" style={{ fontSize: 'clamp(20px, 1.8vw, 24px)', fontWeight: 500 }}>
-            Subscribe to our newsletters to cover<br />every base of AI.
+          <style dangerouslySetInnerHTML={{ __html: '@media(max-width:767px){.nl-subtext-home{font-size:20px!important;font-weight:400!important;}}' }} />
+          <p className="nl-subtext-home text-center font-inter leading-snug mb-5" style={{ fontSize: 'clamp(20px, 1.8vw, 24px)', fontWeight: 500, color: 'rgba(255,255,255,0.75)' }}>
+            Subscribe to our newsletters to cover every base of AI.
           </p>
           <form onSubmit={handleSubmit} className="flex gap-2">
             <input
@@ -158,7 +161,7 @@ export function PublicationsSection() {
               onChange={e => setEmail(e.target.value)}
               placeholder="Work email"
               required
-              className="flex-1 px-4 py-3 rounded-lg border border-[#1b1b1b]/25 text-sm font-inter text-[#1b1b1b] placeholder:text-[#1b1b1b]/30 focus:outline-none focus:border-[#5170ff] transition-colors bg-white"
+              className="flex-1 px-4 py-3 rounded-lg border border-white/20 text-sm font-inter text-white placeholder:text-white/40 focus:outline-none focus:border-[#5170ff] transition-colors bg-white/10"
             />
             <button
               type="submit"
@@ -170,74 +173,74 @@ export function PublicationsSection() {
           </form>
         </div>
 
-
-
-        <div className="border-t border-[#1b1b1b]/25 mb-6"></div>
-
-        {/* DESKTOP: 4 cards in a row with vertical dividers */}
-        <div className="hidden md:flex flex-nowrap gap-4 items-stretch">
-          {NEWSLETTERS.map((nl, index) => {
+        {/* DESKTOP: 3 cards – TV center, depth on sides */}
+        <div className="hidden md:flex flex-nowrap gap-4 items-stretch justify-center">
+          {[
+            { ...NEWSLETTERS[1], order: 'order-1', depth: true, logoH: 'h-20' },
+            { ...NEWSLETTERS[0], order: 'order-2', depth: false, logoH: 'h-12' },
+            { ...NEWSLETTERS[2], order: 'order-3', depth: true, logoH: 'h-20' },
+          ].map((nl) => {
             const isSelected = selected.includes(nl.id);
             return (
-              <React.Fragment key={nl.id}>
-                {index > 0 && <div className="w-px bg-[#1b1b1b]/25 self-stretch flex-shrink-0" />}
-                <button
-                  type="button"
-                  onClick={() => toggleNewsletter(nl.id)}
-                  className={`flex-1 text-left border rounded-xl p-5 flex flex-col transition-all duration-200 ${
-                    isSelected
-                      ? 'border-[#5170ff] bg-[#5170ff]/[0.03]'
-                      : 'border-[#1b1b1b]/25 bg-white hover:border-[#1b1b1b]/30'
-                  }`}
-                >
-                  <div className="flex items-start justify-between mb-0">
-                    {nl.flagship ? (
-                      <img src={nl.logo} alt={nl.name} className="h-12 mb-4 w-auto object-contain" />
-                    ) : (
-                      <div className="h-20 w-auto flex items-center">
-                        <img src={nl.logo} alt={nl.name} className="h-20 w-auto object-contain" style={{ filter: 'invert(1)' }} />
-                      </div>
-                    )}
-                    <span
-                      className={`text-[10px] px-2 py-0.5 rounded-full font-inter font-medium uppercase tracking-wider flex-shrink-0 ${
-                        isSelected
-                          ? 'bg-[#5170ff]/10 text-[#5170ff]'
-                          : 'bg-[#1b1b1b]/5 text-[#1b1b1b]/40'
-                      }`}
-                    >
-                      {nl.frequency}
-                    </span>
-                  </div>
-
-                  <p className="text-[#1b1b1b]/60 text-xs font-inter leading-relaxed flex-1 mb-3">
-                    {nl.description}
-                  </p>
-
-                  <div className="flex items-center gap-1.5 mt-auto">
-                    <div
-                      className={`w-4 h-4 rounded flex items-center justify-center transition-colors ${
-                        isSelected ? 'bg-[#5170ff]' : 'border border-[#1b1b1b]/20'
-                      }`}
-                    >
-                      {isSelected && (
-                        <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                        </svg>
-                      )}
+              <button
+                key={nl.id}
+                type="button"
+                onClick={() => toggleNewsletter(nl.id)}
+                className={`flex-1 text-left border rounded-xl p-5 flex flex-col transition-all duration-200 ${nl.order} ${
+                  isSelected
+                    ? 'border-[#5170ff] shadow-md shadow-[#5170ff]/10'
+                    : 'border-[#1b1b1b]/15'
+                } ${nl.depth ? 'scale-[0.88]' : 'z-10'}`}
+                style={{ background: '#ffffff', color: '#1b1b1b' }}
+              >
+                <div className="flex items-start justify-between mb-0">
+                  {nl.flagship ? (
+                    <img src={nl.logo} alt={nl.name} className={`${nl.logoH} mb-4 w-auto object-contain`} />
+                  ) : (
+                    <div className={`${nl.logoH} w-auto flex items-center`}>
+                      <img src={nl.logo} alt={nl.name} className={`${nl.logoH} w-auto object-contain`} />
                     </div>
-                    <span
-                      className={`text-xs font-inter font-medium ${
-                        isSelected ? 'text-[#5170ff]' : 'text-[#1b1b1b]/40'
-                      }`}
-                    >
-                      Selected
-                    </span>
+                  )}
+                  <span
+                    className={`text-[10px] px-2 py-0.5 rounded-full font-inter font-medium uppercase tracking-wider flex-shrink-0 ${
+                      isSelected
+                        ? 'bg-[#5170ff]/15 text-[#5170ff]'
+                        : 'bg-[#1b1b1b]/8 text-[#1b1b1b]/50'
+                    }`}
+                  >
+                    {nl.frequency}
+                  </span>
+                </div>
+
+                <p className="text-xs font-inter leading-relaxed flex-1 mb-3" style={{ color: '#1b1b1b' }}>
+                  {nl.description}
+                </p>
+
+                <div className="flex items-center gap-1.5 mt-auto">
+                  <div
+                    className={`w-4 h-4 rounded flex items-center justify-center transition-colors ${
+                      isSelected ? 'bg-[#5170ff]' : 'border border-[#1b1b1b]/25'
+                    }`}
+                  >
+                    {isSelected && (
+                      <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
                   </div>
-                </button>
-              </React.Fragment>
+                  <span
+                    className={`text-xs font-inter font-medium ${
+                      isSelected ? 'text-[#5170ff]' : 'text-[#1b1b1b]/40'
+                    }`}
+                  >
+                    Selected
+                  </span>
+                </div>
+              </button>
             );
           })}
         </div>
+
 
         <div className="hidden md:block border-t border-[#1b1b1b]/25 mt-12 mb-6"></div>
 
@@ -255,45 +258,40 @@ export function PublicationsSection() {
         </div>
 
 
-        {/* MOBILE: All cards full width going down */}
-        <div className="md:hidden">
-          {NEWSLETTERS.map((nl, index) => {
+        {/* MOBILE: horizontal scroll – matching /newsletter */}
+        <div className="md:hidden flex gap-3 overflow-x-auto pb-2" style={{ scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}>
+          {[NEWSLETTERS[0], NEWSLETTERS[1], NEWSLETTERS[2]].map((nl) => {
             const isSelected = selected.includes(nl.id);
             return (
-              <React.Fragment key={nl.id}>
-                {index > 0 && <div className="border-t border-[#1b1b1b]/25 my-4" />}
-                <button
-                  type="button"
-                  onClick={() => toggleNewsletter(nl.id)}
-                  className={`w-full text-left border rounded-xl p-5 flex flex-col transition-all duration-200 ${
-                    isSelected
-                      ? 'border-[#5170ff] bg-[#5170ff]/[0.03]'
-                      : 'border-[#1b1b1b]/25 bg-white hover:border-[#1b1b1b]/30'
-                  }`}
-                >
-                  <div className={`flex items-start justify-between ${nl.flagship ? 'mb-3' : 'mb-0'}`}>
-                    {nl.flagship ? (
-                      <img src={nl.logo} alt={nl.name} className="h-12 w-auto object-contain" />
-                    ) : (
-                      <img src={nl.logo} alt={nl.name} className="h-16 w-auto object-contain" style={{ filter: 'invert(1)' }} />
-                    )}
-                    <span
-                      className={`text-[10px] px-2 py-0.5 rounded-full font-inter font-medium uppercase tracking-wider ${
-                        isSelected ? 'bg-[#5170ff]/10 text-[#5170ff]' : 'bg-[#1b1b1b]/5 text-[#1b1b1b]/40'
-                      }`}
-                    >
-                      {nl.frequency}
-                    </span>
+              <button
+                key={nl.id}
+                type="button"
+                onClick={() => toggleNewsletter(nl.id)}
+                className={`flex-shrink-0 w-[55%] text-left rounded-xl p-4 flex flex-col transition-all duration-200 border ${
+                  isSelected
+                    ? 'border-[#5170ff] shadow-md shadow-[#5170ff]/10'
+                    : 'border-[#1b1b1b]/15'
+                }`}
+                style={{ background: '#ffffff', color: '#1b1b1b' }}
+              >
+                <div className={`flex items-center justify-between ${nl.flagship ? 'mb-2' : 'mb-0'}`}>
+                  <img src={nl.logo} alt={nl.name} className={`${nl.flagship ? 'h-8' : 'h-12'} w-auto object-contain`} />
+                  <span className={`text-[8px] px-1.5 py-0.5 rounded-full font-inter font-medium uppercase tracking-wider flex-shrink-0 ${
+                    isSelected ? 'bg-[#5170ff]/15 text-[#5170ff]' : 'bg-[#1b1b1b]/8 text-[#1b1b1b]/50'
+                  }`}>
+                    {nl.frequency}
+                  </span>
+                </div>
+                <p className="text-xs font-inter leading-snug flex-1 mb-2" style={{ color: '#1b1b1b' }}>
+                  {nl.description}
+                </p>
+                <div className="flex items-center gap-1 mt-auto">
+                  <div className={`w-3.5 h-3.5 rounded flex items-center justify-center transition-colors ${isSelected ? 'bg-[#5170ff]' : 'border border-[#1b1b1b]/25'}`}>
+                    {isSelected && <svg className="w-2 h-2 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
                   </div>
-                  <p className="text-[#1b1b1b]/60 text-sm font-inter leading-relaxed mb-3">{nl.description}</p>
-                  <div className="flex items-center gap-1.5">
-                    <div className={`w-4 h-4 rounded flex items-center justify-center transition-colors ${isSelected ? 'bg-[#5170ff]' : 'border border-[#1b1b1b]/20'}`}>
-                      {isSelected && <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
-                    </div>
-                    <span className={`text-xs font-inter font-medium ${isSelected ? 'text-[#5170ff]' : 'text-[#1b1b1b]/40'}`}>Selected</span>
-                  </div>
-                </button>
-              </React.Fragment>
+                  <span className={`text-[10px] font-inter font-medium ${isSelected ? 'text-[#5170ff]' : 'text-[#1b1b1b]/40'}`}>Selected</span>
+                </div>
+              </button>
             );
           })}
         </div>
@@ -314,6 +312,7 @@ export function PublicationsSection() {
             </a>
           </div>
         </div>
+        </div>{/* end glass panel */}
       </div>
     </section>
   );

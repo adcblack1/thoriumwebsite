@@ -67,7 +67,7 @@ export function Footer() {
                 Home
               </Link>
               <Link href="/newsletter" className="text-white hover:text-[#5170ff] transition-colors text-sm no-underline">
-                Newsletter
+                Newsletters
               </Link>
               <Link href="mailto:sponsors@thoriumvalley.com" className="text-white hover:text-[#5170ff] transition-colors text-sm no-underline">
                 Partnerships

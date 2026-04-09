@@ -5,7 +5,7 @@ import { HeroSection } from '@/components/hero-section';
 import { FooterNew } from '@/components/footer-new';
 import Image from 'next/image';
 import Link from 'next/link';
-import { PublicationsSection } from '@/components/publications-section';
+
 
 function formatDate(dateStr: string) {
   if (!dateStr) return '';
@@ -275,9 +275,9 @@ export default async function HomePage() {
           <div className="border-t border-[#1b1b1b]/25 mb-4"></div>
           <div className="mb-3 flex justify-center">
             <img
-              src="/images/tv-newsletter-logo.png"
-              alt="Thorium Valley Newsletter"
-              style={{ height: 'clamp(70px, 8vw, 90px)', width: 'auto', display: 'block' }}
+              src="/Transparent Black Logo.png"
+              alt="Thorium Valley"
+              style={{ height: 'clamp(65px, 8vw, 85px)', width: 'auto', display: 'block' }}
             />
           </div>
           <div className="border-t border-[#1b1b1b]/25 mb-6"></div>
@@ -570,7 +570,7 @@ export default async function HomePage() {
       {/* ═══════════════════════════════════════════════════ */}
       {/* PUBLICATIONS SECTION – Newsletter signup           */}
       {/* ═══════════════════════════════════════════════════ */}
-      <PublicationsSection />
+
 
       <FooterNew />
     </div>
