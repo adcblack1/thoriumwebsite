@@ -616,7 +616,9 @@ export default function SubscribePage() {
                           href={tool.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`block rounded-xl overflow-hidden transition-all group hover:shadow-lg hover:shadow-white/10 ${desktopOrder} w-full lg:flex-1`}
+                          className={`block rounded-xl overflow-hidden transition-all group hover:shadow-lg hover:shadow-white/10 ${desktopOrder} w-full lg:flex-1 ${
+                            i !== 0 ? 'lg:scale-[0.92]' : 'lg:z-10'
+                          }`}
                           style={{ background: '#ffffff' }}
                         >
                           {/* Headline */}
