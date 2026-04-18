@@ -1,0 +1,146 @@
+[
+  {
+    "id": "catalyst-april-13-2026",
+    "slug": "catalyst-april-13-2026",
+    "publication": "the-catalyst",
+    "title": "A Window Cleaner Is Using AI as His CFO for $40 a Month",
+    "date": "April 13, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to the Catalyst Newsletter.\n\nToday we're talking about a window cleaner who pays $40 a month for ChatGPT and Claude and uses them like a full finance team, and honestly his approach to prepping for his accountant is something every small business owner should steal.\n\nWe're also looking at how one company's engineering team spun up 80 AI agents inside Notion, none of them took more than five minutes to build, and now one guy walks into meetings knowing everything that happened overnight without reading a single Slack thread.\n\nAnd we've got a CMO who got tired of her team \"using AI\" without actually changing how they work, so she mapped out 700 daily tasks across her whole marketing org and cut a 50-step campaign process down to 11.",
+    "toc": [
+      "A Window Cleaner Is Using AI as His CFO for $40 a Month",
+      "Clay Built 80 AI Agents in Notion. Each One Took 5 Minutes to Make.",
+      "This CMO Mapped 700 Daily Tasks and Found 80% Could Be Done by AI"
+    ],
+    "article_slugs": [],
+    "stories": [
+      {
+        "title": "A Window Cleaner Is Using AI as His CFO for $40 a Month",
+        "category": "FINANCE",
+        "thumbnail_url": "/thumbnails/a-window-cleaner-is-using-ai-as-his-cfo.jpeg",
+        "content": "<p>Kyle Ray runs a window cleaning company and his entire C-suite is artificial intelligence.</p>\n<p>Ray is the founder of <a href=\"http://www.businessinsider.com/ai-for-taxes-small-business-owner-cpa-cfo-chatgpt-2026-3\">Geek Window Cleaning</a>, a side hustle he grew into a six-figure business. He pays $40 a month for ChatGPT and Claude and uses them the way a bigger company would use a finance team. He asks them to surface tax strategies, prep questions for his CPA, and double-check what his accountant sends back. One of his go-to prompts is basically just \"what questions am I not asking that I should be asking?\" which is honestly the most useful thing you could type into any AI tool.</p>\n<p>The part that caught our attention is what happened when he started comparing his own AI-assisted tax prep against his accountant's work. He would bring the discrepancies back to his CPA and sometimes they would say yeah, good catch, you can do that. Other times they would explain why he couldn't. Either way he was having a better conversation than he would have had walking in cold.</p>\n<p>His CPA Amanda Han actually validates the approach for the basics. AI is great at explaining what depreciation is or how an S corp works, she told Business Insider. But when it comes to something like \"is an S corp right for me specifically,\" that still needs a human. The line is pretty clear and it applies to basically any professional service. AI can get you 80% prepared so the expert you're paying spends their time on the 20% that actually requires judgment.</p>\n<p>The $40 a month thing is what makes this worth paying attention to. A part-time bookkeeper runs $250 a month minimum. A quarterly CPA consultation is $400 to $600 a pop. Ray isn't replacing his accountant, he's just showing up way more prepared, which means he gets more value out of every hour he pays for. And the same approach works whether you're running a cleaning company, a consulting practice, a restaurant, or really any small business where you're the one staring at the books.</p>\n<h2>The Formula</h2>\n<p><strong>1. Gather your financial docs.</strong> Pull together last year's tax return, your recent bank statements, and any receipts or expense records you have. Even messy is fine.</p>\n<p><strong>2. Open Claude and give it context.</strong> Tell it your business type, how you're structured (sole prop, LLC, S corp), your rough annual revenue, and your main expense categories. This is how it stops giving you generic answers.</p>\n<p><strong>3. Ask it to find what you're missing.</strong> Upload your tax return or paste in your expense categories and ask \"what deductions or tax strategies might I be overlooking?\" Then ask \"what questions should I bring to my accountant?\"</p>\n<p><strong>4. Prep a one-page CPA cheat sheet.</strong> Take Claude's output and organize it into a short list of questions and flagged items. Bring this to your next accountant meeting instead of showing up empty-handed.</p>\n<p><strong>5. After your CPA meeting, close the loop.</strong> Go back to Claude with what your accountant said. Ask follow-up questions while the conversation is fresh. Save the whole thread so you're not starting from zero next quarter.</p>\n<h3>Have Claude Explain This to Me</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>A small business owner was spending too much time Googling tax questions\nand showing up unprepared to CPA meetings. He started using AI to review\nhis expenses, surface overlooked deductions, and generate specific\nquestions for his accountant, all for $40 a month.\n\nHere's the basic approach from Thorium Valley:\n- Give Claude your business structure, revenue range, and expense categories\n- Upload or describe your financial docs and ask what you might be missing\n- Generate a list of questions to bring to your next accountant meeting\n- After the meeting, use Claude to follow up on what your CPA recommended\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to get more out of your tax prep\nand accountant conversations using AI. Could I get a little more context on:\n1. What's your business structure and roughly how much revenue are you\n   working with, and how do you currently track your expenses?\n2. What part of your finances takes the most time or feels like the\n   biggest blind spot right now?\"</code></pre>"
+      },
+      {
+        "title": "Clay's Team Built 80 AI Agents in a Week. Each One Took 5 Minutes.",
+        "category": "OPERATIONS",
+        "thumbnail_url": "/thumbnails/clay-built-80-ai-agents-in-notion.jpeg",
+        "content": "<p>Five minutes per agent, no code, no hand-holding.</p>\n<p><a href=\"https://www.clay.com/\">Clay</a> is, ironically, a go-to-market data platform. The company helps other teams automate manual data work but they were drowning in their own coordination overhead. Willie Yao, Clay's head of engineering, kept finding out about customer issues hours after they'd already escalated. Details lived in a Slack thread somewhere but he couldn't monitor every channel personally. Meanwhile Yash Tekriwal, who runs education and community, was spending hours each week digging through call transcripts looking for customer insights.</p>\n<p>Both problems came down to the same thing. The information existed, it just sat there doing nothing.</p>\n<p>Clay had already centralized everything in Notion, meeting notes, projects, docs, all connected to Slack and Google Drive. So when Notion rolled out Custom Agents, the team had a head start. All that context was already organized and waiting. Within a week they had <a href=\"https://www.notion.so/customers/clay\">80+ agents running in the background</a> across the entire company.</p>\n<p>There were three that did a lot of the heavy lifting. First, the Meeting Classifier, which reads transcripts and figures out if something is a one-on-one, a team meeting, or all-hands, then files everything in the right place automatically. Second, the Incident Manager, which watches Slack for production issues and synthesizes what's happening, who's involved, and what to do next. \"We realized that Custom Agents often do a better job when it comes to understanding what the root cause is,\" Willie said. And third, the Daily Briefer, which scans all of engineering's work every morning and pushes Willie a summary of active bugs, incidents, launches, and meetings to prep for. \"People are surprised about the amount of context that I have,\" he said. \"It's because I have this Custom Agent that's always looking out for me.\"</p>\n<p>The setup was almost suspiciously easy. \"I was shocked at how simple it was,\" Yash said. \"I connected Slack, set up a prompt, and I was able to test the results in five minutes.\" And adoption spread entirely by word of mouth. Someone would ask Willie how he's tracking everything, he'd say Custom Agents, and that person would go build their own.</p>\n<p>The real thing worth stealing here isn't the agents themselves but the pattern. If your team already keeps its work in one place, whether that's Notion or something similar, you're sitting on the same advantage Clay had. The meeting classifier idea works just as well for a project manager sorting client calls as it does for a community lead. The daily briefer is useful for anyone managing a team who's tired of manually piecing together what happened overnight.</p>\n<h2>The Formula</h2>\n<p><strong>1. Pick one workflow that eats your time every week.</strong> Meeting notes piling up, status updates you compile by hand, messages you triage manually. Start with just one.</p>\n<p><strong>2. Make sure the information already lives in Notion.</strong> Agents need context to work with. If your meeting notes, project databases, or docs aren't in Notion yet, spend some time getting them there honestly.</p>\n<p><strong>3. Create a Custom Agent in Notion.</strong> Go to the Agents section in your sidebar, describe what you want in plain English, something like \"read new meeting transcripts, classify them by type, and file them in the right database.\" Notion will generate the instructions and triggers for you.</p>\n<p><strong>4. Set a trigger and limit the access.</strong> Choose when the agent should run, like when a new page hits your meetings database or every morning at 9 AM. Only give it access to the specific pages and databases it actually needs.</p>\n<p><strong>5. Test it with real examples, then let it run.</strong> Trigger it manually a few times, check the output, adjust the instructions if something's off, and then turn it loose. Check back after a week to see if it's actually saving you time before building the next one.</p>\n<h3>Have Claude Explain This to Me</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>A fast-growing startup had useful information scattered across Notion,\nSlack, and Google Drive but no one could act on it fast enough. They\nbuilt 80+ Custom Agents inside Notion that automatically classify\nmeeting notes, monitor Slack for issues, and generate daily briefings,\neach one set up in about 5 minutes with zero code.\n\nHere's the basic approach from Thorium Valley:\n- Identify one repetitive workflow you do manually every week\n- Make sure the relevant info already lives in Notion\n- Create a Custom Agent using plain English instructions\n- Set a trigger (new database entry, schedule, Slack message) and\n  limit the agent's access to only what it needs\n- Test with real data before expanding\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to set up AI agents to automate\nsome of the repetitive work on your team. Could I get a little more\ncontext on:\n1. What does your team use for documentation and project management\n   right now, and is most of your work already living in Notion?\n2. What's the one recurring task that eats the most time each week,\n   like compiling updates, sorting through notes, or triaging\n   messages?\"</code></pre>"
+      },
+      {
+        "title": "She Mapped Every Task Her Marketing Team Does. 80% Could Be Done by AI.",
+        "category": "MARKETING",
+        "thumbnail_url": "/thumbnails/this-cmo-mapped-700-daily-tasks.jpeg",
+        "content": "<p>Teresa Barreira is the CMO of Publicis Sapient, the tech consulting arm of ad giant Publicis. Three years ago she told her marketing team to start using AI and experiment with it. Six months later she checked in to see how their work had changed. And you probably already guessed it, nothing changed. They were all \"using\" AI in the sense that they'd ask it to help write emails or brainstorm headlines, but the actual workflows, the sequence of who does what and when and how many people touch something before it ships, were identical.</p>\n<p>So she took a <a href=\"https://www.businessinsider.com/publicis-sapient-cmo-ai-forcing-an-overdue-marketing-reckoning-2026-3\">first-principles approach</a>. Her team mapped every single function across the entire marketing org and catalogued over 700 tasks they perform daily. The results were kind of brutal. Between 80% and 90% of those tasks could be accelerated or fully handled by AI. About 40% could run end-to-end with AI agents and no human in the loop at all.</p>\n<p>The most concrete example is campaign launches. Her team puts out about five campaigns a month, and getting one to market used to require around 50 handoffs, people talking to people, approvals sitting in queues, files bouncing between tools. After redesigning the process around what AI could handle, they got it down to 11 steps.</p>\n<p>The part that actually matters though is what she did next. She rewrote job descriptions for every function to focus on the 20% of work that only humans can do. Judgment, intuition, pattern recognition, the ability to go against the grain when the data says one thing but your gut says another. As Barreira put it, \"AI is not going to be as brave as humans are.\"</p>\n<p>This approach works whether you run a marketing team of 50 or you're one person trying to figure out where AI fits into your day. The exercise is the same. Write down what you actually do, be honest about how much of it is just coordination and production, and you'll probably find the ratio isn't that different from hers.</p>\n<h2>The Formula</h2>\n<p><strong>1. Open a Google Sheet and list every task you do in a week.</strong> Column A is the task, Column B is who does it, Column C is how often, Column D is roughly how long it takes. Spend some time filling this in honestly. Don't write what your job description says, write what you actually do.</p>\n<p><strong>2. Score each task for AI-readiness.</strong> Add a Column E and mark each one as \"AI can do this,\" \"AI can help with this,\" or \"only a human can do this.\" Be ruthless. If the task is mostly copying information between tools or following a checklist, it's probably in that first bucket.</p>\n<p><strong>3. Find your 50-to-11 moment.</strong> Pick the workflow with the most handoffs or steps and sketch out what it would look like if AI handled the parts you just flagged. You're looking for the steps where a person is basically acting as a middleman between two systems.</p>\n<p><strong>4. Rebuild one workflow first.</strong> Use Zapier to connect the tools involved and let it handle the routing and notifications automatically. Don't try to automate everything at once. Get one workflow running cleanly and learn from it.</p>\n<p><strong>5. Rewrite your own job description around the 20%.</strong> Once you see what AI can take off your plate, define what you should actually be spending time on. That's the whole point.</p>\n<h3>Have Claude Explain This to Me</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>A CMO at a major consulting firm found that her team was using AI but\nhadn't changed any of their actual workflows. She mapped all 700+ daily\ntasks across her marketing org and discovered 80-90% could be accelerated\nby AI, with 40% running fully autonomously. She then cut campaign launches\nfrom 50 handoffs to 11 steps and rewrote every job description around the\n20% of work only humans can do.\n\nHere's the basic approach from Thorium Valley:\n- List every task you do in a week in a spreadsheet with who does it,\n  how often, and time spent\n- Score each task as \"AI can do this,\" \"AI can help,\" or \"human only\"\n- Find the workflow with the most handoffs and redesign it with AI\n  handling the flagged steps\n- Use Zapier to connect your tools and automate routing and notifications\n- Redefine your role around the work that actually requires human judgment\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to figure out which parts of your\nwork AI can actually take over. Could I get a little more context on:\n1. What's your role and what does a typical week look like for you in\n   terms of the types of tasks you spend the most time on?\n2. What's the workflow that frustrates you the most right now, the one\n   with too many steps or too many people involved before something\n   actually gets done?\"</code></pre>"
+      }
+    ],
+    "sign_off": "That's the Catalyst for this week. If you tried something from one of these stories, tell us how it went — reply directly.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-catalyst-2026-04-13.png",
+    "thumbnail_url": "/thumbnails/a-window-cleaner-is-using-ai-as-his-cfo.jpeg",
+    "published_at": "2026-04-13T13:00:00.000Z",
+    "updated_at": "2026-04-14T05:20:52.905Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Anthropic says its newest AI model is too dangerous to release",
+          "rest": " — Claude Mythos found thousands of security flaws in every major operating system and browser, so only Apple, Google, Microsoft, and a handful of others get access",
+          "url": "https://www.businessinsider.com/anthropic-mythos-latest-ai-model-too-powerful-to-be-released-2026-4"
+        },
+        {
+          "link_text": "Elon Musk wants a judge to fire Sam Altman",
+          "rest": " as part of his OpenAI lawsuit heading to trial April 27",
+          "url": "https://www.cnbc.com/2026/04/07/elon-musk-seeks-ouster-of-openai-ceo-sam-altman-as-part-of-lawsuit.html"
+        },
+        {
+          "link_text": "Anthropic's revenue tripled to $30 billion",
+          "rest": " as it locks in 3.5 gigawatts of Google TPU capacity in its biggest compute deal ever",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/907810/anthropic-has-signed-a-big-ai-infrastructure-deal-with-google-and-broadcom"
+        },
+        {
+          "link_text": "OpenAI calls on California and Delaware to investigate Musk",
+          "rest": ", alleging he and Zuckerberg are coordinating \"attacks\" against the company",
+          "url": "https://gizmodo.com/in-letter-openai-reportedly-says-elon-musk-and-meta-are-coordinating-attacks-against-it-2000743228"
+        },
+        {
+          "link_text": "51% of Americans now use AI for research",
+          "rest": " but only 21% trust the results — and 80% say they'd refuse a job where AI is their boss",
+          "url": "https://the-decoder.com/americans-are-using-ai-more-than-ever-while-trusting-it-less-new-quinnipiac-poll-finds/"
+        },
+        {
+          "link_text": "Google donates $30M to mental health hotlines",
+          "rest": " and updates Gemini's crisis responses after a Florida father sued over his son's suicide involving the chatbot",
+          "url": "https://www.miamiherald.com/news/local/article315334233.html"
+        },
+        {
+          "link_text": "A New Yorker profile asks whether Sam Altman can be trusted",
+          "rest": " with the future — featuring memos and confidants alleging a pattern of dishonesty",
+          "url": "https://www.newyorker.com/magazine/2026/04/13/sam-altman-may-control-our-future-can-he-be-trusted"
+        },
+        {
+          "link_text": "AMD's AI director declares Claude Code \"unusable\"",
+          "rest": " after analyzing 6,852 sessions showing thinking depth dropped 73% and costs exploded 122×",
+          "url": "https://byteiota.com/claude-code-crisis-amd-director-says-unusable/"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Wispr Flow",
+          "desc": "The new viral voice-to-text AI for iPhone and Mac that actually understands what you're saying every time",
+          "url": "https://ref.wisprflow.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Superpower",
+          "desc": "The health app that tests your blood and uses AI to tell you what's actually going on with your body before your doctor does",
+          "url": "https://partners.superpower.com/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Google Maps",
+          "desc": "When you upload a photo of a restaurant or landmark, Gemini now auto-suggests a caption so you don't have to stare at a blank text field — just accept, edit, or skip",
+          "url": "https://thenextweb.com/news/google-maps-gemini-ai-photo-captions",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini Live",
+          "desc": "Google's voice assistant on Android got a major redesign with a new floating interface, making it easier to talk to Gemini hands-free while using other apps",
+          "url": "https://9to5google.com/2026/04/07/gemini-live-redesign-android/",
+          "sponsored": false
+        },
+        {
+          "name": "Google Gemini",
+          "desc": "Google added one-touch crisis hotline access that stays visible throughout a conversation when Gemini detects signs of mental health distress — developed with clinical experts",
+          "url": "https://9to5google.com/2026/04/07/gemini-mental-health-updates/",
+          "sponsored": false
+        },
+        {
+          "name": "Lucid",
+          "desc": "A new Claude Connector lets you search, summarize, and generate diagrams directly inside Claude conversations — so you can turn a messy brainstorm into an editable flowchart without switching apps",
+          "url": "https://www.prnewswire.com/news-releases/lucid-software-launches-lucid-claude-connector-bringing-visual-intelligence-into-ai-workflows-302735875.html",
+          "sponsored": false
+        },
+        {
+          "name": "Beaver AI",
+          "desc": "Magic Whiteboard gives you real-time transcription, agenda tracking, and action items during meetings without ever recording a single second of audio or video — nothing to leak, subpoena, or store",
+          "url": "https://www.prweb.com/releases/the-first-ai-meeting-platform-that-never-records-you---beaver-ai-launches-magic-whiteboard-302734394.html",
+          "sponsored": false
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "9119fca6-163e-438b-849a-632168b73c01",
+      "question": "How much time do you spend on stuff that feels like it should be automated?",
+      "options": [
+        "Less than an hour",
+        "1-3 hours",
+        "Half my day",
+        "Most of my day",
+        "Other"
+      ]
+    },
+    "poll_results": null,
+    "yesterdays_results": null
+  }
+]

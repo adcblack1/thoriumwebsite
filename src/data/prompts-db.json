@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "a-window-cleaner-is-using-ai-as-his-cfo-for-40-a-month",
+    "title": "A Window Cleaner Is Using AI as His CFO for $40 a Month",
+    "newsletter_slug": "catalyst-april-13-2026",
+    "publication": "the-catalyst",
+    "type": "formula",
+    "prompt": "A small business owner was spending too much time Googling tax questions\nand showing up unprepared to CPA meetings. He started using AI to review\nhis expenses, surface overlooked deductions, and generate specific\nquestions for his accountant, all for $40 a month.\n\nHere's the basic approach from Thorium Valley:\n- Give Claude your business structure, revenue range, and expense categories\n- Upload or describe your financial docs and ask what you might be missing\n- Generate a list of questions to bring to your next accountant meeting\n- After the meeting, use Claude to follow up on what your CPA recommended\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to get more out of your tax prep\nand accountant conversations using AI. Could I get a little more context on:\n1. What's your business structure and roughly how much revenue are you\n   working with, and how do you currently track your expenses?\n2. What part of your finances takes the most time or feels like the\n   biggest blind spot right now?\""
+  },
+  {
+    "slug": "clay-s-team-built-80-ai-agents-in-a-week-each-one-took-5-minutes",
+    "title": "Clay's Team Built 80 AI Agents in a Week. Each One Took 5 Minutes.",
+    "newsletter_slug": "catalyst-april-13-2026",
+    "publication": "the-catalyst",
+    "type": "formula",
+    "prompt": "A fast-growing startup had useful information scattered across Notion,\nSlack, and Google Drive but no one could act on it fast enough. They\nbuilt 80+ Custom Agents inside Notion that automatically classify\nmeeting notes, monitor Slack for issues, and generate daily briefings,\neach one set up in about 5 minutes with zero code.\n\nHere's the basic approach from Thorium Valley:\n- Identify one repetitive workflow you do manually every week\n- Make sure the relevant info already lives in Notion\n- Create a Custom Agent using plain English instructions\n- Set a trigger (new database entry, schedule, Slack message) and\n  limit the agent's access to only what it needs\n- Test with real data before expanding\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to set up AI agents to automate\nsome of the repetitive work on your team. Could I get a little more\ncontext on:\n1. What does your team use for documentation and project management\n   right now, and is most of your work already living in Notion?\n2. What's the one recurring task that eats the most time each week,\n   like compiling updates, sorting through notes, or triaging\n   messages?\""
+  },
+  {
+    "slug": "she-mapped-every-task-her-marketing-team-does-80-could-be-done-by-ai",
+    "title": "She Mapped Every Task Her Marketing Team Does. 80% Could Be Done by AI.",
+    "newsletter_slug": "catalyst-april-13-2026",
+    "publication": "the-catalyst",
+    "type": "formula",
+    "prompt": "A CMO at a major consulting firm found that her team was using AI but\nhadn't changed any of their actual workflows. She mapped all 700+ daily\ntasks across her marketing org and discovered 80-90% could be accelerated\nby AI, with 40% running fully autonomously. She then cut campaign launches\nfrom 50 handoffs to 11 steps and rewrote every job description around the\n20% of work only humans can do.\n\nHere's the basic approach from Thorium Valley:\n- List every task you do in a week in a spreadsheet with who does it,\n  how often, and time spent\n- Score each task as \"AI can do this,\" \"AI can help,\" or \"human only\"\n- Find the workflow with the most handoffs and redesign it with AI\n  handling the flagged steps\n- Use Zapier to connect your tools and automate routing and notifications\n- Redefine your role around the work that actually requires human judgment\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to figure out which parts of your\nwork AI can actually take over. Could I get a little more context on:\n1. What's your role and what does a typical week look like for you in\n   terms of the types of tasks you spend the most time on?\n2. What's the workflow that frustrates you the most right now, the one\n   with too many steps or too many people involved before something\n   actually gets done?\""
+  },
+  {
+    "slug": "gamma-made-400-million-presentations-are-any-of-them-good",
+    "title": "Gamma Made 400 Million Presentations. Are Any of Them Good?",
+    "newsletter_slug": "lab-april-08-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed Gamma AI ($8-15/month) and found that it's\nexcellent for fast presentation drafts and browser-based sharing, but\nfrustrating if you need clean PowerPoint exports or pixel-level design\ncontrol. Best for people who value speed over precision.\n\nHere are the key takeaways:\n- Generates complete presentations in under 60 seconds from a simple prompt\n- Exports to PowerPoint frequently break layouts and require manual cleanup\n- Free plan gives 400 credits (roughly 10 presentations) to test it\n- If you need native PowerPoint or Google Slides output, consider Plus AI\n  or using Claude to draft content directly\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Gamma is right for you. Could I get a little more context on:\n1. What kind of presentations do you make most often and how frequently\n   do you need to create them?\n2. How do you currently share your presentations — do you send\n   PowerPoint files, present from Google Slides, or share links?\""
+  },
+  {
+    "slug": "is-chatgpt-plus-still-worth-20-month-in-2026-we-checked-the-receipts",
+    "title": "Is ChatGPT Plus Still Worth $20/Month in 2026? We Checked the Receipts.",
+    "newsletter_slug": "lab-april-08-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed ChatGPT Plus ($20/month) and found that it's\nstill worth it for daily professional use but no longer the obvious\ndefault. The free tier works fine for casual users, and competitors\nlike Claude Pro and Perplexity Pro are stronger for coding and research.\n\nHere are the key takeaways:\n- Best for people who use AI multiple times a day for work\n- Message limits (16x more than free) and Deep Research are the biggest draws\n- Recent model changes frustrated power users with quality regression\n- Claude Pro is better for coding, Perplexity Pro is better for research\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether ChatGPT Plus is right for you. Could I get a little more\ncontext on:\n1. What do you use AI for day to day, and how often are you running\n   into limits or frustrations with what you're currently using?\n2. What's your current setup right now, whether that's the free tier\n   of ChatGPT, another tool, or nothing at all?\""
+  },
+  {
+    "slug": "perplexity-was-everyone-s-favorite-ai-tool-then-it-started-lying",
+    "title": "Perplexity Was Everyone's Favorite AI Tool. Then It Started Lying.",
+    "newsletter_slug": "lab-april-08-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed Perplexity Pro ($20/month) and found that it's\nexcellent for daily research-heavy work but has a growing citation\naccuracy problem. The free tier handles casual use well, and Claude Pro\nis a better fit for high-stakes work where you can't afford wrong sources.\n\nHere are the key takeaways:\n- Best for people who do 5+ research tasks per day and need sourced answers fast\n- The citation accuracy issue undermines its core value proposition for professional use\n- The free tier is genuinely good enough for casual research\n- Claude Pro is the better alternative for analytical work requiring trust and precision\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out whether\nPerplexity Pro is right for you. Could I get a little more context on:\n1. What kind of research do you do day to day, and how often do you\n   need sourced answers versus just general reasoning or analysis?\n2. What are you currently using for research, and what's frustrating\n   you about it?\""
+  }
+]

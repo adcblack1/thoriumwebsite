@@ -68,6 +68,7 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
     .nl-body blockquote { border-left: 3px solid ${ACCENT} !important; margin: 10px 0 !important; padding: 4px 15px !important; color: rgba(45,45,45,0.8) !important; }
     .nl-body a { color: ${ACCENT} !important; text-decoration: none !important; }
     .nl-body img { padding: 0 20px !important; max-width: 100% !important; height: auto !important; box-sizing: border-box !important; }
+    .nl-body .section-header-img { margin-left: -15px !important; margin-right: -15px !important; width: calc(100% + 30px) !important; max-width: none !important; padding: 0 !important; height: auto !important; display: block !important; }
     .nl-body .vv-header img { padding: 0 !important; width: 100% !important; max-width: none !important; margin: 0 !important; }
     .nl-body > p:first-of-type::first-letter, .nl-body > div:first-child > p:first-of-type::first-letter { font-family: 'Times New Roman', 'Times', serif !important; font-size: 3.5em !important; float: left !important; line-height: 0.8 !important; padding-right: 8px !important; padding-top: 4px !important; color: #5170ff !important; font-weight: bold !important; }
     .intro-dropcap { font-family: 'Times New Roman', 'Times', serif !important; font-size: 3.5em !important; float: left !important; line-height: 0.8 !important; padding-right: 8px !important; padding-top: 4px !important; color: #5170ff !important; font-weight: bold !important; }
@@ -232,7 +233,7 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
           </div>
         )}
 
-        {/* ── ARTICLE CARDS ── */}
+        {/* ── ARTICLE CARDS (flagship newsletters) ── */}
         {articles.map((article, articleIndex) => {
           if (!article) return null;
           return (
@@ -313,6 +314,88 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
               </div>
 
             </div>
+          );
+        })}
+
+        {/* ── STORY CARDS (child newsletters: Catalyst, Lab) ── */}
+        {newsletter.stories && newsletter.stories.length > 0 && newsletter.stories.map((story, storyIndex) => {
+          // Transform story content:
+          // 1. Replace "The Formula" / "The Verdict" headers with images
+          // 2. Replace "Have Claude Explain..." + prompt block with a link to /prompts/slug
+          const storySlug = story.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+          let transformedContent = (story.content || '<p>Content not available.</p>')
+            .replace(/<h2>The Formula<\/h2>/gi,
+              '<div style="text-align:center;padding:20px 0 8px;"><img class="section-header-img" src="/thumbnails/the-formula.png" alt="The Formula" /></div>')
+            .replace(/<h2>The Verdict<\/h2>/gi,
+              '<div style="text-align:center;padding:20px 0 8px;"><img class="section-header-img" src="/thumbnails/the-verdict.png" alt="The Verdict" /></div>')
+            .replace(/<h3>Have Claude Explain This to Me<\/h3>\s*<p>Copy this prompt into Claude:<\/p>\s*<pre><code>[\s\S]*?<\/code><\/pre>/gi,
+              `<p style="padding:16px 0 4px;margin:0;"><a href="/prompts/${storySlug}" style="color:#5170ff;text-decoration:none;font-family:${SANS};font-size:14px;font-weight:600;letter-spacing:0.02em;">Have Claude explain this to me →</a></p>`)
+            .replace(/<h3>Ask Claude If It's Right for You<\/h3>\s*<p>Copy this prompt into Claude:<\/p>\s*<pre><code>[\s\S]*?<\/code><\/pre>/gi,
+              `<p style="padding:16px 0 4px;margin:0;"><a href="/prompts/${storySlug}" style="color:#5170ff;text-decoration:none;font-family:${SANS};font-size:14px;font-weight:600;letter-spacing:0.02em;">Ask Claude if it&#39;s right for me →</a></p>`);
+
+          return (
+          <div key={storyIndex} id={`article-${storyIndex + 1}`} style={{
+            backgroundColor: 'transparent',
+            border: '1px solid #CDCDCD',
+            borderRadius: '10px',
+            margin: '20px 0',
+            padding: 0,
+            overflow: 'hidden',
+            scrollMarginTop: '100px',
+          }}>
+
+            {/* Story thumbnail */}
+            {story.thumbnail_url && (
+              <div style={{ padding: '0', textAlign: 'center' }}>
+                <Image
+                  src={story.thumbnail_url}
+                  alt={story.title}
+                  width={604}
+                  height={340}
+                  style={{ display: 'block', width: '100%', height: 'auto' }}
+                />
+              </div>
+            )}
+
+            {/* Category label */}
+            <div style={{ padding: `10px ${PAD} 0`, textAlign: 'left' }}>
+              <p style={{ fontFamily: SANS, color: ACCENT, fontSize: '16px', fontWeight: 400, lineHeight: '1.5', padding: '10px 0', margin: 0 }}>
+                {story.category.toUpperCase()}
+              </p>
+            </div>
+
+            {/* Title */}
+            <div style={{ padding: `0 ${PAD}`, textAlign: 'left' }}>
+              <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: '30px', lineHeight: '1.2', color: '#2A2A2A', margin: 0, padding: 0, letterSpacing: '-0.05em' }}>
+                {story.title}
+              </h1>
+            </div>
+
+            {/* Share buttons */}
+            {(() => {
+              const shareText = encodeURIComponent(story.title);
+              const shareUrl = encodeURIComponent(`https://thoriumvalley.com/newsletter/${newsletter.slug}`);
+              return (
+                <div style={{ padding: `8px ${PAD} 0`, display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ fontFamily: SANS, fontSize: '11px', fontWeight: 500, color: 'rgba(27,27,27,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>Share</span>
+                  <a href={`https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`} target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(27,27,27,0.4)', textDecoration: 'none' }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
+                  </a>
+                  <a href={`mailto:?subject=${shareText}&body=${shareUrl}`} style={{ color: 'rgba(27,27,27,0.4)', textDecoration: 'none' }}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+                  </a>
+                </div>
+              );
+            })()}
+
+            {/* Divider */}
+            <div style={{ borderBottom: '1px solid rgba(27,27,27,0.1)', margin: `12px ${PAD} 0` }} />
+
+            {/* Story body content */}
+            <div style={{ padding: `0 ${PAD}`, textAlign: 'left', wordBreak: 'break-word' }}>
+              <ArticleContent className="nl-body" html={transformedContent} />
+            </div>
+          </div>
           );
         })}
 
@@ -522,7 +605,7 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
               {newsletter.links.tools.map((item, i) => (
                 <div key={i} style={{ padding: '10px 0', borderBottom: i < newsletter.links!.tools!.length - 1 ? '1px solid rgba(27,27,27,0.06)' : 'none' }}>
                   <p style={{ fontFamily: SANS, fontSize: '16px', fontWeight: 500, color: '#2D2D2D', lineHeight: '1.5', margin: 0 }}>
-                    <a href={item.url} style={{ color: ACCENT, textDecoration: 'none', fontWeight: 700 }} target="_blank" rel="noopener noreferrer">{item.name}</a> — {item.desc}
+                    <a href={item.url} style={{ color: ACCENT, textDecoration: 'none', fontWeight: 700 }} target="_blank" rel="noopener noreferrer">{item.name}</a>{(item as any).sponsored && <span style={{ fontFamily: SANS, fontSize: '12px', fontWeight: 500, color: 'rgba(27,27,27,0.4)', marginLeft: '6px' }}>(Sponsored)</span>} — {item.desc}
                   </p>
                 </div>
               ))}

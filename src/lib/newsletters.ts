@@ -4,14 +4,22 @@ import path from 'path';
 export interface Newsletter {
     id: string;
     slug: string;
+    publication?: string; // 'thorium-valley' | 'the-catalyst' | 'the-lab'
     title: string;
     date: string;
     intro: string;
     toc: string[];
     article_slugs: string[];
+    stories?: {
+        title: string;
+        category: string;
+        thumbnail_url: string;
+        content: string;
+    }[];
     sign_off: string;
     writers: string;
     banner_image_url?: string;
+    thumbnail_url?: string;
     published_at: string;
     updated_at: string;
     status: 'draft' | 'published';
@@ -19,7 +27,7 @@ export interface Newsletter {
     // LINKS section (every newsletter)
     links?: {
         news: { prefix?: string; link_text: string; rest: string; url: string }[];
-        tools: { name: string; desc: string; url: string }[];
+        tools: { name: string; desc: string; url: string; sponsored?: boolean }[];
         jobs: { company: string; role: string; url: string }[];
     };
 
@@ -54,19 +62,22 @@ export interface Newsletter {
     } | null;
 }
 
+// ── Database paths ──
 const DB_PATH = path.join(process.cwd(), 'src/data/newsletters-db.json');
+const CATALYST_DB_PATH = path.join(process.cwd(), 'src/data/catalyst-db.json');
+const LAB_DB_PATH = path.join(process.cwd(), 'src/data/lab-db.json');
 
-function readDB(): Newsletter[] {
+function readDB(dbPath: string = DB_PATH): Newsletter[] {
     try {
-        const raw = fs.readFileSync(DB_PATH, 'utf-8');
+        const raw = fs.readFileSync(dbPath, 'utf-8');
         return JSON.parse(raw);
     } catch {
         return [];
     }
 }
 
-function writeDB(newsletters: Newsletter[]): void {
-    fs.writeFileSync(DB_PATH, JSON.stringify(newsletters, null, 2), 'utf-8');
+function writeDB(newsletters: Newsletter[], dbPath: string = DB_PATH): void {
+    fs.writeFileSync(dbPath, JSON.stringify(newsletters, null, 2), 'utf-8');
 }
 
 // ── Query functions ──
@@ -76,8 +87,26 @@ export function getNewsletters(options?: {
     page?: number;
     status?: string;
     sort?: 'newest' | 'oldest';
+    publication?: string;
 }): { data: Newsletter[]; total: number; page: number } {
-    let newsletters = readDB();
+    // If a specific publication is requested, read from the right DB
+    let newsletters: Newsletter[];
+    
+    if (options?.publication === 'the-catalyst') {
+        newsletters = readDB(CATALYST_DB_PATH);
+    } else if (options?.publication === 'the-lab') {
+        newsletters = readDB(LAB_DB_PATH);
+    } else if (options?.publication === 'all') {
+        // Merge all three
+        newsletters = [
+            ...readDB(DB_PATH),
+            ...readDB(CATALYST_DB_PATH),
+            ...readDB(LAB_DB_PATH),
+        ];
+    } else {
+        // Default: flagship only
+        newsletters = readDB(DB_PATH);
+    }
 
     const statusFilter = options?.status || 'published';
     if (statusFilter !== 'all') {
@@ -100,9 +129,29 @@ export function getNewsletters(options?: {
     return { data, total, page };
 }
 
+export function getCatalystNewsletters(options?: {
+    limit?: number;
+    sort?: 'newest' | 'oldest';
+}): { data: Newsletter[]; total: number } {
+    return getNewsletters({ ...options, publication: 'the-catalyst' });
+}
+
+export function getLabNewsletters(options?: {
+    limit?: number;
+    sort?: 'newest' | 'oldest';
+}): { data: Newsletter[]; total: number } {
+    return getNewsletters({ ...options, publication: 'the-lab' });
+}
+
 export function getNewsletterBySlug(slug: string): Newsletter | null {
-    const newsletters = readDB();
-    return newsletters.find((n) => n.slug === slug) || null;
+    // Search all databases
+    const allDBs = [DB_PATH, CATALYST_DB_PATH, LAB_DB_PATH];
+    for (const dbPath of allDBs) {
+        const newsletters = readDB(dbPath);
+        const found = newsletters.find((n) => n.slug === slug);
+        if (found) return found;
+    }
+    return null;
 }
 
 // ── Write functions ──
@@ -113,6 +162,7 @@ export function addNewsletter(input: {
     intro: string;
     toc: string[];
     article_slugs: string[];
+    publication?: string;
     sign_off?: string;
     writers?: string;
     banner_image_url?: string;
@@ -124,7 +174,12 @@ export function addNewsletter(input: {
     poll_results?: Newsletter['poll_results'];
     yesterdays_results?: Newsletter['yesterdays_results'];
 }): Newsletter {
-    const newsletters = readDB();
+    // Determine which DB to write to
+    let targetDB = DB_PATH;
+    if (input.publication === 'the-catalyst') targetDB = CATALYST_DB_PATH;
+    else if (input.publication === 'the-lab') targetDB = LAB_DB_PATH;
+
+    const newsletters = readDB(targetDB);
     const slug = input.date
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
@@ -145,6 +200,7 @@ export function addNewsletter(input: {
         published_at: input.published_at || now,
         updated_at: now,
         status: input.status || 'published',
+        ...(input.publication && { publication: input.publication }),
         ...(input.links && { links: input.links }),
         ...(input.games && { games: input.games }),
         ...(input.poll !== undefined && { poll: input.poll }),
@@ -153,6 +209,6 @@ export function addNewsletter(input: {
     };
 
     newsletters.push(newsletter);
-    writeDB(newsletters);
+    writeDB(newsletters, targetDB);
     return newsletter;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { getNewsletters } from '@/lib/newsletters';
+import { getNewsletters, getCatalystNewsletters, getLabNewsletters } from '@/lib/newsletters';
 import { getArticles, getArticleBySlug, getCategorySections } from '@/lib/articles';
 import { HeroSection } from '@/components/hero-section';
 import { FooterNew } from '@/components/footer-new';
@@ -22,6 +22,29 @@ function ThumbnailOverlay() {
 export default async function HomePage() {
   // ── TOP SECTION: Newsletters ──
   const { data: newsletters } = getNewsletters({ limit: 8, sort: 'newest' });
+
+  // ── CHILD NEWSLETTERS (edition-level, not story-level) ──
+  const { data: catalystNLs } = getCatalystNewsletters({ limit: 5, sort: 'newest' });
+  const { data: labNLs } = getLabNewsletters({ limit: 5, sort: 'newest' });
+
+  // Each edition is one item — use the newsletter's own thumbnail + title
+  const buildEditionItems = (nls: typeof catalystNLs) => nls.map(nl => ({
+    id: nl.id,
+    slug: nl.slug,
+    title: nl.title,
+    thumbnail_url: nl.thumbnail_url || nl.stories?.[0]?.thumbnail_url || '',
+    linkPrefix: '/newsletter',
+    published_at: nl.published_at || '',
+    toc: nl.toc,
+    headlines: nl.toc,
+  }));
+
+  const catalystEditions = buildEditionItems(catalystNLs);
+  const labEditions = buildEditionItems(labNLs);
+  const featuredCatalyst = catalystEditions[0];
+  const recentCatalyst = catalystEditions.slice(1, 5);
+  const featuredLab = labEditions[0];
+  const recentLab = labEditions.slice(1, 5);
 
   // Build newsletter display items using article headlines
   const newsletterItems = newsletters.map(nl => {
@@ -470,46 +493,98 @@ export default async function HomePage() {
           </div>
           <div className="border-t border-[#1b1b1b]/25 mb-6"></div>
 
-          {/* Placeholder 5-grid */}
-          <div className="hidden md:grid md:grid-cols-[1fr_1fr] gap-8">
-            <div className="border-r border-[#1b1b1b]/25 pr-8">
-              <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-4"></div>
-              <h3 className="font-bold font-times leading-tight text-[#1b1b1b]/30 mb-2" style={{ fontSize: '36px' }}>How Stripe rebuilt their entire stack with AI agents</h3>
-              <p className="text-[#1b1b1b]/20 text-sm font-inter">Placeholder. Launching soon.</p>
-            </div>
-            <div className="flex gap-6">
-              <div className="flex-1 border-r border-[#1b1b1b]/25 pr-6 space-y-0">
-                <div className="pb-4 border-b border-[#1b1b1b]/25">
-                  <div className="aspect-video bg-[#1b1b1b]/5 mb-3"></div>
-                  <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b]/30 line-clamp-2">The AI adoption playbook for SMBs</h3>
-                </div>
-                <div className="pt-4">
-                  <div className="aspect-video bg-[#1b1b1b]/5 mb-3"></div>
-                  <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b]/30 line-clamp-2">Why your competitors are already using AI</h3>
+          {featuredCatalyst ? (
+            <>
+              {/* DESKTOP */}
+              <div className="hidden md:grid md:grid-cols-[1fr_1fr] gap-8">
+                <Link href={`/newsletter/${featuredCatalyst.slug}`} className="group">
+                  <article className="cursor-pointer border-r border-[#1b1b1b]/25 pr-8">
+                    <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-4">
+                      {featuredCatalyst.thumbnail_url && (
+                        <Image src={featuredCatalyst.thumbnail_url} alt={featuredCatalyst.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                      )}
+                      <ThumbnailOverlay />
+                    </div>
+                    <h3 className="font-bold font-times leading-tight text-[#1b1b1b] group-hover:text-accent transition-colors mb-2" style={{ fontSize: '36px' }}>
+                      {featuredCatalyst.title}
+                    </h3>
+                    {featuredCatalyst.toc.length > 1 && (
+                      <div className="space-y-1 mt-2">
+                        {featuredCatalyst.toc.slice(1).map((hl: string, i: number) => (
+                          <p key={i} className="text-[#1b1b1b]/60 text-sm font-inter font-medium leading-snug">
+                            <span className="text-[#5170ff] font-medium">✦</span> {hl}
+                          </p>
+                        ))}
+                      </div>
+                    )}
+                  </article>
+                </Link>
+                <div className="flex gap-6">
+                  <div className="flex-1 border-r border-[#1b1b1b]/25 pr-6 space-y-0">
+                    {recentCatalyst.slice(1, 3).map((item, index) => (
+                      <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
+                        <article className={`cursor-pointer ${index === 0 ? 'pb-4 border-b border-[#1b1b1b]/25' : 'pt-4'}`}>
+                          <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
+                            {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
+                            <ThumbnailOverlay />
+                          </div>
+                          <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-2">{item.title}</h3>
+                        </article>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="flex-1 space-y-0">
+                    {recentCatalyst.slice(3, 5).map((item, index) => (
+                      <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
+                        <article className={`cursor-pointer ${index === 0 ? 'pb-4 border-b border-[#1b1b1b]/25' : 'pt-4'}`}>
+                          <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
+                            {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
+                            <ThumbnailOverlay />
+                          </div>
+                          <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-2">{item.title}</h3>
+                        </article>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
-              <div className="flex-1 space-y-0">
-                <div className="pb-4 border-b border-[#1b1b1b]/25">
-                  <div className="aspect-video bg-[#1b1b1b]/5 mb-3"></div>
-                  <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b]/30 line-clamp-2">From pilot to production in 6 weeks</h3>
-                </div>
-                <div className="pt-4">
-                  <div className="aspect-video bg-[#1b1b1b]/5 mb-3"></div>
-                  <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b]/30 line-clamp-2">The ROI of building with AI first</h3>
+
+              {/* MOBILE */}
+              <div className="md:hidden">
+                <Link href={`/newsletter/${featuredCatalyst.slug}`} className="group">
+                  <article className="cursor-pointer mb-6">
+                    <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-4">
+                      {featuredCatalyst.thumbnail_url && <Image src={featuredCatalyst.thumbnail_url} alt={featuredCatalyst.title} fill className="object-cover" />}
+                      <ThumbnailOverlay />
+                    </div>
+                    <h3 className="font-bold font-times leading-tight text-[#1b1b1b]" style={{ fontSize: '28px' }}>{featuredCatalyst.title}</h3>
+                  </article>
+                </Link>
+                <div className="border-t border-[#1b1b1b]/25 my-6"></div>
+                <div className="space-y-4">
+                  {recentCatalyst.slice(1, 4).map((item, index) => (
+                    <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
+                      <article className={`cursor-pointer flex gap-4 pb-4 ${index !== 0 ? 'pt-4 border-t border-[#1b1b1b]/25' : ''}`}>
+                        <div className="w-20 aspect-square flex-shrink-0 bg-[#1b1b1b]/5 overflow-hidden relative">
+                          {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
+                        </div>
+                        <h3 className="font-bold font-times text-sm leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-3">{item.title}</h3>
+                      </article>
+                    </Link>
+                  ))}
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="md:hidden text-center py-8">
-            <p className="text-[#1b1b1b]/30 text-sm font-inter italic">Launching soon</p>
-          </div>
+            </>
+          ) : (
+            <div className="text-center py-12"><p className="text-[#1b1b1b]/50 text-lg font-inter">No editions yet</p></div>
+          )}
 
           <div className="border-t border-[#1b1b1b]/25 my-4 mt-10"></div>
           <div className="text-center">
-            <a href="/newsletter?pub=The+Catalyst" className="inline-flex items-center gap-2 transition-colors font-semibold font-inter uppercase" style={{ color: '#1b1b1b' }}>
+            <Link href="/newsletter?pub=The+Catalyst" className="inline-flex items-center gap-2 transition-colors font-semibold font-inter uppercase" style={{ color: '#1b1b1b' }}>
               View all editions
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -523,45 +598,98 @@ export default async function HomePage() {
           </div>
           <div className="border-t border-[#1b1b1b]/25 mb-6"></div>
 
-          <div className="hidden md:grid md:grid-cols-[1fr_1fr] gap-8">
-            <div className="border-r border-[#1b1b1b]/25 pr-8">
-              <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-4"></div>
-              <h3 className="font-bold font-times leading-tight text-[#1b1b1b]/30 mb-2" style={{ fontSize: '36px' }}>We tested 50 AI coding tools so you don&apos;t have to</h3>
-              <p className="text-[#1b1b1b]/20 text-sm font-inter">Placeholder. Launching soon.</p>
-            </div>
-            <div className="flex gap-6">
-              <div className="flex-1 border-r border-[#1b1b1b]/25 pr-6 space-y-0">
-                <div className="pb-4 border-b border-[#1b1b1b]/25">
-                  <div className="aspect-video bg-[#1b1b1b]/5 mb-3"></div>
-                  <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b]/30 line-clamp-2">The best free AI tools of April 2026</h3>
-                </div>
-                <div className="pt-4">
-                  <div className="aspect-video bg-[#1b1b1b]/5 mb-3"></div>
-                  <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b]/30 line-clamp-2">Is Cursor still worth your money?</h3>
+          {featuredLab ? (
+            <>
+              {/* DESKTOP */}
+              <div className="hidden md:grid md:grid-cols-[1fr_1fr] gap-8">
+                <Link href={`/newsletter/${featuredLab.slug}`} className="group">
+                  <article className="cursor-pointer border-r border-[#1b1b1b]/25 pr-8">
+                    <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-4">
+                      {featuredLab.thumbnail_url && (
+                        <Image src={featuredLab.thumbnail_url} alt={featuredLab.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                      )}
+                      <ThumbnailOverlay />
+                    </div>
+                    <h3 className="font-bold font-times leading-tight text-[#1b1b1b] group-hover:text-accent transition-colors mb-2" style={{ fontSize: '36px' }}>
+                      {featuredLab.title}
+                    </h3>
+                    {featuredLab.toc.length > 1 && (
+                      <div className="space-y-1 mt-2">
+                        {featuredLab.toc.slice(1).map((hl: string, i: number) => (
+                          <p key={i} className="text-[#1b1b1b]/60 text-sm font-inter font-medium leading-snug">
+                            <span className="text-[#5170ff] font-medium">✦</span> {hl}
+                          </p>
+                        ))}
+                      </div>
+                    )}
+                  </article>
+                </Link>
+                <div className="flex gap-6">
+                  <div className="flex-1 border-r border-[#1b1b1b]/25 pr-6 space-y-0">
+                    {recentLab.slice(1, 3).map((item, index) => (
+                      <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
+                        <article className={`cursor-pointer ${index === 0 ? 'pb-4 border-b border-[#1b1b1b]/25' : 'pt-4'}`}>
+                          <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
+                            {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
+                            <ThumbnailOverlay />
+                          </div>
+                          <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-2">{item.title}</h3>
+                        </article>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="flex-1 space-y-0">
+                    {recentLab.slice(3, 5).map((item, index) => (
+                      <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
+                        <article className={`cursor-pointer ${index === 0 ? 'pb-4 border-b border-[#1b1b1b]/25' : 'pt-4'}`}>
+                          <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
+                            {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
+                            <ThumbnailOverlay />
+                          </div>
+                          <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-2">{item.title}</h3>
+                        </article>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
-              <div className="flex-1 space-y-0">
-                <div className="pb-4 border-b border-[#1b1b1b]/25">
-                  <div className="aspect-video bg-[#1b1b1b]/5 mb-3"></div>
-                  <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b]/30 line-clamp-2">Notion AI vs. Obsidian AI: the real comparison</h3>
-                </div>
-                <div className="pt-4">
-                  <div className="aspect-video bg-[#1b1b1b]/5 mb-3"></div>
-                  <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b]/30 line-clamp-2">5 AI tools that actually save you time</h3>
+
+              {/* MOBILE */}
+              <div className="md:hidden">
+                <Link href={`/newsletter/${featuredLab.slug}`} className="group">
+                  <article className="cursor-pointer mb-6">
+                    <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-4">
+                      {featuredLab.thumbnail_url && <Image src={featuredLab.thumbnail_url} alt={featuredLab.title} fill className="object-cover" />}
+                      <ThumbnailOverlay />
+                    </div>
+                    <h3 className="font-bold font-times leading-tight text-[#1b1b1b]" style={{ fontSize: '28px' }}>{featuredLab.title}</h3>
+                  </article>
+                </Link>
+                <div className="border-t border-[#1b1b1b]/25 my-6"></div>
+                <div className="space-y-4">
+                  {recentLab.slice(1, 4).map((item, index) => (
+                    <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
+                      <article className={`cursor-pointer flex gap-4 pb-4 ${index !== 0 ? 'pt-4 border-t border-[#1b1b1b]/25' : ''}`}>
+                        <div className="w-20 aspect-square flex-shrink-0 bg-[#1b1b1b]/5 overflow-hidden relative">
+                          {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
+                        </div>
+                        <h3 className="font-bold font-times text-sm leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-3">{item.title}</h3>
+                      </article>
+                    </Link>
+                  ))}
                 </div>
               </div>
-            </div>
-          </div>
-          <div className="md:hidden text-center py-8">
-            <p className="text-[#1b1b1b]/30 text-sm font-inter italic">Launching soon</p>
-          </div>
+            </>
+          ) : (
+            <div className="text-center py-12"><p className="text-[#1b1b1b]/50 text-lg font-inter">No editions yet</p></div>
+          )}
 
           <div className="border-t border-[#1b1b1b]/25 my-4 mt-10"></div>
           <div className="text-center">
-            <a href="/newsletter?pub=The+Lab" className="inline-flex items-center gap-2 transition-colors font-semibold font-inter uppercase" style={{ color: '#1b1b1b' }}>
+            <Link href="/newsletter?pub=The+Lab" className="inline-flex items-center gap-2 transition-colors font-semibold font-inter uppercase" style={{ color: '#1b1b1b' }}>
               View all editions
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-            </a>
+            </Link>
           </div>
         </div>
       </section>

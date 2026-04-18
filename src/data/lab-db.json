@@ -1,0 +1,147 @@
+[
+  {
+    "id": "lab-april-08-2026",
+    "slug": "lab-april-08-2026",
+    "publication": "the-lab",
+    "title": "Gamma Made 400 Million Presentations. Are Any of Them Good?",
+    "date": "April 08, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to The Lab.\n\nToday we're testing an AI that turns one sentence into a full slide deck to see if speed actually equals quality.\n\nWe're also asking whether the most popular chatbot subscription in the world is still worth twenty bucks after some rough updates.\n\nAnd we're checking in on a search engine that says it cites every answer, because lately those citations have been getting a little creative.",
+    "toc": [
+      "Gamma Made 400 Million Presentations. Are Any of Them Good?",
+      "Is ChatGPT Plus Still Worth $20/Month in 2026? We Checked the Receipts.",
+      "Perplexity Was Everyone's Favorite AI Tool. Then It Started Lying."
+    ],
+    "article_slugs": [],
+    "stories": [
+      {
+        "title": "Gamma Made 400 Million Presentations. Are Any of Them Good?",
+        "category": "DESIGN",
+        "thumbnail_url": "/thumbnails/gamma-made-400-million-presentations.jpeg",
+        "content": "<p>Gamma is an AI tool that turns a sentence into a full slide deck in about 60 seconds. You type something like \"pitch deck for a sustainable fashion startup,\" and it generates a complete presentation with text, images, layouts, and a color theme. Over <a href=\"https://max-productive.ai/ai-tools/gamma/\">70 million people</a> use it, and they've collectively created more than 400 million pieces of content on the platform. The company hit $100 million in annual revenue and a $2.1 billion valuation with just 52 employees.</p>\n<p>So the product clearly resonates. And when you use it, you immediately understand why. The speed is real. A <a href=\"https://www.gamsgo.com/blog/gamma-app-review\">10-day hands-on test</a> found that a 10-page Netflix brand analysis draft was ready in under three minutes. You don't drag and drop anything. You describe what you want and Gamma builds it. For anyone who has ever stared at a blank PowerPoint slide for 20 minutes trying to get the alignment right, this feels like cheating.</p>\n<p>The AI Agent feature is genuinely impressive. One reviewer <a href=\"https://www.aitoolssme.com/review/gamma\">said</a> they uploaded brand guidelines and the agent independently adjusted the entire deck to match their color codes and fonts in seconds. The templates are clean and modern, collaboration works like Google Docs, and you can embed videos, charts, and live web content directly into slides.</p>\n<p>The problems start when you try to take your work outside of Gamma's ecosystem. The tool uses a vertical, card-based format instead of traditional 16:9 slides, so when you export to PowerPoint, things break. Text shifts, layouts collapse, and you end up spending more time fixing than presenting. One reviewer <a href=\"https://getalai.com/blog/gamma-alternatives\">put it bluntly</a>: \"The more I used Gamma, the more cracks started to show.\" Trustpilot reviews sit at <a href=\"https://plusai.com/blog/gamma-and-other-ai-presentation-tools\">2.0 stars</a>, with complaints about image generation failures and design inconsistencies dragging the score down even as Futurepedia users give it five stars for speed.</p>\n<p>Customization is the other sticking point. You can't set precise font sizes. You're locked into Gamma's grid system. If you make a lot of decks, you'll notice <a href=\"https://plusai.com/blog/gamma-and-other-ai-presentation-tools\">the same layouts repeating</a> in different colors. For creative work or strict brand standards, it feels too basic.</p>\n<p>The free plan gives you 400 credits, which gets you roughly 10 presentations. After that, Plus runs $8/month for unlimited AI generation and Pro is $15/month for custom branding and analytics. Compared to Beautiful.ai at $12/month with no free plan or Canva Pro at $12/month, Gamma's entry price is competitive. If you need something that works natively inside PowerPoint or Google Slides, Claude can help you evaluate tools like Plus AI that skip the export headache entirely.</p>\n<h2>The Verdict</h2>\n<p>Gamma is the fastest way to go from \"I have a meeting in 30 minutes\" to \"I have a presentation for that meeting.\" If your workflow lives in the browser and you share decks via links rather than .pptx files, it's worth the $8/month without question. If you regularly need to hand someone an editable PowerPoint that looks exactly like what you built, Gamma will frustrate you. The tool is built for speed and good-enough design, not precision. Know which one you need before you subscribe.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed Gamma AI ($8-15/month) and found that it's\nexcellent for fast presentation drafts and browser-based sharing, but\nfrustrating if you need clean PowerPoint exports or pixel-level design\ncontrol. Best for people who value speed over precision.\n\nHere are the key takeaways:\n- Generates complete presentations in under 60 seconds from a simple prompt\n- Exports to PowerPoint frequently break layouts and require manual cleanup\n- Free plan gives 400 credits (roughly 10 presentations) to test it\n- If you need native PowerPoint or Google Slides output, consider Plus AI\n  or using Claude to draft content directly\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Gamma is right for you. Could I get a little more context on:\n1. What kind of presentations do you make most often and how frequently\n   do you need to create them?\n2. How do you currently share your presentations — do you send\n   PowerPoint files, present from Google Slides, or share links?\"</code></pre>"
+      },
+      {
+        "title": "Is ChatGPT Plus Still Worth $20/Month in 2026? We Checked the Receipts.",
+        "category": "ASSISTANT",
+        "thumbnail_url": "/thumbnails/is-chatgpt-plus-still-worth-20-a-month.jpeg",
+        "content": "<p>ChatGPT Plus gives you $20/month worth of faster responses, higher message limits, and access to OpenAI's latest models the day they drop. The free tier caps you at about <a href=\"https://zapier.com/blog/chatgpt-plus/\">10 messages every five hours</a> before it downgrades you to a weaker mini model. Plus bumps that to roughly <a href=\"https://zapier.com/blog/chatgpt-plus/\">160 messages every three hours</a>, which is about 16 times more throughput. If you've ever hit a wall mid-project and gotten the \"try again later\" screen, you already know why that matters.</p>\n<p>The feature list is genuinely long. You get Deep Research for pulling together cited reports, custom GPTs you can train on your own workflows, Advanced Voice Mode for hands-free conversations, image generation that doesn't make you wait 30 minutes, and priority access when servers get slammed. One Reddit user who's been on Plus for three months <a href=\"https://www.reddit.com/r/chatgptplus/comments/1r2vw74/is_chatgpt_plus_worth_it_in_2026_my_honest_take/\">said</a> it replaced a chunk of their Google searches and that prompt quality matters way more than they expected. That tracks with what most people report. It's better at restructuring your messy thinking than generating something brilliant from scratch.</p>\n<p>The problem is that 2026 ChatGPT doesn't feel like 2024 ChatGPT. OpenAI retired a bunch of popular models earlier this year and consolidated everything into GPT-5 variants, and the backlash was loud enough that <a href=\"https://economictimes.com/news/international/us/thousands-trash-gpt-5-on-reddit-saying-chatgpts-big-update-is-horrible/articleshow/123192815.cms\">thousands of Reddit users</a> called the update \"horrible.\" People lost access to models they liked, got stuck with weekly thinking caps, and noticed responses feeling more generic and cautious than before. One common complaint is that coding requests that used to return complete implementations now come back as skeleton code with comments like \"add your logic here.\" OpenAI actually had to <a href=\"https://www.techradar.com/ai-platforms-assistants/chatgpt/chatgpt-users-are-still-fuming-about-gpt-5s-downgrades-here-are-the-4-biggest-complaints\">walk back some of the changes</a> after the backlash.</p>\n<p>Then there's the new $8 ChatGPT Go tier sitting below Plus, which is fine for lighter use but now <a href=\"https://www.glbgpt.com/hub/chatgpt-go-vs-plus-is-the-5-plan-worth-it-or-a-trap-2025-review/\">comes with ads</a>. Paying eight bucks a month to see sponsored content in your AI conversations is a tough sell.</p>\n<p>For coding specifically, <a href=\"https://playcode.io/blog/chatgpt-vs-claude-vs-gemini-coding-2026\">Claude Pro matches Plus at the same $20 price point</a> and consistently scores higher on coding benchmarks. For research, Perplexity Pro's real-time search and source citations are hard to beat. ChatGPT Plus is still the strongest generalist option, but it's no longer the only serious one.</p>\n<h2>The Verdict</h2>\n<p>If you use ChatGPT multiple times a day for work, Plus is worth renewing. The message limits alone justify it, and features like Deep Research and custom GPTs add real value once you actually learn to use them. If you pop in a few times a week for quick questions, the free tier is fine and you should save your money. And if your work is mostly writing code or doing heavy research, try Claude Pro or Perplexity Pro for a month before defaulting to Plus. The days of ChatGPT being the obvious choice are over, but for daily general-purpose use, it still holds up.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed ChatGPT Plus ($20/month) and found that it's\nstill worth it for daily professional use but no longer the obvious\ndefault. The free tier works fine for casual users, and competitors\nlike Claude Pro and Perplexity Pro are stronger for coding and research.\n\nHere are the key takeaways:\n- Best for people who use AI multiple times a day for work\n- Message limits (16x more than free) and Deep Research are the biggest draws\n- Recent model changes frustrated power users with quality regression\n- Claude Pro is better for coding, Perplexity Pro is better for research\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether ChatGPT Plus is right for you. Could I get a little more\ncontext on:\n1. What do you use AI for day to day, and how often are you running\n   into limits or frustrations with what you're currently using?\n2. What's your current setup right now, whether that's the free tier\n   of ChatGPT, another tool, or nothing at all?\"</code></pre>"
+      },
+      {
+        "title": "Perplexity Was Everyone's Favorite AI Tool. Then It Started Lying.",
+        "category": "SEARCH",
+        "thumbnail_url": "/thumbnails/perplexity-was-everyones-favorite-ai-tool.jpeg",
+        "content": "<p>Perplexity Pro is a $20/month AI search tool that pulls live answers from the web and cites its sources. That's the pitch, and for a while it was a really good one. You ask a question, you get a sourced answer with links, and you move on with your day. No tab-hopping, no scrolling through ten blue links. It felt like what Google should have become.</p>\n<p>The Pro tier gets you access to multiple AI models (including GPT-5.2, Claude 4.6, and Gemini 3.1 Pro) through something called <a href=\"https://www.perplexity.ai/hub/blog/model-council\">Model Council</a>, which routes your question to whichever model handles it best. You also get unlimited Deep Research, which breaks complex questions into sub-questions and runs multiple searches before stitching together a structured report. Plus file uploads, so you can drop in a PDF and ask questions about it. On paper, it's the most complete research tool in the $20/month tier.</p>\n<p>And for quick research it genuinely delivers. <a href=\"https://learn.g2.com/perplexity-ai-review\">G2 reviewers</a> rate it in the high 80s and love the model flexibility. One reviewer <a href=\"https://learn.g2.com/perplexity-ai-review\">put it</a> as using \"Claude for writing and GPT for logic, all within the same interface.\" People doing five or more research tasks a day tend to swear by it.</p>\n<p>The problem is the thing Perplexity is supposed to be best at. Those citations, the whole reason you'd trust it over a regular chatbot, aren't always accurate. Sources sometimes don't say what Perplexity claims they say, or they link to pages that don't support the answer at all. One YouTube creator <a href=\"https://www.youtube.com/watch?v=kxZ0s-8C8R0\">found</a> that \"big unannounced changes\" quietly degraded Pro's reliability. When your entire value proposition is \"we show our work,\" getting the work wrong is a real problem. Perplexity also faces <a href=\"https://www.bbc.com/news/articles/copyright-lawsuit-perplexity\">copyright lawsuits</a> from the BBC, Dow Jones, and the New York Times, which could affect how it handles sourced content going forward.</p>\n<p>There's also the <a href=\"https://flowith.io/blog/is-perplexity-pro-worth-it-models-features-breakdown\">free tier question</a>. It's surprisingly capable for casual use. You get basic AI search with citations, limited Deep Research queries, and access to the Comet browser. If you're asking a few questions a day, you probably don't need Pro.</p>\n<p>For anyone doing serious analytical work where accuracy matters more than speed, Claude Pro is the better $20/month spend. It can read an entire 500-page document in one conversation, its reasoning is stronger on complex problems, and it doesn't pretend to cite sources it hasn't actually read. You lose the live web search, but you gain a tool you can actually trust with high-stakes work.</p>\n<h2>The Verdict</h2>\n<p>Perplexity Pro is worth it if you do research-heavy work every day and you're comfortable spot-checking its citations. It's the fastest way to get sourced answers on anything from market trends to technical comparisons, and the Model Council feature is legitimately clever. Skip it if you only search a few times a day (the free tier is fine) or if you need rock-solid accuracy for professional work where a wrong citation could burn you. For that, Claude Pro is the safer bet.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed Perplexity Pro ($20/month) and found that it's\nexcellent for daily research-heavy work but has a growing citation\naccuracy problem. The free tier handles casual use well, and Claude Pro\nis a better fit for high-stakes work where you can't afford wrong sources.\n\nHere are the key takeaways:\n- Best for people who do 5+ research tasks per day and need sourced answers fast\n- The citation accuracy issue undermines its core value proposition for professional use\n- The free tier is genuinely good enough for casual research\n- Claude Pro is the better alternative for analytical work requiring trust and precision\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out whether\nPerplexity Pro is right for you. Could I get a little more context on:\n1. What kind of research do you do day to day, and how often do you\n   need sourced answers versus just general reasoning or analysis?\n2. What are you currently using for research, and what's frustrating\n   you about it?\"</code></pre>"
+      }
+    ],
+    "sign_off": "That's the Lab for this week. If a tool in here saved you time or wasted it, tell us — reply directly.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-lab-2026-04-08.png",
+    "thumbnail_url": "/thumbnails/gamma-made-400-million-presentations.jpeg",
+    "published_at": "2026-04-08T13:00:00.000Z",
+    "updated_at": "2026-04-14T05:20:52.905Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Anthropic says its newest AI model is too dangerous to release",
+          "rest": " — Claude Mythos found thousands of critical security flaws in every major operating system and browser, so the company is only letting Apple, Google, and Microsoft use it behind closed doors",
+          "url": "https://www.businessinsider.com/anthropic-mythos-latest-ai-model-too-powerful-to-be-released-2026-4"
+        },
+        {
+          "link_text": "Elon Musk wants a judge to fire Sam Altman",
+          "rest": " as CEO of OpenAI as part of their fraud trial, which starts April 27",
+          "url": "https://www.cnbc.com/2026/04/07/elon-musk-seeks-ouster-of-openai-ceo-sam-altman-as-part-of-lawsuit.html"
+        },
+        {
+          "link_text": "OpenAI raised $122 billion in a single funding round",
+          "rest": ", valuing the company at $852 billion — Amazon, Nvidia, and SoftBank led the deal",
+          "url": "https://datacenter.news/story/openai-raises-usd-122-billion-in-record-ai-funding"
+        },
+        {
+          "link_text": "Google donates $30 million to mental health hotlines",
+          "rest": " and updates Gemini's crisis responses after a Florida father sued over his son's suicide following conversations with the chatbot",
+          "url": "https://www.miamiherald.com/news/local/article315334233.html"
+        },
+        {
+          "link_text": "Anthropic's revenue just tripled to $30 billion",
+          "rest": " and it signed a deal with Google for 3.5 gigawatts of compute — enough to power a small city",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/907810/anthropic-has-signed-a-big-ai-infrastructure-deal-with-google-and-broadcom"
+        },
+        {
+          "link_text": "Microsoft and Chevron are building a $7 billion power plant",
+          "rest": " in West Texas dedicated to a single AI data center campus",
+          "url": "https://www.bicmagazine.com/industry/powergen/microsoft-chevron-7b-ai-power-deal-texas/"
+        },
+        {
+          "link_text": "Planet Labs successfully ran AI on a satellite",
+          "rest": " orbiting 500km above Australia, detecting objects on Earth in real time from space",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/planet-successfully-runs-ai-space-130400274.html"
+        },
+        {
+          "link_text": "A bipartisan bill would force OpenAI, Anthropic, and Google",
+          "rest": " to publicly disclose how they train their AI models",
+          "url": "https://news.bloomberglaw.com/artificial-intelligence/ai-transparency-requirements-emerge-as-congress-crafts-framework"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Littlebird",
+          "desc": "Think of it as an AI that actually knows what you're working on. It watches your screen, takes notes in your meetings, and remembers all of it. So when you forget where you saw something, you just ask.",
+          "url": "https://partners.dub.co/programs/littlebird",
+          "sponsored": true
+        },
+        {
+          "name": "Chronicle",
+          "desc": "The AI presentation maker that people are switching to because the slides actually look like a designer made them",
+          "url": "https://chr.so/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "GitHub Dependabot",
+          "desc": "You can now assign security vulnerabilities in your code directly to AI agents like Copilot, Claude, or Codex, and they'll analyze the issue and open a pull request with a proposed fix",
+          "url": "https://github.blog/changelog/2026-04-07-dependabot-alerts-are-now-assignable-to-ai-agents-for-remediation",
+          "sponsored": false
+        },
+        {
+          "name": "Anthropic Mythos",
+          "desc": "Anthropic's new frontier model has already found thousands of zero-day security vulnerabilities — some hidden for over a decade — as part of a cybersecurity initiative with 12 partner organizations",
+          "url": "https://techcrunch.com/2026/04/07/anthropic-mythos-ai-model-preview-security/",
+          "sponsored": false
+        },
+        {
+          "name": "Lucid Claude Connector",
+          "desc": "You can now search, summarize, and generate Lucid diagrams directly inside Claude — or turn a complex Claude conversation into an editable visual diagram with one ask",
+          "url": "https://www.prnewswire.com/news-releases/lucid-software-launches-lucid-claude-connector-bringing-visual-intelligence-into-ai-workflows-302735875.html",
+          "sponsored": false
+        },
+        {
+          "name": "Google Gemini",
+          "desc": "Google updated Gemini to detect when a conversation signals a mental health crisis and now surfaces one-touch access to hotline resources for calling, chatting, or texting",
+          "url": "https://9to5google.com/2026/04/07/gemini-mental-health-updates/",
+          "sponsored": false
+        },
+        {
+          "name": "Beaver AI",
+          "desc": "A new AI meeting tool that gives you real-time transcription, agenda tracking, and action items without ever recording, storing, or retaining a single second of audio or video",
+          "url": "https://www.prweb.com/releases/the-first-ai-meeting-platform-that-never-records-you---beaver-ai-launches-magic-whiteboard-302734394.html",
+          "sponsored": false
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "6e7401ab-ced3-4b85-93f1-2792ab14b3a3",
+      "question": "What kind of AI tools do you want to see more of?",
+      "options": [
+        "Assistant",
+        "Search",
+        "Writing",
+        "Design",
+        "Productivity",
+        "Other"
+      ]
+    },
+    "poll_results": null,
+    "yesterdays_results": null
+  }
+]

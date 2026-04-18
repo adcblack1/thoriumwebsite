@@ -7,16 +7,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import WireframeGlobe from '@/components/WireframeGlobe';
 import { Navigation } from '@/components/navigation';
 import { FooterNew } from '@/components/footer-new';
-import { trackLead } from '@/lib/meta-pixel';
+import { trackLead, trackQualifiedLead } from '@/lib/meta-pixel';
 
 // Sponsored tools shown after survey
 const SPONSORED_TOOLS = [
   {
-    name: 'Chronicle',
+    name: 'Gamma',
     primary: 'Professional presentations with a prompt.',
-    subtext: 'Chronicle is Loveable for slide decks. Turn your ideas into polished presentations in seconds.',
-    url: 'https://chr.so/thorium-valley',
-    image: '/thumbnails/chronicle.jpg',
+    subtext: 'Gamma is Loveable for slide decks. Turn your ideas into polished presentations in seconds.',
+    url: 'https://try.gamma.app/f37ycs1r79mx',
+    image: '/images/gamma.png',
     accent: '#F59E0B',
   },
   {
@@ -29,18 +29,15 @@ const SPONSORED_TOOLS = [
     accent: '#4A9B8E',
   },
   {
-    name: 'Galaxy.ai',
-    primary: 'Use one subscription for every AI.',
-    subtext: 'Galaxy.ai lets you use Claude, Perplexity, Gemini, ChatGPT all under a single subscription.',
-    url: 'https://try.galaxy.ai/thorium-valley',
-    image: '/thumbnails/galaxy.png',
+    name: 'Clico',
+    primary: 'Stop tab-switching to ChatGPT.',
+    subtext: 'Clico is a free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type. No more copying your email into another tab and pasting the answer back.',
+    url: 'https://tryclico.link/thorium-valley',
+    image: '/images/clico-thumbnail.png',
     accent: '#7C3AED',
   },
 ];
 
-// ============================================
-// FLOW CONFIGURATION
-// ============================================
 
 const GOALS = [
   'Implement AI at my company',
@@ -100,29 +97,68 @@ const COMPANY_SIZES = [
   '1,000+',
 ];
 
-const AI_TOOLS = [
-  'ChatGPT', 'Claude', 'Gemini', 'Microsoft Copilot', 'Perplexity',
-  'Cursor', 'Notion AI', 'Midjourney', 'Zapier', 'Make',
-  'n8n', 'NotebookLM', 'HeyGen', 'Runway', 'ElevenLabs',
-  'Canva AI', 'Lovable', 'None yet',
+const AI_TOOLS: { name: string; logo: string | null }[] = [
+  { name: 'ChatGPT', logo: '/images/tools/chatgpt.webp' },
+  { name: 'Claude', logo: '/images/tools/claude.svg' },
+  { name: 'Gemini', logo: '/images/tools/gemini.webp' },
+  { name: 'Microsoft Copilot', logo: '/images/tools/copilot.png' },
+  { name: 'Perplexity', logo: '/images/tools/perplxity.png' },
+  { name: 'Midjourney', logo: '/images/tools/midjourney.svg' },
+  { name: 'Zapier', logo: '/images/tools/zapier.png' },
+  { name: 'n8n', logo: '/images/tools/n8n.webp' },
+  { name: 'Make', logo: '/images/tools/make.png' },
+  { name: 'NotebookLM', logo: '/images/tools/notebook.png' },
+  { name: 'Cursor', logo: '/images/tools/cursor.png' },
+  { name: 'HeyGen', logo: '/images/tools/heygen.png' },
+  { name: 'Runway', logo: '/images/tools/runway.png' },
+  { name: 'Notion AI', logo: '/images/tools/notion.png' },
+  { name: 'ElevenLabs', logo: '/images/tools/elevenlabs.webp' },
+  { name: 'Canva AI', logo: '/images/tools/canva.png' },
+  { name: 'Lovable', logo: '/images/tools/loveable.png' },
+  { name: 'None yet', logo: null },
 ];
 
 const CHILD_NEWSLETTERS = [
   {
+    id: 'thorium-valley',
+    name: 'Thorium Valley',
+    logo: '/images/tv-logo-white.png',
+    description: 'Our flagship daily newsletter covering everything happening in AI.',
+    frequency: 'Daily',
+    isPartner: false,
+  },
+  {
     id: 'the-catalyst',
     name: 'The Catalyst',
-    logo: '/images/catalyst-logo-dark.png',
+    logo: '/images/catalyst-logo.png',
     description: 'How businesses and people are implementing AI and how to do it yourself.',
     frequency: 'Biweekly',
+    isPartner: false,
   },
   {
     id: 'the-lab',
     name: 'The Lab',
-    logo: '/images/lab-logo-dark.png',
+    logo: '/images/lab-logo.png',
     description: 'Interesting and useful AI tools and whether they\'re worth trying out.',
     frequency: 'Biweekly',
+    isPartner: false,
   },
-
+  {
+    id: 'tldr',
+    name: 'TLDR',
+    logo: '/images/tldr-logo.jpg',
+    description: 'The free daily newsletter with links and TLDRs of the most interesting stories in startups, tech, and programming.',
+    frequency: 'Daily',
+    isPartner: true,
+  },
+  {
+    id: 'cautious-optimism',
+    name: 'Cautious Optimism',
+    logo: '/images/cautious-optimism-logo.png',
+    description: 'A newsletter on tech, business, and power. Modestly upbeat.',
+    frequency: 'Weekly',
+    isPartner: true,
+  },
 ];
 
 // ============================================
@@ -154,6 +190,14 @@ export default function SubscribePage() {
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = back
   const [autoSubmitted, setAutoSubmitted] = useState(false);
 
+  // ── UTM params captured on arrival ──
+  const [utmParams, setUtmParams] = useState<{
+    utm_source?: string;
+    utm_medium?: string;
+    utm_campaign?: string;
+    utm_content?: string;
+  }>({});
+
   const [formData, setFormData] = useState<FormData>({
     email: '',
     first_name: '',
@@ -163,8 +207,22 @@ export default function SubscribePage() {
     industry: '',
     company_size: '',
     ai_tools: [],
-    child_newsletters: ['thorium-valley', 'the-catalyst', 'the-lab'],
+    child_newsletters: ['thorium-valley', 'the-catalyst', 'the-lab', 'tldr', 'cautious-optimism'],
   });
+
+  // ── Capture UTM params on mount ──
+  useEffect(() => {
+    const utm: typeof utmParams = {};
+    const src = searchParams.get('utm_source');
+    const med = searchParams.get('utm_medium');
+    const camp = searchParams.get('utm_campaign');
+    const cont = searchParams.get('utm_content');
+    if (src) utm.utm_source = src;
+    if (med) utm.utm_medium = med;
+    if (camp) utm.utm_campaign = camp;
+    if (cont) utm.utm_content = cont;
+    if (Object.keys(utm).length > 0) setUtmParams(utm);
+  }, [searchParams]);
 
   // ── Restore from localStorage on mount ──
   // Only restore if arriving via ?step= (from a subscribe form).
@@ -237,7 +295,7 @@ export default function SubscribePage() {
           industry: existing.industry || '',
           company_size: existing.company_size || '',
           ai_tools: existing.ai_tools || [],
-          child_newsletters: existing.child_newsletters || ['thorium-valley', 'the-catalyst', 'the-lab'],
+          child_newsletters: existing.child_newsletters || ['thorium-valley', 'the-catalyst', 'the-lab', 'tldr', 'cautious-optimism'],
         };
         setFormData(restored);
 
@@ -269,7 +327,10 @@ export default function SubscribePage() {
     await fetch('/api/subscribe/complete', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ subscriber_id: subscriberId }),
+      body: JSON.stringify({
+        subscriber_id: subscriberId,
+        ...utmParams,
+      }),
     });
     // Clear saved progress on completion
     try { localStorage.removeItem('tv_subscribe_progress'); } catch {}
@@ -289,10 +350,11 @@ export default function SubscribePage() {
         const result = await createSubscriber();
         if (result === 'resumed') { setLoading(false); return; }
         if (!result) { setLoading(false); return; }
-        trackLead();
+        trackLead(); // General tracking — do NOT optimize campaigns toward this
       } else if (step === 2) {
         await updateSubscriber({ child_newsletters: formData.child_newsletters });
       } else if (step === 3) {
+        if (!formData.first_name.trim()) { setError('Please enter your name'); setLoading(false); return; }
         await updateSubscriber({ first_name: formData.first_name });
       } else if (step === 4) {
         if (!formData.main_goal) { setError('Please select a goal'); setLoading(false); return; }
@@ -318,6 +380,7 @@ export default function SubscribePage() {
           company_size: formData.company_size,
         });
       } else if (step === 7) {
+        if (formData.ai_tools.length === 0) { setError('Please select at least one option'); setLoading(false); return; }
         await updateSubscriber({ ai_tools: formData.ai_tools });
       } else if (step >= 8 && step <= 10) {
         // Loading/tools steps — no data to save
@@ -332,9 +395,17 @@ export default function SubscribePage() {
     }
     setLoading(false);
 
-    // Trigger beehiiv at step 8 (confirmation)
+    // Trigger beehiiv + QualifiedLead at step 7→8 transition (after all survey data collected)
     if (step === 7) {
       completeSubscription();
+      // Fire QualifiedLead ONLY if ICP match (not Student, not Just me)
+      trackQualifiedLead({
+        seniority: formData.seniority,
+        company_size: formData.company_size,
+        main_goal: formData.main_goal,
+        job_function: formData.job_function,
+        industry: formData.industry,
+      });
     }
   };
 
@@ -347,7 +418,7 @@ export default function SubscribePage() {
   // Auto-advance for loading steps (8 and 10)
   useEffect(() => {
     if (step === 8) {
-      const delay = 3000 + Math.random() * 2000; // 3-5 seconds
+      const delay = 3000 + Math.random() * 2000;
       const timer = setTimeout(() => {
         setDirection(1);
         setStep(9);
@@ -387,7 +458,7 @@ export default function SubscribePage() {
     return (
       <>
         <Navigation variant="hero" heroTheme="dark" scrolledTheme="white" heroBorder={true} />
-        <main className="min-h-screen bg-white flex items-center justify-center px-5 pt-24 pb-16">
+        <main className="min-h-screen bg-white flex flex-col items-center px-5 pt-48 pb-16">
           <div className="w-full max-w-4xl flex flex-col gap-6">
             {/* Confirmation card */}
             <div className="rounded-2xl bg-[#1b1b1b] p-8 lg:p-12 flex flex-col items-center gap-4 text-center">
@@ -440,7 +511,7 @@ export default function SubscribePage() {
 
             {/* Personalized tools – same layout as step 9 but white bg */}
             <div className="text-center mb-4 mt-2">
-              <p className="text-xs font-inter font-semibold uppercase tracking-widest mb-2" style={{ color: '#5170ff' }}>AI TOOLS</p>
+              <p className="text-xs font-inter font-semibold uppercase tracking-widest mb-2" style={{ color: '#5170ff' }}>AI TOOLS <span className="text-[#1b1b1b]/40 normal-case font-normal">(Sponsored)</span></p>
               <h3 className="font-times text-2xl lg:text-3xl" style={{ fontWeight: 500, letterSpacing: '-0.05em', color: '#1b1b1b' }}>
                 We picked these tools for <em>you</em>
               </h3>
@@ -485,7 +556,7 @@ export default function SubscribePage() {
   }
 
   return (
-    <main className="relative min-h-screen flex flex-col bg-black overflow-hidden">
+    <main className="relative min-h-screen flex flex-col bg-black overflow-x-hidden">
       {/* Globe background */}
       <div className="absolute inset-0 flex items-center justify-center opacity-50">
         <WireframeGlobe desktopYOffset={-40} mobileYOffset={-65} mobileScale={1.65} />
@@ -502,7 +573,7 @@ export default function SubscribePage() {
       </div>
 
       {/* Main content */}
-      <div className={`flex-1 flex items-center justify-center px-5 relative z-10 lg:mt-0 ${step <= 1 ? '-mt-16' : ''}`}>
+      <div className={`flex-1 flex items-center justify-center px-5 relative z-10 lg:-mt-44 ${step <= 1 ? '-mt-24' : ''}`}>
         <div className={`w-full ${step === 9 ? 'max-w-4xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
@@ -603,7 +674,7 @@ export default function SubscribePage() {
               {step === 9 && (
                 <div className="flex flex-col items-center gap-6">
                   <div className="text-center mb-2">
-                    <p className="text-xs font-inter font-semibold uppercase tracking-widest mb-2" style={{ color: '#5170ff' }}>AI TOOLS</p>
+                    <p className="text-xs font-inter font-semibold uppercase tracking-widest mb-2" style={{ color: '#5170ff' }}>AI TOOLS <span className="text-white/40 normal-case font-normal">(Sponsored)</span></p>
                     <h2 className="font-times text-2xl lg:text-3xl" style={{ fontWeight: 500, letterSpacing: '-0.05em', color: '#ffffff' }}>
                       We picked these tools for <em>you</em>
                     </h2>
@@ -683,12 +754,12 @@ export default function SubscribePage() {
       </div>
 
       {/* Legal links */}
-      <div className="relative z-10 flex justify-center gap-8 pb-6">
+      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex justify-center gap-8 px-5 py-2 rounded-full" style={{ backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(8px)' }}>
         <a
           href="/privacy"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs transition-colors"
+          className="text-xs transition-colors whitespace-nowrap"
           style={{ color: 'rgba(255,255,255,0.35)' }}
         >
           Privacy Policy
@@ -697,12 +768,29 @@ export default function SubscribePage() {
           href="/terms"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs transition-colors"
+          className="text-xs transition-colors whitespace-nowrap"
           style={{ color: 'rgba(255,255,255,0.35)' }}
         >
           Terms of Service
         </a>
       </div>
+
+      {/* Three phones — peeks out from bottom, scrollable */}
+      {step === 1 && (
+        <div
+          className="absolute bottom-0 left-1/2 z-[5]"
+          style={{ transform: 'translateX(-50%) translateY(30%)' }}
+        >
+          <Image
+            src="/images/three-phones.png"
+            alt="Thorium Valley on mobile"
+            width={900}
+            height={600}
+            className="w-[130vw] max-w-[800px] lg:w-[50vw] h-auto"
+            priority
+          />
+        </div>
+      )}
     </main>
   );
 }
@@ -925,7 +1013,7 @@ function StepEmail({
 }) {
   return (
     <div className="flex flex-col items-center gap-6">
-      <div style={{ transform: 'translateY(-30px)' }}>
+      <div style={{ transform: 'translateY(-12px)' }}>
         <Image
           src="/Transparent White Logo.png"
           alt="Thorium Valley"
@@ -935,10 +1023,10 @@ function StepEmail({
         />
       </div>
       <h1
-        className="font-times text-center text-balance font-bold text-5xl lg:text-7xl -mt-1"
+        className="font-times text-center font-bold text-5xl lg:text-7xl -mt-1"
         style={{ color: '#ffffff', letterSpacing: '-0.05em' }}
       >
-        <em className="italic" style={{ color: '#5170ff' }}>AI</em> IS EATING<br />THE WORLD
+        <span className="lg:whitespace-nowrap">The morning paper</span>{' '}<br className="hidden lg:block" />for <span style={{ color: '#5170ff' }}>everything AI</span>
       </h1>
 
       <style dangerouslySetInnerHTML={{
@@ -946,10 +1034,10 @@ function StepEmail({
         @media(max-width:1023px){.subscribe-hero-subtext{font-size:20px!important;padding-left:2rem!important;padding-right:2rem!important;}}
       `}} />
       <p
-        className="subscribe-hero-subtext text-center leading-relaxed max-w-2xl px-14"
+        className="subscribe-hero-subtext text-center leading-relaxed max-w-2xl px-14 lg:whitespace-nowrap"
         style={{ color: '#ffffff', fontSize: '26px', fontWeight: 400 }}
       >
-        Our free, daily briefing keeps you ahead on AI.
+        Our free, daily briefing that keeps<br />you ahead on everything AI.
       </p>
 
       <div className="w-full max-w-sm lg:max-w-md">
@@ -1240,33 +1328,27 @@ function StepTools({
       <StepHeading>Which AI tools are you using?</StepHeading>
       <StepSubtext>Select all that apply.</StepSubtext>
 
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 max-h-[360px] overflow-y-auto pr-1">
+      <div className="grid grid-cols-3 gap-2 max-h-[400px] overflow-y-auto pr-1">
         {AI_TOOLS.map((tool) => {
-          const checked = formData.ai_tools.includes(tool);
+          const checked = formData.ai_tools.includes(tool.name);
           return (
             <button
-              key={tool}
-              onClick={() => toggle(tool)}
-              className={`flex items-center gap-2 px-3 py-2.5 rounded-lg border text-xs transition-all ${
+              key={tool.name}
+              onClick={() => toggle(tool.name)}
+              className={`flex items-center gap-2 px-3 py-2.5 rounded-full border text-xs transition-all ${
                 checked
                   ? 'border-[#5170ff] bg-[#5170ff]/15 text-white'
                   : 'border-white/15 bg-white/5 text-white/70 hover:border-white/25'
               }`}
             >
-              <div
-                className={`w-4 h-4 rounded flex-shrink-0 flex items-center justify-center border transition-all ${
-                  checked
-                    ? 'bg-[#5170ff] border-[#5170ff]'
-                    : 'border-white/30 bg-transparent'
-                }`}
-              >
-                {checked && (
-                  <svg className="w-2.5 h-2.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                )}
-              </div>
-              {tool}
+              {tool.logo && (
+                <img
+                  src={tool.logo}
+                  alt=""
+                  className="w-4 h-4 object-contain flex-shrink-0"
+                />
+              )}
+              <span className="truncate">{tool.name}</span>
             </button>
           );
         })}
@@ -1308,13 +1390,27 @@ function StepNewsletters({
     onNext();
   };
 
+  // Build the list of newsletters to display based on current selections:
+  // - TV selected → show un-selected siblings (Catalyst/Lab) + all partners
+  // - Catalyst/Lab only (no TV) → show ONLY partners (don't push TV)
+  const hasTV = formData.child_newsletters.includes('thorium-valley');
+  const displayNewsletters = CHILD_NEWSLETTERS.filter((nl) => {
+    // Never show TV as a recommendation card
+    if (nl.id === 'thorium-valley') return false;
+    // Partners always show (regardless of TV)
+    if (nl.isPartner) return true;
+    // Siblings (Catalyst/Lab) only show if TV is selected
+    return hasTV;
+  });
+
   return (
     <div>
       <StepHeading>Cover all bases of AI</StepHeading>
       <StepSubtext>More from Thorium Valley</StepSubtext>
 
+      {displayNewsletters.length > 0 && (
       <div className="flex flex-col gap-3">
-        {CHILD_NEWSLETTERS.map((nl) => {
+        {displayNewsletters.map((nl) => {
           const checked = formData.child_newsletters.includes(nl.id);
           return (
             <button
@@ -1359,6 +1455,7 @@ function StepNewsletters({
           );
         })}
       </div>
+      )}
 
       <div className="mt-6 space-y-3">
         <PrimaryButton onClick={onNext} disabled={loading}>Subscribe</PrimaryButton>

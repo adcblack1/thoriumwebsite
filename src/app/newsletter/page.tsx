@@ -13,6 +13,7 @@ import { useSearchParams } from 'next/navigation';
 interface NewsletterItem {
   id: string;
   slug: string;
+  publication?: string;
   title: string;
   subtitle?: string;
   thumbnail_url?: string;
@@ -27,6 +28,12 @@ function formatDate(dateStr: string) {
     year: 'numeric',
   });
 }
+
+const PUB_TO_FILTER: Record<string, string> = {
+  'Thorium Valley': 'thorium-valley',
+  'The Catalyst': 'the-catalyst',
+  'The Lab': 'the-lab',
+};
 
 export default function NewsletterArchivePage() {
   const [newsletters, setNewsletters] = useState<NewsletterItem[]>([]);
@@ -62,11 +69,12 @@ export default function NewsletterArchivePage() {
   };
 
   useEffect(() => {
-    fetch('/api/newsletters?limit=50')
+    const pubFilter = PUB_TO_FILTER[activePub] || 'thorium-valley';
+    fetch(`/api/newsletters?limit=50&publication=${pubFilter}`)
       .then(res => res.json())
       .then(data => setNewsletters(data.data || []))
       .catch(console.error);
-  }, []);
+  }, [activePub]);
 
   return (
     <>
@@ -92,7 +100,7 @@ export default function NewsletterArchivePage() {
             </p>
             <div className="mt-4 max-w-md mx-auto newsletter-cta">
               <style dangerouslySetInnerHTML={{ __html: '.newsletter-cta button[type="submit"] { background: #5170ff !important; color: #fff !important; }' }} />
-              <SubscribeForm variant="hero" />
+              <SubscribeForm variant="hero" selectedNewsletters={selected} />
             </div>
           </FadeIn>
 
@@ -265,13 +273,9 @@ export default function NewsletterArchivePage() {
           </div>
           <div className="border-t border-[#1b1b1b]/25 mb-6"></div>
 
-          {activePub !== 'Thorium Valley' ? (
+          {newsletters.length === 0 ? (
             <div className="py-20 text-center">
-              <p className="font-inter text-[#1b1b1b]/40 text-lg">Coming soon.</p>
-            </div>
-          ) : newsletters.length === 0 ? (
-            <div className="py-20 text-center">
-              <p className="font-inter text-[#1b1b1b]/40">No newsletters yet.</p>
+              <p className="font-inter text-[#1b1b1b]/40">No editions yet.</p>
             </div>
           ) : (
             <>

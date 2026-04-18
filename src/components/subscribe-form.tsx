@@ -10,9 +10,10 @@ interface SubscribeFormProps {
     variant?: "hero" | "footer" | "navbar"
     className?: string
     redirectOnSuccess?: boolean
+    selectedNewsletters?: string[]
 }
 
-export function SubscribeForm({ variant = "hero", className = "", redirectOnSuccess = false }: SubscribeFormProps) {
+export function SubscribeForm({ variant = "hero", className = "", redirectOnSuccess = false, selectedNewsletters }: SubscribeFormProps) {
     const [email, setEmail] = useState("")
     const [loading, setLoading] = useState(false)
     const [succeeded, setSucceeded] = useState(false)
@@ -30,7 +31,7 @@ export function SubscribeForm({ variant = "hero", className = "", redirectOnSucc
             const res = await fetch('/api/subscribe', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email }),
+                body: JSON.stringify({ email, child_newsletters: selectedNewsletters }),
             })
             const data = await res.json()
 
@@ -47,7 +48,7 @@ export function SubscribeForm({ variant = "hero", className = "", redirectOnSucc
                         industry: data.data?.industry || '',
                         company_size: data.data?.company_size || '',
                         ai_tools: data.data?.ai_tools || [],
-                        child_newsletters: data.data?.child_newsletters || ['thorium-valley', 'the-catalyst', 'the-lab'],
+                        child_newsletters: selectedNewsletters || data.data?.child_newsletters || ['thorium-valley', 'the-catalyst', 'the-lab', 'tldr', 'cautious-optimism'],
                     },
                     step: 2,
                     subscriberId: data.subscriber_id,

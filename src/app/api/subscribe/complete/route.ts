@@ -55,10 +55,23 @@ async function subscribeToBeehiiv(
 // POST — finalize subscriber: push email to beehiiv publications, update records
 export async function POST(request: Request) {
   try {
-    const { subscriber_id } = await request.json();
+    const { subscriber_id, utm_source, utm_medium, utm_campaign, utm_content } = await request.json();
 
     if (!subscriber_id) {
       return NextResponse.json({ error: 'subscriber_id is required' }, { status: 400 });
+    }
+
+    // 0. Save UTM params to subscriber record
+    if (utm_source || utm_campaign || utm_content) {
+      await supabase()
+        .from('subscribers')
+        .update({
+          utm_source: utm_source || null,
+          utm_medium: utm_medium || null,
+          utm_campaign: utm_campaign || null,
+          utm_content: utm_content || null,
+        })
+        .eq('id', subscriber_id);
     }
 
     // 1. Get subscriber data from Supabase
@@ -91,6 +104,9 @@ export async function POST(request: Request) {
       { name: 'job_function', value: subscriber.job_function || '' },
       { name: 'industry', value: subscriber.industry || '' },
       { name: 'company_size', value: subscriber.company_size || '' },
+      // UTM-based fields for creative performance tracking
+      ...(subscriber.utm_campaign ? [{ name: 'ad_campaign', value: subscriber.utm_campaign }] : []),
+      ...(subscriber.utm_content ? [{ name: 'ad_creative', value: subscriber.utm_content }] : []),
     ];
 
     // 3. Subscribe to each selected publication with conditional welcome emails
@@ -98,7 +114,8 @@ export async function POST(request: Request) {
     //   TV selected (with or without others) → TV welcome only
     //   Only Catalyst → Catalyst welcome
     //   Only Lab → Lab welcome
-    //   Catalyst + Lab (no TV) → both get welcome emails
+    //   Catalyst + Lab (no TV) → Catalyst welcome only (Catalyst welcome email
+    //     includes a mention that they're also subscribed to The Lab)
     let mainBeehiivId: string | null = null;
     const subscriptionResults: Record<string, string | null> = {};
 
@@ -117,7 +134,7 @@ export async function POST(request: Request) {
     if (hasCatalyst) {
       const catalystPubId = PUB_MAP['the-catalyst'];
       if (catalystPubId) {
-        // Send welcome email only if TV is NOT selected
+        // Send welcome if TV is NOT selected (covers both "catalyst only" and "catalyst + lab")
         const sendWelcome = !hasTV;
         const id = await subscribeToBeehiiv(
           catalystPubId, subscriber.email, sendWelcome, customFields, BEEHIIV_API_KEY
@@ -131,8 +148,10 @@ export async function POST(request: Request) {
     if (hasLab) {
       const labPubId = PUB_MAP['the-lab'];
       if (labPubId) {
-        // Send welcome email only if TV is NOT selected
-        const sendWelcome = !hasTV;
+        // Send Lab welcome ONLY if TV is NOT selected AND Catalyst is NOT selected
+        // (i.e. Lab is the sole selection). If Catalyst is also selected, the
+        // Catalyst welcome email already mentions the Lab subscription.
+        const sendWelcome = !hasTV && !hasCatalyst;
         const id = await subscribeToBeehiiv(
           labPubId, subscriber.email, sendWelcome, customFields, BEEHIIV_API_KEY
         );
@@ -141,7 +160,48 @@ export async function POST(request: Request) {
       }
     }
 
-    // 4. Update Supabase with beehiiv ID and mark complete
+    // 5. SparkLoop: subscribe to partner newsletters via Upscribe API
+    const SPARKLOOP_REF_CODES: Record<string, string> = {
+      'tldr': '54f14dd8c3',
+      'cautious-optimism': 'e83dabe785',
+    };
+
+    const selectedPartners = childNewsletters
+      .filter((id) => SPARKLOOP_REF_CODES[id])
+      .map((id) => SPARKLOOP_REF_CODES[id]);
+
+    if (selectedPartners.length > 0) {
+      const sparkloopApiKey = process.env.SPARKLOOP_API_KEY;
+      const upscribeId = process.env.SPARKLOOP_UPSCRIBE_ID;
+      if (sparkloopApiKey && upscribeId) {
+        try {
+          const slRes = await fetch(
+            `https://api.sparkloop.app/v2/upscribes/${upscribeId}/subscribe`,
+            {
+              method: 'POST',
+              headers: {
+                'X-Api-Key': sparkloopApiKey,
+                'Content-Type': 'application/json; charset=utf-8',
+              },
+              body: JSON.stringify({
+                subscriber_email: subscriber.email,
+                country_code: 'US',
+                recommendations: selectedPartners.join(','),
+              }),
+            }
+          );
+          if (!slRes.ok) {
+            console.error('SparkLoop subscribe failed:', await slRes.text());
+          } else {
+            console.log('SparkLoop subscribe success for:', selectedPartners);
+          }
+        } catch (slErr) {
+          console.error('SparkLoop subscribe error:', slErr);
+        }
+      }
+    }
+
+    // 6. Update Supabase with beehiiv ID and mark complete
     const updateFields: Record<string, unknown> = {
       completed: true,
       updated_at: new Date().toISOString(),

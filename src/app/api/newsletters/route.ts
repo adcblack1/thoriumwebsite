@@ -5,9 +5,10 @@ import { NextResponse } from 'next/server';
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const limit = parseInt(searchParams.get('limit') || '50');
+    const publication = searchParams.get('publication') || undefined;
 
     try {
-        const { data: newsletters } = getNewsletters({ limit, sort: 'newest' });
+        const { data: newsletters } = getNewsletters({ limit, sort: 'newest', publication: publication || 'all' });
 
         // Resolve article data for each newsletter
         const enriched = newsletters.map(nl => {
@@ -16,12 +17,17 @@ export async function GET(request: Request) {
                 .filter(Boolean);
 
             const firstArticle = resolvedArticles[0];
+            
+            // For child newsletters with stories, use the first story's thumbnail
+            const storyThumb = nl.stories?.[0]?.thumbnail_url;
+            
             return {
                 id: nl.id,
                 slug: nl.slug,
+                publication: nl.publication || 'thorium-valley',
                 title: firstArticle?.title || nl.title,
                 subtitle: firstArticle?.subtitle || '',
-                thumbnail_url: firstArticle?.thumbnail_url || '',
+                thumbnail_url: nl.thumbnail_url || firstArticle?.thumbnail_url || storyThumb || '',
                 published_at: nl.published_at,
                 toc: nl.toc,
                 date: nl.date,
