@@ -1037,7 +1037,7 @@ function StepEmail({
         className="subscribe-hero-subtext text-center leading-relaxed max-w-2xl px-14 lg:whitespace-nowrap"
         style={{ color: '#ffffff', fontSize: '26px', fontWeight: 400 }}
       >
-        Our free, daily briefing that keeps<br />you ahead on everything AI.
+        Our free, daily briefing keeps<br />you ahead on everything AI.
       </p>
 
       <div className="w-full max-w-sm lg:max-w-md">
