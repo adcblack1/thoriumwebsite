@@ -775,18 +775,18 @@ export default function SubscribePage() {
         </a>
       </div>
 
-      {/* Three phones — peeks out from bottom, scrollable */}
+      {/* OpenClaw phone — desktop only, peeks out from bottom */}
       {step === 1 && (
         <div
-          className="absolute bottom-0 left-1/2 z-[5]"
-          style={{ transform: 'translateX(-50%) translateY(30%)' }}
+          className="absolute bottom-0 left-1/2 z-[5] hidden lg:block"
+          style={{ transform: 'translateX(-50%) translateY(18%)' }}
         >
           <Image
-            src="/images/three-phones.png"
+            src="/images/openclaw-phone.png"
             alt="Thorium Valley on mobile"
-            width={900}
-            height={600}
-            className="w-[130vw] max-w-[800px] lg:w-[50vw] h-auto"
+            width={400}
+            height={800}
+            className="w-[22vw] max-w-[380px] h-auto"
             priority
           />
         </div>
@@ -1023,7 +1023,7 @@ function StepEmail({
         />
       </div>
       <h1
-        className="font-times text-center font-bold text-5xl lg:text-7xl -mt-1"
+        className="font-times text-center font-bold text-5xl lg:text-7xl -mt-1 uppercase"
         style={{ color: '#ffffff', letterSpacing: '-0.05em' }}
       >
         <span className="lg:whitespace-nowrap">The morning paper</span>{' '}<br className="hidden lg:block" />for <span style={{ color: '#5170ff' }}>everything AI</span>
@@ -1047,7 +1047,8 @@ function StepEmail({
             onNext();
           }}
         >
-          <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2.5 sm:py-3 border border-white/20">
+          {/* Desktop: inline pill */}
+          <div className="hidden lg:flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2.5 sm:py-3 border border-white/20">
             <input
               type="email"
               placeholder="Work Email"
@@ -1063,6 +1064,25 @@ function StepEmail({
               className="px-3 sm:px-6 py-2 rounded-full bg-white text-[#1b1b1b] text-sm sm:text-base font-medium hover:bg-white/90 transition-colors whitespace-nowrap disabled:opacity-50 shrink-0"
             >
               {loading ? '...' : 'Subscribe'}
+            </button>
+          </div>
+          {/* Mobile: stacked input + button */}
+          <div className="flex flex-col gap-3 lg:hidden">
+            <input
+              type="email"
+              placeholder="Enter Work Email"
+              value={formData.email}
+              onChange={(e) => updateField('email', e.target.value)}
+              className="w-full bg-white/10 backdrop-blur-sm text-white placeholder:text-white/50 outline-none text-base px-5 py-4 rounded-xl border border-white/20"
+              required
+              disabled={loading}
+            />
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full py-4 rounded-xl bg-[#5170ff] text-white text-base font-semibold hover:bg-[#4060ee] transition-colors disabled:opacity-50"
+            >
+              {loading ? '...' : 'Subscribe for free'}
             </button>
           </div>
         </form>
