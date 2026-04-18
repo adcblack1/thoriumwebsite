@@ -1023,7 +1023,7 @@ function StepEmail({
         />
       </div>
       <h1
-        className="font-times text-center font-bold text-5xl lg:text-7xl -mt-1 uppercase"
+        className="font-times text-center font-bold text-[2rem] lg:text-7xl -mt-1 uppercase"
         style={{ color: '#ffffff', letterSpacing: '-0.05em' }}
       >
         <span className="lg:whitespace-nowrap">The morning paper</span>{' '}<br className="hidden lg:block" />for <span style={{ color: '#5170ff' }}>everything AI</span>
