@@ -1023,7 +1023,7 @@ function StepEmail({
         />
       </div>
       <h1
-        className="font-times text-center font-bold text-[2rem] lg:text-7xl -mt-1 uppercase"
+        className="font-times text-center font-bold text-[1.5rem] lg:text-7xl -mt-1 uppercase"
         style={{ color: '#ffffff', letterSpacing: '-0.05em' }}
       >
         <span className="lg:whitespace-nowrap">The morning paper</span>{' '}<br className="hidden lg:block" />for <span style={{ color: '#5170ff' }}>everything AI</span>
@@ -1070,7 +1070,7 @@ function StepEmail({
           <div className="flex flex-col gap-3 lg:hidden">
             <input
               type="email"
-              placeholder="Enter Work Email"
+              placeholder="Work Email"
               value={formData.email}
               onChange={(e) => updateField('email', e.target.value)}
               className="w-full bg-white/10 backdrop-blur-sm text-white placeholder:text-white/50 outline-none text-base px-5 py-4 rounded-xl border border-white/20"
@@ -1082,7 +1082,7 @@ function StepEmail({
               disabled={loading}
               className="w-full py-4 rounded-xl bg-[#5170ff] text-white text-base font-semibold hover:bg-[#4060ee] transition-colors disabled:opacity-50"
             >
-              {loading ? '...' : 'Subscribe for free'}
+              {loading ? '...' : 'Subscribe'}
             </button>
           </div>
         </form>
