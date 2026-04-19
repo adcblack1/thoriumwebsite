@@ -573,8 +573,8 @@ export default function SubscribePage() {
       </div>
 
       {/* Main content */}
-      <div className={`flex-1 flex items-center justify-center px-5 relative z-10 lg:-mt-44 ${step <= 1 ? '-mt-24' : ''}`}>
-        <div className={`w-full ${step === 9 ? 'max-w-4xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
+      <div className={`flex-1 flex items-center justify-center px-3 lg:px-5 relative z-10 lg:-mt-44 ${step <= 1 ? '-mt-16' : ''}`}>
+        <div className={`w-full ${step === 9 ? 'max-w-4xl' : step === 1 ? 'max-w-md lg:max-w-2xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={step}
@@ -1035,13 +1035,13 @@ function StepEmail({
 
       <style dangerouslySetInnerHTML={{
         __html: `
-        @media(max-width:1023px){.subscribe-hero-subtext{font-size:16px!important;padding-left:1rem!important;padding-right:1rem!important;}}
+        @media(max-width:1023px){.subscribe-hero-subtext{font-size:16px!important;padding-left:0.5rem!important;padding-right:0.5rem!important;}}
       `}} />
       <p
         className="subscribe-hero-subtext text-center leading-relaxed"
         style={{ color: '#ffffff', fontSize: '26px', fontWeight: 400 }}
       >
-        Our free, daily briefing keeps you ahead on AI. The news, tools, and strategies professionals actually need.
+        Our free, daily briefing keeps you ahead on AI.<br />The news, tools, and strategies professionals actually need.
       </p>
 
       <div className="w-full max-w-sm lg:max-w-md">
@@ -1084,7 +1084,7 @@ function StepEmail({
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-4 rounded-xl bg-[#5170ff] text-white text-base font-semibold hover:bg-[#4060ee] transition-colors disabled:opacity-50"
+              className="w-full py-4 rounded-xl bg-white text-[#1b1b1b] text-base font-semibold hover:bg-white/90 transition-colors disabled:opacity-50"
             >
               {loading ? '...' : 'Subscribe'}
             </button>
@@ -1098,6 +1098,17 @@ function StepEmail({
       <p className="text-xs text-center -mt-4" style={{ color: 'rgba(255,255,255,0.6)' }}>
         Free forever. Unsubscribe anytime.
       </p>
+
+      {/* Social proof - mobile only */}
+      <div className="lg:hidden mt-12 flex justify-center">
+        <Image
+          src="/images/started-at.png"
+          alt="Started at"
+          width={360}
+          height={60}
+          className="w-[90%] max-w-[360px] h-auto opacity-70"
+        />
+      </div>
 
 
     </div>
