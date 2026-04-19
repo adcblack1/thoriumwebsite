@@ -1,5 +1,169 @@
 [
   {
+    "id": "april-17-2026",
+    "slug": "april-17-2026",
+    "title": "Thorium Valley | April 17, 2026",
+    "date": "April 17, 2026",
+    "intro": "Good Morning Thorium Valley. The Pentagon tried to blacklist Anthropic for refusing to sign off on mass surveillance and autonomous weapons. Anthropic didn't budge. Two months later their revenue reportedly passed OpenAI's. Not exactly the outcome Hegseth was going for.\n\nWorkers swear AI saves them hours every week. A Danish study tied to government payroll records says the economic impact is zero. Stanford researchers have a word for what's filling the gap: workslop.\n\nAnd OpenAI quietly turned Codex into something way bigger than a coding tool — nearly half its 3 million weekly users don't write code. Their head of Codex called it \"the sneaky thing where we're building the super app in the open.\" At least they're owning it.",
+    "toc": [
+      "AI saves hours, until you count the rework",
+      "The Pentagon tried to kill Anthropic. Revenue tripled.",
+      "OpenAI's Codex isn't a coding tool anymore"
+    ],
+    "article_slugs": [
+      "ai-saves-hours-until-you-count-the-rework",
+      "the-pentagon-tried-to-kill-anthropic-revenue-tripled",
+      "openais-codex-isnt-a-coding-tool-anymore"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-04-17.png",
+    "published_at": "2026-04-17T13:00:00.000Z",
+    "updated_at": "2026-04-17T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Snap cuts 1,000 jobs",
+          "rest": " — 16% of its workforce — as CEO says AI can do the work instead",
+          "url": "https://www.theverge.com/tech/912314/snap-layoffs-1000-staffers-ai-profitability"
+        },
+        {
+          "link_text": "Apple privately threatened to pull Grok",
+          "rest": " from the App Store over AI-generated sexual deepfakes",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/912297/apple-app-store-ban-grok-x-deepfakes"
+        },
+        {
+          "prefix": "Jane Street signs a ",
+          "link_text": "$6 billion AI cloud deal with CoreWeave",
+          "rest": " and takes a $1B equity stake",
+          "url": "https://www.reuters.com/legal/transactional/jane-street-signs-6-billion-ai-cloud-deal-with-coreweave-boosts-stake-2026-04-15/"
+        },
+        {
+          "prefix": "Maine is about to become the ",
+          "link_text": "first U.S. state to pause construction of big AI data centers",
+          "rest": "",
+          "url": "https://mobile.reuters.com/sustainability/boards-policy-regulation/maine-legislature-approves-first-us-moratorium-big-data-centers-2026-04-14/"
+        },
+        {
+          "prefix": "OpenAI's GPT-5.4 Pro ",
+          "link_text": "reportedly solved a decades-old math problem",
+          "rest": " in under two hours — Terence Tao called it a meaningful contribution",
+          "url": "https://the-decoder.com/openais-gpt-5-4-pro-reportedly-solves-a-longstanding-open-erdos-math-problem-in-under-two-hours/"
+        },
+        {
+          "link_text": "NAACP sues Elon Musk's xAI",
+          "rest": " over unpermitted gas turbines polluting a Memphis neighborhood to power Grok",
+          "url": "https://www.cnbc.com/2026/04/14/elon-musk-xai-memphis-data-centers.html"
+        },
+        {
+          "prefix": "Meta extends its ",
+          "link_text": "custom AI chip deal with Broadcom through 2029",
+          "rest": ", starting with over a gigawatt of computing power",
+          "url": "https://www.reuters.com/business/meta-inks-deal-with-broadcom-custom-ai-chips-2026-04-14/"
+        },
+        {
+          "prefix": "X's Grok-powered auto-translation is ",
+          "link_text": "turning the platform into a global group chat",
+          "rest": " — users are calling it \"rebuilding the Tower of Babel\"",
+          "url": "https://www.asiae.co.kr/en/article/world-general/2026041509382714809"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Adobe Firefly AI Assistant",
+          "desc": "Adobe's new creative agent lets you describe what you want in plain English and it handles the editing across Photoshop, Premiere, Lightroom, and more — no need to learn each app's menus",
+          "url": "https://blog.adobe.com/en/publish/2026/04/15/introducing-firefly-ai-assistant-new-way-create-with-our-creative-agent"
+        },
+        {
+          "name": "Gemini for Mac",
+          "desc": "Google launched a native Mac app for Gemini — hit Option + Space from anywhere on your desktop to ask questions, share your screen for context, or generate images without opening a browser",
+          "url": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-app-now-on-mac-os/"
+        },
+        {
+          "name": "Claude Code",
+          "desc": "Anthropic redesigned the desktop app so you can run multiple AI coding agents side by side, plus a new Routines feature that automates tasks like PR reviews on autopilot",
+          "url": "https://claude.com/blog/claude-code-desktop-redesign"
+        },
+        {
+          "name": "Gemini in Chrome",
+          "desc": "Google added Skills to Gemini's browser sidebar — save your go-to prompts as one-click shortcuts so you don't have to retype them every time",
+          "url": "https://siliconangle.com/2026/04/14/google-adds-reusable-prompts-gemini-chrome/"
+        },
+        {
+          "name": "Gemini Personal Intelligence",
+          "desc": "Google's feature that connects Gemini to your Gmail, Photos, Calendar, and YouTube is now rolling out globally — turning the chatbot into a personal assistant that actually knows your life",
+          "url": "https://www.androidpolice.com/gemini-smartest-feature-expands-globally-but-not-everywhere/"
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Anthropic",
+          "role": "Product Operations Manager, Feedback Loops",
+          "url": "https://job-boards.greenhouse.io/anthropic/jobs/5179882008"
+        },
+        {
+          "company": "Airbnb",
+          "role": "Senior Manager, Product & AI Policy",
+          "url": "https://careers.airbnb.com/positions/7782435/"
+        },
+        {
+          "company": "Apple",
+          "role": "Product Manager, Generative AI",
+          "url": "https://www.evenbreak.com/job/1303443/product-manager-generative-ai-ai-and-data-platforms-aidp-/"
+        },
+        {
+          "company": "Vertex Pharmaceuticals",
+          "role": "AI & Real World Analytics Senior Manager",
+          "url": "https://tietalent.com/en/jobs/p-664396001/united-states-ai-real-world-analytics-senior-manager"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "5e25cb5d-e26b-430c-b502-afd06435ab47",
+      "image_a": "/thumbnails/kicker-2026-04-17-ai.jpeg",
+      "image_b": "/thumbnails/kicker-2026-04-17-real.jpg",
+      "link_a": "https://gemini.google.com/share/placeholder",
+      "link_b": "https://unsplash.com/photos/rolling-green-hills-and-a-winding-river-valley-fn1IutStdm4"
+    },
+    "poll": {
+      "poll_id": "9d7c6888-8d5a-403c-af6e-d7a02f2144cf",
+      "question": "Would you trust an AI agent to work on your computer unsupervised?",
+      "options": [
+        "Yes",
+        "No",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "Would you trust an AI agent to work on your computer unsupervised?",
+      "results": [
+        {
+          "option": "Already do",
+          "pct": 100
+        },
+        {
+          "option": "Not a chance",
+          "pct": 0
+        },
+        {
+          "option": "Maybe someday",
+          "pct": 0
+        },
+        {
+          "option": "Other",
+          "pct": 0
+        }
+      ]
+    },
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-04-02-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-04-02-real.jpg",
+      "ai_source": "https://gemini.google.com/share/a1b7e3de01f5",
+      "real_source": "https://unsplash.com/photos/gray-concrete-road-between-green-trees-during-daytime-X4AAT4a3y28"
+    }
+  },
+  {
     "id": "april-02-2026",
     "slug": "april-02-2026",
     "title": "A leaked model name crashed an entire sector",

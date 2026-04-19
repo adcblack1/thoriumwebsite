@@ -111,7 +111,7 @@ function processBody(html: string): string {
       `</td></tr></table>`;
   });
   // Valley View header → 100% width image
-  const vvImg = `<div style="padding:8px 0;text-align:center;"><img src="${BASE}/thumbnails/into-the-valley.png" alt="Into the Valley" style="display:block;width:100%;height:auto;padding:0;"></div>`;
+  const vvImg = `<div style="padding:8px 0;text-align:center;"><img src="${BASE}/IN THE VALLEY NEWS.png" alt="In the Valley" style="display:block;width:100%;height:auto;padding:0;"></div>`;
   out = out.replace(/<p[^>]*><strong[^>]*>Our Valley View<\/strong><\/p>/gi, vvImg);
   out = out.replace(/<div class="vv-header"[^>]*>.*?<\/div>/gi, vvImg);
   return out;

@@ -40,6 +40,11 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
   const newsletter = getNewsletterBySlug(slug);
   if (!newsletter) notFound();
 
+  const pub = (newsletter as any).publication || '';
+  const isCatalyst = pub === 'the-catalyst' || slug.startsWith('catalyst-');
+  const isLab = pub === 'the-lab' || slug.startsWith('lab-');
+  const tocBullet = isCatalyst ? '/thumbnails/catalyst-star.png' : isLab ? '/thumbnails/lab-star.png' : '/thumbnails/toc-bullet.png';
+
   const articles = newsletter.article_slugs
     .map((s) => getArticleBySlug(s))
     .filter(Boolean);
@@ -70,21 +75,22 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
     .nl-body img { padding: 0 20px !important; max-width: 100% !important; height: auto !important; box-sizing: border-box !important; }
     .nl-body .section-header-img { margin-left: -15px !important; margin-right: -15px !important; width: calc(100% + 30px) !important; max-width: none !important; padding: 0 !important; height: auto !important; display: block !important; }
     .nl-body .vv-header img { padding: 0 !important; width: 100% !important; max-width: none !important; margin: 0 !important; }
-    .nl-body > p:first-of-type::first-letter, .nl-body > div:first-child > p:first-of-type::first-letter { font-family: 'Times New Roman', 'Times', serif !important; font-size: 3.5em !important; float: left !important; line-height: 0.8 !important; padding-right: 8px !important; padding-top: 4px !important; color: #5170ff !important; font-weight: bold !important; }
-    .intro-dropcap { font-family: 'Times New Roman', 'Times', serif !important; font-size: 3.5em !important; float: left !important; line-height: 0.8 !important; padding-right: 8px !important; padding-top: 4px !important; color: #5170ff !important; font-weight: bold !important; }
+    .nl-body > p:first-of-type::first-letter, .nl-body > div:first-child > p:first-of-type::first-letter { font-family: 'Times New Roman', 'Times', serif !important; font-size: 3.5em !important; float: left !important; line-height: 0.8 !important; padding-right: 8px !important; padding-top: 4px !important; color: ${ACCENT} !important; font-weight: bold !important; }
+    .intro-dropcap { font-family: 'Times New Roman', 'Times', serif !important; font-size: 3.5em !important; float: left !important; line-height: 0.8 !important; padding-right: 8px !important; padding-top: 4px !important; color: ${ACCENT} !important; font-weight: bold !important; }
     @media (max-width: 780px) {
       .nl-shell-wrap { padding-left: 12px !important; padding-right: 12px !important; }
       .toc-header-img { width: 50% !important; }
       .nl-header-section { padding-top: 5.5rem !important; }
       .nl-header-title { font-size: 22px !important; }
     }
+    .nl-breadcrumb-link:hover { color: #5170ff !important; }
   `;
 
   const breadcrumb = (
     <nav className="flex items-center justify-center gap-2 text-sm">
-      <Link href="/" className="hover:text-[#5170ff] transition-colors">Home</Link>
+      <Link href="/" className="nl-breadcrumb-link transition-colors">Home</Link>
       <span>/</span>
-      <Link href="/newsletter" className="hover:text-[#5170ff] transition-colors">Newsletter</Link>
+      <Link href="/newsletter" className="nl-breadcrumb-link transition-colors">Newsletter</Link>
       <span>/</span>
       <span className="text-[#5170ff]">{newsletter.date}</span>
     </nav>
@@ -151,7 +157,7 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
           {newsletter.toc.map((item, i) => (
             <h2 key={i} style={{ fontFamily: SERIF, fontWeight: 400, fontSize: '26px', lineHeight: '1.3', color: '#2A2A2A', padding: '2px 0', margin: 0, letterSpacing: '-0.05em' }}>
               <a href={`#article-${i + 1}`} style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'baseline', gap: '8px' }}>
-                <img src="/thumbnails/toc-bullet.png" alt="" style={{ width: '14px', height: '14px', flexShrink: 0, alignSelf: 'center' }} /><span>{item}</span>
+                <img src={tocBullet} alt="" style={{ width: '14px', height: '14px', flexShrink: 0, alignSelf: 'center' }} /><span>{item}</span>
               </a>
             </h2>
           ))}
@@ -160,12 +166,12 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
           <div style={{ display: 'flex', gap: '20px', padding: '14px 0 0', flexWrap: 'wrap' }}>
             {newsletter.links?.news && newsletter.links.news.length > 0 && (
               <a href="#links-section" style={{ fontFamily: SANS, fontSize: '14px', fontWeight: 500, color: 'rgba(27,27,27,0.5)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <img src="/thumbnails/toc-bullet.png" alt="" style={{ width: '10px', height: '10px', opacity: 0.4 }} />What else happened today?
+                <img src={tocBullet} alt="" style={{ width: '10px', height: '10px', opacity: 0.4 }} />What else happened today?
               </a>
             )}
             {newsletter.links?.tools && newsletter.links.tools.length > 0 && (
               <a href="#tools-section" style={{ fontFamily: SANS, fontSize: '14px', fontWeight: 500, color: 'rgba(27,27,27,0.5)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <img src="/thumbnails/toc-bullet.png" alt="" style={{ width: '10px', height: '10px', opacity: 0.4 }} />What AI tools should I be using?
+                <img src={tocBullet} alt="" style={{ width: '10px', height: '10px', opacity: 0.4 }} />What AI tools should I be using?
               </a>
             )}
           </div>
@@ -305,7 +311,8 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
                 <ArticleContent
                   className="nl-body"
                   html={((article as any).newsletter_content || article.content || '<p>Content not available.</p>')
-                    .replace(/valley-view-header\.png/g, 'IN THE VALLEY NEWS.png')
+                    .replace(/\/thumbnails\/valley-view-header\.png/g, '/IN THE VALLEY NEWS.png')
+                    .replace(/\/thumbnails\/into-the-valley\.png/g, '/IN THE VALLEY NEWS.png')
                     .replace(/<p[^>]*><strong[^>]*>Our Valley View<\/strong><\/p>/gi,
                       '<div class="vv-header" style="padding:0;"><img src="/IN THE VALLEY NEWS.png" alt="In the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')
                     .replace(/<p[^>]*><strong[^>]*>OUR VALLEY VIEW<\/strong><\/p>/gi,
@@ -331,7 +338,7 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
             .replace(/<h3>Have Claude Explain This to Me<\/h3>\s*<p>Copy this prompt into Claude:<\/p>\s*<pre><code>[\s\S]*?<\/code><\/pre>/gi,
               `<p style="padding:16px 0 4px;margin:0;"><a href="/prompts/${storySlug}" style="color:#5170ff;text-decoration:none;font-family:${SANS};font-size:14px;font-weight:600;letter-spacing:0.02em;">Have Claude explain this to me →</a></p>`)
             .replace(/<h3>Ask Claude If It's Right for You<\/h3>\s*<p>Copy this prompt into Claude:<\/p>\s*<pre><code>[\s\S]*?<\/code><\/pre>/gi,
-              `<p style="padding:16px 0 4px;margin:0;"><a href="/prompts/${storySlug}" style="color:#5170ff;text-decoration:none;font-family:${SANS};font-size:14px;font-weight:600;letter-spacing:0.02em;">Ask Claude if it&#39;s right for me →</a></p>`);
+              `<p style="padding:16px 0 4px;margin:0;"><a href="/prompts/${storySlug}" style="color:${ACCENT};text-decoration:none;font-family:${SANS};font-size:14px;font-weight:600;letter-spacing:0.02em;">Ask Claude if it&#39;s right for me →</a></p>`);
 
           return (
           <div key={storyIndex} id={`article-${storyIndex + 1}`} style={{

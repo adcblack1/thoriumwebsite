@@ -1,10 +1,142 @@
 [
   {
-    "id": "lab-april-08-2026",
-    "slug": "lab-april-08-2026",
+    "id": "lab-april-16-2026",
+    "slug": "lab-april-16-2026",
+    "publication": "the-lab",
+    "title": "Google Gemini Advanced Just Got 5TB of Storage and a ChatGPT Import Button. Is It Finally Time to Switch?",
+    "date": "April 16, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to The Lab.\n\nToday we're figuring out if an AI assistant that comes with a pile of free storage is actually a reason to switch, or if it only works when you never leave one company's apps.\n\nWe're also testing a workspace tool that started charging double for its AI features and asking if any of them are actually worth it.\n\nAnd we went through 14,000 reviews of a cult-favorite email client to see what really happened after it got swept up in a major acquisition.",
+    "toc": [
+      "Google Gemini Advanced Just Got 5TB of Storage and a ChatGPT Import Button. Is It Finally Time to Switch?",
+      "Notion AI Is Charging You Double for Features You Can Get Elsewhere",
+      "Superhuman Swallowed Grammarly and Raised Its Prices. 14,000 Reviews Later, Here's What Actually Happened."
+    ],
+    "article_slugs": [],
+    "stories": [
+      {
+        "title": "Google Gemini Advanced Just Got 5TB of Storage and a ChatGPT Import Button. Is It Finally Time to Switch?",
+        "category": "ASSISTANT",
+        "thumbnail_url": "/thumbnails/google-gemini-advanced-5tb-storage.jpeg",
+        "content": "<p>Google Gemini Advanced, now rebranded as Google AI Pro, costs <a href=\"https://uk.pcmag.com/ai/148146/google-bard\">$19.99 a month</a> and comes with 2TB of Google Drive storage baked in. If you're already paying $10 a month for Google One storage, the effective cost of the AI drops to about ten bucks. On paper, that makes it the best deal in AI right now.</p>\n<p>And for people who spend their entire workday inside Gmail, Docs, Sheets, and Drive, it genuinely delivers. You can ask Gemini to summarize a 47-email thread and it'll <a href=\"https://hackceleration.com/gemini-review/\">pull action items in under ten seconds</a>. You can tell it to find a specific PDF buried in your Drive and summarize the key points without ever leaving the app.</p>\n<p>The problem is everything outside that Google bubble. People who've <a href=\"https://www.youtube.com/watch?v=h2P7Q2sI_nM\">tested it against ChatGPT</a> consistently say Gemini's responses feel dry and formulaic, especially for creative writing. One YouTube reviewer put it bluntly: the responses \"lack personality, even with the really, really good Gemini 3 Pro model.\"</p>\n<p>There's also the reliability question. PCMag gave it a <a href=\"https://uk.pcmag.com/ai/148146/google-bard\">4 out of 5</a> and an Editors' Choice award, but users on Reddit and support forums tell a different story. One paid subscriber <a href=\"https://support.google.com/gemini/thread/411457870\">reported</a> their daily prompt limit dropped from 100 to 25 without warning.</p>\n<p>Google recently added the ability to <a href=\"https://blog.google/innovation-and-ai/products/gemini-app/gemini-drop-updates-march-2026/\">import your ChatGPT chat history</a> directly into Gemini, which is a smart move to lower the switching cost.</p>\n<p>But \"getting better fast\" and \"better than the alternatives\" are two different things. Claude handles long analytical work with more consistency. ChatGPT writes with more personality and has broader third-party integrations. Gemini's strength is narrow and specific: it's the best AI for people who already live inside Google's apps.</p>\n<h2>The Verdict</h2>\n<p>If your work lives in Google Workspace and you already pay for Google One storage, Gemini Pro at $19.99 a month is a genuinely good deal and worth trying. If your work lives anywhere else, Claude is the better pick for deep reasoning and ChatGPT is the better pick for creative tasks.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed Google Gemini Advanced (now Google AI Pro, $19.99/month) and found that it's an excellent value for people already deep in Google Workspace but not worth switching to if your work lives outside that ecosystem.\n\nHere are the key takeaways:\n- Best for people who spend most of their day in Gmail, Docs, Sheets, and Drive\n- The 2TB storage bundle makes it cheaper than it looks if you already pay for Google One\n- Responses feel dry and formulaic compared to ChatGPT for creative work\n- Claude is the better alternative for long analytical tasks and deep reasoning\n\nWhen I paste this, start by saying: \"Hey! I have all the context provided by Thorium Valley and heard you're trying to figure out whether Google Gemini Advanced is right for you. Could I get a little more context on:\n1. How much of your daily work happens inside Google Workspace apps like Gmail, Docs, and Drive versus other tools?\n2. What AI tool are you currently using, and what's frustrating you about it or what do you wish it could do better?\"</code></pre>"
+      },
+      {
+        "title": "Notion AI Is Charging You Double for Features You Can Get Elsewhere",
+        "category": "PRODUCTIVITY",
+        "thumbnail_url": "/thumbnails/gamma-made-400-million-presentations-v2.jpeg",
+        "content": "<p>Notion AI used to be a $10/month add-on you could tack onto any paid plan. Now the full AI experience requires the Business tier at $20/member/month. If you were on the Plus plan at $10/month, that's a 100% price increase just to access what Notion is <a href=\"https://www.aiworthit.com/blog/notion-ai-review/\">calling</a> its core AI features: autonomous agents, enterprise search, AI meeting notes, and workspace-wide Q&A.</p>\n<p>For a team of five, that's $100/month instead of $50. An extra $600 a year. Meanwhile, a single Claude Pro subscription costs $240 a year and gives you better writing, better reasoning, and better long-form analysis. You just lose the workspace integration.</p>\n<p>And that integration is the one thing Notion AI genuinely does well. Enterprise Search lets you ask a plain-language question and pull answers from across your Notion pages, Slack, Google Drive, and GitHub with source links attached.</p>\n<p>The Notion Agent can handle multi-step tasks autonomously for up to 20 minutes, working across hundreds of pages at once. In practice, users on Reddit <a href=\"https://www.reddit.com/r/Notion/comments/1ofoaj7/feedback_on_notion_ai/\">describe</a> it more like a capable intern who knows where everything lives but still needs you to check the work.</p>\n<p>Then there's the Custom Agents pricing that kicks in after May 2026. Notion is charging $10 per 1,000 credits with no rollover, and nobody knows yet how many credits a typical workflow actually burns through.</p>\n<h2>The Verdict</h2>\n<p>If your team already pays for Business, the AI features come included and they're worth using. But if you're upgrading specifically for AI, the math favors just keeping your current plan and paying $20/month for Claude Pro. Notion AI is a convenience layer for people already deep in the ecosystem. It is not worth restructuring your budget around.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed Notion AI (requires $20/member/month Business plan) and found that it's worth using if your team already pays for Business, but not worth upgrading for.\n\nHere are the key takeaways:\n- Enterprise Search across Notion, Slack, and Google Drive is the standout feature\n- Writing quality drops past 800 words and doesn't match Claude or ChatGPT\n- Custom Agents pricing ($10/1,000 credits, no rollover) is an unpredictable cost\n- Claude Pro at $20/month gives better AI for less if you don't need workspace integration\n\nWhen I paste this, start by saying: \"Hey! I have all the context provided by Thorium Valley and heard you're trying to figure out whether Notion AI is right for you. Could I get a little more context on:\n1. What does your team actually use Notion for day to day, and how much of your work lives inside it versus other tools like Google Docs or Slack?\n2. What plan are you currently on, and what's the main thing you're hoping AI would help you do faster?\"</code></pre>"
+      },
+      {
+        "title": "Superhuman Swallowed Grammarly and Raised Its Prices. 14,000 Reviews Later, Here's What Actually Happened.",
+        "category": "PRODUCTIVITY",
+        "thumbnail_url": "/thumbnails/is-chatgpt-plus-still-worth-20-a-month-v2.jpeg",
+        "content": "<p>Superhuman is a $30/month email client for Gmail and Outlook that promises to make you process email twice as fast. It does this through 100+ keyboard shortcuts, a split inbox that actually sorts your mail into useful categories, and AI features that draft replies in your voice.</p>\n<p>Then Grammarly <a href=\"https://siliconangle.com/2025/10/29/grammarly-transforms-ai-enabled-productivity-suite-superhuman-rebrand\">acquired it</a> in July 2025 for an estimated $825 million and rebranded itself under the Superhuman name.</p>\n<p>The speed claims hold up. Emails load in under 100 milliseconds. Every single action has a keyboard shortcut. Across 14,616 verified reviews on <a href=\"https://www.g2.com/products/superhuman-mail/reviews\">G2</a>, it sits at 4.7 out of 5.</p>\n<p>The acquisition story is messier. Trustpilot reviews from July 2025 onward <a href=\"https://www.trustpilot.com/review/superhuman.com\">describe</a> AI features as \"extremely slow\" and \"useless and slowing down the tool.\" Reddit users have flagged mobile app gaps and worries about the product <a href=\"https://www.reddit.com/r/productivity/comments/1lp9xy5/grammarly_just_bought_superhuman_i_just\">getting abandoned post-acquisition</a>.</p>\n<p>The other problem is simpler. Superhuman makes you faster at doing the same work. As one <a href=\"https://get-alfred.ai/blog/is-superhuman-worth-it\">reviewer put it</a>, \"It is a fast steering wheel, not a self-driving car.\"</p>\n<p>Alternatives worth knowing: <a href=\"https://shortwave.com\">Shortwave</a> is $7/month for Gmail users and has AI baked into every layer. <a href=\"https://sparkmailapp.com\">Spark</a> starts at $5/month with a clean interface and a free tier.</p>\n<h2>The Verdict</h2>\n<p>If you process 200+ emails a day in a sales or executive role and you genuinely enjoy the craft of email, Superhuman is worth every penny. For everyone else, the $30/month price tag is solving a problem most people don't have. Try Shortwave or Spark first.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed Superhuman ($30-40/month) and found that it's\ngenuinely the fastest email client available but only worth the price\nfor high-volume power users processing 200+ emails daily.\n\nHere are the key takeaways:\n- Best for sales professionals and executives who live in email\n- Speed and keyboard shortcuts are the real value, not the AI features\n- At under 100 emails/day the ROI doesn't justify $30/month\n- Shortwave ($7/month) and Spark ($5/month) cover most people's needs\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Superhuman is worth it for you. Could I get a little more\ncontext on:\n1. How many emails do you process on a typical day, and is email\n   a core part of your job or more of a side task?\n2. What email client are you using right now, and what specifically\n   feels slow or frustrating about it?\"</code></pre>"
+      }
+    ],
+    "sign_off": "That's the Lab for this week. If a tool in here saved you time or wasted it, tell us — reply directly.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-lab-2026-04-17.png",
+    "thumbnail_url": "/thumbnails/google-gemini-advanced-5tb-storage.jpeg",
+    "published_at": "2026-04-16T13:00:00.000Z",
+    "updated_at": "2026-04-16T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Snapchat cuts 1,000 jobs",
+          "rest": " and says 65% of its new code is now written by AI",
+          "url": "https://www.sfchronicle.com/tech/article/snap-snapchat-layoffs-ai-22208192.php"
+        },
+        {
+          "link_text": "Three OpenAI executives quit on the same day",
+          "rest": " as the company shuts down Sora and refocuses ahead of its IPO",
+          "url": "https://www.wsj.com/tech/ai/chatgpt-openai-ipo-altman-029ae6d5"
+        },
+        {
+          "link_text": "NAACP sues Elon Musk's xAI",
+          "rest": " over unpermitted gas turbines it says are poisoning a predominantly Black neighborhood near Memphis",
+          "url": "https://www.cnbc.com/2026/04/14/elon-musk-xai-memphis-data-centers.html"
+        },
+        {
+          "link_text": "120,000 authors are claiming a share",
+          "rest": " of Anthropic's $1.5 billion copyright settlement — the largest AI payout in U.S. history",
+          "url": "https://noah-news.com/authors-seek-record-1-5-billion-in-landmark-ai-copyright-settlement-as-claims-surge/"
+        },
+        {
+          "link_text": "Google launches a native Gemini app for Mac",
+          "rest": ", putting it in direct competition with ChatGPT and Claude on Apple's desktop",
+          "url": "http://theverge.com/tech/912638/google-gemini-mac-app"
+        },
+        {
+          "link_text": "TSMC's profit jumped 58%",
+          "rest": " to a record $18.2 billion as AI chip demand remains \"extremely robust\"",
+          "url": "https://www.channelnewsasia.com/business/tsmc-logs-huge-profit-jump-and-predicts-record-q2-revenue-ai-boom-6059526"
+        },
+        {
+          "link_text": "Nvidia is scrapping its China-bound H200 chips",
+          "rest": " and redirecting all production capacity to its next-gen Vera Rubin hardware",
+          "url": "https://www.benzinga.com/news/26/03/51115951/nvidia-abandons-china-bound-chips-to-fast-track-vera-rubin"
+        },
+        {
+          "link_text": "A developer broke Google's AI watermark",
+          "rest": " using nothing but math and 123,000 Gemini-generated images — three months before the EU mandates watermarking for all AI content",
+          "url": "https://byteiota.com/synthid-watermark-broken-pure-math-defeats-googles-ai-protection/"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Littlebird",
+          "desc": "Think of it as an AI that actually knows what you're working on. It watches your screen, takes notes in your meetings, and remembers all of it.",
+          "url": "https://partners.dub.co/programs/littlebird",
+          "sponsored": true
+        },
+        {
+          "name": "Clico",
+          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type",
+          "url": "https://tryclico.link/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Gemini for Mac",
+          "desc": "Google launched a native Mac app that lets you pull up Gemini with a keyboard shortcut from anywhere on your desktop",
+          "url": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-app-now-on-mac-os/"
+        },
+        {
+          "name": "Claude Design",
+          "desc": "Anthropic's new design tool lets you describe what you need and get polished, on-brand visuals back, with a direct export to Canva",
+          "url": "https://www.anthropic.com/news/claude-design-anthropic-labs"
+        },
+        {
+          "name": "Adobe Firefly AI Assistant",
+          "desc": "Adobe's new assistant lets you type plain-English instructions and it handles multi-step workflows across Photoshop, Premiere, and Creative Cloud",
+          "url": "https://blog.adobe.com/en/publish/2026/04/15/introducing-firefly-ai-assistant-new-way-create-with-our-creati"
+        },
+        {
+          "name": "Canva AI 2.0",
+          "desc": "Canva's biggest update ever turns the platform into a conversational design tool — describe what you want and it builds fully editable designs",
+          "url": "https://ecommercenews.com.au/story/canva-launches-ai-2-0-to-turn-prompts-into-editable-designs"
+        }
+      ]
+    },
+    "poll": {
+      "poll_id": "259219cf-ac15-489e-82af-209caf831e54",
+      "question": "Be honest — how many AI tool free trials have you signed up for and never gone back to?",
+      "options": [
+        "None, I'm disciplined",
+        "Maybe one or two",
+        "My inbox knows the truth",
+        "I'm afraid to check",
+        "Other"
+      ]
+    },
+    "poll_results": null,
+    "previous_poll_results": null
+  },
+  {
+    "id": "lab-april-14-2026",
+    "slug": "lab-april-14-2026",
     "publication": "the-lab",
     "title": "Gamma Made 400 Million Presentations. Are Any of Them Good?",
-    "date": "April 08, 2026",
+    "date": "April 14, 2026",
     "intro": "Good Morning Thorium Valley, welcome back to The Lab.\n\nToday we're testing an AI that turns one sentence into a full slide deck to see if speed actually equals quality.\n\nWe're also asking whether the most popular chatbot subscription in the world is still worth twenty bucks after some rough updates.\n\nAnd we're checking in on a search engine that says it cites every answer, because lately those citations have been getting a little creative.",
     "toc": [
       "Gamma Made 400 Million Presentations. Are Any of Them Good?",
@@ -36,8 +168,8 @@
     "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
     "banner_image_url": "/thumbnails/banner-lab-2026-04-08.png",
     "thumbnail_url": "/thumbnails/gamma-made-400-million-presentations.jpeg",
-    "published_at": "2026-04-08T13:00:00.000Z",
-    "updated_at": "2026-04-14T05:20:52.905Z",
+    "published_at": "2026-04-14T13:00:00.000Z",
+    "updated_at": "2026-04-14T13:00:00.000Z",
     "status": "published",
     "links": {
       "news": [

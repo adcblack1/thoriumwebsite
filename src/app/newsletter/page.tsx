@@ -40,6 +40,7 @@ export default function NewsletterArchivePage() {
   const searchParams = useSearchParams();
   const [activePub, setActivePub] = useState('Thorium Valley');
   const [selected, setSelected] = useState<string[]>(['thorium-valley', 'the-catalyst', 'the-lab']);
+  const starSrc = activePub === 'The Catalyst' ? '/thumbnails/catalyst-star.png' : activePub === 'The Lab' ? '/thumbnails/lab-star.png' : '/thumbnails/toc-bullet.png';
 
   // Read ?pub= or ?category= from URL on mount
   useEffect(() => {
@@ -299,7 +300,7 @@ export default function NewsletterArchivePage() {
                         <div className="mt-2 space-y-1">
                           {newsletters[0].toc.slice(1, 3).map((hl, i) => (
                             <p key={i} className="font-inter text-sm font-medium text-[#1b1b1b]/70">
-                              <span style={{ color: '#5170ff' }}>✦</span> {hl}
+                              <img src={starSrc} alt="" style={{ width: '12px', height: '12px', display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }} /> {hl}
                             </p>
                           ))}
                         </div>
@@ -349,7 +350,7 @@ export default function NewsletterArchivePage() {
                               <div className="mt-2 space-y-1">
                                 {nl.toc.slice(1, 3).map((hl, i) => (
                                   <p key={i} className="font-inter text-sm font-medium text-[#1b1b1b]/70">
-                                    <span style={{ color: '#5170ff' }}>✦</span> {hl}
+                                    <img src={starSrc} alt="" style={{ width: '12px', height: '12px', display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }} /> {hl}
                                   </p>
                                 ))}
                               </div>
@@ -428,7 +429,7 @@ export default function NewsletterArchivePage() {
                                 <div className="mt-1 space-y-0.5">
                                   {nl.toc.slice(1, 3).map((hl, i) => (
                                     <p key={i} className="font-inter text-xs font-medium text-[#1b1b1b]/70 line-clamp-1">
-                                      <span style={{ color: '#5170ff' }}>✦</span> {hl}
+                                      <img src={starSrc} alt="" style={{ width: '12px', height: '12px', display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }} /> {hl}
                                     </p>
                                   ))}
                                 </div>

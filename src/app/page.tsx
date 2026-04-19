@@ -335,7 +335,7 @@ export default async function HomePage() {
                       <div className="space-y-1 mt-2">
                         {featuredNL.headlines.slice(1).map((hl: string, i: number) => (
                           <p key={i} className="text-[#1b1b1b]/60 text-sm font-inter font-medium leading-snug">
-                            <span className="text-[#5170ff] font-medium">✦</span> {hl}
+                            <img src="/thumbnails/toc-bullet.png" alt="" style={{ width: '12px', height: '12px', display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }} /> {hl}
                           </p>
                         ))}
                       </div>
@@ -512,7 +512,7 @@ export default async function HomePage() {
                       <div className="space-y-1 mt-2">
                         {featuredCatalyst.toc.slice(1).map((hl: string, i: number) => (
                           <p key={i} className="text-[#1b1b1b]/60 text-sm font-inter font-medium leading-snug">
-                            <span className="text-[#5170ff] font-medium">✦</span> {hl}
+                            <img src="/thumbnails/catalyst-star.png" alt="" style={{ width: '12px', height: '12px', display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }} /> {hl}
                           </p>
                         ))}
                       </div>
@@ -521,29 +521,33 @@ export default async function HomePage() {
                 </Link>
                 <div className="flex gap-6">
                   <div className="flex-1 border-r border-[#1b1b1b]/25 pr-6 space-y-0">
-                    {recentCatalyst.slice(1, 3).map((item, index) => (
-                      <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
-                        <article className={`cursor-pointer ${index === 0 ? 'pb-4 border-b border-[#1b1b1b]/25' : 'pt-4'}`}>
-                          <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
-                            {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
-                            <ThumbnailOverlay />
-                          </div>
-                          <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-2">{item.title}</h3>
-                        </article>
-                      </Link>
+                    {[recentCatalyst[0], recentCatalyst[2]].map((item, index) => (
+                      item && (
+                        <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
+                          <article className={`cursor-pointer ${index === 0 ? 'pb-4 border-b border-[#1b1b1b]/25' : 'pt-4'}`}>
+                            <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
+                              {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
+                              <ThumbnailOverlay />
+                            </div>
+                            <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-2">{item.title}</h3>
+                          </article>
+                        </Link>
+                      )
                     ))}
                   </div>
                   <div className="flex-1 space-y-0">
-                    {recentCatalyst.slice(3, 5).map((item, index) => (
-                      <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
-                        <article className={`cursor-pointer ${index === 0 ? 'pb-4 border-b border-[#1b1b1b]/25' : 'pt-4'}`}>
-                          <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
-                            {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
-                            <ThumbnailOverlay />
-                          </div>
-                          <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-2">{item.title}</h3>
-                        </article>
-                      </Link>
+                    {[recentCatalyst[1], recentCatalyst[3]].map((item, index) => (
+                      item && (
+                        <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
+                          <article className={`cursor-pointer ${index === 0 ? 'pb-4 border-b border-[#1b1b1b]/25' : 'pt-4'}`}>
+                            <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
+                              {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
+                              <ThumbnailOverlay />
+                            </div>
+                            <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-2">{item.title}</h3>
+                          </article>
+                        </Link>
+                      )
                     ))}
                   </div>
                 </div>
@@ -617,7 +621,7 @@ export default async function HomePage() {
                       <div className="space-y-1 mt-2">
                         {featuredLab.toc.slice(1).map((hl: string, i: number) => (
                           <p key={i} className="text-[#1b1b1b]/60 text-sm font-inter font-medium leading-snug">
-                            <span className="text-[#5170ff] font-medium">✦</span> {hl}
+                            <img src="/thumbnails/lab-star.png" alt="" style={{ width: '12px', height: '12px', display: 'inline-block', verticalAlign: 'middle', marginRight: '4px' }} /> {hl}
                           </p>
                         ))}
                       </div>
@@ -626,29 +630,33 @@ export default async function HomePage() {
                 </Link>
                 <div className="flex gap-6">
                   <div className="flex-1 border-r border-[#1b1b1b]/25 pr-6 space-y-0">
-                    {recentLab.slice(1, 3).map((item, index) => (
-                      <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
-                        <article className={`cursor-pointer ${index === 0 ? 'pb-4 border-b border-[#1b1b1b]/25' : 'pt-4'}`}>
-                          <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
-                            {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
-                            <ThumbnailOverlay />
-                          </div>
-                          <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-2">{item.title}</h3>
-                        </article>
-                      </Link>
+                    {[recentLab[0], recentLab[2]].map((item, index) => (
+                      item && (
+                        <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
+                          <article className={`cursor-pointer ${index === 0 ? 'pb-4 border-b border-[#1b1b1b]/25' : 'pt-4'}`}>
+                            <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
+                              {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
+                              <ThumbnailOverlay />
+                            </div>
+                            <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-2">{item.title}</h3>
+                          </article>
+                        </Link>
+                      )
                     ))}
                   </div>
                   <div className="flex-1 space-y-0">
-                    {recentLab.slice(3, 5).map((item, index) => (
-                      <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
-                        <article className={`cursor-pointer ${index === 0 ? 'pb-4 border-b border-[#1b1b1b]/25' : 'pt-4'}`}>
-                          <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
-                            {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
-                            <ThumbnailOverlay />
-                          </div>
-                          <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-2">{item.title}</h3>
-                        </article>
-                      </Link>
+                    {[recentLab[1], recentLab[3]].map((item, index) => (
+                      item && (
+                        <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
+                          <article className={`cursor-pointer ${index === 0 ? 'pb-4 border-b border-[#1b1b1b]/25' : 'pt-4'}`}>
+                            <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
+                              {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
+                              <ThumbnailOverlay />
+                            </div>
+                            <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-2">{item.title}</h3>
+                          </article>
+                        </Link>
+                      )
                     ))}
                   </div>
                 </div>

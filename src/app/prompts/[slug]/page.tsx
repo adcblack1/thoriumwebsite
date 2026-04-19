@@ -55,7 +55,7 @@ export default async function PromptPage({ params }: PromptPageProps) {
             <img
               src={prompt.type === 'formula' ? '/thumbnails/the-formula.png' : '/thumbnails/the-verdict.png'}
               alt={prompt.type === 'formula' ? 'The Formula' : 'The Verdict'}
-              style={{ height: '40px', width: 'auto' }}
+              style={{ width: '100%', maxWidth: '640px', height: 'auto' }}
             />
           </div>
 

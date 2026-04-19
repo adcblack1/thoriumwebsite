@@ -1,5 +1,142 @@
 [
   {
+    "id": "catalyst-april-15-2026",
+    "slug": "catalyst-april-15-2026",
+    "publication": "the-catalyst",
+    "title": "This Marketing Team's Help Center Videos Used to Take Hours. Now It's 10 Minutes.",
+    "date": "April 15, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to the Catalyst Newsletter.\n\nToday we're talking about a marketing VP who made his team do an AI science fair where everyone had to pick an annoying workflow and fix it, and the simplest project might be the one worth stealing.\n\nWe've also got a consulting leader who was so tired of the prep work before every client call that he built an AI clone of himself to do it all, and now five hours of his week just don't exist anymore.\n\nAnd we're looking at a woman who runs her entire agency solo and figured out how to use a free tool that reads her prospects' body language on calls so she knows exactly what to pitch before she even opens the proposal doc.",
+    "toc": [
+      "This Marketing Team's Help Center Videos Used to Take Hours. Now It's 10 Minutes.",
+      "He Built an AI Agent That Preps All His Client Meetings. It Saves Him 5 Hours a Week.",
+      "She Cut Her Proposal Process From a Week to a Day Using Two Free AI Tools"
+    ],
+    "article_slugs": [],
+    "stories": [
+      {
+        "title": "This Marketing Team's Help Center Videos Used to Take Hours. Now It's 10 Minutes.",
+        "category": "MARKETING",
+        "thumbnail_url": "/thumbnails/a-window-cleaner-is-using-ai-as-his-cfo-for-40-a-month.jpeg",
+        "content": "<p>Owner.com's VP of Marketing, David Fallarme, did something kind of brilliant. He made his marketing team present AI projects to each other.</p>\n<p>He called it an <a href=\"https://www.linkedin.com/posts/dfallarme_we-ran-an-ai-science-fair-for-our-marketing-activity-7432439295996588032--kG5\">AI science fair</a>, and the format was simple. Everyone picks a workflow that's annoying, builds something with AI to fix it, then shows the team what they made. Three projects came out of it, ranked by difficulty, and the easiest one might be the most useful.</p>\n<p>Haley Smith, one of the marketers on the team, tackled help center videos. If you've ever made these, you know the drill. You write a script, record a Loom, re-record it because you fumbled a sentence, edit it, and an hour later you have one video that maybe 40 people will watch. Smith built a custom GPT that takes internal docs and standardizes them into a script, then ran that script through an AI voiceover tool layered on top of a screen recording. New time per video: 10 minutes.</p>\n<p>The other two projects were more advanced. Fallarme himself built a workflow that takes sales call recordings, sends customized summaries to Slack through Zapier, converts them to audio with ElevenLabs, and drops the MP3 back in Slack so he can listen to \"podcasts\" about his sales process while walking his dog. And another teammate built a dashboard you can literally talk to, where you ask Claude questions like \"what video got the most engagement on Facebook in October?\" and get answers instantly because all the data lives in one place.</p>\n<p>The help center video project is the one worth stealing though, because anyone can do it today and the pain it solves is universal.</p>\n<h2>The Formula</h2>\n<p><strong>1. Pick your most repetitive video type.</strong> Help center explainers, onboarding walkthroughs, feature tutorials, whatever you keep re-recording.</p>\n<p><strong>2. Build a custom GPT in Claude (or ChatGPT) with your docs.</strong> Upload your internal documentation, style guide, and a couple example scripts.</p>\n<p><strong>3. Record your screen doing the walkthrough.</strong> No voiceover, no pressure. Just click through the process in silence.</p>\n<p><strong>4. Layer AI voiceover on top.</strong> Tools like ElevenLabs or Descript can take your script and generate a natural-sounding voiceover.</p>\n<p><strong>5. Batch them.</strong> Once the system works, knock out five in a sitting.</p>\n<h3>Have Claude Explain This to Me</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>A marketing team at a restaurant tech company was spending hours on each\nhelp center video. They built a custom GPT loaded with internal docs that\nconverts any documentation into a video script, then layered AI voiceover\nonto screen recordings. Total time per video dropped to about 10 minutes.\n\nHere's the basic approach from Thorium Valley:\n- Pick your most repetitive video type (tutorials, onboarding, FAQs)\n- Build a custom GPT with your docs and style guide to auto-generate scripts\n- Record your screen walking through the process with no voiceover\n- Use an AI voice tool like ElevenLabs or Descript to narrate the script\n  over the recording\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to speed up how you make\ninstructional or explainer videos. Could I get a little more context on:\n1. What kind of videos do you make most often and who are they for\n   (customers, new hires, internal team)?\n2. What does your current process look like and where does most of the\n   time go (scripting, recording, editing, approvals)?\"</code></pre>"
+      },
+      {
+        "title": "He Built an AI Agent That Preps All His Client Meetings. It Saves Him 5 Hours a Week.",
+        "category": "OPERATIONS",
+        "thumbnail_url": "/thumbnails/he-built-an-ai-agent-that-preps-all-his-client-meetings.jpeg",
+        "content": "<p>Dave McCann talks to about ten clients a week.</p>\n<p>McCann is a global managing partner at <a href=\"https://www.businessinsider.com/ai-agent-saving-ibm-consulting-leader-hours-every-week-2026-4\">IBM Consulting</a>, responsible for thousands of client relationships including Nestlé, Ericsson, and Riyadh Air. Before every meeting, his team used to spend 30 minutes pulling together a briefing doc and hopping on a prep call. Multiply that by ten meetings and you're looking at five hours a week just getting ready to have conversations.</p>\n<p>So he built an AI agent he named after himself. Digital Dave scans his calendar, spots the upcoming client meetings, pulls internal data on project status and services sold, checks external sources like annual reports and market news, and then generates a list of ten things McCann needs to know before walking in.</p>\n<p>The part that makes this interesting for everyone else is that McCann's problem is incredibly common. If you manage accounts, run a team, or just have a calendar full of meetings where you're expected to show up informed, you're probably doing some version of this prep work manually.</p>\n<p>McCann also freed up three or four staffers who used to spend hours assembling those briefings. They now do other work.</p>\n<h2>The Formula</h2>\n<p><strong>1. Build a meeting brief template.</strong> Open a Google Doc and write out what you'd actually want to know before any meeting.</p>\n<p><strong>2. Create a Claude Project for meeting prep.</strong> Paste your brief template into the Project instructions.</p>\n<p><strong>3. Feed it what you've got before each meeting.</strong> Paste in your last email thread, notes from previous meetings, and recent context.</p>\n<p><strong>4. Ask Claude to generate the brief.</strong> Something like \"Based on everything here, write me a meeting brief using the template.\"</p>\n<p><strong>5. Do this for a week and notice what changes.</strong></p>\n<h3>Have Claude Explain This to Me</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>An executive at IBM Consulting was spending 30 minutes prepping for every\nclient meeting, times ten meetings a week. He built an AI agent that scans\nhis calendar, pulls client data, and generates a briefing doc with the ten\nmost important things he needs to know. It saved him five hours a week and\nfreed up several staffers from prep work.\n\nHere's the basic approach from Thorium Valley:\n- Create a meeting brief template with sections like attendee context,\n  last discussion, company news, open questions, and opportunities\n- Set up a Claude Project with that template in the instructions\n- Before each meeting paste in email threads, past notes, and any\n  relevant context about the person or company\n- Ask Claude to generate a structured brief you can scan in two minutes\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to automate your meeting prep\nwith AI. Could I get a little more context on:\n1. What kinds of meetings fill up your calendar most often, and what does\n   your current prep process look like before those calls?\n2. What information do you wish you always had going into a meeting but\n   rarely have time to pull together?\"</code></pre>"
+      },
+      {
+        "title": "She Cut Her Proposal Process From a Week to a Day Using Two Free AI Tools",
+        "category": "SALES",
+        "thumbnail_url": "/thumbnails/clays-team-built-80-ai-agents-in-a-week.jpeg",
+        "content": "<p>Adebukola Ajao runs <a href=\"https://www.bdyconsult.com\">B.D.Y. CONSULT</a>, a full-service marketing agency, completely by herself.</p>\n<p>She's done it for a decade. Every client strategy, every creative direction call, every partnership and piece of marketing execution lands on her desk because there is no other desk. That setup works great until you need to write a new client proposal, which used to eat an entire week of her life.</p>\n<p>About two years ago she started feeding her discovery call notes, emails, and Google Docs into AI and asking it to draft proposals using templates she'd already built. The whole process now <a href=\"https://www.businessinsider.com/pr-agency-solopreneurs-using-ai-for-client-service\">takes a day or less</a>, according to Business Insider.</p>\n<p>The part that caught our attention was how she uses <a href=\"https://www.read.ai\">Read AI</a> to analyze her prospect calls. It doesn't just transcribe what people said, it picks up on engagement and body language throughout the conversation. So if a prospect leaned in when she mentioned influencer strategy but checked out during the pricing section, she knows exactly which parts of her proposal to double down on.</p>\n<p>\"If a client says no, I don't feel burned out from having spent a week doing their proposal,\" Ajao told Business Insider. \"It's just onto the next one.\"</p>\n<h2>The Formula</h2>\n<p><strong>1. Record your next client or prospect call.</strong> Use Read AI, Otter, or even just Zoom's built-in transcription.</p>\n<p><strong>2. Write one reusable proposal template.</strong> Lay out the sections you use every time.</p>\n<p><strong>3. Paste the transcript and template into Claude.</strong> Ask it to fill in the template using what the prospect actually said.</p>\n<p><strong>4. Edit the 30% that needs you.</strong> Your job is voice, strategy, and the judgment calls.</p>\n<p><strong>5. Repeat and refine.</strong> Save your best proposals as examples for next time.</p>\n<h3>Have Claude Explain This to Me</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>A solo marketing agency founder was spending over a week writing each client\nproposal. She started recording discovery calls, transcribing them with Read\nAI, and feeding the transcripts into AI along with her proposal template to\nget first drafts back in minutes. Her turnaround dropped from a week to a day.\n\nHere's the basic approach from Thorium Valley:\n- Record and transcribe your prospect or client calls\n- Build one reusable proposal template with your standard sections\n- Paste the transcript and template into Claude to generate a first draft\n- Focus your editing time on voice, strategy, and personalization\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to speed up how you write proposals\nor client deliverables. Could I get a little more context on:\n1. What kind of proposals or documents do you write most often, and roughly\n   how long does each one take you right now?\n2. What's the part that eats the most time — the research, the first draft,\n   or the back-and-forth revisions?\"</code></pre>"
+      }
+    ],
+    "sign_off": "That's the Catalyst for this week. If you tried something from one of these stories, tell us how it went — reply directly.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-catalyst-2026-04-17.png",
+    "thumbnail_url": "/thumbnails/a-window-cleaner-is-using-ai-as-his-cfo-for-40-a-month.jpeg",
+    "published_at": "2026-04-15T13:00:00.000Z",
+    "updated_at": "2026-04-15T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Snap cut 1,000 jobs this week",
+          "rest": " and said AI already writes 65% of the company's new code",
+          "url": "https://www.sfchronicle.com/tech/article/snap-snapchat-layoffs-ai-22208192.php"
+        },
+        {
+          "link_text": "Three OpenAI executives quit on the same day",
+          "rest": " as the company kills off \"side quests\" like Sora ahead of its IPO",
+          "url": "https://cdn5.benzinga.com/markets/tech/26/04/51901200/openai-hit-by-triple-executive-exit-in-one-day-as-side-quest-era-fades"
+        },
+        {
+          "link_text": "Allbirds, the wool sneaker company, is pivoting to AI",
+          "rest": " — rebranding as \"NewBird AI\" to lease compute infrastructure. Stock jumped 700%.",
+          "url": "https://www.chicagostarmedia.com/news/allbirds-declining-brand-ditches-shoemaking-for-ai-watches-stock-soar-to-over-700/article_0d86d54d-f65a-4e83-8a7e-ee721b1f865b.html"
+        },
+        {
+          "link_text": "The NAACP is suing Elon Musk's xAI",
+          "rest": " over unpermitted gas turbines near Memphis spewing pollution into predominantly Black neighborhoods",
+          "url": "https://www.cnbc.com/2026/04/14/elon-musk-xai-memphis-data-centers.html"
+        },
+        {
+          "link_text": "A Texas school district will use AI to announce students' names at graduation",
+          "rest": " — seniors have started a petition to bring back a human",
+          "url": "https://www.wafb.com/2026/04/16/seniors-torn-over-districts-plan-use-ai-announce-names-high-school-graduation/"
+        },
+        {
+          "link_text": "A developer broke Google's AI watermarking system",
+          "rest": " using basic math and 123,000 images — weeks before the EU mandates watermarking by law",
+          "url": "https://byteiota.com/synthid-watermark-broken-pure-math-defeats-googles-ai-protection/"
+        },
+        {
+          "link_text": "Lawyers fined $110,000",
+          "rest": " after AI invented fake case citations in an Oregon vineyard lawsuit — and one attorney tried to cover it up",
+          "url": "https://rv-times.com/2026/04/15/ai-citations-cost-lawyers-110000-in-jacksonville-vineyard-lawsuit/"
+        },
+        {
+          "link_text": "The Toronto Maple Leafs' CEO reportedly brought AI-generated trade ideas to the NHL trade deadline",
+          "rest": " — fans are furious",
+          "url": "https://sports.yahoo.com/articles/maple-leafs-management-faces-strong-182025200.html"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Littlebird",
+          "desc": "Think of it as an AI that actually knows what you're working on. It watches your screen, takes notes in your meetings, and remembers all of it. So when you forget where you saw something, you just ask.",
+          "url": "https://partners.dub.co/programs/littlebird",
+          "sponsored": true
+        },
+        {
+          "name": "Clico",
+          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type — no more copying your email into another tab and pasting the answer back",
+          "url": "https://tryclico.link/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Google Gemini for Mac",
+          "desc": "Hit Option + Space anywhere on your Mac to pull up a floating Gemini chat — ask questions, generate images, or share your current window for context without ever switching apps",
+          "url": "https://gemini.google/mac/"
+        },
+        {
+          "name": "DeepL Voice-to-Voice",
+          "desc": "The translation app known for its eerily accurate text translations now does real-time voice-to-voice in Zoom and Teams calls — an independent study found it beat Google, Microsoft, and Zoom's own tools",
+          "url": "https://techcrunch.com/2026/04/16/deepl-known-for-text-translation-now-wants-to-translate-your-voice/"
+        },
+        {
+          "name": "Claude Design",
+          "desc": "Describe what you want — a pitch deck, a product mockup, marketing one-pager — and Claude builds it as a polished, editable design you can export to Canva, PowerPoint, or hand off to developers",
+          "url": "https://www.anthropic.com/news/claude-design-anthropic-labs"
+        },
+        {
+          "name": "Perplexity Personal Computer",
+          "desc": "Perplexity's AI can now run directly on your Mac, working across your local files, apps, and the web — users are setting it up on a Mac Mini that stays on 24/7 so they can assign and monitor tasks from their phone",
+          "url": "https://www.ndtvprofit.com/technology/perplexity-introduces-personal-computer-for-mac-heres-what-the-ai-assistant-can-do-11369959"
+        },
+        {
+          "name": "Google Skills in Chrome",
+          "desc": "Save any AI prompt you use often as a one-click reusable workflow you can run on any webpage or across multiple tabs",
+          "url": "https://developmentstoday.com/ai-robotics/google-chrome-skills-ai-workflows"
+        }
+      ]
+    },
+    "poll": {
+      "poll_id": "959f6880-0a15-4aa8-9625-8228c71b54fb",
+      "question": "When AI gives you a result, how much do you trust it before double-checking?",
+      "options": [
+        "Fully — I run with it",
+        "Mostly — just a quick glance",
+        "Halfway — I rewrite a lot",
+        "Barely — I basically start over",
+        "Other"
+      ]
+    },
+    "poll_results": null,
+    "previous_poll_results": null
+  },
+  {
     "id": "catalyst-april-13-2026",
     "slug": "catalyst-april-13-2026",
     "publication": "the-catalyst",

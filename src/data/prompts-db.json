@@ -1,5 +1,29 @@
 [
   {
+    "slug": "this-marketing-team-s-help-center-videos-used-to-take-hours-now-it-s-10-minutes",
+    "title": "This Marketing Team's Help Center Videos Used to Take Hours. Now It's 10 Minutes.",
+    "newsletter_slug": "catalyst-april-15-2026",
+    "publication": "the-catalyst",
+    "type": "formula",
+    "prompt": "A marketing team at a restaurant tech company was spending hours on each\nhelp center video. They built a custom GPT loaded with internal docs that\nconverts any documentation into a video script, then layered AI voiceover\nonto screen recordings. Total time per video dropped to about 10 minutes.\n\nHere's the basic approach from Thorium Valley:\n- Pick your most repetitive video type (tutorials, onboarding, FAQs)\n- Build a custom GPT with your docs and style guide to auto-generate scripts\n- Record your screen walking through the process with no voiceover\n- Use an AI voice tool like ElevenLabs or Descript to narrate the script\n  over the recording\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to speed up how you make\ninstructional or explainer videos. Could I get a little more context on:\n1. What kind of videos do you make most often and who are they for\n   (customers, new hires, internal team)?\n2. What does your current process look like and where does most of the\n   time go (scripting, recording, editing, approvals)?\""
+  },
+  {
+    "slug": "he-built-an-ai-agent-that-preps-all-his-client-meetings-it-saves-him-5-hours-a-week",
+    "title": "He Built an AI Agent That Preps All His Client Meetings. It Saves Him 5 Hours a Week.",
+    "newsletter_slug": "catalyst-april-15-2026",
+    "publication": "the-catalyst",
+    "type": "formula",
+    "prompt": "An executive at IBM Consulting was spending 30 minutes prepping for every\nclient meeting, times ten meetings a week. He built an AI agent that scans\nhis calendar, pulls client data, and generates a briefing doc with the ten\nmost important things he needs to know. It saved him five hours a week and\nfreed up several staffers from prep work.\n\nHere's the basic approach from Thorium Valley:\n- Create a meeting brief template with sections like attendee context,\n  last discussion, company news, open questions, and opportunities\n- Set up a Claude Project with that template in the instructions\n- Before each meeting paste in email threads, past notes, and any\n  relevant context about the person or company\n- Ask Claude to generate a structured brief you can scan in two minutes\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to automate your meeting prep\nwith AI. Could I get a little more context on:\n1. What kinds of meetings fill up your calendar most often, and what does\n   your current prep process look like before those calls?\n2. What information do you wish you always had going into a meeting but\n   rarely have time to pull together?\""
+  },
+  {
+    "slug": "she-cut-her-proposal-process-from-a-week-to-a-day-using-two-free-ai-tools",
+    "title": "She Cut Her Proposal Process From a Week to a Day Using Two Free AI Tools",
+    "newsletter_slug": "catalyst-april-15-2026",
+    "publication": "the-catalyst",
+    "type": "formula",
+    "prompt": "A solo marketing agency founder was spending over a week writing each client\nproposal. She started recording discovery calls, transcribing them with Read\nAI, and feeding the transcripts into AI along with her proposal template to\nget first drafts back in minutes. Her turnaround dropped from a week to a day.\n\nHere's the basic approach from Thorium Valley:\n- Record and transcribe your prospect or client calls\n- Build one reusable proposal template with your standard sections\n- Paste the transcript and template into Claude to generate a first draft\n- Focus your editing time on voice, strategy, and personalization\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to speed up how you write proposals\nor client deliverables. Could I get a little more context on:\n1. What kind of proposals or documents do you write most often, and roughly\n   how long does each one take you right now?\n2. What's the part that eats the most time — the research, the first draft,\n   or the back-and-forth revisions?\""
+  },
+  {
     "slug": "a-window-cleaner-is-using-ai-as-his-cfo-for-40-a-month",
     "title": "A Window Cleaner Is Using AI as His CFO for $40 a Month",
     "newsletter_slug": "catalyst-april-13-2026",
@@ -24,9 +48,33 @@
     "prompt": "A CMO at a major consulting firm found that her team was using AI but\nhadn't changed any of their actual workflows. She mapped all 700+ daily\ntasks across her marketing org and discovered 80-90% could be accelerated\nby AI, with 40% running fully autonomously. She then cut campaign launches\nfrom 50 handoffs to 11 steps and rewrote every job description around the\n20% of work only humans can do.\n\nHere's the basic approach from Thorium Valley:\n- List every task you do in a week in a spreadsheet with who does it,\n  how often, and time spent\n- Score each task as \"AI can do this,\" \"AI can help,\" or \"human only\"\n- Find the workflow with the most handoffs and redesign it with AI\n  handling the flagged steps\n- Use Zapier to connect your tools and automate routing and notifications\n- Redefine your role around the work that actually requires human judgment\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to figure out which parts of your\nwork AI can actually take over. Could I get a little more context on:\n1. What's your role and what does a typical week look like for you in\n   terms of the types of tasks you spend the most time on?\n2. What's the workflow that frustrates you the most right now, the one\n   with too many steps or too many people involved before something\n   actually gets done?\""
   },
   {
+    "slug": "google-gemini-advanced-just-got-5tb-of-storage-and-a-chatgpt-import-button-is-it-finally-time-to-switch",
+    "title": "Google Gemini Advanced Just Got 5TB of Storage and a ChatGPT Import Button. Is It Finally Time to Switch?",
+    "newsletter_slug": "lab-april-16-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed Google Gemini Advanced (now Google AI Pro, $19.99/month) and found that it's an excellent value for people already deep in Google Workspace but not worth switching to if your work lives outside that ecosystem.\n\nHere are the key takeaways:\n- Best for people who spend most of their day in Gmail, Docs, Sheets, and Drive\n- The 2TB storage bundle makes it cheaper than it looks if you already pay for Google One\n- Responses feel dry and formulaic compared to ChatGPT for creative work\n- Claude is the better alternative for long analytical tasks and deep reasoning\n\nWhen I paste this, start by saying: \"Hey! I have all the context provided by Thorium Valley and heard you're trying to figure out whether Google Gemini Advanced is right for you. Could I get a little more context on:\n1. How much of your daily work happens inside Google Workspace apps like Gmail, Docs, and Drive versus other tools?\n2. What AI tool are you currently using, and what's frustrating you about it or what do you wish it could do better?\""
+  },
+  {
+    "slug": "notion-ai-is-charging-you-double-for-features-you-can-get-elsewhere",
+    "title": "Notion AI Is Charging You Double for Features You Can Get Elsewhere",
+    "newsletter_slug": "lab-april-16-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed Notion AI (requires $20/member/month Business plan) and found that it's worth using if your team already pays for Business, but not worth upgrading for.\n\nHere are the key takeaways:\n- Enterprise Search across Notion, Slack, and Google Drive is the standout feature\n- Writing quality drops past 800 words and doesn't match Claude or ChatGPT\n- Custom Agents pricing ($10/1,000 credits, no rollover) is an unpredictable cost\n- Claude Pro at $20/month gives better AI for less if you don't need workspace integration\n\nWhen I paste this, start by saying: \"Hey! I have all the context provided by Thorium Valley and heard you're trying to figure out whether Notion AI is right for you. Could I get a little more context on:\n1. What does your team actually use Notion for day to day, and how much of your work lives inside it versus other tools like Google Docs or Slack?\n2. What plan are you currently on, and what's the main thing you're hoping AI would help you do faster?\""
+  },
+  {
+    "slug": "superhuman-swallowed-grammarly-and-raised-its-prices-14-000-reviews-later-here-s-what-actually-happened",
+    "title": "Superhuman Swallowed Grammarly and Raised Its Prices. 14,000 Reviews Later, Here's What Actually Happened.",
+    "newsletter_slug": "lab-april-16-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed Superhuman ($30-40/month) and found that it's\ngenuinely the fastest email client available but only worth the price\nfor high-volume power users processing 200+ emails daily.\n\nHere are the key takeaways:\n- Best for sales professionals and executives who live in email\n- Speed and keyboard shortcuts are the real value, not the AI features\n- At under 100 emails/day the ROI doesn't justify $30/month\n- Shortwave ($7/month) and Spark ($5/month) cover most people's needs\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Superhuman is worth it for you. Could I get a little more\ncontext on:\n1. How many emails do you process on a typical day, and is email\n   a core part of your job or more of a side task?\n2. What email client are you using right now, and what specifically\n   feels slow or frustrating about it?\""
+  },
+  {
     "slug": "gamma-made-400-million-presentations-are-any-of-them-good",
     "title": "Gamma Made 400 Million Presentations. Are Any of Them Good?",
-    "newsletter_slug": "lab-april-08-2026",
+    "newsletter_slug": "lab-april-14-2026",
     "publication": "the-lab",
     "type": "verdict",
     "prompt": "Thorium Valley reviewed Gamma AI ($8-15/month) and found that it's\nexcellent for fast presentation drafts and browser-based sharing, but\nfrustrating if you need clean PowerPoint exports or pixel-level design\ncontrol. Best for people who value speed over precision.\n\nHere are the key takeaways:\n- Generates complete presentations in under 60 seconds from a simple prompt\n- Exports to PowerPoint frequently break layouts and require manual cleanup\n- Free plan gives 400 credits (roughly 10 presentations) to test it\n- If you need native PowerPoint or Google Slides output, consider Plus AI\n  or using Claude to draft content directly\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Gamma is right for you. Could I get a little more context on:\n1. What kind of presentations do you make most often and how frequently\n   do you need to create them?\n2. How do you currently share your presentations — do you send\n   PowerPoint files, present from Google Slides, or share links?\""
@@ -34,7 +82,7 @@
   {
     "slug": "is-chatgpt-plus-still-worth-20-month-in-2026-we-checked-the-receipts",
     "title": "Is ChatGPT Plus Still Worth $20/Month in 2026? We Checked the Receipts.",
-    "newsletter_slug": "lab-april-08-2026",
+    "newsletter_slug": "lab-april-14-2026",
     "publication": "the-lab",
     "type": "verdict",
     "prompt": "Thorium Valley reviewed ChatGPT Plus ($20/month) and found that it's\nstill worth it for daily professional use but no longer the obvious\ndefault. The free tier works fine for casual users, and competitors\nlike Claude Pro and Perplexity Pro are stronger for coding and research.\n\nHere are the key takeaways:\n- Best for people who use AI multiple times a day for work\n- Message limits (16x more than free) and Deep Research are the biggest draws\n- Recent model changes frustrated power users with quality regression\n- Claude Pro is better for coding, Perplexity Pro is better for research\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether ChatGPT Plus is right for you. Could I get a little more\ncontext on:\n1. What do you use AI for day to day, and how often are you running\n   into limits or frustrations with what you're currently using?\n2. What's your current setup right now, whether that's the free tier\n   of ChatGPT, another tool, or nothing at all?\""
@@ -42,7 +90,7 @@
   {
     "slug": "perplexity-was-everyone-s-favorite-ai-tool-then-it-started-lying",
     "title": "Perplexity Was Everyone's Favorite AI Tool. Then It Started Lying.",
-    "newsletter_slug": "lab-april-08-2026",
+    "newsletter_slug": "lab-april-14-2026",
     "publication": "the-lab",
     "type": "verdict",
     "prompt": "Thorium Valley reviewed Perplexity Pro ($20/month) and found that it's\nexcellent for daily research-heavy work but has a growing citation\naccuracy problem. The free tier handles casual use well, and Claude Pro\nis a better fit for high-stakes work where you can't afford wrong sources.\n\nHere are the key takeaways:\n- Best for people who do 5+ research tasks per day and need sourced answers fast\n- The citation accuracy issue undermines its core value proposition for professional use\n- The free tier is genuinely good enough for casual research\n- Claude Pro is the better alternative for analytical work requiring trust and precision\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out whether\nPerplexity Pro is right for you. Could I get a little more context on:\n1. What kind of research do you do day to day, and how often do you\n   need sourced answers versus just general reasoning or analysis?\n2. What are you currently using for research, and what's frustrating\n   you about it?\""
