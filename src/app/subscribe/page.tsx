@@ -779,7 +779,7 @@ export default function SubscribePage() {
       {step === 1 && (
         <div
           className="absolute bottom-0 left-1/2 z-[5] hidden lg:block"
-          style={{ transform: 'translateX(-50%) translateY(18%)' }}
+          style={{ transform: 'translateX(-50%) translateY(57%)' }}
         >
           <Image
             src="/images/openclaw-phone.png"
@@ -1022,8 +1022,12 @@ function StepEmail({
           priority
         />
       </div>
+      <style dangerouslySetInnerHTML={{ __html: `
+        @media(max-width:1023px){.subscribe-hero-h1{font-size:32px!important;}}
+        @media(min-width:1024px){.subscribe-hero-h1{font-size:3.5rem!important;}}
+      `}} />
       <h1
-        className="font-times text-center font-bold text-[1.5rem] lg:text-7xl -mt-1 uppercase"
+        className="subscribe-hero-h1 font-times text-center font-bold -mt-1 uppercase"
         style={{ color: '#ffffff', letterSpacing: '-0.05em' }}
       >
         <span className="lg:whitespace-nowrap">The morning paper</span>{' '}<br className="hidden lg:block" />for <span style={{ color: '#5170ff' }}>everything AI</span>
@@ -1031,13 +1035,13 @@ function StepEmail({
 
       <style dangerouslySetInnerHTML={{
         __html: `
-        @media(max-width:1023px){.subscribe-hero-subtext{font-size:20px!important;padding-left:2rem!important;padding-right:2rem!important;}}
+        @media(max-width:1023px){.subscribe-hero-subtext{font-size:16px!important;padding-left:1rem!important;padding-right:1rem!important;}}
       `}} />
       <p
-        className="subscribe-hero-subtext text-center leading-relaxed max-w-2xl px-14 lg:whitespace-nowrap"
+        className="subscribe-hero-subtext text-center leading-relaxed"
         style={{ color: '#ffffff', fontSize: '26px', fontWeight: 400 }}
       >
-        Our free, daily briefing keeps<br />you ahead on everything AI.
+        Our free, daily briefing keeps you ahead on AI. The news, tools, and strategies professionals actually need.
       </p>
 
       <div className="w-full max-w-sm lg:max-w-md">
