@@ -88,7 +88,7 @@ export function trackLead() {
 /**
  * Track a QualifiedLead — fires ONLY when the subscriber matches ICP.
  * This is the event you optimize Meta campaigns toward.
- * Custom Conversion ID in Meta: 1525148129028608
+ * Custom Conversion ID in Meta: 1486726819501859
  *
  * ICP blocklist: do NOT fire if seniority === 'Student' or company_size === 'Just me'
  */
