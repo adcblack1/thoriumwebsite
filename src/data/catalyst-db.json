@@ -1,5 +1,157 @@
 [
   {
+    "id": "catalyst-april-20-2026",
+    "slug": "catalyst-april-20-2026",
+    "publication": "the-catalyst",
+    "title": "30 Tax Pros Built Working Software. None of Them Could Code.",
+    "date": "April 20, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to the Catalyst Newsletter.\n\nToday we're talking about 30 tax professionals who had zero coding experience, got handed AI tools for six weeks, and walked out with working software their firm actually uses with real clients.\n\nWe're also looking at a CPA who let an AI agent do his bookkeeping on camera, it processed 6,700 transactions in under eight minutes, and 150,000 accountants watched because they all wanted to know how.\n\nAnd we're checking out a cowboy boot company that split its inventory in half, let AI manage one side and humans manage the other, and the AI side outsold the humans by nearly 10%.",
+    "toc": [
+      "30 Tax Pros Built Working Software. None of Them Could Code.",
+      "A CPA Let Claude Do His Bookkeeping. 150,000 Accountants Took Notes.",
+      "This Boot Company Let AI Manage Half Its Inventory. It Outsold the Human-Managed Half by 9.6%."
+    ],
+    "article_slugs": [],
+    "stories": [
+      {
+        "title": "30 Tax Pros Built Working Software. None of Them Could Code.",
+        "category": "OPERATIONS",
+        "thumbnail_url": "/thumbnails/30-tax-pros-built-working-software.jpeg",
+        "content": "<p>KPMG handed 30 of its tax professionals access to AI coding tools and gave them six weeks. By the end, they had built automation tools that the firm <a href=\"https://www.businessinsider.com/kpmg-pilot-tax-pros-vibe-code-software-tools-2026-4\">now uses with actual clients</a>.</p>\n<p>The participants had two to six years of tax experience and limited technical backgrounds. They worked in small teams of four to six alongside engineers, using AI-powered \"vibe coding\" platforms that turn plain English descriptions into working software. A manager from KPMG's tax tech team coached each group through the snags.</p>\n<p>What they built was practical stuff: tools that automated compliance processes, pulled data from multiple systems, and generated analytics that used to take hours of manual effort. Brad Brown, KPMG's chief digital officer for tax, said that before the pilot, a tax pro who wanted a specific tool built had to wait in line for engineering resources. Now they could take a first pass themselves and hand off a working prototype for engineers to polish and secure. \"Right before your eyes, you're starting to see the evolution of how they were going to deliver services,\" he said.</p>\n<p>KPMG is now considering forming about a dozen permanent teams of around 30 people each, mixing tax staff and engineers, to keep building this way.</p>\n<p>The idea here isn't really about tax. It's that the people closest to a problem are now able to build the fix, and the tools to do it are available to basically anyone. If you spend hours every week on some repetitive process you could describe in plain English, you're closer to automating it than you think. That goes whether you're in accounting, operations, client services, or really anything where you keep doing the same sequence of steps and wishing something would just handle it for you.</p>\n<h2>The Formula</h2>\n<p><strong>1. Pick one workflow that makes you groan.</strong> Not the most complex thing you do. The most repetitive. The thing where you think \"there should be a tool for this\" at least once a week.</p>\n<p><strong>2. Write out every step in plain language.</strong> Open a Google Doc and describe exactly what you do, start to finish. What data goes in, what comes out, where you copy-paste between systems. Be specific about it.</p>\n<p><strong>3. Bring it to Claude and ask what it can build you.</strong> Paste your workflow description and say \"I want to automate as much of this as possible. What's the simplest tool you could build me?\" Claude can generate working Google Sheets templates, Notion databases, or lightweight web apps you just open in your browser.</p>\n<p><strong>4. Test it on real work and tell Claude what's wrong.</strong> The first version won't be perfect. Use it once, note what's off, paste your feedback back in. Two or three rounds of this and you'll have something genuinely useful.</p>\n<p><strong>5. Share it with your team.</strong> If it works for you, it probably works for the person next to you doing the same thing every week.</p>\n<h3>Have Claude Explain This to Me</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>KPMG ran a pilot where 30 tax professionals with no coding background\nused AI tools to build working software that automated their most\nrepetitive compliance and data workflows. Some of those prototypes\nended up in actual client-facing software within six weeks.\n\nHere's what Thorium Valley recommends as a starting point:\n- Identify one repetitive workflow you do weekly that you could\n  describe step by step in plain English\n- Document every step including what data goes where, what you\n  copy-paste, and what decisions you make along the way\n- Ask Claude to build you the simplest possible tool to handle it\n  whether that's a Google Sheets template, Notion database, or a\n  lightweight app\n- Test it on real work, give feedback, and iterate until it\n  actually saves you time\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nfrom Thorium Valley and heard you're looking to build a simple tool\nto automate one of your repetitive workflows. Could I get a little\nmore context on:\n1. What's the specific workflow or process that eats the most of\n   your time each week, and roughly how many steps does it involve?\n2. What tools do you already use day to day (Google Sheets, Notion,\n   Excel, Slack, etc.) so I can build something that fits into how\n   you already work?\"</code></pre>"
+      },
+      {
+        "title": "A CPA Let Claude Do His Bookkeeping. 150,000 Accountants Took Notes.",
+        "category": "OPERATIONS",
+        "thumbnail_url": "/thumbnails/a-cpa-let-claude-do-his-bookkeeping.jpeg",
+        "content": "<p>Jason Staats is a CPA with a YouTube channel called <a href=\"https://www.youtube.com/channel/UC_Z0mb0RshEg6Nu0PkebBPA\">Jason On Firms</a> where he helps accountants run better practices. A few weeks ago he posted a video walking through Claude CoWork, Anthropic's desktop AI agent, doing real bookkeeping on his computer. Over <a href=\"https://www.linkedin.com/posts/jstaats_i-made-a-claude-cowork-guide-for-accounting-activity-7447685956947689474-DCnj\">150,000 accountants watched it in three weeks</a>, which tells you something about how hungry the profession is for this.</p>\n<p>The numbers were the headline. He fed CoWork 6,700 bank transactions and a simple Excel template, told it to enter and classify everything, and it finished in 7 minutes and 29 seconds. The ending balance matched the bank statement. The classifications looked like what a human bookkeeper would do. He started smaller first, 67 transactions then 670 then 6,700, scaling up as he built what CoWork calls \"skills,\" which are basically reusable instructions that teach the agent patterns. He made one that builds a vendor map on the fly so Claude doesn't have to think about Home Depot every single time it shows up and just auto-classifies it going forward. That one skill cut processing time on a 670-transaction file from 12 minutes to about 3.</p>\n<p>He also showed it matching 41 receipts to their transactions and renaming the files in about 60 seconds. For tax prep, he dropped 57 pages of tax documents into CoWork with an Excel 1040 workpaper and it made 349 entries like a seasoned preparer would. When he planted 10 deliberate errors and told it to check its own work, it caught nine.</p>\n<p>The honest part, and what made the video credible, is that Staats was upfront about the limits. CoWork runs locally on your desktop but the AI models are still in the cloud, so sensitive data leaves your machine. His advice was blunt: don't use real client files until the security picture improves. He built AI-generated fake bank statements and receipts for every single demo. The Max plan runs about $200 a month and heavy daily use pushes costs higher, but as Staats put it, humans cost a lot more.</p>\n<p>The reason this hit with 150,000 people isn't that bookkeeping is thrilling. It's that most knowledge work has a version of this same problem, a pile of data that needs to be sorted, categorized, matched, or entered somewhere. If you're reconciling invoices, organizing expense reports, processing survey responses, or doing any kind of repetitive data entry, the same approach works. Point an AI agent at the files, give it a template, let it handle the part that doesn't need your brain.</p>\n<h2>The Formula</h2>\n<p><strong>1. Get Claude CoWork</strong> from <a href=\"https://claude.ai\">claude.ai</a> on a paid plan. Pro works for light use but anything serious will want Max.</p>\n<p><strong>2. Build a test dataset.</strong> Don't start with real company or client data. Export a sample spreadsheet or ask Claude to generate realistic test transactions for you.</p>\n<p><strong>3. Create your template.</strong> Make the spreadsheet or document you want the finished product to look like, with columns, categories, and any classification logic written out clearly.</p>\n<p><strong>4. Write your first prompt.</strong> Drop in both the source files and the template, then something like \"Enter all transactions from these files into this template and classify them to the best of your ability.\" Start small and scale up.</p>\n<p><strong>5. Turn patterns into skills.</strong> Once Claude figures out a good workflow, tell it to save that as a skill. Next time you run the same type of task it already knows the playbook and works faster.</p>\n<h3>Have Claude Explain This to Me</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>A CPA named Jason Staats demonstrated using Claude CoWork to automate\nbookkeeping and tax prep. He processed 6,700 bank transactions in 7\nminutes by having CoWork enter and classify them into a spreadsheet\ntemplate, match receipts to transactions, and prepare tax workpapers\nfrom source documents. He built reusable \"skills\" in CoWork to speed\nup repeated tasks like vendor classification.\n\nHere's the basic approach from Thorium Valley:\n- Start with a test dataset, not real sensitive data\n- Create a clear template showing what the finished output looks like\n- Give CoWork your source files and template with simple instructions\n- Build skills for any workflow you'll repeat so it gets faster each time\n- Review everything before trusting it, accuracy was strong but not perfect\n\nI want to try something similar for my own work. When I paste this,\nstart by saying: \"Hey! I have all the context from Thorium Valley and\nheard you're looking to automate some of your repetitive data processing\nwith Claude CoWork. Could I get a little more context on:\n1. What kind of data do you regularly process, categorize, or enter,\n   and roughly how much time does it eat up each week?\n2. What does your current workflow look like and what tools or formats\n   are you working with (spreadsheets, PDFs, specific software)?\"</code></pre>"
+      },
+      {
+        "title": "This Boot Company Let AI Manage Half Its Inventory. It Outsold the Human-Managed Half by 9.6%.",
+        "category": "OPERATIONS",
+        "thumbnail_url": "/thumbnails/this-boot-company-let-ai-manage-half-its-inventory.jpeg",
+        "content": "<p>Tecovas sells cowboy boots. Not software, not SaaS, not anything that sounds like it belongs in an AI case study.</p>\n<p>The company has about 60 retail stores and a <a href=\"https://www.retaildive.com/news/tecovas-ai-store-experience/815750/\">10-year track record</a> of doing things the old-fashioned way, which included managing inventory with spreadsheets and manual allocation. Someone on the team would look at what sold where and decide which boots to send to which store. It worked fine until it didn't scale.</p>\n<p>So Tecovas tried something simple. They partnered with a company called <a href=\"https://www.invent.ai/news/tecovas-taps-invent.ai-to-transform-allocation-replenishment\">Invent.AI</a> and let the AI manage inventory decisions for some product categories while humans kept managing others. Same stores, same time period, direct comparison.</p>\n<p>The AI-managed categories brought in 9.6% more revenue. They also had a 2% better in-stock rate and a 20% increase in new product sales. The AI was better at figuring out which specific boot in which specific size should go to which specific store to maximize the chance someone actually buys it.</p>\n<p>\"It's completely changed the way we manage our most important asset in retail, which is our inventory,\" Kevin Harwood, the company's CTO, said at <a href=\"https://www.retaildive.com/news/tecovas-ai-store-experience/815750/\">Shoptalk Spring</a>.</p>\n<p>The interesting part isn't that AI beat humans at inventory allocation. It's that Tecovas set up the experiment to find out. They didn't just adopt AI and hope for the best. They ran it side by side with their existing process and measured the gap. That's something anyone can do whether you're managing product inventory, a content calendar, purchasing decisions, or even staffing schedules. Pick a category, let AI handle the recommendations, keep doing the other ones yourself, and compare notes after a month.</p>\n<h2>The Formula</h2>\n<p><strong>1. Pick one recurring decision you make with a spreadsheet.</strong> This could be what to reorder, what content to publish, which leads to prioritize, what to schedule. Anything where you're looking at data and making a call repeatedly.</p>\n<p><strong>2. Build a simple tracking sheet.</strong> Open Google Sheets or Airtable and create two tabs: \"AI Recommended\" and \"My Call.\" Log the same type of decision in both, along with whatever outcome matters to you like revenue, engagement, completion rate, or response time.</p>\n<p><strong>3. Feed your data into Claude and ask for recommendations.</strong> Take your historical data, paste it in, and ask Claude to recommend what you should do next based on the patterns. Do this for half your decisions. Make the other half yourself the way you normally would.</p>\n<p><strong>4. Run it for 30 days and compare.</strong> At the end of the month, look at both tabs. Which set of decisions performed better and by how much? You're not trying to prove AI is smarter. You're trying to see where it adds value for your specific work.</p>\n<h3>Have Claude Explain This to Me</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>A retail company was managing inventory allocation manually with spreadsheets.\nThey let AI handle decisions for some product categories while humans managed\nothers, then compared results. The AI-managed categories outperformed by 9.6%\nin revenue with better in-stock rates.\n\nHere's the basic approach from Thorium Valley:\n- Identify one recurring decision you currently make using spreadsheets or gut feel\n- Create a simple tracking sheet that logs both AI-recommended and human decisions\n- Feed your historical data into Claude and ask for pattern-based recommendations\n- Run both approaches side by side for 30 days and compare outcomes\n\nWhen I paste this, start by saying: \"Hey! I have all the context provided by\nThorium Valley and heard you're trying to benchmark AI recommendations against\nyour current decision-making process. Could I get a little more context on:\n1. What kind of recurring decisions do you make at work that involve looking\n   at data and making a judgment call, like what to reorder, schedule, or prioritize?\n2. What does your current process look like for those decisions, and what\n   outcome would you use to measure whether AI recommendations are actually better?\"</code></pre>"
+      }
+    ],
+    "sign_off": "That's the Catalyst for this week. If you tried something from one of these stories, tell us how it went — reply directly.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-catalyst-2026-04-20.png",
+    "thumbnail_url": "/thumbnails/30-tax-pros-built-working-software.jpeg",
+    "published_at": "2026-04-20T13:00:00.000Z",
+    "updated_at": "2026-04-20T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "OpenAI is spending $20 billion on Cerebras chips",
+          "rest": " — and getting an equity stake in the company — as it races to reduce its dependence on Nvidia",
+          "url": "https://www.sahmcapital.com/news/content/openai-to-spend-more-than-20-billion-on-cerebras-chips-receive-equity-stake-the-information-reports-2026-04-17"
+        },
+        {
+          "link_text": "The NSA is quietly using Anthropic's Mythos",
+          "rest": " despite the Pentagon officially blacklisting the company as a supply chain risk",
+          "url": "https://www.channelnewsasia.com/business/us-security-agency-using-anthropics-mythos-despite-blacklist-axios-reports-6066681"
+        },
+        {
+          "link_text": "Nearly half of the 80,000 tech jobs cut in Q1 2026",
+          "rest": " were explicitly eliminated because of AI — and investors rewarded every company that did it",
+          "url": "https://startupfortune.com/nearly-half-of-the-80000-tech-jobs-cut-in-early-2026-were-eliminated-because-of-ai/"
+        },
+        {
+          "link_text": "Reese Witherspoon told women they need to learn AI",
+          "rest": " to protect their careers — her comments section turned into a full revolt",
+          "url": "https://www.thecooldown.com/green-business/reese-witherspoon-ai-backlash-video/"
+        },
+        {
+          "link_text": "Microsoft backtracks on force-installing Copilot",
+          "rest": " after IT admins and users pushed back on having an AI assistant they never asked for",
+          "url": "https://www.korteksolutions.com/2026/04/microsoft-backtracks-on-pushing-copilot-to-users/"
+        },
+        {
+          "link_text": "There are now more than 1,000 state AI bills",
+          "rest": " across the U.S. — and the White House can't stop them, even in red states",
+          "url": "https://mynorthwest.com/national/trump-wants-to-stop-states-from-regulating-ai-this-utah-republican-isnt-listening/4229739"
+        },
+        {
+          "link_text": "OpenAI launched GPT-Rosalind",
+          "rest": ", a new AI model built specifically for drug discovery and biology research, with Amgen and Moderna already testing it",
+          "url": "https://www.tech360.tv/openai-unveils-gpt-rosalind-ai-model-for-life-sciences-research-2026-17-04"
+        },
+        {
+          "link_text": "Google Gemini can now pull from your personal photo library",
+          "rest": " to generate AI images of you and your family — Google says it won't use the photos for training",
+          "url": "https://www.newsbytesapp.com/news/science/gemini-can-now-create-ai-images-using-your-photo-library/story"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Littlebird",
+          "desc": "Think of it as an AI that actually knows what you're working on. It watches your screen, takes notes in your meetings, and remembers all of it. So when you forget where you saw something, you just ask.",
+          "url": "https://try.littlebird.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Clico",
+          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type — no more copying your email into another tab and pasting the answer back",
+          "url": "https://tryclico.link/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Gemini Notebooks",
+          "desc": "Google just made Notebooks free for all Gemini users — collect conversations, files, and research under one topic so the AI actually remembers what you're working on instead of starting from scratch every chat",
+          "url": "https://9to5google.com/2026/04/17/gemini-notebooks-free/",
+          "sponsored": false
+        },
+        {
+          "name": "Google Photos + Gemini",
+          "desc": "Gemini can now pull from your Google Photos library to generate personalized AI images — ask for a claymation version of your family vacation and it knows who your family is and what you did",
+          "url": "https://www.newsbytesapp.com/news/science/gemini-can-now-create-ai-images-using-your-photo-library/story",
+          "sponsored": false
+        },
+        {
+          "name": "Cloudflare Agent Cloud",
+          "desc": "Cloudflare launched full sandbox environments where AI agents can build software, install tools, and run complex multi-step tasks on their own — designed to let developers ship production-ready agents across its global network",
+          "url": "https://pulse2.com/cloudflare-agent-cloud-expansion-introduces-infrastructure-to-scale-autonomous-ai-agents/",
+          "sponsored": false
+        },
+        {
+          "name": "GPT-Rosalind",
+          "desc": "OpenAI released an AI model built specifically for life sciences — it can query research databases, read scientific papers, suggest experiments, and is already being used by Moderna and Amgen to speed up drug discovery",
+          "url": "https://www.tech360.tv/openai-unveils-gpt-rosalind-ai-model-for-life-sciences-research-2026-17-04",
+          "sponsored": false
+        },
+        {
+          "name": "Kampala",
+          "desc": "A Y Combinator startup that lets you turn any app — website, mobile, or desktop — into an API by recording what you do and converting your clicks into repeatable, automated scripts, no browser bots or screenshots required",
+          "url": "https://www.zatanna.ai/kampala",
+          "sponsored": false
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "ce51239e-5b77-40e5-ad10-1c66213f3a3e",
+      "question": "When AI gives you a result, how much do you trust it before double-checking?",
+      "options": [
+        "Fully — I run with it",
+        "Mostly, but I skim it over",
+        "I check everything carefully",
+        "I basically rewrite it anyway",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "When AI gives you a result, how much do you trust it before double-checking?",
+      "results": [
+        {
+          "option": "Mostly — just a quick glance",
+          "pct": 100
+        }
+      ]
+    },
+    "yesterdays_results": null
+  },
+  {
     "id": "catalyst-april-15-2026",
     "slug": "catalyst-april-15-2026",
     "publication": "the-catalyst",
