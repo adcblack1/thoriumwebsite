@@ -109,13 +109,8 @@ export async function POST(request: Request) {
       ...(subscriber.utm_content ? [{ name: 'ad_creative', value: subscriber.utm_content }] : []),
     ];
 
-    // 3. Subscribe to each selected publication with conditional welcome emails
-    // Welcome email logic:
-    //   TV selected (with or without others) → TV welcome only
-    //   Only Catalyst → Catalyst welcome
-    //   Only Lab → Lab welcome
-    //   Catalyst + Lab (no TV) → Catalyst welcome only (Catalyst welcome email
-    //     includes a mention that they're also subscribed to The Lab)
+    // 3. Re-subscribe to each selected publication to update custom fields
+    // Welcome emails are already sent at step 1 — do NOT re-send here
     let mainBeehiivId: string | null = null;
     const subscriptionResults: Record<string, string | null> = {};
 
@@ -124,7 +119,7 @@ export async function POST(request: Request) {
       const tvPubId = PUB_MAP['thorium-valley'];
       if (tvPubId) {
         mainBeehiivId = await subscribeToBeehiiv(
-          tvPubId, subscriber.email, true, customFields, BEEHIIV_API_KEY
+          tvPubId, subscriber.email, false, customFields, BEEHIIV_API_KEY
         );
         subscriptionResults['thorium-valley'] = mainBeehiivId;
       }
@@ -134,10 +129,9 @@ export async function POST(request: Request) {
     if (hasCatalyst) {
       const catalystPubId = PUB_MAP['the-catalyst'];
       if (catalystPubId) {
-        // Send welcome if TV is NOT selected (covers both "catalyst only" and "catalyst + lab")
-        const sendWelcome = !hasTV;
+        // Welcome already sent at step 1
         const id = await subscribeToBeehiiv(
-          catalystPubId, subscriber.email, sendWelcome, customFields, BEEHIIV_API_KEY
+          catalystPubId, subscriber.email, false, customFields, BEEHIIV_API_KEY
         );
         subscriptionResults['the-catalyst'] = id;
         if (!mainBeehiivId) mainBeehiivId = id;
@@ -148,12 +142,9 @@ export async function POST(request: Request) {
     if (hasLab) {
       const labPubId = PUB_MAP['the-lab'];
       if (labPubId) {
-        // Send Lab welcome ONLY if TV is NOT selected AND Catalyst is NOT selected
-        // (i.e. Lab is the sole selection). If Catalyst is also selected, the
-        // Catalyst welcome email already mentions the Lab subscription.
-        const sendWelcome = !hasTV && !hasCatalyst;
+        // Welcome already sent at step 1
         const id = await subscribeToBeehiiv(
-          labPubId, subscriber.email, sendWelcome, customFields, BEEHIIV_API_KEY
+          labPubId, subscriber.email, false, customFields, BEEHIIV_API_KEY
         );
         subscriptionResults['the-lab'] = id;
         if (!mainBeehiivId) mainBeehiivId = id;

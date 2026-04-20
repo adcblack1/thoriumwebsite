@@ -49,7 +49,7 @@ export function PublicationsSection() {
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, child_newsletters: selected }),
       });
       const data = await res.json();
       const subscriberId = data.subscriber_id;
