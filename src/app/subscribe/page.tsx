@@ -350,7 +350,7 @@ export default function SubscribePage() {
         const result = await createSubscriber();
         if (result === 'resumed') { setLoading(false); return; }
         if (!result) { setLoading(false); return; }
-        trackLead(); // General tracking — do NOT optimize campaigns toward this
+        trackLead(formData.email); // General tracking + advanced matching
       } else if (step === 2) {
         await updateSubscriber({ child_newsletters: formData.child_newsletters });
       } else if (step === 3) {

@@ -36,7 +36,7 @@ export function SubscribeForm({ variant = "hero", className = "", redirectOnSucc
             const data = await res.json()
 
             if (data.subscriber_id) {
-                trackLead()
+                trackLead(email)
                 // Store subscriber info so /subscribe can pick it up
                 localStorage.setItem('tv_subscribe_progress', JSON.stringify({
                     formData: {

@@ -78,11 +78,32 @@ export function trackCustomEvent(eventName: string, params?: Record<string, stri
 }
 
 /**
+ * Pass user data (email) to Meta Pixel for Advanced Matching.
+ * Call this after the user subscribes so Meta can match the conversion
+ * to the ad click more accurately.
+ */
+export function setAdvancedMatching(email: string) {
+  if (typeof window === 'undefined') return;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const fbq = (window as any).fbq;
+    if (typeof fbq === 'function') {
+      fbq('init', PIXEL_ID, { em: email.toLowerCase().trim() });
+      console.log('[Meta Pixel] Advanced matching set for:', email);
+    }
+  } catch (e) {
+    console.warn('[Meta Pixel] Advanced matching failed:', e);
+  }
+}
+
+/**
  * Track a Lead event (fires on Step 1 — email submit).
  * Used for general tracking/analytics. Do NOT optimize Meta campaigns toward this.
+ * Includes value/currency for ROAS calculations.
  */
-export function trackLead() {
-  trackEvent('Lead');
+export function trackLead(email?: string) {
+  if (email) setAdvancedMatching(email);
+  trackEvent('Lead', { value: '0', currency: 'USD' } as Record<string, string>);
 }
 
 /**

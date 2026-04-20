@@ -13,7 +13,9 @@ export function NewsletterForm({ className = '' }: NewsletterFormProps) {
 
   useEffect(() => {
     if (state?.success) {
-      trackLead();
+      // Grab email from the form for advanced matching
+      const emailInput = document.querySelector<HTMLInputElement>('input[name="email"]');
+      trackLead(emailInput?.value || undefined);
     }
   }, [state?.success]);
 
