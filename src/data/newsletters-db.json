@@ -1,5 +1,151 @@
 [
   {
+    "id": "april-20-2026",
+    "slug": "april-20-2026",
+    "title": "Thorium Valley | April 20, 2026",
+    "date": "April 20, 2026",
+    "intro": "Good Morning Thorium Valley. A robot just ran a half marathon seven minutes faster than any human ever has. Fully autonomous — no remote control, no operator. Last year's winning robot time was 2 hours and 40 minutes. This year, under 51. A two-thirds improvement in twelve months. Not exactly incremental.\n\nGen Z is using AI just as much as last year but liking it a whole lot less. Excitement dropped 14 points. Anger jumped 9. Even daily users are souring. Apparently using something every day and actually wanting to are different things.\n\nAnd Duke researchers found every major AI model aces creativity tests on its own — but they all ace them the exact same way. If everyone's using AI to stand out, nobody is.",
+    "toc": [
+      "A robot just outran every human alive",
+      "Gen Z won't quit AI, but the enthusiasm is gone",
+      "AI is making everyone's work look the same"
+    ],
+    "article_slugs": [
+      "ai-is-making-everyones-work-look-the-same",
+      "gen-z-wont-quit-ai-but-the-enthusiasm-is-gone",
+      "a-robot-just-outran-every-human-alive"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-04-20.png",
+    "published_at": "2026-04-20T13:00:00.000Z",
+    "updated_at": "2026-04-20T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "OpenAI to spend $20 billion on Cerebras chips",
+          "rest": " and take an equity stake in the startup — a direct shot at Nvidia's dominance",
+          "url": "https://www.sahmcapital.com/news/content/openai-to-spend-more-than-20-billion-on-cerebras-chips-receive-equity-stake-the-information-reports-2026-04-17"
+        },
+        {
+          "prefix": "Google is reportedly in talks with Marvell to ",
+          "link_text": "build two new custom AI chips",
+          "rest": " — one a new TPU, the other a memory processor to supercharge it",
+          "url": "https://www.thestar.com.my/tech/tech-news/2026/04/19/google-in-talks-with-marvell-to-build-new-ai-chips-for-inference-the-information-reports"
+        },
+        {
+          "prefix": "TSMC breaks its own rules, ",
+          "link_text": "ramping up 3nm chip production simultaneously",
+          "rest": " in Taiwan, the U.S., and Japan to meet explosive AI demand",
+          "url": "https://finance.biggo.com/news/OvWXmZ0BvbjfYyetlfKn"
+        },
+        {
+          "prefix": "Cerebras files for a public offering, ",
+          "link_text": "positioning itself as a real challenger to Nvidia",
+          "rest": " after landing the massive OpenAI deal",
+          "url": "https://prettycool.net/cerebras-systems-files-for-public-offering-poised-to-challenge-ai-chip-incumbent-nvidia-with-landmark-partnerships/"
+        },
+        {
+          "prefix": "Cloudflare launches a major expansion of its ",
+          "link_text": "Agent Cloud platform for autonomous AI agents",
+          "rest": " — including sandboxes where agents can build and deploy code on their own",
+          "url": "https://pulse2.com/cloudflare-agent-cloud-expansion-introduces-infrastructure-to-scale-autonomous-ai-agents/"
+        },
+        {
+          "prefix": "Microsoft and Stellantis sign a ",
+          "link_text": "five-year AI partnership",
+          "rest": " covering 100+ AI initiatives across Jeep, Peugeot, and more",
+          "url": "https://cio.economictimes.indiatimes.com/amp/news/corporate-news/microsoft-and-stellantis-sign-five-year-partnership-for-ai-push/130322138"
+        },
+        {
+          "prefix": "Global memory chip shortages ",
+          "link_text": "peaked in Q1 2026",
+          "rest": ", stalling AI infrastructure rollouts as agentic workloads devour DRAM faster than anyone expected",
+          "url": "https://ai.via.news/ai-hardware/memory-chip-shortages-hit-peak-in-q1-2026-delaying-ai-infrastructure-rollouts"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Littlebird",
+          "desc": "Think of it as an AI that actually knows what you're working on. It watches your screen, takes notes in your meetings, and remembers all of it. So when you forget where you saw something, you just ask.",
+          "url": "https://try.littlebird.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Clico",
+          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type — no more copying your email into another tab and pasting the answer back.",
+          "url": "https://tryclico.link/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Gemini",
+          "desc": "Google's AI can now pull from your Google Photos library to generate personalized images — describe a scene with your family and it figures out who's who from your labels",
+          "url": "https://www.newsbytesapp.com/news/science/gemini-can-now-create-ai-images-using-your-photo-library/story",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini Notebooks",
+          "desc": "Google just made its persistent AI workspace free for everyone — save conversations, files, and context in one place so Gemini remembers your projects across sessions",
+          "url": "https://www.absolutegeeks.com/article/tech-news/google-opens-gemini-notebooks-to-free-users-on-the-web/",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini Live",
+          "desc": "Google is redesigning its real-time voice AI on Android, ditching the fullscreen takeover for a sleeker in-app interface with camera sharing and screen sharing built in",
+          "url": "https://9to5google.com/2026/04/19/gemini-live-app-redesign/",
+          "sponsored": false
+        },
+        {
+          "name": "Google AI Mode in Chrome",
+          "desc": "Chrome now opens websites side-by-side with AI answers instead of replacing them, and can search across all your open tabs at once",
+          "url": "https://ppc.land/googles-ai-mode-in-chrome-opens-publisher-links-side-by-side-what-changes/",
+          "sponsored": false
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Airbnb",
+          "role": "Senior Manager, Product & AI Policy",
+          "url": "https://careers.airbnb.com/positions/7782435/"
+        },
+        {
+          "company": "Netflix",
+          "role": "Creative Evaluation Lead, Artwork (AI x Promotional Art)",
+          "url": "https://hireza.wuaze.com/job/creative-evaluation-lead-artwork-2"
+        },
+        {
+          "company": "Mercury",
+          "role": "Senior Product Manager, API & Agentic Banking",
+          "url": "https://www.thesaraslist.com/jobs/senior-product-manager-api-agentic-banking-mercury-085ba230"
+        },
+        {
+          "company": "Abbott",
+          "role": "Senior Director, AI Strategy, Governance and Transformation",
+          "url": "https://www.jobs.abbott/global/pt/job/31145820/Senior-Director-AI-Strategy-Governance-and-Transformation"
+        }
+      ]
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "dcef5d42-80eb-41d5-961c-9c689a353c25",
+      "question": "Would you trust an AI agent to work on your computer unsupervised?",
+      "options": [
+        "Already do",
+        "Not a chance",
+        "Maybe someday",
+        "Other"
+      ]
+    },
+    "poll_results": null,
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-04-17-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-04-17-real.jpg",
+      "ai_source": "https://gemini.google.com/share/placeholder",
+      "real_source": "https://unsplash.com/photos/rolling-green-hills-and-a-winding-river-valley-fn1IutStdm4"
+    }
+  },
+  {
     "id": "april-17-2026",
     "slug": "april-17-2026",
     "title": "Thorium Valley | April 17, 2026",
