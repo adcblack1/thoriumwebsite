@@ -1492,7 +1492,7 @@ function StepNewsletters({
       </div>
       )}
 
-      <div className="mt-6 space-y-3">
+      <div className="mt-6 space-y-3 pb-12 lg:pb-0">
         <PrimaryButton onClick={onNext} disabled={loading}>Subscribe</PrimaryButton>
         <button
           onClick={handleSkip}
