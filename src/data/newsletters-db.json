@@ -126,7 +126,13 @@
         }
       ]
     },
-    "games": null,
+    "games": {
+      "game_poll_id": "5ce01910-405f-4f97-b8d7-4cad17df78db",
+      "image_a": "/thumbnails/kicker-2026-04-20-ai.jpeg",
+      "image_b": "/thumbnails/kicker-2026-04-20-real.jpg",
+      "link_a": "https://gemini.google.com/share/2b7952038575",
+      "link_b": "https://unsplash.com/photos/coastal-landscape-with-a-wooden-fence-and-blue-sky-hfGrBIVIjeA"
+    },
     "poll": {
       "poll_id": "dcef5d42-80eb-41d5-961c-9c689a353c25",
       "question": "Would you trust an AI agent to work on your computer unsupervised?",
