@@ -103,7 +103,7 @@ export function setAdvancedMatching(email: string) {
  */
 export function trackLead(email?: string) {
   if (email) setAdvancedMatching(email);
-  trackEvent('Lead', { value: '0', currency: 'USD' } as Record<string, string>);
+  trackEvent('Lead', { value: '5', currency: 'USD' } as Record<string, string>);
 }
 
 /**
