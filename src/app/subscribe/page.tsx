@@ -573,7 +573,7 @@ export default function SubscribePage() {
       </div>
 
       {/* Main content */}
-      <div className={`flex-1 flex items-center justify-center px-3 lg:px-5 relative z-10 lg:-mt-44 ${step <= 1 ? '-mt-16' : ''}`}>
+      <div className={`flex-1 flex items-center justify-center px-3 lg:px-5 relative z-10 ${step <= 1 ? '-mt-16 lg:-mt-44' : 'lg:-mt-20'}`}>
         <div className={`w-full ${step === 9 ? 'max-w-4xl' : step === 1 ? 'max-w-md lg:max-w-2xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
