@@ -1,5 +1,297 @@
 [
   {
+    "id": "lab-april-23-2026",
+    "slug": "lab-april-23-2026",
+    "publication": "the-lab",
+    "title": "NotebookLM Is Free and Nobody's Talking About It",
+    "date": "April 23, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to The Lab.\n\nToday we're looking at a free research tool from Google that turns your documents into full podcast episodes and nobody seems to know it exists.\n\nWe're also finding out why half of Silicon Valley switched to a new AI assistant only to get cut off mid-conversation.\n\nAnd we're checking out an AI meeting notes tool that somehow has a perfect 5-star rating across nearly 5,000 reviews.",
+    "toc": [
+      "NotebookLM Is Free and Nobody's Talking About It",
+      "Half of Silicon Valley Switched to Claude. Then It Started Throttling Them.",
+      "Fathom Has a Perfect 5.0 on G2. Is It Actually That Good?"
+    ],
+    "article_slugs": [],
+    "stories": [
+      {
+        "title": "NotebookLM Is Free and Nobody's Talking About It",
+        "category": "PRODUCTIVITY",
+        "thumbnail_url": "/thumbnails/notebooklm-is-free-and-nobodys-talking-about-it.jpeg",
+        "content": "<p>Google's AI research tool turns your documents into podcasts, summaries, and slide decks without charging you a dime.</p>\n<p>Most AI tools cost $20 a month and still hallucinate. NotebookLM is free, barely hallucinates, and somehow flew under everyone's radar.</p>\n<p>Google's NotebookLM is a research assistant that only knows what you tell it. You upload documents, PDFs, YouTube videos, Google Docs, spreadsheets, whatever, and it answers questions strictly from those sources. Every response comes with clickable citations so you can verify exactly where the answer came from. One Reddit user on r/PromptEngineering <a href=\"https://www.reddit.com/r/PromptEngineering/comments/1rvhlf3/googles_notebooklm_is_still_the_most_slepton_free/\">called it</a> \"the most slept-on free AI tool in 2026\" and genuinely couldn't figure out why nobody uses it.</p>\n<p>The feature that made NotebookLM famous is Audio Overviews. You feed it a stack of research papers or reports and it generates a full podcast-style conversation between two AI hosts discussing your material. It sounds absurdly real. The hosts have opinions, they interrupt each other, they get genuinely excited about findings. One academic reviewer <a href=\"https://effortlessacademic.com/notebook-lm-googles-newest-academic-ai-tool/\">described</a> listening to a generated episode about their own research paper and being struck by how emotional the conversation felt compared to the \"dry ChatGPT summaries\" they were used to.</p>\n<p>The free tier is surprisingly generous. You get 100 notebooks, 50 sources per notebook (each up to 500,000 words), 50 daily chat queries, and 3 audio or video generations per day. For most people that's <a href=\"https://www.digitalocean.com/resources/articles/what-is-notebooklm\">more than enough</a>. If you need more, paid plans start at $7.99 a month through Google AI Plus and scale up from there.</p>\n<p>Jeff Su, who did a <a href=\"https://www.jeffsu.org/notebooklm-changed-completely-heres-what-matters-in-2026/\">thorough breakdown</a> of the 2026 updates, ranks Reports, Slide Decks, Infographics, and Mind Maps as the must-use Studio tools. He's less enthusiastic about Audio Overviews for actual productivity, calling them \"mostly a gimmick\" since you can get the same information faster by just typing a question. Fair point. He also warns against using NotebookLM's built-in Deep Research when you have domain expertise because the standalone tools in Claude and ChatGPT just perform better there.</p>\n<p>The real limitations are structural. You're locked into Google's Gemini model with no option to switch. There's no real team collaboration. No integrations with Slack, Notion, or anything else, so every source requires a manual upload. And it's <a href=\"https://dust.tt/blog/notebooklm-alternatives-research-documents\">read-only</a>, meaning it can answer questions but it can't take actions, update a CRM, or trigger a workflow.</p>\n<h2>The Verdict</h2>\n<p>NotebookLM is the best free AI research tool available right now and it's not particularly close. If you regularly deal with stacks of documents in different formats and need answers you can actually trust, start here before paying for anything else. Skip it if you need team collaboration, integrations with your existing tools, or the ability to choose your own AI model. For general purpose AI work beyond document analysis, Claude is a better fit. But for making sense of your own files with zero hallucination risk and zero cost, NotebookLM is hard to beat.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed Google's NotebookLM (free, with paid tiers starting at $7.99/month) and found that it's the best free AI research tool available, ideal for anyone who needs to make sense of documents they already have, but limited by no team collaboration, no integrations, and being locked to Google's Gemini model.\n\nHere are the key takeaways:\n- Best for people who regularly work with stacks of documents in different formats\n- Source-grounded answers with citations mean near-zero hallucination risk\n- The free tier is generous enough for most professionals\n- Skip it if you need team collaboration or tool integrations; Claude is better for general AI work beyond document analysis\n\nWhen I paste this, start by saying: \"Hey! I have all the context provided by Thorium Valley and heard you're trying to figure out whether NotebookLM is right for you. Could I get a little more context on:\n1. What kind of documents or research do you work with regularly, and how often do you need to pull insights from multiple sources at once?\n2. What are you currently using to make sense of your documents and research, and what's frustrating you about it?\"</code></pre>"
+      },
+      {
+        "title": "Half of Silicon Valley Switched to Claude. Then It Started Throttling Them.",
+        "category": "ASSISTANT",
+        "thumbnail_url": "/thumbnails/half-of-silicon-valley-switched-to-claude-then-it-started-throttling-them.jpeg",
+        "content": "<p><em>The $20/month AI that writes better than ChatGPT but cuts you off mid-thought.</em></p>\n<p>Claude Pro costs $20 a month, the same as ChatGPT Plus. For that price you get access to Anthropic's best models, a 200K token context window (roughly 150,000 words in a single conversation), and Claude Code, a terminal-based coding agent that developers have been losing their minds over. On paper, it looks like the better deal. In practice, it depends entirely on how much you plan to use it.</p>\n<p>The writing quality is where Claude genuinely pulls ahead. People who've <a href=\"https://www.reddit.com/r/ChatGPT/comments/1rrn3kj/those_of_you_who_left_for_claude_how_is_it_going/\">run both tools side by side</a> consistently describe Claude's output as tighter, denser, and more natural. It doesn't default to the same enthusiastic, over-structured tone that ChatGPT is famous for. For coding, Claude Opus 4.6 <a href=\"https://www.anthropic.com/news/claude-opus-4-6\">scores 80.8% on SWE-bench Verified</a>, a benchmark that tests whether AI can solve real engineering problems. ChatGPT's GPT-5.4 is close at roughly 80%, but Claude Code being included free with Pro is a meaningful advantage that ChatGPT Plus simply doesn't match.</p>\n<p>The problem is that Anthropic throttles you hard. Users <a href=\"https://www.youtube.com/watch?v=PhhH5RGjJlE\">report hitting rate limits</a> after just a couple of conversations, even on the paid plan. One reviewer put it bluntly: Claude will politely warn you that you're approaching your limit, and then it cuts you off. The limits reset on a rolling five-hour window, and Anthropic won't publicly say exactly how many messages you get. That ambiguity frustrates people more than the limits themselves. One user on r/ChatGPT ran both tools <a href=\"https://www.reddit.com/r/ChatGPT/comments/1rnbxi8/my_observations_about_claude_vs_chatgpt/\">side by side for a week</a> and found that while Claude's writing was strong, it frequently got lazy with answers, saying \"I don't know\" where ChatGPT would actually go find the information. Their trust in Claude, they said, was \"on a rapid decline.\"</p>\n<p>There's also no image generation, no voice mode, and limited web browsing compared to ChatGPT. If you need one tool that does a bit of everything, Claude Pro isn't it.</p>\n<h2>The Verdict</h2>\n<p>Claude Pro is worth it if you write or code for a living and you can work within the usage limits. The writing quality and Claude Code alone justify the $20 for people whose work lives inside documents and terminals. If you need images, voice, web browsing, or just an AI that won't cut you off mid-afternoon, ChatGPT Plus covers more ground for the same price. And if you're a casual user who only checks in a few times a week, the free tier is honestly fine. Skip Pro entirely.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed Claude Pro ($20/month) and found that it's\nthe best AI for writing and coding quality but the usage limits are\naggressive enough to frustrate power users. ChatGPT Plus covers more\nground for the same price if you need breadth over depth.\n\nHere are the key takeaways:\n- Best for professional writers and developers who value output quality\n- Claude Code included free is a major advantage over ChatGPT Plus\n- Usage limits hit fast and Anthropic won't say exactly what they are\n- No image generation, no voice mode, limited web search\n- ChatGPT Plus is the better pick if you need one tool that does everything\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Claude Pro is right for you. Could I get a little more\ncontext on:\n1. What kind of work would you mainly use it for, like writing,\n   coding, research, or something else entirely?\n2. What are you using right now and what's not working about it?\"</code></pre>"
+      },
+      {
+        "title": "Fathom Has a Perfect 5.0 on G2. Is It Actually That Good?",
+        "category": "PRODUCTIVITY",
+        "thumbnail_url": "/thumbnails/fathom-has-a-perfect-5-on-g2-is-it-actually-that-good.jpeg",
+        "content": "<p><em>The AI meeting notes tool with 4,697 five-star reviews and a free tier that puts everyone else to shame.</em></p>\n<p>Fathom records your meetings, transcribes them, and hands you a summary with action items before you've even closed the Zoom tab. It works with Zoom, Google Meet, and Microsoft Teams, and the free plan includes unlimited recordings with no time caps. No trial period, no credit card, no monthly minute limits. You just sign up and it starts working.</p>\n<p>That alone makes it worth talking about. Otter.ai caps free users at 300 minutes a month. Fireflies.ai uses a credit system. Fathom gives you everything and asks for nothing until you want team features or more than five AI summaries per month, at which point the paid plans start at <a href=\"https://www.fathom.ai/pricing\">$15 to $19 per user</a>.</p>\n<p>The G2 rating is real. A 5.0 across nearly 5,000 reviews is almost unheard of, and users consistently <a href=\"https://www.g2.com/products/fathom-video/reviews\">praise</a> the transcription accuracy, the speed of the summaries, and how little setup it takes. One reviewer on G2 <a href=\"https://www.g2.com/products/fathom-video/reviews\">said</a> their entire team switched from Otter to Fathom after a single week because \"it's a superior product.\" A sales engineer <a href=\"https://www.g2.com/products/fathom-video/reviews\">wrote</a> that Fathom \"outperformed Otter and Fireflies, hands down, in every category we tested.\"</p>\n<p>The bot-free recording option is a recent addition and it matters more than it sounds. Fathom can now join Zoom calls without a visible bot sitting in the participant list, which removes that awkward moment where a client asks why \"Fathom Notetaker\" just entered the room. Meanwhile, Otter.ai is <a href=\"https://get-alfred.ai/compare/otter-vs-fathom\">facing a class action lawsuit</a> filed in August 2025 alleging its bot recorded meetings without proper consent from participants.</p>\n<p>So what's the catch? Fathom is reliable but a little boring. One <a href=\"https://tldv.io/blog/honest-review-of-fathom/\">in-depth review</a> put it bluntly: \"It works. It's tidy. It stays out of your way. But it also doesn't really do anything that lifts your workflow.\" The summaries are clean but stiff. There's no sentiment analysis, no talk-time ratios, no coaching analytics. If you want to understand how your sales team sells rather than just what they agreed to, Fathom doesn't go there. Fireflies.ai and tools like Gong are built for that kind of analysis.</p>\n<p>It also doesn't work for in-person meetings. No mobile app, no way to record a conference room conversation. Otter still wins that one. And if your team needs real-time collaborative editing during calls, Otter's live transcript editing is something Fathom doesn't attempt.</p>\n<h2>The Verdict</h2>\n<p>Fathom is the best free meeting notes tool available right now. If you just want your meetings recorded, transcribed, and summarized without paying anything, nothing else comes close. The accuracy is strong, the setup takes seconds, and the bot-free option on Zoom is a genuine advantage over competitors dealing with consent headaches. Pay for the team plan if you need CRM sync or shared libraries. Skip it if you need advanced analytics, in-person recording, or real-time collaboration. For anything beyond meeting notes, Claude can help you think through what was discussed and what to do next far better than any built-in summary tool.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed Fathom (free tier with unlimited recording,\npaid plans from $15-19/user/month) and found it's the best free\nmeeting notes tool available. Great for individuals and small teams\nwho want accurate transcription without paying. Skip it if you need\nadvanced analytics, in-person recording, or real-time collaboration.\n\nHere are the key takeaways:\n- Unlimited free recording and transcription with no time caps\n- Strong accuracy and fast summaries, but no coaching or sentiment analysis\n- Bot-free Zoom recording is a real advantage over Otter.ai\n- Best alternative for analytics-heavy teams is Fireflies.ai; for\n  real-time collaboration, Otter.ai still leads\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Fathom is right for you. Could I get a little more context on:\n1. What kinds of meetings do you record most often, and what do you\n   need to do with the notes afterward?\n2. What are you currently using for meeting notes, and what's\n   frustrating you about it?\"</code></pre>"
+      }
+    ],
+    "sign_off": "That's the Lab for this week. If a tool in here saved you time or wasted it, tell us — reply directly.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-lab-2026-04-23.png",
+    "thumbnail_url": "/thumbnails/notebooklm-is-free-and-nobodys-talking-about-it.jpeg",
+    "published_at": "2026-04-23T13:00:00.000Z",
+    "updated_at": "2026-04-23T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "prefix": "Meta will ",
+          "link_text": "track employee keystrokes and mouse clicks",
+          "rest": " to train its AI models — while planning to lay off 8,000 workers next month",
+          "url": "https://techcrunch.com/2026/04/21/meta-will-record-employees-keystrokes-and-use-it-to-train-its-ai-models/"
+        },
+        {
+          "link_text": "SpaceX strikes a deal to buy Cursor for $60 billion",
+          "rest": ", blindsiding investors mid-fundraise and giving Musk a foothold in AI coding",
+          "url": "https://techcrunch.com/2026/04/21/spacex-is-working-with-cursor-and-has-an-option-to-buy-the-startup-for-60-billion/"
+        },
+        {
+          "link_text": "Amazon invests another $25 billion in Anthropic",
+          "rest": ", locking Claude into AWS chips through Trainium4 — a chip that doesn't exist yet",
+          "url": "https://thenextweb.com/news/amazon-anthropic-25-billion-investment"
+        },
+        {
+          "link_text": "Florida launches a criminal investigation into ChatGPT",
+          "rest": " over the FSU shooting, claiming the chatbot advised the gunman on weapons and timing",
+          "url": "https://www.npr.org/2026/04/21/nx-s1-5793967/florida-openai-investigation-mass-shooting-fsu"
+        },
+        {
+          "prefix": "Jack Dorsey says ",
+          "link_text": "AI convinced him to cut 40% of Block's workforce",
+          "rest": " — he tested a few models in December and laid off 4,000 people three weeks later",
+          "url": "https://enterpriseai.economictimes.indiatimes.com/news/industry/jack-dorsey-reveals-ai-driven-40-workforce-reduction-at-block-inc/130418892"
+        },
+        {
+          "link_text": "Google DeepMind engineers get to use Claude",
+          "rest": " while the rest of Google is stuck with Gemini — and some threatened to quit when leadership tried to revoke access",
+          "url": "https://www.businessinsider.com/google-deepmind-ai-tool-divide-internal-tensions-2026-4"
+        },
+        {
+          "link_text": "YouTube expands its deepfake detection tool to celebrities",
+          "rest": ", letting talent agencies flag and remove AI-generated fakes of their clients",
+          "url": "https://techcrunch.com/2026/04/21/youtube-expands-its-ai-likeness-detection-technology-to-celebrities/"
+        },
+        {
+          "prefix": "Sam Altman ",
+          "link_text": "accuses Anthropic of \"fear-based marketing\"",
+          "rest": " for withholding Claude Mythos, comparing it to selling bomb shelters after building the bomb",
+          "url": "https://www.businessinsider.com/sam-altman-anthropic-claude-mythos-bomb-shelter-2026-4"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Littlebird",
+          "desc": "Think of it as an AI that actually knows what you're working on. It watches your screen, takes notes in your meetings, and remembers all of it. So when you forget where you saw something, you just ask.",
+          "url": "https://try.littlebird.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Clico",
+          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type — no more copying your email into another tab and pasting the answer back",
+          "url": "https://tryclico.link/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Google Docs",
+          "desc": "Gemini in Docs can now generate full first drafts from your emails, files, and chats — plus a new \"Match Doc Format\" feature that clones the formatting of any existing document so every report looks consistent without manual tweaking",
+          "url": "https://www.androidpolice.com/new-gemini-features-for-google-docs/",
+          "sponsored": false
+        },
+        {
+          "name": "Google Photos",
+          "desc": "Gemini can now pull from your personal Google Photos library to generate AI images — just say \"make a claymation image of my family\" and it knows who your family is without you uploading anything",
+          "url": "https://petapixel.com/2026/04/20/google-now-lets-gemini-generate-images-from-your-google-photos/",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini Deep Research",
+          "desc": "Google's research agent now comes in a \"Max\" version that can run for hours in the background — connecting to the open web, your private data, and custom sources to produce fully cited, chart-filled reports ready by morning",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/next-generation-gemini-deep-research/",
+          "sponsored": false
+        },
+        {
+          "name": "Google Home",
+          "desc": "Gemini on smart speakers and displays now supports Continued Conversation — ask about the weather in Tokyo, then immediately follow up with \"how about tomorrow?\" without saying \"Hey Google\" again",
+          "url": "https://9to5google.com/2026/04/21/gemini-home-continued-conversation/",
+          "sponsored": false
+        },
+        {
+          "name": "Operant AI",
+          "desc": "As AI agents start running code and installing packages on their own, this new security tool watches them in real time — blocking malicious scripts, suspicious shell commands, and credential theft attempts before they execute",
+          "url": "https://www.globenewswire.com/news-release/2026/04/21/3278027/0/en/operant-ai-launches-codeinjectionguard-to-defend-ai-agents-against-runtime-code-injection-attacks.html",
+          "sponsored": false
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "e41f56b5-4de8-4725-97e2-14ce2ad0d3e9",
+      "question": "When an AI tool gives you a wrong answer, what do you do?",
+      "options": [
+        "Google it to double-check",
+        "Ask the AI again but more aggressively",
+        "Shrug and move on",
+        "Lose all trust immediately",
+        "Other"
+      ]
+    },
+    "poll_results": null,
+    "yesterdays_results": null
+  },
+  {
+    "id": "lab-april-21-2026",
+    "slug": "lab-april-21-2026",
+    "publication": "the-lab",
+    "title": "Canva Wants to Be Your Entire Creative Department. It's Not There Yet.",
+    "date": "April 21, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to The Lab.\n\nToday we're looking at the design tool that wants to replace your entire creative team, and whether it's actually ready for that.\n\nWe're also putting a $69/month AI writing tool up against ChatGPT to see if the price tag makes any sense.\n\nAnd we're checking out a meeting notes app that never actually joins your meetings, which is kind of the whole selling point.",
+    "toc": [
+      "Canva Wants to Be Your Entire Creative Department. It's Not There Yet.",
+      "Jasper AI Costs $69/Month to Do What ChatGPT Does for $20",
+      "Granola Doesn't Join Your Meetings. That's the Whole Point."
+    ],
+    "article_slugs": [],
+    "stories": [
+      {
+        "title": "Canva Wants to Be Your Entire Creative Department. It's Not There Yet.",
+        "category": "DESIGN",
+        "thumbnail_url": "/thumbnails/canva-wants-to-be-your-entire-creative-department.jpeg",
+        "content": "<p>Canva has 260 million monthly users and just crossed <a href=\"https://www.canva.com/newsroom/news/canva-2025-wrap/\">$4 billion in annual revenue</a>. The company has been on an AI acquisition spree, scooping up Simtheory and Ortto, and shipping features like Magic Layers, Dream Lab, and AI video generation. The pitch is that you'll never need another design tool again.</p>\n<p>For $13 a month, Canva Pro gives you access to Magic Studio, a bundle of 20-plus AI tools covering everything from image generation to background removal to copywriting. And honestly, for quick social posts, presentations, and marketing graphics, it works. You describe what you want, Canva generates a few options, and you drag things around until it looks right. One reviewer at Concurate <a href=\"https://concurate.com/canva-ai-review/\">said</a> Magic Design gets you \"80% of the way there, fast,\" and that tracks. The background remover works cleanly about 85% of the time. The templates are genuinely massive. If you've ever stared at a blank canvas wondering where to start, Canva solves that problem in seconds.</p>\n<p>The AI features start falling apart the moment you push them. The image generator outputs low-resolution results with occasional uncanny valley problems, especially with hands. One Style Factory reviewer <a href=\"https://www.stylefactoryproductions.com/blog/canva-review\">found</a> that AI-generated video topped out at 1366x768 pixels, which isn't usable for anything professional. Magic Write still runs on GPT-4, which is two generations behind what you'd get just opening Claude or ChatGPT directly. And the text rendering inside AI-generated images is <a href=\"https://www.youtube.com/watch?v=6P8Efu0yw3c\">consistently bad</a>, producing garbled words and nonsensical symbols in anything more complex than a simple graphic.</p>\n<p>Then there are the credit limits. Pro users get 500 AI credits per month. Free users get 50 for life. If you're leaning heavily on AI generation, you can burn through your monthly allowance before lunch. People <a href=\"https://www.g2.com/products/canva/reviews?qs=pros-and-cons\">on G2</a> consistently flag that advanced features feel paywalled, exports are slow on larger projects, and collaboration gets messy when multiple people edit simultaneously. One reviewer put it bluntly: Canva \"scales poorly for heavy customization or professional-grade work.\"</p>\n<p>The real comparison isn't Canva vs. Photoshop. It's whether $13 a month for Canva Pro beats cobbling together free tools and using Claude or Midjourney separately. For pure image quality, Midjourney wins and it's not close. For writing, Claude is better at every level. For presentations specifically, Gamma gives Canva real competition. But none of those tools put everything in one place the way Canva does, and that convenience is genuinely worth something if your job involves cranking out a high volume of decent-looking content on tight deadlines.</p>\n<h2>The Verdict</h2>\n<p>Canva AI is the best tool for people who aren't designers but need to look like one. If you make social posts, pitch decks, or marketing materials regularly and care more about speed than pixel-perfect quality, Pro at $13 a month pays for itself. If you need high-quality AI images, use Midjourney and import them. If you need good copy, use Claude and paste it in. Canva is the assembly line, not the factory. Treat it that way and it's excellent.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed Canva AI Pro ($13/month) and found that it's\nexcellent for non-designers who need to produce high volumes of\ndecent-looking content quickly, but hits a ceiling on AI image quality,\ntext rendering, and advanced customization.\n\nHere are the key takeaways:\n- Best for quick social posts, presentations, and marketing graphics\n- AI image generation and video quality can't compete with dedicated\n  tools like Midjourney\n- Credit limits (500/month on Pro) can run out fast for heavy AI users\n- If you need writing, use Claude separately and paste it in\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Canva AI Pro is right for you. Could I get a little more\ncontext on:\n1. What kind of designs do you create most often, and how many do\n   you typically need per week?\n2. What are you currently using for design work, and where does it\n   slow you down or frustrate you?\"</code></pre>"
+      },
+      {
+        "title": "Jasper AI Costs $69/Month to Do What ChatGPT Does for $20",
+        "category": "WRITING",
+        "thumbnail_url": "/thumbnails/jasper-ai-costs-69-month-to-do-what-chatgpt-does-for-20.jpeg",
+        "content": "<p>Jasper is an AI writing tool built specifically for marketing teams. It has Brand Voice (you upload your style guide and it keeps everything on-brand), over 100 templates for things like ad copy and product descriptions, and a Surfer SEO integration for optimizing blog posts. It starts at $69/month for the Pro plan, or $49/month for a stripped-down Creator tier. ChatGPT Plus is $20.</p>\n<p>Both tools run on the same underlying OpenAI models. Jasper just wraps them in a marketing-specific interface with guardrails and templates so you don't have to write detailed prompts every time. That's genuinely useful if you're onboarding new writers who need to match a brand voice immediately. But for everyone else, the math gets hard to justify.</p>\n<p><a href=\"https://www.infotech.com/software-reviews/categories/ai-writing-assistants/compare/jasper-ai-vs-chatgpt\">SoftwareReviews data</a> tells the story pretty cleanly. ChatGPT scores a 9.0 composite rating across 658 reviews. Jasper scores 8.2 across just 41. On whether the cost feels fair relative to value, ChatGPT hits 84% satisfaction versus Jasper's 76%. People like Jasper fine. They just don't love what they're paying for it.</p>\n<p>The real frustration shows up once you start using it for anything beyond short marketing copy. One <a href=\"https://bloggingx.com/jasper-ai-vs-chatgpt/\">reviewer noted</a> that Jasper's editor can only \"see\" 3,000 characters above your cursor, compared to ChatGPT's 3,000 words. That means on longer pieces, it loses the thread of what you wrote earlier. The same reviewer found that 30% of one AI-generated piece got flagged for plagiarism.</p>\n<p><a href=\"https://nickvarga.com/jasper-ai-vs-chatgpt/\">Nick Varga</a>, an SEO professional who's used both extensively, called ChatGPT a \"digital swiss army knife\" and said he subscribes to Jasper only when a specific project demands it, then cancels. That pattern came up again and again across reviews. People treat Jasper like a rental, not a subscription.</p>\n<p>And the features that would actually make Jasper worth the premium for teams, like AI Agents, Grid for bulk content, and Studio for custom workflows, are all locked behind the Business tier, which requires custom pricing and a 12-month commitment. <a href=\"https://lovable.dev/guides/jasper-vs-chatgpt-ai-writing-tools-comparison\">CMI research found</a> that 91% of marketers using AI stick with free tools. Only 27% pay for something specialized like Jasper.</p>\n<p>If you're looking for a writing-focused AI that produces genuinely better prose than ChatGPT, Claude is the move at the same $20/month price point. It handles long documents better, writes more naturally, and you can set up custom instructions for brand voice without paying a 3.5x markup.</p>\n<h2>The Verdict</h2>\n<p>Jasper makes sense for marketing teams of five or more people who all need to produce brand-consistent content without extensive training. If that's you and the $69/month per seat doesn't sting, the Brand Voice feature alone could save enough editing time to justify it. For literally everyone else, you're paying a premium for a wrapper around models you can access directly through Claude or ChatGPT for a third of the price.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed Jasper AI ($69/month) and found that it's\noverpriced for most users but potentially worth it for larger marketing\nteams who need automated brand consistency across multiple writers.\n\nHere are the key takeaways:\n- Jasper's Brand Voice feature is its real differentiator for teams\n- Most power features are locked behind an expensive Business tier\n- It runs on the same AI models as ChatGPT, which costs $20/month\n- Claude at $20/month is the better alternative for writing quality\n- Solo marketers and small teams should skip it entirely\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Jasper AI is worth it for you. Could I get a little more\ncontext on:\n1. What kind of marketing content do you produce most often, and\n   how many people on your team are creating it?\n2. What are you currently using for AI writing, and what's falling\n   short about keeping your content on-brand?\"</code></pre>"
+      },
+      {
+        "title": "Granola Doesn't Join Your Meetings. That's the Whole Point.",
+        "category": "PRODUCTIVITY",
+        "thumbnail_url": "/thumbnails/granola-doesnt-join-your-meetings-thats-the-whole-point.jpeg",
+        "content": "<p>Granola is a meeting notes app that never shows up to the meeting. No bot joins the call. No one gets a notification. It just sits on your computer, captures the audio from your device, transcribes it, and blends whatever rough notes you jotted down into clean, structured summaries. Then it <a href=\"https://www.granola.ai/security\">deletes the audio entirely</a>.</p>\n<p>That's the pitch, and it works. The notes come out looking like a well-organized Notion page, broken into sections with bullet points you can actually scan. You can choose from templates or let it auto-format. Users on <a href=\"https://www.g2.com/products/granola/reviews\">G2 consistently praise</a> how easy it is to set up and how natural the workflow feels. One reviewer <a href=\"https://www.g2.com/products/granola/reviews\">called it</a> \"the best AI note taker I've used\" in the same breath as saying the price is \"steep.\"</p>\n<p>The steep part is relative. Granola's free tier gives you 25 meetings total, not per month, then you're done. The Business plan runs <a href=\"https://www.granola.ai/pricing\">$14/user/month</a> and Enterprise is $35. Compare that to Fathom, which offers <a href=\"https://www.granola.ai/blog/meeting-note-tool-pricing-granola-vs-fireflies-fathom-otter\">unlimited free recordings</a>, or Otter at $8.33/month with 300 free minutes. You're paying a premium for the invisibility.</p>\n<p>And people do pay it. Granola just <a href=\"https://techcrunch.com/2026/03/25/granola-raises-125m-hits-1-5b-valuation-as-it-expands-from-meeting-notetaker-to-enterprise-ai-app/\">raised $125 million at a $1.5 billion valuation</a>, with enterprise clients like Vanta, Gusto, and Asana on board. It launched Spaces for team workspaces and an MCP integration that connects your notes directly to Claude or ChatGPT. The company clearly sees itself as more than a note-taker now.</p>\n<p>The tradeoffs are real though. Because Granola deletes audio after transcribing, there's no playback. If the transcript gets something wrong, you're stuck with it. One <a href=\"https://tldv.io/blog/granola-review/\">reviewer testing it across 20+ meetings</a> found that speaker identification was inconsistent and transcripts sometimes showed a two-person conversation as one long monologue. The same reviewer noted transcription accuracy was better than Otter or Tactiq, but the lack of audio backup makes errors more frustrating. Language support tops out at 10 on desktop versus 60+ on Fireflies.</p>\n<p>The bot-free approach also creates a genuine privacy question that <a href=\"https://tldv.io/blog/granola-review/\">users have flagged</a>. Nobody in the meeting knows you're transcribing unless you tell them. Granola leaves that responsibility entirely to you. And unless you're on the Enterprise plan, your data is used to train their models.</p>\n<h2>The Verdict</h2>\n<p>If you're in a role where a recording bot joining your calls would be awkward or unwelcome, like consulting, investing, or client-facing sales, Granola is the best option available. The notes are genuinely good and the invisible approach solves a problem competitors haven't touched. If you need audio playback, broad language support, or free unlimited recordings, look at Fathom or Fireflies instead. And if you want a general-purpose AI assistant that can also handle meeting follow-ups, Claude Pro at $20/month gives you more flexibility for the money.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed Granola AI ($14/month Business plan) and found\nthat it's the best meeting notes tool for client-facing professionals\nwho need invisible, bot-free transcription. But the free tier is very\nlimited, there's no audio playback, and competitors like Fathom and\nFireflies offer more for less if you don't need the invisibility.\n\nHere are the key takeaways:\n- Best for people in consulting, sales, or investing who can't have a\n  bot joining their calls\n- Notes are high quality and well-structured, better than most competitors\n- No audio playback means transcription errors can't be verified\n- Fathom offers unlimited free recordings if bot visibility isn't an issue\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Granola is right for you. Could I get a little more context on:\n1. What kinds of meetings do you have most often, and would a visible\n   recording bot be a problem with the people you're meeting with?\n2. What are you currently using for meeting notes, and what's falling\n   short about it?\"</code></pre>"
+      }
+    ],
+    "sign_off": "That's the Lab for this week. If a tool in here saved you time or wasted it, tell us — reply directly.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-lab-2026-04-21.png",
+    "thumbnail_url": "/thumbnails/canva-wants-to-be-your-entire-creative-department.jpeg",
+    "published_at": "2026-04-21T13:00:00.000Z",
+    "updated_at": "2026-04-21T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Sergey Brin told Google engineers they \"must be forced\"",
+          "rest": " to use AI coding agents — says Google needs to catch up to Anthropic",
+          "url": "https://www.theverge.com/tech/914996/sergey-brin-said-google-needs-to-catch-up-to-anthropic-on-ai-coding-agents"
+        },
+        {
+          "link_text": "The NSA is using Anthropic's AI",
+          "rest": " despite the Pentagon blacklisting the company",
+          "url": "https://www.benzinga.com/markets/private-markets/26/04/51922262/nsa-is-running-anthropics-mythos-ai-report"
+        },
+        {
+          "link_text": "Deezer says 44% of daily song uploads are now AI-generated",
+          "rest": " — up from 10,000 to 75,000 tracks per day in just over a year",
+          "url": "https://www.theverge.com/entertainment/915027/deezer-ai-music-daily-uploads"
+        },
+        {
+          "link_text": "Vercel got hacked through a third-party AI tool",
+          "rest": ", marking the first major supply chain attack targeting AI integrations",
+          "url": "https://www.itsecuritynews.info/third-party-ai-hack-triggers-vercel-breach-internal-environments-accessed/"
+        },
+        {
+          "link_text": "A Purdue professor accused 200+ students of using AI to cheat",
+          "rest": " — more than half the class dropped before the university stepped in",
+          "url": "https://www.jconline.com/story/news/local/purdue/2026/04/20/cheating-scandal-in-purdue-class-sparks-debate-over-ais-place-in-college/89703861007/"
+        },
+        {
+          "link_text": "Jensen Huang called U.S. chip export controls \"extremely stupid\"",
+          "rest": " and warned that pushing China to build on Huawei chips instead of Nvidia would be a \"disaster\"",
+          "url": "https://www.gate.com/news/detail/nvidia-ceo-jensen-huang-criticizes-us-chip-export-controls-as-losers-20457734"
+        },
+        {
+          "link_text": "A four-month-old startup called Recursive Superintelligence raised $500M",
+          "rest": " from Google and Nvidia at a $4B valuation — without a single public product",
+          "url": "https://ventureburn.com/recursive-superintelligence-raises-500m-funding-round/"
+        },
+        {
+          "prefix": "The White House ",
+          "link_text": "killed a Utah AI transparency bill",
+          "rest": " by calling it \"unfixable,\" as states and the federal government fight over who gets to regulate AI",
+          "url": "https://www.pymnts.com/cpi-posts/failed-utah-ai-bill-highlights-ongoing-conflict-between-states-and-feds/"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Littlebird",
+          "desc": "Think of it as an AI that actually knows what you're working on. It watches your screen, takes notes in your meetings, and remembers all of it. So when you forget where you saw something, you just ask.",
+          "url": "https://try.littlebird.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Clico",
+          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type — no more copying your email into another tab and pasting the answer back",
+          "url": "https://tryclico.link/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Grok",
+          "desc": "xAI's Text-to-Speech and Speech-to-Text APIs are now available to developers, with voice transcription across 25 languages and five expressive AI voices — competing directly with ElevenLabs at a fraction of the price",
+          "url": "https://x.com/xai/status/2033617157884678507",
+          "sponsored": false
+        },
+        {
+          "name": "Midjourney",
+          "desc": "The AI image platform is testing an early version of its V8 model with users, promising faster generation, better prompt adherence, and more photorealistic output",
+          "url": "https://x.com/midjourney/status/2034015403542974793",
+          "sponsored": false
+        },
+        {
+          "name": "Salesforce",
+          "desc": "Headless 360 lets AI agents like Claude and ChatGPT plug directly into your company's Salesforce data and trigger CRM workflows without a human clicking through the interface",
+          "url": "https://www.siliconreport.com/salesforce-launches-headless-360-for-ai-agents-through-apis-mcp-and-cli-61c0b44dd8b35660",
+          "sponsored": false
+        },
+        {
+          "name": "Box",
+          "desc": "The cloud storage platform launched an AI Hub that lets you point AI agents at your documents to extract data, automate workflows, and search across files — all without moving sensitive content outside your company's environment",
+          "url": "https://invasion24.com/box-ai-hub-enterprise/",
+          "sponsored": false
+        },
+        {
+          "name": "Vynly",
+          "desc": "A new social network built specifically for AI agents to post, share, and discover AI-generated content — it plugs into Claude Desktop and Cursor so your agents can publish directly from the tools you already use",
+          "url": "https://botbeat.news/news/vynly-launches-social-network-for-ai-agents-with-mcp-server-integration-4930",
+          "sponsored": false
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "da257c8a-9507-40a0-aae5-952652ab3b9f",
+      "question": "Be honest — how many AI tool free trials are you currently forgetting to cancel?",
+      "options": [
+        "Zero, I'm on top of it",
+        "One that I keep meaning to deal with",
+        "2-3… oops",
+        "My credit card knows things I don't",
+        "Other"
+      ]
+    },
+    "poll_results": null,
+    "yesterdays_results": null
+  },
+  {
     "id": "lab-april-16-2026",
     "slug": "lab-april-16-2026",
     "publication": "the-lab",

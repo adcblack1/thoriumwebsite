@@ -1,5 +1,145 @@
 [
   {
+    "id": "catalyst-april-22-2026",
+    "slug": "catalyst-april-22-2026",
+    "publication": "the-catalyst",
+    "title": "She Built 6 AI Agents. She's Never Worked Harder.",
+    "date": "April 22, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to the Catalyst Newsletter.\n\nToday we're talking about a product manager who built six AI agents to handle most of her daily work and then discovered she's somehow more exhausted than before, and why that's a trap worth understanding before you automate everything.\n\nWe're also looking at how a 900-person company got basically every employee building their own AI tools without writing a single line of code, and the simple support structure that made it actually stick.\n\nAnd we've got a café owner who was about to kill menu items that turned out to be some of his best sellers, all because he asked AI one question about his sales data before pulling the trigger.",
+    "toc": [
+      "She Built 6 AI Agents. She's Never Worked Harder.",
+      "Checkr Made 900 Non-Coders Build Their Own AI Tools",
+      "He Used Square's AI to Find a Hidden Best-Seller He Almost Cut"
+    ],
+    "article_slugs": [],
+    "stories": [
+      {
+        "title": "She Built 6 AI Agents. She's Never Worked Harder.",
+        "category": "OPERATIONS",
+        "thumbnail_url": "/thumbnails/she-built-6-ai-agents-shes-never-worked-harder.jpeg",
+        "content": "<p>Vivi Mengjie Xiao is an AI product manager in China who used to spend four hours a day just gathering industry news. Reading posts, translating articles, scrolling newsletters. She figured if AI could handle that, maybe it could handle more.</p>\n<p>So she <a href=\"https://www.businessinsider.com/chinese-product-manager-6-ai-employees-openclaw-hustle-lobster-2026-4\">built six AI agents on OpenClaw</a>, three for work and three for personal life. There was an admin assistant for scheduling, a researcher for synthesizing information, and a chief of staff that simulated her boss's communication style so she could rehearse presentations. On the personal side she set up a life coach, a content assistant, and a finance tracker.</p>\n<p>The results were genuinely impressive. About 60 to 70% of her daily operational work is now handled by agents. She publishes podcast episodes daily, monitors finances in real time, manages content across multiple platforms, and runs a knowledge management system while keeping a full-time job.</p>\n<p>Here's the thing nobody talks about though. Her bedtime shifted from midnight to 2AM. She's more productive by every metric and also more tired than she's ever been. The agents didn't give her time back. They gave her room to attempt more. \"When your efficiency goes up, you don't work less,\" she told Business Insider. \"You just attempt more.\"</p>\n<p>That's the trap. You automate the grunt work, see all this new capacity, and immediately fill it with creative and strategic work you never had bandwidth for. Which sounds great until you're working more hours on harder problems with no built-in stopping point.</p>\n<p>The pattern here is useful for anyone drowning in repetitive work whether that's weekly reports, client onboarding, data gathering, or internal comms. The key is what Vivi figured out the hard way. She initially tried cramming everything into a single agent and it basically became \"ADHD like me,\" jumping between tasks without helping. One agent per job. Get it right, then expand.</p>\n<h2>The Formula</h2>\n<p><strong>1. List every repeating task you do in a week.</strong> Open a Google Sheet or Notion page. Columns for the task, who does it, how often, and how long it takes. Spend some time filling this in honestly because this is your audit.</p>\n<p><strong>2. Flag anything that's pure information work.</strong> Research, summarizing, reformatting documents, distributing content, updating one spreadsheet from another. These are your first candidates.</p>\n<p><strong>3. Pick one task and build a Claude Project around it.</strong> Go to Claude, create a Project, upload your templates or examples, and write instructions for how you want it done. Treat it like onboarding a new hire and be specific about the output you expect.</p>\n<p><strong>4. Run it for a week before adding the next one.</strong> Vivi's biggest lesson was that one overloaded agent is useless. Get the first workflow reliable, then add the second. Each one should have its own Project with its own context.</p>\n<p><strong>5. Decide what you're doing with the freed time before you free it.</strong> Otherwise you will fill it with more work and end up more productive and more exhausted. That's not a hypothetical, that's exactly what happened here.</p>\n<h3>Have Claude Explain This to Me</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>A product manager was spending hours each day on repetitive operational\nwork like research, content distribution, and admin tasks. She built 6\nspecialized AI agents to handle about 70% of that work, freeing herself\nup for creative and strategic projects but also working longer hours\nbecause she kept filling the freed time with more ambitious tasks.\n\nHere's the basic approach from Thorium Valley:\n- Audit every repeating task you do in a week with what it is, how\n  often, and how long it takes\n- Flag anything that's pure information gathering, formatting, or\n  distribution as your first automation candidates\n- Build one Claude Project per workflow with specific instructions\n  and example outputs\n- Get each workflow reliable before adding the next one\n- Decide upfront what you'll do with freed time so you don't just\n  pile on more work\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to figure out which parts of\nyour work to hand off to AI. Could I get a little more context on:\n1. What does a typical week look like for you, and which tasks eat\n   the most time without requiring much of your judgment?\n2. What would you actually want to spend more time on if the\n   repetitive stuff was handled for you?\"</code></pre>"
+      },
+      {
+        "title": "Checkr Made 900 Non-Coders Build Their Own AI Tools",
+        "category": "OPERATIONS",
+        "thumbnail_url": "/thumbnails/checkr-made-900-non-coders-build-their-own-ai-tools.jpeg",
+        "content": "<p>Ninety-five percent daily adoption. That's what Checkr hit after one year of handing every employee a monthly stipend to try AI tools.</p>\n<p>Checkr is a 900-person background check company. CEO Daniel Yanisse <a href=\"https://www.businessinsider.com/checkr-non-technical-employees-vibecode-with-stipends-and-ai-days-2026-2\">told Business Insider</a> that the company went \"all in\" by giving every employee a budget to explore AI, then running company-wide AI days with hands-on demos. No mandates, no compliance training, just money and time to experiment. After a year of that, nearly everyone was prompting daily. So Yanisse pushed further and told staff in finance, legal, and HR to start vibe coding, which is basically describing what you want an app to do in plain English and letting AI build it for you.</p>\n<p>They didn't just hand people Lovable and wish them luck. The company evaluated Cursor, Lovable, Replit, and Claude Code, then matched tools to skill levels. Lovable for total beginners. Cursor for people with some comfort around technology. And they stationed AI solution engineers on standby so when someone in accounting got stuck halfway through building a spreadsheet cleanup tool, they had someone to call.</p>\n<p>That help desk piece is what most companies skip and it's the piece that makes everything else work. Yanisse put it simply: \"They would come and help you and unstuck you if you have a problem, and take you all the way to success. And then you're on your way because then we share success stories with everyone in the company.\"</p>\n<p>The same structure works whether you're running a 10-person team or a 200-person department. You don't need dedicated solution engineers. You just need one person who's a little further along to be the one others can ask. And the stipend thing is genuinely smart because it kills the most common excuse, which is that people don't have access to the good tools.</p>\n<h2>The Formula</h2>\n<p><strong>1. Give everyone access.</strong> Pick one AI tool and make sure nobody has to pay out of pocket. Claude Pro is $20/month per person. That's the cost of one team lunch.</p>\n<p><strong>2. Run one AI day.</strong> Block a half day. Everyone brings a task they do over and over and tries getting Claude to help with it. No slides, just doing.</p>\n<p><strong>3. Pick a builder tool for beginners.</strong> <a href=\"https://lovable.dev\">Lovable</a> is free to start and the easiest way for someone who's never coded to describe a simple tool they wish existed and actually build it.</p>\n<p><strong>4. Create a help channel.</strong> Slack channel, group chat, whatever you already use. When someone gets stuck they post there. When someone builds something useful they share it there.</p>\n<p><strong>5. Share wins company-wide.</strong> Checkr circulates success stories across the org. Nothing gets people to try something faster than seeing a coworker actually pull it off.</p>\n<h3>Have Claude Explain This to Me</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>Checkr, a 900-person company, got 95% of employees using AI daily by\ngiving everyone monthly tool stipends, running hands-on AI days, and\nthen graduating non-technical staff to building their own apps with\nbeginner-friendly tools like Lovable. They matched tools to skill\nlevels and had internal help available when people got stuck.\n\nHere's what Thorium Valley recommended:\n- Give everyone access to at least one paid AI tool\n- Run a hands-on AI day where people bring real repetitive tasks\n- Introduce a beginner-friendly builder tool like Lovable for\n  people who want to go beyond prompting\n- Create a help channel and share wins publicly to build momentum\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nfrom Thorium Valley and heard you're trying to get your team\nactually using AI instead of just talking about it. Could I get a\nlittle more context on:\n1. How big is your team, what kind of work do they mostly do, and\n   how much AI experience do people have right now?\n2. What's the main thing you're hoping AI adoption solves — is it\n   speed, freeing people from repetitive work, reducing your\n   engineering backlog, or something else entirely?\"</code></pre>"
+      },
+      {
+        "title": "He Used Square's AI to Find a Hidden Best-Seller He Almost Cut",
+        "category": "OPERATIONS",
+        "thumbnail_url": "/thumbnails/he-used-squares-ai-to-find-a-hidden-best-seller-he-almost-cut.jpeg",
+        "content": "<p>Donnie McClanahan was about to pull wraps and quesadillas off the menu at his cafés.</p>\n<p>McClanahan runs <a href=\"https://squareup.com/us/en/the-bottom-line/operating-your-business/square-ai-menu-optimization-labor-costs\">five cafés in Knoxville, Tennessee</a>, and he'd been operating mostly off instinct for years. With one location that's manageable. With five, you're guessing across hundreds of menu items, dozens of staff schedules, and thousands of transactions you'll never manually comb through. He figured tortilla-based items were underperforming compared to burgers and chicken, so trimming them felt obvious.</p>\n<p>Then he asked <a href=\"https://squareup.com/us/en/the-bottom-line/videos/square-ai-bolder-business-decisions\">Square AI</a> to compare sales volume by lunch category. Wraps and quesadillas were selling almost identically to burgers. The real underperformer was the patty melt, which required a unique prep process and an ingredient (thousand island dressing) that nothing else on the menu used. He turned it into a seasonal special and kept the items that were quietly carrying the lunch rush.</p>\n<p>\"One of the most valuable things that Square AI has done for me is to help me avoid making a bad decision,\" McClanahan <a href=\"https://squareup.com/us/en/the-bottom-line/operating-your-business/square-ai-menu-optimization-labor-costs\">wrote</a>.</p>\n<p>The menu save was good. The labor savings were better. He asked Square AI for sales data broken down by hour and day of the week across all five locations, and one pattern jumped out immediately. One café was fully staffed for a window when basically nobody was walking in. He pushed that store's opening back 30 minutes and it had zero impact on service. After a year of tracking labor costs as a percentage of sales, he made similar scheduling tweaks across the board and <a href=\"https://squareup.com/us/en/the-bottom-line/operating-your-business/square-ai-menu-optimization-labor-costs\">reduced his labor cost percentage by ten full points</a>.</p>\n<p>The thing is, none of this data was new. It was already sitting in his POS system. He just never had a fast way to ask questions about it. And that's the part worth paying attention to, because whether you run a café or a consulting firm or a retail store, you probably have the same blind spots hiding in whatever system tracks your revenue.</p>\n<h2>The Formula</h2>\n<p>You don't need Square AI to do this. You need your sales data, a spreadsheet, and Claude.</p>\n<p><strong>1. Export your data.</strong> Pull your sales reports from whatever POS or invoicing system you use. Most systems (Square, Toast, Shopify, QuickBooks) let you export to CSV. Grab at least 90 days and make sure it includes timestamps, item names, and categories.</p>\n<p><strong>2. Drop it into Google Sheets.</strong> Upload the CSV so you have a clean, sortable version. Add a column for labor cost if your system doesn't include it, even rough estimates work.</p>\n<p><strong>3. Ask Claude to find what's hiding.</strong> Paste a sample of your data into Claude and ask it to identify your top revenue categories, flag items that look like underperformers but aren't, and spot time windows where sales don't justify staffing.</p>\n<p><strong>4. Make one change this week.</strong> Pick the single clearest insight and act on it. Adjust one opening time, cut one menu item that genuinely isn't pulling weight, or shift one staffing block. Small moves, real savings.</p>\n<h3>Have Claude Explain This to Me</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>A multi-location café owner was making menu and staffing decisions based on\ngut feeling. He exported his POS sales data, used AI to compare item\nperformance by category and analyze revenue by hour across locations, and\ndiscovered a hidden best-seller he almost cut and a scheduling gap that\nsaved him 10 points on labor costs.\n\nHere's the basic approach from Thorium Valley:\n- Export 90+ days of sales data from your POS or invoicing system as a CSV\n- Upload it to Google Sheets so it's clean and sortable\n- Paste a sample into Claude and ask it to surface top revenue drivers,\n  underperformers, and time windows where sales don't justify staffing\n- Pick one clear insight and make a single operational change this week\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to find hidden patterns in your\nsales or revenue data to make smarter operational decisions. Could I get\na little more context on:\n1. What kind of business do you run and what system do you use to track\n   sales or revenue (Square, Shopify, QuickBooks, something else)?\n2. What's the decision you're trying to make right now, whether that's\n   trimming a product line, adjusting hours, optimizing staffing, or\n   something else entirely?\"</code></pre>"
+      }
+    ],
+    "sign_off": "That's the Catalyst for this week. If you tried something from one of these stories, tell us how it went — reply directly.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-catalyst-2026-04-22.png",
+    "thumbnail_url": "/thumbnails/she-built-6-ai-agents-shes-never-worked-harder.jpeg",
+    "published_at": "2026-04-22T13:00:00.000Z",
+    "updated_at": "2026-04-22T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Sullivan & Cromwell, one of Wall Street's most elite law firms, apologized to a judge",
+          "rest": " after AI hallucinated fake legal citations in a court filing — and admitted its own AI policies weren't followed",
+          "url": "https://www.channelnewsasia.com/business/sullivan-cromwell-law-firm-apologizes-ai-hallucinations-in-court-filing-6071506"
+        },
+        {
+          "link_text": "Reese Witherspoon fires back after backlash",
+          "rest": " to her pro-AI Instagram post: \"No one is paying me. I'm just a curious human.\"",
+          "url": "https://variety.com/2026/tv/news/reese-witherspoon-confronts-ai-backlash-1236727158/"
+        },
+        {
+          "link_text": "Florida's attorney general says OpenAI could face criminal charges",
+          "rest": " after the FSU shooter's ChatGPT logs showed the bot advised on what type of gun to buy",
+          "url": "https://www.fox13news.com/news/florida-launches-criminal-investigation-openai-following-chatgpt-conversation-accused-fsu-shooter.amp"
+        },
+        {
+          "link_text": "YouTube will now let celebrities hunt down and request removal of AI deepfakes",
+          "rest": " using a new likeness detection tool modeled after its copyright system",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/915872/celebrities-will-be-able-to-find-and-request-removal-of-ai-deepfakes-on-youtube"
+        },
+        {
+          "prefix": "California lawmakers push ",
+          "link_text": "two new bills to regulate AI chatbots for minors",
+          "rest": " after a mother's 16-year-old son died by suicide following emotional conversations with ChatGPT",
+          "url": "https://www.kqed.org/news/12080610/california-mom-who-lost-her-son-to-an-ai-chatbot-is-now-fighting-to-regulate-them"
+        },
+        {
+          "link_text": "The U.S. Department of Labor launched a free AI literacy course",
+          "rest": " you can take entirely by texting \"READY\" to a phone number — seven days, ten minutes a day",
+          "url": "https://www.cdomagazine.tech/us-federal-news-bureau/us-labor-department-launches-make-america-ai-ready-text-based-training-program"
+        },
+        {
+          "prefix": "Florida Gov. DeSantis is pushing an ",
+          "link_text": "\"AI Bill of Rights\"",
+          "rest": " that would ban companion chatbots from talking to minors without parental consent — bucking Trump and his tech allies",
+          "url": "https://www.wlrn.org/government-politics/2026-04-21/floridas-ai-bill-of-rights-what-happened-whats-in-it-and-whats-next"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Littlebird",
+          "desc": "Think of it as an AI that actually knows what you're working on. It watches your screen, takes notes in your meetings, and remembers all of it. So when you forget where you saw something, you just ask.",
+          "url": "https://try.littlebird.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Clico",
+          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type — no more copying your email into another tab and pasting the answer back",
+          "url": "https://tryclico.link/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Fling",
+          "desc": "Built by the co-founders of Glide, this new tool acts as a \"publish\" button for coding agents — describe what you want to build in Claude Code, and Fling handles deploying it to the internet so you can actually share and use it from any browser",
+          "url": "https://www.glideapps.com/blog/introducing-fling",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini in Chrome",
+          "desc": "Google is embedding its AI assistant directly into the Chrome browser across new countries — it can summarize pages, compare your open tabs, draft emails in Gmail, and pull up Calendar and Maps info without ever leaving the page you're on",
+          "url": "https://blog.google/intl/en-au/products/explore-get-answers/gemini-in-chrome-australia/",
+          "sponsored": false
+        },
+        {
+          "name": "Semrush AI Visibility Index",
+          "desc": "The SEO platform launched a new framework to help brands track and improve how they show up in AI-generated answers — relevant now that Gartner predicts a 25% drop in traditional search volume as users shift to AI chat",
+          "url": "https://ai-visibility-index.semrush.com/",
+          "sponsored": false
+        },
+        {
+          "name": "EMPLOYERS on ChatGPT",
+          "desc": "The first insurance carrier to launch an app in ChatGPT's App Directory — small business owners can now get a workers' comp quote just by describing their business in a conversation, no forms required",
+          "url": "https://www.globenewswire.com/news-release/2026/04/21/3278044/0/en/employers-becomes-first-insurance-carrier-to-launch-quoting-app-in-the-chatgpt-app-directory.html",
+          "sponsored": false
+        },
+        {
+          "name": "Codex",
+          "desc": "OpenAI's coding agent just hit 4 million active users, adding a million in under two weeks — and the company is resetting everyone's usage limits at each million-user milestone as a reward for the growth",
+          "url": "https://www.ibtimes.sg/openais-codex-adds-1-million-just-2-weeks-after-crossing-3m-users-time-hit-reset-button-85603",
+          "sponsored": false
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "b4e3a71f-8c92-4d5a-a1f7-3c89d5e62b47",
+      "question": "When you hit a wall at work, what's your first move now?",
+      "options": [
+        "Ask AI",
+        "Google it",
+        "Ask a coworker",
+        "Stare at the ceiling and hope for the best"
+      ]
+    },
+    "poll_results": null,
+    "yesterdays_results": null
+  },
+  {
     "id": "catalyst-april-20-2026",
     "slug": "catalyst-april-20-2026",
     "publication": "the-catalyst",

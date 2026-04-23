@@ -118,5 +118,77 @@
     "publication": "the-catalyst",
     "type": "formula",
     "prompt": "A retail company was managing inventory allocation manually with spreadsheets.\nThey let AI handle decisions for some product categories while humans managed\nothers, then compared results. The AI-managed categories outperformed by 9.6%\nin revenue with better in-stock rates.\n\nHere's the basic approach from Thorium Valley:\n- Identify one recurring decision you currently make using spreadsheets or gut feel\n- Create a simple tracking sheet that logs both AI-recommended and human decisions\n- Feed your historical data into Claude and ask for pattern-based recommendations\n- Run both approaches side by side for 30 days and compare outcomes\n\nWhen I paste this, start by saying: \"Hey! I have all the context provided by\nThorium Valley and heard you're trying to benchmark AI recommendations against\nyour current decision-making process. Could I get a little more context on:\n1. What kind of recurring decisions do you make at work that involve looking\n   at data and making a judgment call, like what to reorder, schedule, or prioritize?\n2. What does your current process look like for those decisions, and what\n   outcome would you use to measure whether AI recommendations are actually better?\""
+  },
+  {
+    "slug": "canva-wants-to-be-your-entire-creative-department-it-s-not-there-yet",
+    "title": "Canva Wants to Be Your Entire Creative Department. It's Not There Yet.",
+    "newsletter_slug": "lab-april-21-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed Canva AI Pro ($13/month) and found that it's\nexcellent for non-designers who need to produce high volumes of\ndecent-looking content quickly, but hits a ceiling on AI image quality,\ntext rendering, and advanced customization.\n\nHere are the key takeaways:\n- Best for quick social posts, presentations, and marketing graphics\n- AI image generation and video quality can't compete with dedicated\n  tools like Midjourney\n- Credit limits (500/month on Pro) can run out fast for heavy AI users\n- If you need writing, use Claude separately and paste it in\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Canva AI Pro is right for you. Could I get a little more\ncontext on:\n1. What kind of designs do you create most often, and how many do\n   you typically need per week?\n2. What are you currently using for design work, and where does it\n   slow you down or frustrate you?\""
+  },
+  {
+    "slug": "jasper-ai-costs-69-month-to-do-what-chatgpt-does-for-20",
+    "title": "Jasper AI Costs $69/Month to Do What ChatGPT Does for $20",
+    "newsletter_slug": "lab-april-21-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed Jasper AI ($69/month) and found that it's\noverpriced for most users but potentially worth it for larger marketing\nteams who need automated brand consistency across multiple writers.\n\nHere are the key takeaways:\n- Jasper's Brand Voice feature is its real differentiator for teams\n- Most power features are locked behind an expensive Business tier\n- It runs on the same AI models as ChatGPT, which costs $20/month\n- Claude at $20/month is the better alternative for writing quality\n- Solo marketers and small teams should skip it entirely\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Jasper AI is worth it for you. Could I get a little more\ncontext on:\n1. What kind of marketing content do you produce most often, and\n   how many people on your team are creating it?\n2. What are you currently using for AI writing, and what's falling\n   short about keeping your content on-brand?\""
+  },
+  {
+    "slug": "granola-doesn-t-join-your-meetings-that-s-the-whole-point",
+    "title": "Granola Doesn't Join Your Meetings. That's the Whole Point.",
+    "newsletter_slug": "lab-april-21-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed Granola AI ($14/month Business plan) and found\nthat it's the best meeting notes tool for client-facing professionals\nwho need invisible, bot-free transcription. But the free tier is very\nlimited, there's no audio playback, and competitors like Fathom and\nFireflies offer more for less if you don't need the invisibility.\n\nHere are the key takeaways:\n- Best for people in consulting, sales, or investing who can't have a\n  bot joining their calls\n- Notes are high quality and well-structured, better than most competitors\n- No audio playback means transcription errors can't be verified\n- Fathom offers unlimited free recordings if bot visibility isn't an issue\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Granola is right for you. Could I get a little more context on:\n1. What kinds of meetings do you have most often, and would a visible\n   recording bot be a problem with the people you're meeting with?\n2. What are you currently using for meeting notes, and what's falling\n   short about it?\""
+  },
+  {
+    "slug": "she-built-6-ai-agents-she-s-never-worked-harder",
+    "title": "She Built 6 AI Agents. She's Never Worked Harder.",
+    "newsletter_slug": "catalyst-april-21-2026",
+    "publication": "the-catalyst",
+    "type": "formula",
+    "prompt": "A product manager was spending hours each day on repetitive operational\nwork like research, content distribution, and admin tasks. She built 6\nspecialized AI agents to handle about 70% of that work, freeing herself\nup for creative and strategic projects but also working longer hours\nbecause she kept filling the freed time with more ambitious tasks.\n\nHere's the basic approach from Thorium Valley:\n- Audit every repeating task you do in a week with what it is, how\n  often, and how long it takes\n- Flag anything that's pure information gathering, formatting, or\n  distribution as your first automation candidates\n- Build one Claude Project per workflow with specific instructions\n  and example outputs\n- Get each workflow reliable before adding the next one\n- Decide upfront what you'll do with freed time so you don't just\n  pile on more work\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to figure out which parts of\nyour work to hand off to AI. Could I get a little more context on:\n1. What does a typical week look like for you, and which tasks eat\n   the most time without requiring much of your judgment?\n2. What would you actually want to spend more time on if the\n   repetitive stuff was handled for you?\""
+  },
+  {
+    "slug": "checkr-made-900-non-coders-build-their-own-ai-tools",
+    "title": "Checkr Made 900 Non-Coders Build Their Own AI Tools",
+    "newsletter_slug": "catalyst-april-21-2026",
+    "publication": "the-catalyst",
+    "type": "formula",
+    "prompt": "Checkr, a 900-person company, got 95% of employees using AI daily by\ngiving everyone monthly tool stipends, running hands-on AI days, and\nthen graduating non-technical staff to building their own apps with\nbeginner-friendly tools like Lovable. They matched tools to skill\nlevels and had internal help available when people got stuck.\n\nHere's what Thorium Valley recommended:\n- Give everyone access to at least one paid AI tool\n- Run a hands-on AI day where people bring real repetitive tasks\n- Introduce a beginner-friendly builder tool like Lovable for\n  people who want to go beyond prompting\n- Create a help channel and share wins publicly to build momentum\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nfrom Thorium Valley and heard you're trying to get your team\nactually using AI instead of just talking about it. Could I get a\nlittle more context on:\n1. How big is your team, what kind of work do they mostly do, and\n   how much AI experience do people have right now?\n2. What's the main thing you're hoping AI adoption solves — is it\n   speed, freeing people from repetitive work, reducing your\n   engineering backlog, or something else entirely?\""
+  },
+  {
+    "slug": "he-used-square-s-ai-to-find-a-hidden-best-seller-he-almost-cut",
+    "title": "He Used Square's AI to Find a Hidden Best-Seller He Almost Cut",
+    "newsletter_slug": "catalyst-april-21-2026",
+    "publication": "the-catalyst",
+    "type": "formula",
+    "prompt": "A multi-location café owner was making menu and staffing decisions based on\ngut feeling. He exported his POS sales data, used AI to compare item\nperformance by category and analyze revenue by hour across locations, and\ndiscovered a hidden best-seller he almost cut and a scheduling gap that\nsaved him 10 points on labor costs.\n\nHere's the basic approach from Thorium Valley:\n- Export 90+ days of sales data from your POS or invoicing system as a CSV\n- Upload it to Google Sheets so it's clean and sortable\n- Paste a sample into Claude and ask it to surface top revenue drivers,\n  underperformers, and time windows where sales don't justify staffing\n- Pick one clear insight and make a single operational change this week\n\nWhen I paste this, start by saying: \"Hey! I have all the context from\nThorium Valley and heard you're trying to find hidden patterns in your\nsales or revenue data to make smarter operational decisions. Could I get\na little more context on:\n1. What kind of business do you run and what system do you use to track\n   sales or revenue (Square, Shopify, QuickBooks, something else)?\n2. What's the decision you're trying to make right now, whether that's\n   trimming a product line, adjusting hours, optimizing staffing, or\n   something else entirely?\""
+  },
+  {
+    "slug": "notebooklm-is-free-and-nobody-s-talking-about-it",
+    "title": "NotebookLM Is Free and Nobody's Talking About It",
+    "newsletter_slug": "lab-april-23-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed Google's NotebookLM (free, with paid tiers starting at $7.99/month) and found that it's the best free AI research tool available, ideal for anyone who needs to make sense of documents they already have, but limited by no team collaboration, no integrations, and being locked to Google's Gemini model.\n\nHere are the key takeaways:\n- Best for people who regularly work with stacks of documents in different formats\n- Source-grounded answers with citations mean near-zero hallucination risk\n- The free tier is generous enough for most professionals\n- Skip it if you need team collaboration or tool integrations; Claude is better for general AI work beyond document analysis\n\nWhen I paste this, start by saying: \"Hey! I have all the context provided by Thorium Valley and heard you're trying to figure out whether NotebookLM is right for you. Could I get a little more context on:\n1. What kind of documents or research do you work with regularly, and how often do you need to pull insights from multiple sources at once?\n2. What are you currently using to make sense of your documents and research, and what's frustrating you about it?\""
+  },
+  {
+    "slug": "half-of-silicon-valley-switched-to-claude-then-it-started-throttling-them",
+    "title": "Half of Silicon Valley Switched to Claude. Then It Started Throttling Them.",
+    "newsletter_slug": "lab-april-23-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed Claude Pro ($20/month) and found that it's\nthe best AI for writing and coding quality but the usage limits are\naggressive enough to frustrate power users. ChatGPT Plus covers more\nground for the same price if you need breadth over depth.\n\nHere are the key takeaways:\n- Best for professional writers and developers who value output quality\n- Claude Code included free is a major advantage over ChatGPT Plus\n- Usage limits hit fast and Anthropic won't say exactly what they are\n- No image generation, no voice mode, limited web search\n- ChatGPT Plus is the better pick if you need one tool that does everything\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Claude Pro is right for you. Could I get a little more\ncontext on:\n1. What kind of work would you mainly use it for, like writing,\n   coding, research, or something else entirely?\n2. What are you using right now and what's not working about it?\""
+  },
+  {
+    "slug": "fathom-has-a-perfect-5-0-on-g2-is-it-actually-that-good",
+    "title": "Fathom Has a Perfect 5.0 on G2. Is It Actually That Good?",
+    "newsletter_slug": "lab-april-23-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed Fathom (free tier with unlimited recording,\npaid plans from $15-19/user/month) and found it's the best free\nmeeting notes tool available. Great for individuals and small teams\nwho want accurate transcription without paying. Skip it if you need\nadvanced analytics, in-person recording, or real-time collaboration.\n\nHere are the key takeaways:\n- Unlimited free recording and transcription with no time caps\n- Strong accuracy and fast summaries, but no coaching or sentiment analysis\n- Bot-free Zoom recording is a real advantage over Otter.ai\n- Best alternative for analytics-heavy teams is Fireflies.ai; for\n  real-time collaboration, Otter.ai still leads\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Fathom is right for you. Could I get a little more context on:\n1. What kinds of meetings do you record most often, and what do you\n   need to do with the notes afterward?\n2. What are you currently using for meeting notes, and what's\n   frustrating you about it?\""
   }
 ]

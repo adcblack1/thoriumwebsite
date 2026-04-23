@@ -10,7 +10,7 @@ const supabase = () =>
 // POST — create a new subscriber record (Step 1)
 export async function POST(request: Request) {
   try {
-    const { email, child_newsletters } = await request.json();
+    const { email, child_newsletters, fbp, fbc } = await request.json();
 
     if (!email) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
@@ -43,6 +43,8 @@ export async function POST(request: Request) {
       .insert({
         email,
         ...(child_newsletters ? { child_newsletters } : {}),
+        ...(fbp ? { fbp } : {}),
+        ...(fbc ? { fbc } : {}),
       })
       .select('id')
       .single();

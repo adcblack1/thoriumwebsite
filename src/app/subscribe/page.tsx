@@ -198,6 +198,9 @@ export default function SubscribePage() {
     utm_content?: string;
   }>({});
 
+  // ── Meta fbp/fbc cookies for CAPI attribution ──
+  const [metaCookies, setMetaCookies] = useState<{ fbp?: string; fbc?: string }>({});
+
   const [formData, setFormData] = useState<FormData>({
     email: '',
     first_name: '',
@@ -210,7 +213,7 @@ export default function SubscribePage() {
     child_newsletters: ['thorium-valley', 'the-catalyst', 'the-lab', 'tldr', 'cautious-optimism'],
   });
 
-  // ── Capture UTM params on mount ──
+  // ── Capture UTM params + Meta cookies on mount ──
   useEffect(() => {
     const utm: typeof utmParams = {};
     const src = searchParams.get('utm_source');
@@ -222,6 +225,17 @@ export default function SubscribePage() {
     if (camp) utm.utm_campaign = camp;
     if (cont) utm.utm_content = cont;
     if (Object.keys(utm).length > 0) setUtmParams(utm);
+
+    // Read _fbp and _fbc cookies for Meta Conversions API attribution
+    const cookies = document.cookie.split(';').reduce((acc, c) => {
+      const [k, v] = c.trim().split('=');
+      if (k && v) acc[k] = v;
+      return acc;
+    }, {} as Record<string, string>);
+    const mc: typeof metaCookies = {};
+    if (cookies['_fbp']) mc.fbp = cookies['_fbp'];
+    if (cookies['_fbc']) mc.fbc = cookies['_fbc'];
+    if (Object.keys(mc).length > 0) setMetaCookies(mc);
   }, [searchParams]);
 
   // ── Restore from localStorage on mount ──
@@ -277,7 +291,7 @@ export default function SubscribePage() {
     const res = await fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: formData.email }),
+      body: JSON.stringify({ email: formData.email, ...metaCookies }),
     });
     const data = await res.json();
     if (data.subscriber_id) {

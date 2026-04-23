@@ -316,7 +316,9 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
                     .replace(/<p[^>]*><strong[^>]*>Our Valley View<\/strong><\/p>/gi,
                       '<div class="vv-header" style="padding:0;"><img src="/IN THE VALLEY NEWS.png" alt="In the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')
                     .replace(/<p[^>]*><strong[^>]*>OUR VALLEY VIEW<\/strong><\/p>/gi,
-                      '<div class="vv-header" style="padding:0;"><img src="/IN THE VALLEY NEWS.png" alt="In the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')}
+                      '<div class="vv-header" style="padding:0;"><img src="/IN THE VALLEY NEWS.png" alt="In the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')
+                    .replace(/<p[^>]*>\s*<strong[^>]*>\s*Into the Valley\s*<\/strong>\s*<\/p>/gi,
+                      '<div class="vv-header" style="padding:0;"><img src="/IN THE VALLEY NEWS.png" alt="Into the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')}
                 />
               </div>
 

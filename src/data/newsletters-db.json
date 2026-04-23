@@ -1,68 +1,239 @@
 [
   {
-    "id": "april-20-2026",
-    "slug": "april-20-2026",
-    "title": "Thorium Valley | April 20, 2026",
-    "date": "April 20, 2026",
-    "intro": "Good Morning Thorium Valley. A robot just ran a half marathon seven minutes faster than any human ever has. Fully autonomous — no remote control, no operator. Last year's winning robot time was 2 hours and 40 minutes. This year, under 51. A two-thirds improvement in twelve months. Not exactly incremental.\n\nGen Z is using AI just as much as last year but liking it a whole lot less. Excitement dropped 14 points. Anger jumped 9. Even daily users are souring. Apparently using something every day and actually wanting to are different things.\n\nAnd Duke researchers found every major AI model aces creativity tests on its own — but they all ace them the exact same way. If everyone's using AI to stand out, nobody is.",
+    "id": "april-23-2026",
+    "slug": "april-23-2026",
+    "title": "Thorium Valley | April 23, 2026",
+    "date": "April 23, 2026",
+    "intro": "Good Morning Thorium Valley. SpaceX wants to buy Cursor for $60 billion. The AI coding tool was worth $2.5 billion sixteen months ago. Also, Cursor's flagship model runs on a Chinese base model — and SpaceX builds rockets for the Pentagon. That'll be a fun conversation.\n\nFor the first time ever, memory chip orders at ASML have surpassed logic chips, almost entirely because AI data centers can't get enough. Analysts are forecasting the steepest drop in consumer device shipments in over a decade.\n\nAnd one financial services firm just discovered 17 AI projects across seven departments — three teams independently building the same thing. Half the Fortune 500 have a Chief AI Officer now. Getting them all on the same page is apparently a separate initiative.",
     "toc": [
-      "A robot just outran every human alive",
-      "Gen Z won't quit AI, but the enthusiasm is gone",
-      "AI is making everyone's work look the same"
+      "AI is eating the world's memory chips",
+      "The C-suite can't agree on who owns AI",
+      "SpaceX bets $60 billion on AI coding"
     ],
     "article_slugs": [
-      "ai-is-making-everyones-work-look-the-same",
-      "gen-z-wont-quit-ai-but-the-enthusiasm-is-gone",
-      "a-robot-just-outran-every-human-alive"
+      "ai-is-eating-the-worlds-memory-chips",
+      "the-c-suite-cant-agree-on-who-owns-ai",
+      "spacex-bets-60-billion-on-ai-coding"
     ],
     "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
     "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
-    "banner_image_url": "/thumbnails/banner-2026-04-20.png",
-    "published_at": "2026-04-20T13:00:00.000Z",
-    "updated_at": "2026-04-20T13:00:00.000Z",
+    "banner_image_url": "/thumbnails/banner-2026-04-23.png",
+    "published_at": "2026-04-23T13:00:00.000Z",
+    "updated_at": "2026-04-23T13:00:00.000Z",
     "status": "published",
     "links": {
       "news": [
         {
-          "link_text": "OpenAI to spend $20 billion on Cerebras chips",
-          "rest": " and take an equity stake in the startup — a direct shot at Nvidia's dominance",
-          "url": "https://www.sahmcapital.com/news/content/openai-to-spend-more-than-20-billion-on-cerebras-chips-receive-equity-stake-the-information-reports-2026-04-17"
+          "link_text": "SpaceX cuts a deal to maybe buy Cursor for $60 billion",
+          "rest": " — or pay $10B just for the partnership if the acquisition doesn't happen",
+          "url": "https://www.theverge.com/science/916427/spacex-cursor-potential-deal-acquisition"
         },
         {
-          "prefix": "Google is reportedly in talks with Marvell to ",
-          "link_text": "build two new custom AI chips",
-          "rest": " — one a new TPU, the other a memory processor to supercharge it",
-          "url": "https://www.thestar.com.my/tech/tech-news/2026/04/19/google-in-talks-with-marvell-to-build-new-ai-chips-for-inference-the-information-reports"
+          "prefix": "Meta is ",
+          "link_text": "tracking employee keystrokes and mouse clicks",
+          "rest": " to train its AI models — and employees can't opt out",
+          "url": "https://www.bbc.com/news/articles/cvglyklz49jo"
         },
         {
-          "prefix": "TSMC breaks its own rules, ",
-          "link_text": "ramping up 3nm chip production simultaneously",
-          "rest": " in Taiwan, the U.S., and Japan to meet explosive AI demand",
-          "url": "https://finance.biggo.com/news/OvWXmZ0BvbjfYyetlfKn"
+          "prefix": "Anthropic's unreleased Mythos model — which the company says ",
+          "link_text": "can enable dangerous cyberattacks",
+          "rest": " — has been accessed by unauthorized users",
+          "url": "https://www.bloomberg.com/news/articles/2026-04-21/anthropic-s-mythos-model-is-being-accessed-by-unauthorized-users"
         },
         {
-          "prefix": "Cerebras files for a public offering, ",
-          "link_text": "positioning itself as a real challenger to Nvidia",
-          "rest": " after landing the massive OpenAI deal",
-          "url": "https://prettycool.net/cerebras-systems-files-for-public-offering-poised-to-challenge-ai-chip-incumbent-nvidia-with-landmark-partnerships/"
+          "prefix": "Three more OpenAI executives ",
+          "link_text": "quit on the same day",
+          "rest": " as the company kills Sora and pivots hard to enterprise",
+          "url": "https://vellatimes.com/openai-loses-3-executives-one-day-sora-shuts-down/"
         },
         {
-          "prefix": "Cloudflare launches a major expansion of its ",
-          "link_text": "Agent Cloud platform for autonomous AI agents",
-          "rest": " — including sandboxes where agents can build and deploy code on their own",
-          "url": "https://pulse2.com/cloudflare-agent-cloud-expansion-introduces-infrastructure-to-scale-autonomous-ai-agents/"
+          "prefix": "Amazon to ",
+          "link_text": "invest up to $25 billion in Anthropic",
+          "rest": " as the two deepen a $100B cloud partnership",
+          "url": "https://www.aboutamazon.com/news/company-news/amazon-invests-additional-5-billion-anthropic-ai"
         },
         {
-          "prefix": "Microsoft and Stellantis sign a ",
-          "link_text": "five-year AI partnership",
-          "rest": " covering 100+ AI initiatives across Jeep, Peugeot, and more",
-          "url": "https://cio.economictimes.indiatimes.com/amp/news/corporate-news/microsoft-and-stellantis-sign-five-year-partnership-for-ai-push/130322138"
+          "prefix": "GitHub Copilot ",
+          "link_text": "pauses new sign-ups and tightens usage limits",
+          "rest": " after agentic workflows blow up its cost structure",
+          "url": "https://github.blog/news-insights/company-news/changes-to-github-copilot-individual-plans/"
         },
         {
-          "prefix": "Global memory chip shortages ",
-          "link_text": "peaked in Q1 2026",
-          "rest": ", stalling AI infrastructure rollouts as agentic workloads devour DRAM faster than anyone expected",
-          "url": "https://ai.via.news/ai-hardware/memory-chip-shortages-hit-peak-in-q1-2026-delaying-ai-infrastructure-rollouts"
+          "link_text": "John Ternus named Apple's next CEO",
+          "rest": ", replacing Tim Cook in September — but the hardware chief inherits a big AI gap",
+          "url": "https://www.cbc.ca/news/business/john-ternus-apple-ceo-9.7172364"
+        },
+        {
+          "prefix": "California's new executive order uses ",
+          "link_text": "state purchasing power to regulate AI",
+          "rest": " — vendors must get certified or lose access to the world's fourth-largest economy",
+          "url": "https://news.bloomberglaw.com/business-and-practice/california-ai-orders-procurement-play-is-a-regulation-shake-up"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Littlebird",
+          "desc": "Think of it as an AI that actually knows what you're working on. It watches your screen, takes notes in your meetings, and remembers all of it. So when you forget where you saw something, you just ask.",
+          "url": "https://try.littlebird.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Clico",
+          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type — no more copying your email into another tab and pasting the answer back",
+          "url": "https://tryclico.link/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Google Workspace Intelligence",
+          "desc": "Gemini now works across Docs, Sheets, Gmail, and Drive at once — ask it to draft a deck from your emails, schedule a meeting, or find a file you can only vaguely describe",
+          "url": "https://e-commerce.news/story/google-launches-workspace-intelligence-for-ai-across-apps",
+          "sponsored": false
+        },
+        {
+          "name": "Google Maps",
+          "desc": "Gemini integration lets you search for places the way you'd describe them to a friend — like \"quiet café with outdoor seating near me\" — and get curated results instead of keyword matches",
+          "url": "https://www.androidpolice.com/i-finally-get-the-hype-about-gemini-in-google-maps/",
+          "sponsored": false
+        },
+        {
+          "name": "Adobe Firefly AI Assistant",
+          "desc": "Describe what you want in plain language and the assistant orchestrates edits across Photoshop, Premiere, Lightroom, and Illustrator without switching apps",
+          "url": "https://gadgetbond.com/adobe-firefly-ai-assistant/",
+          "sponsored": false
+        },
+        {
+          "name": "Google Deep Research Max",
+          "desc": "A new autonomous research agent that can search the web, your private data, and custom sources simultaneously — then deliver fully cited reports with charts and infographics",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/next-generation-gemini-deep-research/",
+          "sponsored": false
+        },
+        {
+          "name": "Zed",
+          "desc": "The high-performance code editor now supports parallel AI agents — run a refactor and a test-writing agent side by side in the same window",
+          "url": "https://github.com/zed-industries/zed/releases/tag/v0.233.5",
+          "sponsored": false
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Microsoft AI",
+          "role": "Senior Director, Design — Model Experience (Superintelligence Team)",
+          "url": "https://microsoft.ai/job/senior-director-design-model-experience-2/"
+        },
+        {
+          "company": "Anthropic",
+          "role": "Fellows Program — paid 4-month research fellowship with mentorship and $15K/month compute budget",
+          "url": "https://www.youthop.com/fellowships/the-anthropic-fellows-program-in-uk-usa-remote-at-anthropic-2026"
+        },
+        {
+          "company": "Disney",
+          "role": "Senior Principal ML Architect, Ad Platforms",
+          "url": "https://novaedge.page.gd/job/senior-principal-machine-learning-architect-ad-platforms-5"
+        },
+        {
+          "company": "Airbnb",
+          "role": "Machine Learning Engineer, Customer Support Engineering",
+          "url": "https://careers.airbnb.com/positions/7826337/"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "618bb908-ee50-45b5-88cf-a82ea9a35b64",
+      "image_a": "/thumbnails/kicker-2026-04-23-ai.jpeg",
+      "image_b": "/thumbnails/kicker-2026-04-23-real.jpg",
+      "link_a": "https://gemini.google.com/share/0a60990d4327",
+      "link_b": "https://unsplash.com/photos/aerial-view-of-misty-mountain-ranges-and-valleys-_fKgZBtwntw"
+    },
+    "poll": {
+      "poll_id": "33fc3149-e2ff-4ac6-99bb-6209e87b60ac",
+      "question": "Have you ever pushed back on an AI tool at work?",
+      "options": [
+        "Yes",
+        "No",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "Have you ever pushed back on an AI tool at work?",
+      "results": []
+    },
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-04-22-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-04-22-real.jpg",
+      "ai_source": "https://gemini.google.com/share/2a58da54ef0f",
+      "real_source": "https://unsplash.com/photos/wooden-fence-in-a-dry-grassy-field-under-cloudy-sky-hOro62PTnng"
+    }
+  },
+  {
+    "id": "april-22-2026",
+    "slug": "april-22-2026",
+    "title": "Thorium Valley | April 22, 2026",
+    "date": "April 22, 2026",
+    "intro": "Good Morning Thorium Valley. Bezos is raising $10 billion for a physical AI lab at a $38 billion valuation. No revenue yet. Figure AI, which actually builds and ships humanoid robots, just raised at roughly the same number. Either the robots are undervalued or the pitch deck is overvalued.\n\nOpenAI brings in $2 billion a month in revenue. It's still not close to breaking even. Some of its own investors are hedging by writing bigger checks to Anthropic. Lot of big numbers flying around AI this week. The math behind them keeps getting shakier.\n\nAnd there's a brutally simple reason AI agents keep failing — multiply 90% accuracy across ten steps and you land at 35%. Most companies plan to deploy them within two years anyway. So that should go well.",
+    "toc": [
+      "Bezos bets $10 billion on physical AI",
+      "OpenAI's $2 billion a month still isn't enough",
+      "The math behind why AI agents keep failing"
+    ],
+    "article_slugs": [
+      "bezos-bets-10-billion-on-physical-ai",
+      "openais-2-billion-a-month-still-isnt-enough",
+      "the-math-behind-why-ai-agents-keep-failing"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-04-22.png",
+    "published_at": "2026-04-22T13:00:00.000Z",
+    "updated_at": "2026-04-22T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Anthropic commits $100 billion to Amazon's AWS",
+          "rest": " over the next 10 years to train and run Claude",
+          "url": "https://apnews.com/article/amazon-anthropic-ai-artificial-intelligence-aws-claude-cffa2cc19f9928d9ac44e44f2d967d36"
+        },
+        {
+          "prefix": "Florida's attorney general ",
+          "link_text": "launches a criminal investigation into OpenAI",
+          "rest": " over ChatGPT's role in the FSU shooting",
+          "url": "https://www.fox13news.com/news/florida-launches-criminal-investigation-openai-following-chatgpt-conversation-accused-fsu-shooter.amp"
+        },
+        {
+          "prefix": "Sullivan & Cromwell, one of Wall Street's top law firms, ",
+          "link_text": "apologizes to a judge for AI hallucinations",
+          "rest": " in a court filing",
+          "url": "https://www.yahoo.com/news/articles/sullivan-cromwell-law-firm-apologizes-165110774.html"
+        },
+        {
+          "prefix": "Tesla ",
+          "link_text": "expands its Robotaxi service to Dallas and Houston",
+          "rest": " just days before its earnings call",
+          "url": "https://www.usatoday.com/story/cars/news/2026/04/21/tesla-robotaxi-dallas-houston-earnings-call/89717075007/"
+        },
+        {
+          "prefix": "Sam Altman calls Anthropic's restricted cyber model Mythos ",
+          "link_text": "'fear-based marketing'",
+          "rest": " — says it's a way to keep AI in fewer hands",
+          "url": "https://techcrunch.com/2026/04/21/sam-altman-throws-shade-at-anthropics-cyber-model-mythos-fear-based-marketing/"
+        },
+        {
+          "prefix": "A Waymo robotaxi ",
+          "link_text": "got swept away by floodwaters",
+          "rest": " in San Antonio, forcing the company to pause operations",
+          "url": "https://www.sacurrent.com/news/waymo-taxi-swept-away-monday-in-san-antonio-floodwaters/"
+        },
+        {
+          "prefix": "TikTok ",
+          "link_text": "quietly turned on AI remixing for every video",
+          "rest": " you've ever posted — with no announcement",
+          "url": "https://medium.com/autocomplete-real-world-ai/tiktok-quietly-turned-on-ai-remixing-for-every-video-youve-ever-posted-2bf3fbd5db2a"
+        },
+        {
+          "prefix": "GitHub ",
+          "link_text": "paused new Copilot signups",
+          "rest": " after agentic workflows consumed far more compute than its pricing model could handle",
+          "url": "https://github.blog/news-insights/company-news/changes-to-github-copilot-individual-plans/"
         }
       ],
       "tools": [
@@ -79,76 +250,258 @@
           "sponsored": true
         },
         {
-          "name": "Gemini",
-          "desc": "Google's AI can now pull from your Google Photos library to generate personalized images — describe a scene with your family and it figures out who's who from your labels",
-          "url": "https://www.newsbytesapp.com/news/science/gemini-can-now-create-ai-images-using-your-photo-library/story",
+          "name": "Gemini for Home",
+          "desc": "Google's smart home assistant now supports back-and-forth conversations without repeating \"Hey Google\" — it keeps the mic open after responding so you can ask follow-ups naturally",
+          "url": "https://www.googlenestcommunity.com/t5/Blog/Talk-Naturally-Get-Things-Done-Faster-Continued-Conversation-arrives-on/ba-p/801406",
           "sponsored": false
         },
         {
-          "name": "Gemini Notebooks",
-          "desc": "Google just made its persistent AI workspace free for everyone — save conversations, files, and context in one place so Gemini remembers your projects across sessions",
-          "url": "https://www.absolutegeeks.com/article/tech-news/google-opens-gemini-notebooks-to-free-users-on-the-web/",
+          "name": "Yelp Assistant",
+          "desc": "Yelp's new AI chatbot can book restaurant reservations, order food delivery through DoorDash, and schedule appointments with local businesses — all from one conversation in the app",
+          "url": "https://www.cnet.com/tech/services-and-software/yelp-launches-a-new-ai-powered-yelp-assistant/",
           "sponsored": false
         },
         {
-          "name": "Gemini Live",
-          "desc": "Google is redesigning its real-time voice AI on Android, ditching the fullscreen takeover for a sleeker in-app interface with camera sharing and screen sharing built in",
-          "url": "https://9to5google.com/2026/04/19/gemini-live-app-redesign/",
+          "name": "YouTube Likeness Detection",
+          "desc": "YouTube is now letting celebrities and talent agencies scan the platform for AI deepfakes of their face and request removal — no YouTube channel required",
+          "url": "https://blog.youtube/news-and-events/youtube-likeness-detection-ai-protection/",
           "sponsored": false
         },
         {
-          "name": "Google AI Mode in Chrome",
-          "desc": "Chrome now opens websites side-by-side with AI answers instead of replacing them, and can search across all your open tabs at once",
-          "url": "https://ppc.land/googles-ai-mode-in-chrome-opens-publisher-links-side-by-side-what-changes/",
+          "name": "Gemini Deep Research Max",
+          "desc": "Google launched two new Deep Research modes in the Gemini API — one optimized for speed and one that uses extended reasoning to produce comprehensive research reports with native charts and infographics",
+          "url": "https://www.ndtvprofit.com/technology/google-rolls-out-two-new-updates-to-gemini-ai-search-max-and-deep-research-11389925",
+          "sponsored": false
+        },
+        {
+          "name": "TypeScript 7.0 Beta",
+          "desc": "Microsoft rewrote TypeScript from scratch in Go — the result is up to 10x faster build times, already tested on multi-million-line codebases at Bloomberg, Figma, and Google",
+          "url": "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/",
           "sponsored": false
         }
       ],
       "jobs": [
         {
-          "company": "Airbnb",
-          "role": "Senior Manager, Product & AI Policy",
-          "url": "https://careers.airbnb.com/positions/7782435/"
+          "company": "Google DeepMind",
+          "role": "Philosopher (Machine Consciousness & AGI Readiness)",
+          "url": "https://timesofindia.indiatimes.com/technology/tech-news/google-gets-its-philosopher-ai-ethicist-henry-shevlin-announces-i-have-been-recruited-by-google-deepmind-for-new-philosopher-position-focusing-on-/articleshow/130283010.cms"
         },
         {
-          "company": "Netflix",
-          "role": "Creative Evaluation Lead, Artwork (AI x Promotional Art)",
-          "url": "https://hireza.wuaze.com/job/creative-evaluation-lead-artwork-2"
+          "company": "Cohere Labs",
+          "role": "Senior Research Scientist",
+          "url": "https://jobflarely.liveblog365.com/job/senior-research-scientist-cohere-labs-2"
         },
         {
-          "company": "Mercury",
-          "role": "Senior Product Manager, API & Agentic Banking",
-          "url": "https://www.thesaraslist.com/jobs/senior-product-manager-api-agentic-banking-mercury-085ba230"
+          "company": "Our World in Data",
+          "role": "Writer (£80K–£120K, remote-friendly)",
+          "url": "https://ourworldindata.org/hiring-writer-2026"
+        },
+        {
+          "company": "Eli Lilly",
+          "role": "Senior Director, AI Strategy & Medical Affairs",
+          "url": "https://jobs.biospace.com/job/3042602/sr-director-medical-affairs-analytics-product/"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "1a418f60-1ec8-4d47-8e6c-2f11906ac27e",
+      "image_a": "/thumbnails/kicker-2026-04-22-ai.jpeg",
+      "image_b": "/thumbnails/kicker-2026-04-22-real.jpg",
+      "link_a": "https://gemini.google.com/share/2a58da54ef0f",
+      "link_b": "https://unsplash.com/photos/wooden-fence-in-a-dry-grassy-field-under-cloudy-sky-hOro62PTnng"
+    },
+    "poll": {
+      "poll_id": "7945ca84-1b94-4e54-905d-5b1fd962a7af",
+      "question": "Have you ever pushed back on an AI tool at work?",
+      "options": [
+        "Yes",
+        "No",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "Should employees have the right to refuse AI tools at work?",
+      "results": []
+    },
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-04-21-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-04-21-real.jpg",
+      "ai_source": "https://gemini.google.com/share/2a58da54ef0f",
+      "real_source": "https://unsplash.com/photos/wooden-fence-in-a-dry-grassy-field-under-cloudy-sky-hOro62PTnng"
+    }
+  },
+  {
+    "id": "april-21-2026",
+    "slug": "april-21-2026",
+    "title": "Thorium Valley | April 21, 2026",
+    "date": "April 21, 2026",
+    "intro": "Good Morning Thorium Valley. OpenAI hit $100M in ChatGPT ad revenue in six weeks. Great headline. Less great when you learn one advertiser managed to spend 3% of their budget because the platform couldn't serve enough impressions to burn through the rest. Click-through rates are running seven times below Google's. Feels more like brands buying IPO tickets than genuine ad demand.\n\nMeta's headset sales cratered last year. Its glasses tripled. Apple hasn't shipped a single pair. Both companies are now sprinting toward AI glasses from completely opposite directions, and neither seems remotely worried about the other.\n\nAnd 69% of companies are planning AI layoffs over tools that 29% of their own workers admit to sabotaging. Gen Z is out front at 44%. So that's going smoothly.",
+    "toc": [
+      "Apple and Meta make opposite bets on AI glasses",
+      "ChatGPT ads hit $100M. Brands aren't biting.",
+      "One-third of employees are sabotaging company AI"
+    ],
+    "article_slugs": [
+      "apple-and-meta-are-making-opposite-bets-on-ai-glasses",
+      "chatgpt-ads-hit-100m-brands-arent-biting",
+      "nearly-one-in-three-workers-admit-to-sabotaging-company-ai"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-04-21.png",
+    "thumbnail_url": "/thumbnails/apple-and-meta-are-making-opposite-bets-on-ai-glasses.png",
+    "published_at": "2026-04-21T13:00:00.000Z",
+    "updated_at": "2026-04-21T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Amazon to invest up to $25 billion more in Anthropic",
+          "rest": " on top of its existing $8B, while Anthropic commits $100B to AWS over the next decade",
+          "url": "https://www.cnbc.com/2026/04/20/amazon-invest-up-to-25-billion-in-anthropic-part-of-ai-infrastructure.html"
+        },
+        {
+          "link_text": "GitHub banned an engineer",
+          "rest": " who used an AI agent to ship 500 pull requests to major open-source projects in 72 hours — some of them got merged by Kubernetes and Hugging Face maintainers",
+          "url": "https://awesomeagents.ai/news/github-bans-500-agent-prs-72-hours/"
+        },
+        {
+          "link_text": "NSA is reportedly using Anthropic's Mythos AI",
+          "rest": " despite the Pentagon blacklisting the company as a supply chain risk",
+          "url": "https://www.benzinga.com/markets/private-markets/26/04/51922262/nsa-is-running-anthropics-mythos-ai-report"
+        },
+        {
+          "prefix": "Sergey Brin told DeepMind employees in a memo that ",
+          "link_text": "Google needs to catch up to Anthropic on AI coding",
+          "rest": " and that \"every Gemini engineer must be forced to use internal agents\"",
+          "url": "https://www.theverge.com/tech/914996/sergey-brin-said-google-needs-to-catch-up-to-anthropic-on-ai-coding-agents"
+        },
+        {
+          "link_text": "CEO of $1.5 billion AI startup iLearning charged with massive fraud",
+          "rest": " by the DOJ — the company allegedly faked $421 million in revenue in a single year",
+          "url": "https://futurism.com/artificial-intelligence/ai-ilearning-fraud-crime"
+        },
+        {
+          "prefix": "A Purdue professor accused 200+ CS students of using AI to cheat, ",
+          "link_text": "causing more than half the class to drop",
+          "rest": " — the university ultimately dropped all the allegations",
+          "url": "https://www.jconline.com/story/news/local/purdue/2026/04/20/cheating-scandal-in-purdue-class-sparks-debate-over-ais-place-in-college/89703861007/"
+        },
+        {
+          "link_text": "Tesla launched unsupervised robotaxis in Dallas and Houston",
+          "rest": " days before its earnings report — the service went unavailable almost immediately",
+          "url": "https://www.theverge.com/transportation/914823/tesla-robotaxi-houston-dallas-unavailable"
+        },
+        {
+          "link_text": "Google is building new custom AI chips with Marvell",
+          "rest": " dedicated to inference, directly challenging Nvidia's dominance",
+          "url": "https://news.bloomberglaw.com/ip-law/google-bets-on-new-chips-to-boost-ai-results-challenging-nvidia"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Littlebird",
+          "desc": "Think of it as an AI that actually knows what you're working on. It watches your screen, takes notes in your meetings, and remembers all of it. So when you forget where you saw something, you just ask.",
+          "url": "https://try.littlebird.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Clico",
+          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type — no more copying your email into another tab and pasting the answer back.",
+          "url": "https://tryclico.link/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Claude Design",
+          "desc": "Anthropic's new AI design tool lets you create prototypes, pitch decks, and marketing materials by describing what you want in plain text — Figma's stock dropped 7% on the news",
+          "url": "https://me.mashable.com/tech/70088/what-is-anthropic-claude-design-tool-launched-to-rival-figma",
+          "sponsored": false
+        },
+        {
+          "name": "Codex Chronicle",
+          "desc": "OpenAI's desktop app now watches what's on your screen and builds memories so it can help with what you're working on without you having to explain everything from scratch",
+          "url": "https://9to5mac.com/2026/04/20/codex-for-mac-gains-chronicle-for-enhancing-context-using-recent-screen-content/",
+          "sponsored": false
+        },
+        {
+          "name": "Google Gemini Desktop",
+          "desc": "Google launched a Mac desktop app for Gemini with window sharing, a new text-to-speech model in AI Studio, and automated workflows in Chrome",
+          "url": "https://canadiantechnologymagazine.com/gemini-mac-desktop-app-window-sharing/",
+          "sponsored": false
+        },
+        {
+          "name": "Waymo x Waze",
+          "desc": "Waymo's robotaxis are now automatically detecting and reporting potholes to cities for free through a new partnership with Waze, starting in five metro areas",
+          "url": "https://www.aol.com/articles/waymos-robotaxis-driverless-vehicles-now-154900019.html",
+          "sponsored": false
+        },
+        {
+          "name": "Claude Code Routines",
+          "desc": "Anthropic now lets you schedule AI coding tasks that run in the cloud on a timer — no need to keep your laptop open or a server running",
+          "url": "https://www.mindstudio.ai/blog/claude-code-routines-scheduled-agents",
+          "sponsored": false
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Google DeepMind",
+          "role": "Philosopher (Machine Consciousness & AGI Readiness)",
+          "url": "https://www.firstpost.com/tech/google-deepmind-hires-philosopher-henry-shevlin-to-explore-ai-consciousness-and-human-machine-relationships-14000691.html"
+        },
+        {
+          "company": "Microsoft AI",
+          "role": "Senior Data Privacy & Governance Engineer",
+          "url": "https://microsoft.ai/job/senior-data-privacy-governance-engineer/"
         },
         {
           "company": "Abbott",
           "role": "Senior Director, AI Strategy, Governance and Transformation",
           "url": "https://www.jobs.abbott/global/pt/job/31145820/Senior-Director-AI-Strategy-Governance-and-Transformation"
+        },
+        {
+          "company": "Disney Entertainment & ESPN",
+          "role": "Sr. Product Manager, Ads AI/ML",
+          "url": "https://hireza.wuaze.com/job/sr-product-manager-ads-ai-ml"
         }
       ]
     },
     "games": {
-      "game_poll_id": "5ce01910-405f-4f97-b8d7-4cad17df78db",
-      "image_a": "/thumbnails/kicker-2026-04-20-ai.jpeg",
-      "image_b": "/thumbnails/kicker-2026-04-20-real.jpg",
-      "link_a": "https://gemini.google.com/share/2b7952038575",
-      "link_b": "https://unsplash.com/photos/coastal-landscape-with-a-wooden-fence-and-blue-sky-hfGrBIVIjeA"
+      "game_poll_id": "676dd930-ec2c-4c78-b16c-4636f854300f",
+      "image_a": "/thumbnails/kicker-2026-04-21-real.jpg",
+      "image_b": "/thumbnails/kicker-2026-04-21-ai.jpeg",
+      "link_a": "https://unsplash.com/photos/wooden-fence-in-a-dry-grassy-field-under-cloudy-sky-hOro62PTnng",
+      "link_b": "https://gemini.google.com/share/2a58da54ef0f"
     },
     "poll": {
-      "poll_id": "dcef5d42-80eb-41d5-961c-9c689a353c25",
-      "question": "Would you trust an AI agent to work on your computer unsupervised?",
+      "poll_id": "7945ca84-1b94-4e54-905d-5b1fd962a7af",
+      "question": "Should employees have the right to refuse AI tools at work?",
       "options": [
-        "Already do",
-        "Not a chance",
-        "Maybe someday",
+        "Yes",
+        "No",
         "Other"
       ]
     },
-    "poll_results": null,
+    "poll_results": {
+      "question": "Would you trust an AI agent to work on your computer unsupervised?",
+      "results": [
+        {
+          "answer": "Already do",
+          "count": 1,
+          "percentage": 50
+        },
+        {
+          "answer": "Not a chance",
+          "count": 1,
+          "percentage": 50
+        }
+      ],
+      "total_votes": 2
+    },
     "yesterdays_results": {
-      "ai_image": "/thumbnails/kicker-2026-04-17-ai.jpeg",
-      "real_image": "/thumbnails/kicker-2026-04-17-real.jpg",
-      "ai_source": "https://gemini.google.com/share/placeholder",
-      "real_source": "https://unsplash.com/photos/rolling-green-hills-and-a-winding-river-valley-fn1IutStdm4"
+      "ai_image": "/thumbnails/kicker-2026-04-20-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-04-20-real.jpg",
+      "ai_source": "https://gemini.google.com/share/2b7952038575",
+      "real_source": "https://unsplash.com/photos/coastal-landscape-with-a-wooden-fence-and-blue-sky-hfGrBIVIjeA"
     }
   },
   {
