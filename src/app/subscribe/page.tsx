@@ -151,14 +151,6 @@ const CHILD_NEWSLETTERS = [
     frequency: 'Daily',
     isPartner: true,
   },
-  {
-    id: 'cautious-optimism',
-    name: 'Cautious Optimism',
-    logo: '/images/cautious-optimism-logo.png',
-    description: 'A newsletter on tech, business, and power. Modestly upbeat.',
-    frequency: 'Weekly',
-    isPartner: true,
-  },
 ];
 
 // ============================================

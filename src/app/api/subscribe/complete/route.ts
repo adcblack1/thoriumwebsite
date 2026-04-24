@@ -154,7 +154,6 @@ export async function POST(request: Request) {
     // 5. SparkLoop: subscribe to partner newsletters via Upscribe API
     const SPARKLOOP_REF_CODES: Record<string, string> = {
       'tldr': '54f14dd8c3',
-      'cautious-optimism': 'e83dabe785',
     };
 
     const selectedPartners = childNewsletters
