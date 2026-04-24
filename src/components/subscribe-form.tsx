@@ -48,7 +48,7 @@ export function SubscribeForm({ variant = "hero", className = "", redirectOnSucc
                         industry: data.data?.industry || '',
                         company_size: data.data?.company_size || '',
                         ai_tools: data.data?.ai_tools || [],
-                        child_newsletters: selectedNewsletters || data.data?.child_newsletters || ['thorium-valley', 'the-catalyst', 'the-lab', 'tldr', 'cautious-optimism'],
+                        child_newsletters: (selectedNewsletters || data.data?.child_newsletters || ['thorium-valley', 'the-catalyst', 'the-lab', 'tldr']).filter((id: string) => id !== 'cautious-optimism'),
                     },
                     step: 2,
                     subscriberId: data.subscriber_id,
