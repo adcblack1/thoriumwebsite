@@ -151,6 +151,14 @@ const CHILD_NEWSLETTERS = [
     frequency: 'Daily',
     isPartner: true,
   },
+  {
+    id: 'cautious-optimism',
+    name: 'Cautious Optimism',
+    logo: '/images/cautious-optimism-logo.png',
+    description: 'A newsletter on tech, business, and power. Modestly upbeat.',
+    frequency: 'Weekly',
+    isPartner: true,
+  },
 ];
 
 // ============================================
@@ -202,7 +210,7 @@ export default function SubscribePage() {
     industry: '',
     company_size: '',
     ai_tools: [],
-    child_newsletters: ['thorium-valley', 'the-catalyst', 'the-lab', 'tldr'],
+    child_newsletters: ['thorium-valley', 'the-catalyst', 'the-lab', 'tldr', 'cautious-optimism'],
   });
 
   // ── Capture UTM params + Meta cookies on mount ──
@@ -301,7 +309,7 @@ export default function SubscribePage() {
           industry: existing.industry || '',
           company_size: existing.company_size || '',
           ai_tools: existing.ai_tools || [],
-          child_newsletters: (existing.child_newsletters || ['thorium-valley', 'the-catalyst', 'the-lab', 'tldr']).filter((id: string) => id !== 'cautious-optimism'),
+          child_newsletters: existing.child_newsletters || ['thorium-valley', 'the-catalyst', 'the-lab', 'tldr', 'cautious-optimism'],
         };
         setFormData(restored);
 

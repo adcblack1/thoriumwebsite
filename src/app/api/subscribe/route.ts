@@ -171,6 +171,7 @@ export async function PATCH(request: Request) {
         // SparkLoop for paid partners
         const SPARKLOOP_REF_CODES: Record<string, string> = {
           'tldr': '54f14dd8c3',
+          'cautious-optimism': 'e83dabe785',
         };
 
         const selectedPartners = (fields.child_newsletters as string[])
