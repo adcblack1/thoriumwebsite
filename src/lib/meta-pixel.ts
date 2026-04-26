@@ -120,10 +120,6 @@ export function trackQualifiedLead(surveyData: {
   job_function?: string;
   industry?: string;
 }) {
-  // ICP filter — block unqualified leads
-  if (surveyData.seniority === 'Student') return;
-  if (surveyData.company_size === 'Just me') return;
-
   trackCustomEvent('QualifiedLead', {
     seniority: surveyData.seniority,
     company_size: surveyData.company_size,
