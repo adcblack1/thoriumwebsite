@@ -1,8 +1,8 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
-import { useRouter } from "next/navigation"
+import { useState, useEffect } from "react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { subscribeAction } from "@/app/actions/subscribe"
 import { trackLead } from "@/lib/meta-pixel"
 
@@ -19,6 +19,22 @@ export function SubscribeForm({ variant = "hero", className = "", redirectOnSucc
     const [succeeded, setSucceeded] = useState(false)
     const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
     const router = useRouter()
+    const searchParams = useSearchParams()
+
+    // Capture UTM params from URL
+    const [utmParams, setUtmParams] = useState<Record<string, string>>({})
+    useEffect(() => {
+        const utm: Record<string, string> = {}
+        const src = searchParams.get('utm_source')
+        const med = searchParams.get('utm_medium')
+        const camp = searchParams.get('utm_campaign')
+        const cont = searchParams.get('utm_content')
+        if (src) utm.utm_source = src
+        if (med) utm.utm_medium = med
+        if (camp) utm.utm_campaign = camp
+        if (cont) utm.utm_content = cont
+        if (Object.keys(utm).length > 0) setUtmParams(utm)
+    }, [searchParams])
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -31,7 +47,7 @@ export function SubscribeForm({ variant = "hero", className = "", redirectOnSucc
             const res = await fetch('/api/subscribe', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, child_newsletters: selectedNewsletters }),
+                body: JSON.stringify({ email, child_newsletters: selectedNewsletters, ...utmParams }),
             })
             const data = await res.json()
 

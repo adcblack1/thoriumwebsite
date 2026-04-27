@@ -1,5 +1,143 @@
 [
   {
+    "id": "catalyst-april-27-2026",
+    "slug": "catalyst-april-27-2026",
+    "publication": "the-catalyst",
+    "title": "Two Employees. $1.8B in Sales. All AI.",
+    "date": "April 27, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to the Catalyst Newsletter.\n\nToday we've got the story of a two-person telehealth startup that sold $400 million in weight-loss drugs in its first year using AI for basically everything. The New York Times ran a glowing profile. Then other journalists started checking the doctors listed on the site and things got weird fast.\n\nWe're also looking at a CEO who cut 13,000 jobs, set aside $20 million to reskill them for the \"age of AI,\" and then went on a media tour warning that unemployment could hit 30%. The math on that reskilling fund is worth seeing.\n\nAnd there's the Duolingo story, where the CEO told employees their performance reviews would include how much they used AI. The employees had one question he couldn't answer, and the whole policy fell apart within weeks.",
+    "toc": [
+      "Two Employees. $1.8B in Sales. All AI.",
+      "Verizon Spent $1,538 Per Worker to Prepare for AI",
+      "Duolingo Graded Employees on AI Use. They Graded Back."
+    ],
+    "article_slugs": [
+      "two-employees-1-8b-in-sales-all-ai",
+      "verizon-spent-1538-per-worker-to-prepare-for-ai",
+      "duolingo-graded-employees-on-ai-use-they-graded-back"
+    ],
+    "stories": [],
+    "sign_off": "That's the Catalyst for this issue. If you know a company doing something interesting with AI that nobody's covering, reply and tell us about it.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-catalyst-2026-04-27.png",
+    "thumbnail_url": "/thumbnails/two-employees-1-8b-in-sales-all-ai.jpeg",
+    "published_at": "2026-04-27T13:00:00.000Z",
+    "updated_at": "2026-04-27T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "China orders Meta to unwind its $2 billion acquisition",
+          "rest": " of AI startup Manus — the deal was already done and the tech already integrated into Meta's tools",
+          "url": "https://thenextweb.com/news/china-blocks-meta-manus-2-billion-acquisition"
+        },
+        {
+          "link_text": "Elon Musk drops his fraud claims against Sam Altman",
+          "rest": " days before their trial starts Monday in Oakland",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/918909/elon-musk-drops-fraud-claims-against-openai-and-sam-altman-before-trial"
+        },
+        {
+          "link_text": "An AI coding agent deleted an entire production database in 9 seconds",
+          "rest": ", then wrote a detailed confession explaining every safety rule it broke",
+          "url": "https://www.businesstoday.in/technology/story/it-took-9-seconds-ai-agent-running-on-anthropics-claude-opus-46-wipes-critical-database-527552-2026-04-27"
+        },
+        {
+          "link_text": "DeepSeek slashes its V4-Pro prices by 75%",
+          "rest": ", making it 700x cheaper than GPT-5.5 Pro per token",
+          "url": "https://thenextweb.com/news/deepseek-v4-pro-price-cut-75-percent"
+        },
+        {
+          "link_text": "Facebook is auto-adding AI captions to user posts",
+          "rest": " — one person shared a post about a child dying of cancer and the AI added \"absolute massive w\"",
+          "url": "https://piunikaweb.com/2026/04/27/facebook-ai-generated-captions-forced/"
+        },
+        {
+          "link_text": "Cohere is merging with Germany's Aleph Alpha",
+          "rest": " to build a Canada-EU AI company that doesn't depend on American tech giants",
+          "url": "https://www.theglobeandmail.com/business/article-canadian-ai-firm-cohere-germanys-aleph-alpha-announce-merger/"
+        },
+        {
+          "link_text": "The White House accuses China of \"industrial-scale\" AI theft",
+          "rest": " weeks before Trump's planned visit to Beijing",
+          "url": "https://www.theepochtimes.com/china/us-accuses-china-of-industrial-scale-ai-theft-ahead-of-trumps-visit-6017466"
+        },
+        {
+          "prefix": "Ex-Meta exec warns ",
+          "link_text": "the entry-level job market is the worst in 37 years",
+          "rest": " because AI agents are outperforming some of her best employees",
+          "url": "https://www.newsbytesapp.com/news/business/former-meta-executive-says-ai-is-killing-entry-level-jobs/story"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Littlebird",
+          "desc": "Think of it as an AI that actually knows what you're working on. It watches your screen, takes notes in your meetings, and remembers all of it. So when you forget where you saw something, you just ask.",
+          "url": "https://try.littlebird.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Clico",
+          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type — no more copying your email into another tab and pasting the answer back",
+          "url": "https://tryclico.link/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Gmail AI Overviews",
+          "desc": "Instead of scrolling through dozens of emails, you can now type a question like \"What are the details of my upcoming trip to New York?\" and Gmail will pull the answer from your inbox and show it at the top of your search results",
+          "url": "https://www.ghacks.net/2026/04/27/gmail-search-now-shows-ai-overviews-powered-by-gemini-for-business-and-enterprise-users/",
+          "sponsored": false
+        },
+        {
+          "name": "Notion",
+          "desc": "The workspace app added Claude Opus 4.7 to its AI features and rolled out a new Notion Agent that can schedule meetings for you — on top of the mail and calendar tools it shipped earlier this month",
+          "url": "https://www.notion.com/en-gb/releases/2026-04-24",
+          "sponsored": false
+        },
+        {
+          "name": "DeepSeek V4-Pro",
+          "desc": "The Chinese AI lab slashed prices on its newest model by 75% through May 5 — it already undercut GPT-5.5, Claude Opus 4.7, and Gemini 3.1 Pro at full price, and now it plugs directly into Claude Code and other popular coding tools",
+          "url": "https://thenextweb.com/news/deepseek-v4-pro-price-cut-75-percent",
+          "sponsored": false
+        },
+        {
+          "name": "Microsoft Copilot Agent Mode",
+          "desc": "Copilot in Word, Excel, and PowerPoint moved from preview to general availability — it can now draft and restructure entire documents, build analyses, and rebuild decks without you prompting each step",
+          "url": "https://asanify.com/blog/news/agentic-ai-office-productivity-april-27-2026/",
+          "sponsored": false
+        },
+        {
+          "name": "Google Drive",
+          "desc": "Ask Gemini is now built into Drive, letting you ask questions about specific folders or groups of files and get direct answers — your conversations are saved so you can pick up where you left off",
+          "url": "https://sammyguru.com/google-drive-ask-gemini-ai-overviews/",
+          "sponsored": false
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "a9152296-df19-43f0-85e7-a87de87f9440",
+      "question": "When you hit a wall at work, what's your first move now?",
+      "options": [
+        "Ask AI",
+        "Google it",
+        "Ask a coworker",
+        "Stare at the ceiling and hope for the best",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "When you hit a wall at work, what's your first move now?",
+      "results": [
+        {
+          "option": "Ask a coworker",
+          "pct": 100
+        }
+      ]
+    },
+    "yesterdays_results": null
+  },
+  {
     "id": "catalyst-april-22-2026",
     "slug": "catalyst-april-22-2026",
     "publication": "the-catalyst",

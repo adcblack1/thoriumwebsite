@@ -318,8 +318,17 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
                     .replace(/<p[^>]*><strong[^>]*>OUR VALLEY VIEW<\/strong><\/p>/gi,
                       '<div class="vv-header" style="padding:0;"><img src="/IN THE VALLEY NEWS.png" alt="In the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')
                     .replace(/<p[^>]*>\s*<strong[^>]*>\s*Into the Valley\s*<\/strong>\s*<\/p>/gi,
+                      '<div class="vv-header" style="padding:0;"><img src="/IN THE VALLEY NEWS.png" alt="Into the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')
+                    .replace(/<h2>Into the Valley<\/h2>/gi,
                       '<div class="vv-header" style="padding:0;"><img src="/IN THE VALLEY NEWS.png" alt="Into the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')}
                 />
+              </div>
+
+              {/* Read full story link */}
+              <div style={{ padding: `8px ${PAD} 12px`, textAlign: 'left' }}>
+                <Link href={`/articles/${article.slug}`} style={{ fontFamily: SANS, fontSize: '14px', fontWeight: 600, color: ACCENT, textDecoration: 'none' }}>
+                  Read the full story →
+                </Link>
               </div>
 
             </div>
@@ -337,6 +346,8 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
               '<div style="text-align:center;padding:20px 0 8px;"><img class="section-header-img" src="/thumbnails/the-formula.png" alt="The Formula" /></div>')
             .replace(/<h2>The Verdict<\/h2>/gi,
               '<div style="text-align:center;padding:20px 0 8px;"><img class="section-header-img" src="/thumbnails/the-verdict.png" alt="The Verdict" /></div>')
+            .replace(/<h2>Into the Valley<\/h2>/gi,
+              '<div style="text-align:center;padding:20px 0 8px;"><img class="section-header-img" src="/IN THE VALLEY NEWS.png" alt="Into the Valley" style="width:35%;height:auto;" /></div>')
             .replace(/<h3>Have Claude Explain This to Me<\/h3>\s*<p>Copy this prompt into Claude:<\/p>\s*<pre><code>[\s\S]*?<\/code><\/pre>/gi,
               `<p style="padding:16px 0 4px;margin:0;"><a href="/prompts/${storySlug}" style="color:#5170ff;text-decoration:none;font-family:${SANS};font-size:14px;font-weight:600;letter-spacing:0.02em;">Have Claude explain this to me →</a></p>`)
             .replace(/<h3>Ask Claude If It's Right for You<\/h3>\s*<p>Copy this prompt into Claude:<\/p>\s*<pre><code>[\s\S]*?<\/code><\/pre>/gi,

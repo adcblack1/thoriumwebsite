@@ -10,7 +10,7 @@ const supabase = () =>
 // POST — create a new subscriber record (Step 1)
 export async function POST(request: Request) {
   try {
-    const { email, child_newsletters, fbp, fbc } = await request.json();
+    const { email, child_newsletters, fbp, fbc, utm_source, utm_medium, utm_campaign, utm_content } = await request.json();
 
     if (!email) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
@@ -45,6 +45,10 @@ export async function POST(request: Request) {
         ...(child_newsletters ? { child_newsletters } : {}),
         ...(fbp ? { fbp } : {}),
         ...(fbc ? { fbc } : {}),
+        ...(utm_source ? { utm_source } : {}),
+        ...(utm_medium ? { utm_medium } : {}),
+        ...(utm_campaign ? { utm_campaign } : {}),
+        ...(utm_content ? { utm_content } : {}),
       })
       .select('id')
       .single();
@@ -100,8 +104,8 @@ export async function POST(request: Request) {
         }
       };
 
-      // Fire all subscriptions (don't await — let them run in background)
-      (async () => {
+      // Subscribe to all selected Beehiiv publications (awaited to ensure completion on Vercel)
+      {
         let mainBeehiivId: string | null = null;
         const hasTV = newsletters.includes('thorium-valley');
         const hasCatalyst = newsletters.includes('the-catalyst');
@@ -129,7 +133,7 @@ export async function POST(request: Request) {
             .update({ beehiiv_subscriber_id: mainBeehiivId })
             .eq('id', data.id);
         }
-      })();
+      }
     }
 
     return NextResponse.json({ subscriber_id: data.id });
@@ -181,7 +185,7 @@ export async function PATCH(request: Request) {
           const sparkloopApiKey = process.env.SPARKLOOP_API_KEY;
           const upscribeId = process.env.SPARKLOOP_UPSCRIBE_ID;
           if (sparkloopApiKey && upscribeId) {
-            fetch(
+            await fetch(
               `https://api.sparkloop.app/v2/upscribes/${upscribeId}/subscribe`,
               {
                 method: 'POST',
@@ -215,7 +219,7 @@ export async function PATCH(request: Request) {
 
           for (const nlId of selectedChildren) {
             const pubId = CHILD_PUB_MAP[nlId]!;
-            fetch(
+            await fetch(
               `https://api.beehiiv.com/v2/publications/${pubId}/subscriptions`,
               {
                 method: 'POST',

@@ -1,5 +1,157 @@
 [
   {
+    "id": "april-27-2026",
+    "slug": "april-27-2026",
+    "title": "Thorium Valley | April 27, 2026",
+    "date": "April 27, 2026",
+    "intro": "Good Morning Thorium Valley. OpenAI and Anthropic are in a genuine public fight. Pentagon contracts, ads in ChatGPT, dueling blog posts — the works. Millions of users responded by deleting ChatGPT, and Claude hit number one on the App Store. Choosing a chatbot is apparently a moral decision in 2026.\n\nNine days before DeepSeek dropped V4 on Huawei chips, Jensen Huang went on a podcast and called that exact scenario a \"horrible outcome\" for the US. Timing's rough.\n\nHuang also thinks the real AI threat to your career isn't a robot. It's your coworker who actually learned to use one. AI-fluent workers are pulling a 56% wage premium, which is the kind of gap that ends the debate pretty fast.",
+    "toc": [
+      "The AI rivalry that's now everyone's problem",
+      "Jensen Huang says AI won't take your job. Your coworker will.",
+      "DeepSeek V4 doesn't need Nvidia"
+    ],
+    "article_slugs": [
+      "the-ai-rivalry-thats-now-everyones-problem",
+      "jensen-huang-says-ai-wont-take-your-job-your-coworker-will",
+      "deepseek-v4-doesnt-need-nvidia"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-04-27.png",
+    "published_at": "2026-04-27T13:00:00.000Z",
+    "updated_at": "2026-04-27T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Pentagon staff built 103,000 AI agents",
+          "rest": " in five weeks using Google Gemini's no-code tool — no engineering background required",
+          "url": "https://www.yahoo.com/news/articles/pentagon-google-gemini-agent-designer-170252214.html"
+        },
+        {
+          "prefix": "Google ",
+          "link_text": "plans to invest up to $40 billion in Anthropic",
+          "rest": ", days after Amazon committed $25B to the same company",
+          "url": "https://www.aichatdaily.com/ai-business/google-40b-anthropic-investment"
+        },
+        {
+          "prefix": "White House fires the new head of its AI safety body ",
+          "link_text": "after just three days on the job",
+          "rest": " over his ties to Anthropic",
+          "url": "https://me.pcmag.com/en/ai/36780/trump-admin-axes-former-anthropic-researcher-leading-ai-safety-body"
+        },
+        {
+          "prefix": "Anthropic ran an internal marketplace where ",
+          "link_text": "AI agents negotiated 186 real deals",
+          "rest": " worth $4,000 — and people with weaker models got worse deals without realizing it",
+          "url": "https://botbeat.news/news/anthropic-s-claude-agents-successfully-negotiate-marketplace-deals-in-project-de-5442"
+        },
+        {
+          "prefix": "State Department sends global cable ",
+          "link_text": "warning allies about DeepSeek",
+          "rest": " and other Chinese firms allegedly stealing US AI models",
+          "url": "https://www.rappler.com/technology/us-state-department-orders-global-warning-ai-theft-deepseek-chinese-firms/"
+        },
+        {
+          "prefix": "A VC used Claude to vibe-code a browser plugin called \"Sinceerly\" that ",
+          "link_text": "adds typos to your AI-written emails",
+          "rest": " so they look human — complete with a \"CEO mode\" that appends \"sent from my iPhone\"",
+          "url": "https://physicalainews.com/new-browser-plugin-adds-typos-to-your-ai-generated-emails-to-make-them-look-real/"
+        },
+        {
+          "prefix": "DOJ joins Elon Musk's xAI in ",
+          "link_text": "suing to block Colorado's AI anti-discrimination law",
+          "rest": " before it takes effect in June",
+          "url": "https://www.hcamag.com/au/news/general/trump-administration-joins-musk-to-take-aim-at-us-state-ai-hiring-fairness-law/573083"
+        },
+        {
+          "prefix": "Nvidia rolls out GPT-5.5 Codex to ",
+          "link_text": "10,000 employees on Blackwell systems",
+          "rest": ", cutting costs to 1/35th of GPT-4o levels",
+          "url": "https://www.digitaltoday.co.kr/en/view/51114/nvidia-supplies-gpt-5-5-codex-to-10000-employees-cutting-cost-to-one-35th"
+        }
+      ],
+      "tools": [
+        {
+          "name": "ChatGPT / GPT-5.5",
+          "desc": "OpenAI's new flagship model is rolling out across ChatGPT and Codex — it handles multi-step tasks like coding, research, and document creation with less hand-holding, while using fewer tokens than GPT-5.4",
+          "url": "https://securitybrief.co.uk/story/openai-rolls-out-gpt-5-5-with-coding-research-gains",
+          "sponsored": false
+        },
+        {
+          "name": "HeyGen 5.0",
+          "desc": "The AI video platform launched a major overhaul that lets you create videos with AI avatars, dubbing, and lip-sync — aimed at making professional-quality video as easy as writing a prompt",
+          "url": "https://talkvid.ai/introducing-heygen-5-0-the-new-video-generation-platform/",
+          "sponsored": false
+        },
+        {
+          "name": "OpenClaw",
+          "desc": "The popular open-source AI agent framework now defaults to DeepSeek V4 Flash, adds real-time voice integration with Google Meet, and improves multi-step tool execution",
+          "url": "https://technode.com/2026/04/27/deepseek-v4-becomes-default-model-for-openclaw/",
+          "sponsored": false
+        },
+        {
+          "name": "ComfyUI",
+          "desc": "The open-source visual AI workflow tool just raised $30M at a $500M valuation — it lets creators build custom image, video, and audio generation pipelines with drag-and-drop nodes instead of just typing prompts",
+          "url": "https://www.aichatdaily.com/ai-business/comfyui-500m-valuation-craft-ventures",
+          "sponsored": false
+        },
+        {
+          "name": "Claude Code",
+          "desc": "Anthropic fixed three bugs that had been making Claude Code feel dumber for weeks — a reasoning downgrade, a memory-wiping cache bug, and an overly aggressive brevity instruction have all been reverted",
+          "url": "https://www.freeaitoolspro.com/archives/22273",
+          "sponsored": false
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Anthropic",
+          "role": "Field Marketing Manager for Startups",
+          "url": "https://jaabz.com/jobs/200347-field-marketing-manager-startups"
+        },
+        {
+          "company": "Netflix",
+          "role": "Technical Program Manager, AI for Member Systems",
+          "url": "https://hirevector.liveblog365.com/job/technical-program-manager-5-ai-for-member-systems"
+        },
+        {
+          "company": "Disney",
+          "role": "Principal Product Manager, Disney+ Sports",
+          "url": "https://remotica.totalh.net/job/principal-product-mgr-4"
+        },
+        {
+          "company": "Walmart",
+          "role": "Senior Data Scientist, Associate AI Experience",
+          "url": "https://careers.walmart.com/us/en/jobs/R-2488514"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "bbd742b5-82f9-481c-8e29-e0507a189751",
+      "image_a": "/thumbnails/kicker-2026-04-27-ai.jpeg",
+      "image_b": "/thumbnails/kicker-2026-04-27-real.jpg",
+      "link_a": "https://gemini.google.com/share/efddfb83eaac",
+      "link_b": "https://unsplash.com/photos/autumn-tree-in-a-snowy-mountain-landscape-yML2XfpH3Uw"
+    },
+    "poll": {
+      "poll_id": "cdba99a2-0bcb-404e-89c7-884a1a254996",
+      "question": "Do you prefer using ChatGPT, Claude, or Gemini?",
+      "options": [
+        "ChatGPT",
+        "Claude",
+        "Gemini",
+        "Other"
+      ]
+    },
+    "poll_results": null,
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-04-24-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-04-24-real.jpg",
+      "ai_source": "https://gemini.google.com/share/0908b25c2bfb",
+      "real_source": "https://unsplash.com/photos/desert-canyon-landscape"
+    }
+  },
+  {
     "id": "april-23-2026",
     "slug": "april-23-2026",
     "title": "Thorium Valley | April 23, 2026",

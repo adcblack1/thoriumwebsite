@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 
 const NEWSLETTERS = [
   {
@@ -15,7 +16,7 @@ const NEWSLETTERS = [
     id: 'the-catalyst',
     name: 'The Catalyst',
     logo: '/images/catalyst-logo-dark.png',
-    description: 'How businesses and people are implementing AI and how to do it yourself.',
+    description: 'How businesses and people are implementing AI.',
     frequency: 'Biweekly',
   },
   {
@@ -32,6 +33,22 @@ export function PublicationsSection() {
   const [selected, setSelected] = useState<string[]>(NEWSLETTERS.map(n => n.id));
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const searchParams = useSearchParams();
+
+  // Capture UTM params from URL
+  const [utmParams, setUtmParams] = useState<Record<string, string>>({});
+  useEffect(() => {
+    const utm: Record<string, string> = {};
+    const src = searchParams.get('utm_source');
+    const med = searchParams.get('utm_medium');
+    const camp = searchParams.get('utm_campaign');
+    const cont = searchParams.get('utm_content');
+    if (src) utm.utm_source = src;
+    if (med) utm.utm_medium = med;
+    if (camp) utm.utm_campaign = camp;
+    if (cont) utm.utm_content = cont;
+    if (Object.keys(utm).length > 0) setUtmParams(utm);
+  }, [searchParams]);
 
   const toggleNewsletter = (id: string) => {
     setSelected(prev =>
@@ -49,7 +66,7 @@ export function PublicationsSection() {
       const res = await fetch('/api/subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, child_newsletters: selected }),
+        body: JSON.stringify({ email, child_newsletters: selected, ...utmParams }),
       });
       const data = await res.json();
       const subscriberId = data.subscriber_id;

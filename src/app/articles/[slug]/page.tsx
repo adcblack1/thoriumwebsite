@@ -278,6 +278,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                                 .replace(/<p>\s*<strong>Valley View:?<\/strong>\s*<\/p>/g, '<div style="text-align:center;margin:2em 0 1em;"><img src="/IN THE VALLEY NEWS.png" alt="In the Valley" style="display:inline-block;width:100%;height:auto;" /></div>')
                                 .replace(/<p>\s*<strong>Valley View:?<\/strong>\s*([\s\S]*?)<\/p>/g, '<div style="text-align:center;margin:2em 0 1em;"><img src="/IN THE VALLEY NEWS.png" alt="In the Valley" style="display:inline-block;width:100%;height:auto;" /></div><p>$1</p>')
                                 .replace(/<p[^>]*>\s*<strong[^>]*>\s*Into the Valley\s*<\/strong>\s*<\/p>/gi, '<div style="text-align:center;margin:2em 0 1em;"><img src="/IN THE VALLEY NEWS.png" alt="Into the Valley" style="display:inline-block;width:100%;height:auto;" /></div>')
+                                .replace(/<p[^>]*>\s*<strong[^>]*>\s*Into the Valley:?\s*<\/strong>\s*([\s\S]*?)<\/p>/gi, '<div style="text-align:center;margin:2em 0 1em;"><img src="/IN THE VALLEY NEWS.png" alt="Into the Valley" style="display:inline-block;width:100%;height:auto;" /></div><p>$1</p>')
+                                .replace(/<h2>Into the Valley<\/h2>/gi, '<div style="text-align:center;margin:2em 0 1em;"><img src="/IN THE VALLEY NEWS.png" alt="Into the Valley" style="display:inline-block;width:100%;height:auto;" /></div>')
                                 .replace(/<p>---<\/p>/g, '')
                                 .replace(/<hr\s*\/?>/g, '')}
                     />

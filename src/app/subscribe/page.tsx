@@ -131,7 +131,7 @@ const CHILD_NEWSLETTERS = [
     id: 'the-catalyst',
     name: 'The Catalyst',
     logo: '/images/catalyst-logo.png',
-    description: 'How businesses and people are implementing AI and how to do it yourself.',
+    description: 'How businesses and people are implementing AI.',
     frequency: 'Biweekly',
     isPartner: false,
   },
@@ -283,7 +283,7 @@ export default function SubscribePage() {
     const res = await fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: formData.email, ...metaCookies }),
+      body: JSON.stringify({ email: formData.email, ...metaCookies, ...utmParams }),
     });
     const data = await res.json();
     if (data.subscriber_id) {
