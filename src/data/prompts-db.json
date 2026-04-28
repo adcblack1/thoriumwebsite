@@ -190,5 +190,29 @@
     "publication": "the-lab",
     "type": "verdict",
     "prompt": "Thorium Valley reviewed Fathom (free tier with unlimited recording,\npaid plans from $15-19/user/month) and found it's the best free\nmeeting notes tool available. Great for individuals and small teams\nwho want accurate transcription without paying. Skip it if you need\nadvanced analytics, in-person recording, or real-time collaboration.\n\nHere are the key takeaways:\n- Unlimited free recording and transcription with no time caps\n- Strong accuracy and fast summaries, but no coaching or sentiment analysis\n- Bot-free Zoom recording is a real advantage over Otter.ai\n- Best alternative for analytics-heavy teams is Fireflies.ai; for\n  real-time collaboration, Otter.ai still leads\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Fathom is right for you. Could I get a little more context on:\n1. What kinds of meetings do you record most often, and what do you\n   need to do with the notes afterward?\n2. What are you currently using for meeting notes, and what's\n   frustrating you about it?\""
+  },
+  {
+    "slug": "chatgpt-just-became-a-design-tool",
+    "title": "ChatGPT Just Became a Design Tool",
+    "newsletter_slug": "lab-april-27-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed ChatGPT Images 2.0 (included with ChatGPT\nPlus at $20/month) and found it's a genuine leap for quick design\nwork like infographics and social graphics, but unreliable for logos,\ntechnical diagrams, or anything requiring brand-perfect precision.\n\nHere are the key takeaways:\n- Text rendering jumped from ~70% to 95%+ accuracy, making it usable for real work\n- Thinking mode can search the web and reason through layouts before generating\n- It cannot reliably reproduce logos or technically accurate diagrams\n- Canva is still better for templates, brand kits, and layered editing\n- Best value is combining both tools at $35/month total\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether ChatGPT Images 2.0 can handle your design work. Could I get\na little more context on:\n1. What kind of visuals do you typically need to create — social\n   graphics, presentations, infographics, branded materials, or\n   something else?\n2. What tools are you currently using for design work, and what's\n   frustrating you about them?\""
+  },
+  {
+    "slug": "everyone-has-grammarly-nobody-knows-if-they-still-need-it",
+    "title": "Everyone Has Grammarly. Nobody Knows If They Still Need It.",
+    "newsletter_slug": "lab-april-27-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed Grammarly Pro ($144/year) and found that the\nfree tier handles most of what people actually need. The paid features\nlike AI detection are unreliable, and Claude or ChatGPT handle editing\nand rewriting better. The main value is inline typo-catching in apps\nlike Slack and Gmail, which the free version already does.\n\nHere are the key takeaways:\n- Free Grammarly is genuinely good for catching typos in real time\n- Pro's AI detector flags human writing as AI-generated too often\n- Claude is a better option for editing, rewriting, and tone work\n- The $144/year price is hard to justify when the free tier covers 80%\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Grammarly Pro is worth it for you. Could I get a little more\ncontext on:\n1. What kind of writing do you do most during your workday — quick\n   messages in Slack and email, or longer documents like reports and\n   blog posts?\n2. What are you currently using for writing help, and what's\n   frustrating you about it?\""
+  },
+  {
+    "slug": "midjourney-is-still-gorgeous-it-s-also-the-wrong-tool-for-most-of-you",
+    "title": "Midjourney Is Still Gorgeous. It's Also the Wrong Tool for Most of You.",
+    "newsletter_slug": "lab-april-27-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed Midjourney V7 ($10-$120/month) and found that\nit's still the best AI image generator for artistic and creative work\nbut the wrong tool for most people making marketing graphics or\nanything with text. Text rendering accuracy is around 20-30% compared\nto 97% from ChatGPT's image tools.\n\nHere are the key takeaways:\n- Best-in-class for concept art, editorial illustration, cinematic imagery\n- Text rendering is unreliable and far behind ChatGPT and Ideogram\n- ChatGPT Plus at $20/month covers image generation plus everything else\n- Worth keeping only if visual style matters more than text accuracy\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Midjourney is right for you. Could I get a little more context\non:\n1. What kind of images do you typically need to create — marketing\n   graphics with text, creative artwork, product photos, or something\n   else?\n2. What are you currently using for image generation, and what's\n   frustrating you about it?\""
   }
 ]
