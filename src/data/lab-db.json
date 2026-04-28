@@ -1,5 +1,144 @@
 [
   {
+    "id": "lab-april-27-2026",
+    "slug": "lab-april-27-2026",
+    "publication": "the-lab",
+    "title": "ChatGPT Just Became a Design Tool",
+    "date": "April 27, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to The Lab.\n\nToday we're checking out the chatbot that just turned itself into a full-on design tool to see how far you can actually push it.\n\nWe're also looking at that spell checker that's been quietly living in everyone's browser for years and now wants to be your full-time writing coach, so we're figuring out if the paid version is actually worth it.\n\nAnd we're testing the AI art tool that makes the most beautiful images on the market but somehow still can't spell a three-word headline.",
+    "toc": [
+      "ChatGPT Just Became a Design Tool",
+      "Everyone Has Grammarly. Nobody Knows If They Still Need It.",
+      "Midjourney Is Still Gorgeous. It's Also the Wrong Tool for Most of You."
+    ],
+    "article_slugs": [],
+    "stories": [
+      {
+        "title": "ChatGPT Just Became a Design Tool",
+        "category": "DESIGN",
+        "thumbnail_url": "/thumbnails/chatgpt-just-became-a-design-tool.jpeg",
+        "content": "<p><em>97% text accuracy and full infographics from a prompt. Then it mangled a logo.</em></p>\n<p>ChatGPT Images 2.0 rolled out this week and it's not the image generator you remember. Ask it to build an infographic about tomorrow's weather in San Francisco and it will search the web, pull real data, design the layout, and render every word correctly. It generates up to eight images from a single prompt, supports text in Japanese, Korean, Chinese, Hindi, and Bengali, and outputs at 2K resolution.</p>\n<p>Text rendering is the real story here. AI image tools have been useless for anything with words on it for years. Images 2.0 jumped from roughly 70% accuracy to north of 95% across multiple languages. That single improvement turns ChatGPT from an art toy into something you can use to produce actual work materials.</p>\n<p>ZDNET's David Gewirtz <a href=\"https://www.zdnet.com/article/chatgpt-images-2-hands-on-testing/\">tested</a> it by feeding in a press release and asking for a branded infographic. The infographic was great. The logo was a disaster. The model rendered ZDNET's Z with a droop, then pulled a pre-2022 version of the logo from somewhere, then added a rudder shape to the letter D. Three sessions, three different wrong logos.</p>\n<p>That pattern kept showing up elsewhere. AI researcher Gary Marcus <a href=\"https://garymarcus.substack.com/p/chatgpts-powerful-new-image-engine\">ran</a> a labeled bicycle diagram test and got confidently wrong results: brake pads floating off the rim, a rear derailleur stuffed inside the wheel, a spoke label pointing at empty space. Stanford's 2026 AI Index <a href=\"https://hai.stanford.edu/ai-index/2026-ai-index-report/technical-performance\">calls this</a> \"jagged intelligence.\" The same system that renders flawless magazine covers doesn't understand how a bike chain works.</p>\n<p>So what does this actually mean for you? If you need quick infographics, social media sets, or visual explainers for a presentation, ChatGPT Plus at $20/month now handles that without opening Canva. The \"Thinking\" mode on Plus and Pro tiers lets the model reason through layouts and search the web before it generates anything. Free users get the base model with lower rate limits. OpenAI's Adele Li <a href=\"https://www.axios.com/2026/04/21/chatgpt-images-major-update\">called</a> it \"a creative assistant,\" and for first drafts that's about right.</p>\n<p>The freelance design market is already feeling it. Lighter graphic work like social posts and ad layouts is drying up fast, and gig platforms are filling with AI-generated artwork that human designers get hired to fix. The designers who are fine are the ones whose value was never \"make this look decent.\" AI does decent now.</p>\n<h2>The Verdict</h2>\n<p>If you already pay for ChatGPT Plus, start using Images 2.0 for first-draft infographics, social graphics, and visual explainers. It's genuinely good at those. Do not trust it with logos, technical diagrams, or anything requiring precision you can't personally verify. If your work needs templates, brand kits, or layered editing, keep Canva. For most people the real answer is both at $35/month combined.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed ChatGPT Images 2.0 (included with ChatGPT\nPlus at $20/month) and found it's a genuine leap for quick design\nwork like infographics and social graphics, but unreliable for logos,\ntechnical diagrams, or anything requiring brand-perfect precision.\n\nHere are the key takeaways:\n- Text rendering jumped from ~70% to 95%+ accuracy, making it usable for real work\n- Thinking mode can search the web and reason through layouts before generating\n- It cannot reliably reproduce logos or technically accurate diagrams\n- Canva is still better for templates, brand kits, and layered editing\n- Best value is combining both tools at $35/month total\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether ChatGPT Images 2.0 can handle your design work. Could I get\na little more context on:\n1. What kind of visuals do you typically need to create — social\n   graphics, presentations, infographics, branded materials, or\n   something else?\n2. What tools are you currently using for design work, and what's\n   frustrating you about them?\"</code></pre>"
+      },
+      {
+        "title": "Everyone Has Grammarly. Nobody Knows If They Still Need It.",
+        "category": "WRITING",
+        "thumbnail_url": "/thumbnails/everyone-has-grammarly-nobody-knows-if-they-still-need-it.jpeg",
+        "content": "<p><em>$144/year for a spell checker that now wants to rewrite your personality.</em></p>\n<p>Grammarly has <a href=\"https://www.grammarly.com/plans\">40 million daily users</a>. It sits in your browser, your Slack, your Gmail, quietly catching \"teh\" and \"recieve\" before anyone notices. That part still works. The question is whether anyone should still be paying $144 a year for it.</p>\n<p>Grammarly Pro costs <a href=\"https://superhuman.com/plans\">$12/month billed annually or $30 month-to-month</a>. For that, you get a plagiarism checker, full-sentence rewrites, tone adjustments, and 2,000 generative AI prompts per month. The free tier covers basic spelling and grammar with 100 AI prompts. Most people who <a href=\"https://intelligenttools.co/blog/grammarly-after-2-years-honest-review\">cancel Premium</a> say the free version handles about 80% of what they actually needed.</p>\n<p>One developer who spent two years on Premium put it bluntly: \"Slack is probably 80% of the value.\" He <a href=\"https://intelligenttools.co/blog/grammarly-after-2-years-honest-review\">said</a> Grammarly saves him 20 to 30 minutes a day just by catching typos so he doesn't have to reread every message before hitting send. That's a real benefit. But it's also a benefit that comes with the free tier.</p>\n<p>The Premium features are where things get shaky. Grammarly's AI detector, the one that's supposed to tell you if your writing sounds like it was written by a bot, <a href=\"https://intelligenttools.co/blog/grammarly-after-2-years-honest-review\">flags human writing as AI-generated</a> with alarming frequency. Stanford researchers found that AI detectors <a href=\"https://hai.stanford.edu/news/ai-detectors-biased-against-non-native-english-writers\">classified 61% of essays by non-native English speakers as AI-generated</a>. Professor James Zou called detectors \"clearly unreliable and easily gamed.\" Grammarly is charging for a feature the research community considers broken.</p>\n<p>Then there's the style enforcement. Grammarly used to fix your mistakes. Now it constantly suggests rewriting sentences that are perfectly fine, pushing everything toward the same flat corporate tone. One Reddit user on r/Grammarly <a href=\"https://www.reddit.com/r/Grammarly/comments/1hgttpc/how_is_this_service_still_going_so_hard_with/\">asked</a> what plenty of people are thinking: \"How is this service still going so hard with ChatGPT and other contenders?\" The subreddit for freelance writers was even more direct, with one user <a href=\"https://www.reddit.com/r/freelanceWriters/comments/1hpxney/is_grammarly_pro_even_worth_the_money_anymore/\">saying</a> Pro \"never was worth the money.\"</p>\n<p>And that's the core problem. Claude does long-form editing, rewrites, and tone adjustment better than Grammarly Pro, and it actually understands context instead of just underlining words it doesn't like. The tradeoff is that you have to copy-paste your text into a separate window instead of getting corrections inline. Whether that convenience gap is worth $144 a year depends entirely on how much you type in Slack versus how much you write longer documents.</p>\n<p>Grammarly clearly knows this. The company recently rebranded its paid suite as <a href=\"https://www.grammarly.com/blog/company/introducing-new-superhuman/\">\"Superhuman,\"</a> bundling in email features, a personal AI assistant, and productivity agents. Your next renewal isn't for the grammar checker you signed up for. It's for a platform you never asked for.</p>\n<h2>The Verdict</h2>\n<p>If you write a lot of short messages in Slack and email all day, the free tier of Grammarly is genuinely useful and you should keep it installed. If you're paying for Pro, cancel it, use the free version for typo catching, and use Claude for anything that requires actual editing, rewriting, or tone work. You'll save $144 a year and get better results on the stuff that matters.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed Grammarly Pro ($144/year) and found that the\nfree tier handles most of what people actually need. The paid features\nlike AI detection are unreliable, and Claude or ChatGPT handle editing\nand rewriting better. The main value is inline typo-catching in apps\nlike Slack and Gmail, which the free version already does.\n\nHere are the key takeaways:\n- Free Grammarly is genuinely good for catching typos in real time\n- Pro's AI detector flags human writing as AI-generated too often\n- Claude is a better option for editing, rewriting, and tone work\n- The $144/year price is hard to justify when the free tier covers 80%\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Grammarly Pro is worth it for you. Could I get a little more\ncontext on:\n1. What kind of writing do you do most during your workday — quick\n   messages in Slack and email, or longer documents like reports and\n   blog posts?\n2. What are you currently using for writing help, and what's\n   frustrating you about it?\"</code></pre>"
+      },
+      {
+        "title": "Midjourney Is Still Gorgeous. It's Also the Wrong Tool for Most of You.",
+        "category": "DESIGN",
+        "thumbnail_url": "/thumbnails/midjourney-is-still-gorgeous-its-also-the-wrong-tool-for-most-of-you.jpeg",
+        "content": "<p><em>The $10/month AI art tool that can't spell your company name right.</em></p>\n<p>Midjourney V7 still makes the most beautiful AI images on the market. That's not really up for debate. The textures are richer, the lighting is more cinematic, and the compositions feel like someone with actual taste made them. If you're doing concept art or editorial illustration, nothing else comes close. The problem is that most people paying for Midjourney aren't doing concept art. They're making social graphics with headlines on them, and Midjourney <a href=\"https://evolink.ai/blog/midjourney-v7-review-2026\">renders \"DISCOVER TOKYO\" as \"DICSOVER TOKY0.\"</a></p>\n<p>That's not a cherry-picked failure. In testing of <a href=\"https://aiviewer.ai/guides/best-ai-image-generators-compared/\">100+ prompts requiring text, Midjourney produced clear readable text about 20-30% of the time</a>. Ideogram hits 75%. ChatGPT's image generator lands around 97% on design accuracy. If your job involves putting words on images, and most marketing jobs do, Midjourney is actively fighting you.</p>\n<p>Pricing starts at <a href=\"https://aiphotolabs.com/reviews/midjourney-v6-review-unmatched-ai-art-generation-power-in-2025/\">$10/month for Basic</a> (roughly 200 images), $30 for Standard with unlimited relaxed generation, and goes up to $120 for Mega. That $10 entry point sounds cheap until you realize ChatGPT Plus at $20/month gives you image generation, text chat, code, research, and file analysis in one subscription. The per-image math is brutal: Midjourney Basic works out to about <a href=\"https://ltx.studio/blog/how-much-does-ai-image-generation-cost\">$0.05 per image while ChatGPT Plus effectively costs around $0.004</a>.</p>\n<p>The product itself has improved. V7 became the default in June 2025 and brought Draft Mode for faster ideation, a proper web interface so you're not stuck in Discord, and something called Omni Reference that helps keep characters consistent across images. <a href=\"https://aiphotolabs.com/reviews/midjourney-v6-review-unmatched-ai-art-generation-power-in-2025/\">V8 Alpha is live in preview</a> with early reports calling the style stability impressive. David Holz, Midjourney's CEO, <a href=\"https://dev.ua/en/news/midjourney-vypustyla-novu-shi-model-tse-vpershe-maizhe-za-rik-yak-v7-bude-konkuruvaty-z-heneratorom-zobrazhen-vid-openai-iakyi-narobyv-stilky-halasu-1743748027\">said</a> V7 is \"much smarter with text clues\" and that \"image quality is noticeably higher with beautiful textures.\" He's right about the quality. The text clues part is still generous.</p>\n<p>One NAV43 reviewer <a href=\"https://nav43.com/blog/canva-create-2026-canva-ai-2-review/\">captured</a> what using any AI image tool actually feels like: \"You love 85% of the output, but you cannot edit the other 15% without regenerating the entire thing.\" That frustration hits harder with Midjourney because the aesthetic ceiling is so high. You get this gorgeous image and then the headline says \"OPEEN\" instead of \"OPEN.\"</p>\n<p>Meanwhile the competitive landscape shifted fast. Sam Altman <a href=\"https://gizmodo.com/openai-unveils-new-image-generator-to-usher-in-an-ai-slop-renaissance-2000749159\">called</a> ChatGPT's image upgrade \"like going from GPT-3 to GPT-5 all at once.\" Canva CEO Melanie Perkins <a href=\"https://ecommercenews.uk/story/canva-launches-ai-2-0-to-turn-prompts-into-editable-designs\">said</a> the company is building \"the most accessible, agentic AI platform in the world.\" Google's ImageFX is completely free. Midjourney's $500 million in annual revenue with <a href=\"https://www.atlascloud.ai/blog/guides/best-ai-image-generation-models-2026\">about 40 employees and zero outside funding</a> proves the business works. But the category it dominated splintered into five different jobs, and Midjourney is only the best at one of them.</p>\n<h2>The Verdict</h2>\n<p>Keep Midjourney if you do creative work where visual style matters more than text accuracy. Concept art, mood boards, hero images, editorial illustration. That's where the $10/month is genuinely worth it. Everyone else making marketing graphics, social posts, or anything with words on it should cancel and use ChatGPT's image tools or Ideogram's free tier instead. You'll get worse aesthetics and correct spelling, which for most work purposes is the better trade.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p>Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed Midjourney V7 ($10-$120/month) and found that\nit's still the best AI image generator for artistic and creative work\nbut the wrong tool for most people making marketing graphics or\nanything with text. Text rendering accuracy is around 20-30% compared\nto 97% from ChatGPT's image tools.\n\nHere are the key takeaways:\n- Best-in-class for concept art, editorial illustration, cinematic imagery\n- Text rendering is unreliable and far behind ChatGPT and Ideogram\n- ChatGPT Plus at $20/month covers image generation plus everything else\n- Worth keeping only if visual style matters more than text accuracy\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Midjourney is right for you. Could I get a little more context\non:\n1. What kind of images do you typically need to create — marketing\n   graphics with text, creative artwork, product photos, or something\n   else?\n2. What are you currently using for image generation, and what's\n   frustrating you about it?\"</code></pre>"
+      }
+    ],
+    "sign_off": "That's the Lab for this week. If a tool in here saved you time or wasted it, tell us — reply directly.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-lab-2026-04-27.png",
+    "thumbnail_url": "/thumbnails/chatgpt-just-became-a-design-tool.jpeg",
+    "published_at": "2026-04-27T13:00:00.000Z",
+    "updated_at": "2026-04-27T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "An AI coding agent deleted a startup's entire production database",
+          "rest": " in 9 seconds — leaving car rental customers stranded with no reservations, no records, and no way to pick up their vehicles",
+          "url": "https://sea.mashable.com/tech/44827/an-ai-agent-allegedly-deleted-a-startups-production-database-causing-a-huge-outage"
+        },
+        {
+          "link_text": "Anthropic's most restricted AI model was leaked to a Discord group",
+          "rest": " that simply guessed the URL — no hacking required",
+          "url": "https://nexttechtoday.com/news/unauthorized-users-gained-access-to-anthropics-mythos/"
+        },
+        {
+          "link_text": "The EU is telling Google to open up Android to rival AI assistants",
+          "rest": " — Google calls it \"unwarranted intervention,\" regulators could force changes by July",
+          "url": "https://arstechnica.com/ai/2026/04/europe-could-force-google-to-open-android-to-other-ai-assistants/"
+        },
+        {
+          "link_text": "AI hiring startup Mercor is facing seven class-action lawsuits",
+          "rest": " after hackers stole four terabytes of data including recorded interviews, biometric scans, and screenshots from workers' computers",
+          "url": "https://www.jpost.com/business-and-innovation/article-894282"
+        },
+        {
+          "link_text": "Claude Code is accidentally leaking API keys",
+          "rest": " into public package registries — researchers found 428 exposed packages on npm alone",
+          "url": "https://bdtechtalks.com/2026/04/27/claude-code-api-token-leak/"
+        },
+        {
+          "link_text": "The Pentagon now has 1.3 million people actively using its AI platform",
+          "rest": " and they've already built over 100,000 AI agents on it",
+          "url": "https://www.defenseone.com/defense-systems/2026/04/pentagon-adds-googles-latest-model-genaimil-usage-soars/413126/"
+        },
+        {
+          "link_text": "House Democrats are making AI data centers a midterm election issue",
+          "rest": ", targeting the rising electricity costs that come with the AI boom",
+          "url": "https://politicalwire.com/2026/04/27/democrats-to-focus-on-ai-data-centers/"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Wispr Flow",
+          "desc": "The new viral voice-to-text AI for iPhone and Mac that actually understands what you're saying every time",
+          "url": "https://ref.wisprflow.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Superpower",
+          "desc": "The health app that tests your blood and uses AI to tell you what's actually going on with your body before your doctor does",
+          "url": "https://partners.superpower.com/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Google Gemini for Mac",
+          "desc": "Google finally launched a native Mac app for Gemini — hit Option + Space from anywhere on your computer to ask questions, summarize what's on your screen, or pull files from Google Drive without opening a browser",
+          "url": "https://theaijournal.co/2026/04/google-gemini-mac-app-launch-2026/",
+          "sponsored": false
+        },
+        {
+          "name": "Cursor 3 'Glass'",
+          "desc": "The AI coding editor shipped a major redesign that lets you launch multiple AI agents working on different parts of your codebase at the same time — each with its own conversation and live preview",
+          "url": "https://dev.to/gabrielanhaia/cursor-3-glass-replaced-composer-with-an-agents-window-1pcg",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini Agentic Trading",
+          "desc": "The crypto exchange now lets you connect ChatGPT or Claude directly to your trading account so an AI agent can monitor markets, execute trades, and manage risk on your behalf using plain-language strategies",
+          "url": "https://coinlaw.io/gemini-agentic-trading-ai-crypto/",
+          "sponsored": false
+        },
+        {
+          "name": "GitLab glab CLI",
+          "desc": "Developers can now give AI assistants like Claude and Cursor direct access to their GitLab projects — so the AI can read issues, review code, and check pipelines without you copy-pasting anything from the browser",
+          "url": "https://about.gitlab.com/blog/give-your-ai-agent-direct-structured-gitlab-access-with-glab-cli/",
+          "sponsored": false
+        },
+        {
+          "name": "OpenAI Agents SDK",
+          "desc": "OpenAI updated its developer toolkit so AI agents can now run inside secure sandboxes with approval gates — meaning they can handle sensitive files and long-running tasks without accidentally touching things they shouldn't",
+          "url": "https://www.intelligentliving.co/openai-agents-sdk-update-sandbox/",
+          "sponsored": false
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "e41f56b5-4de8-4725-97e2-14ce2ad0d3e9",
+      "question": "When an AI tool gives you a wrong answer, what do you do?",
+      "options": [
+        "Google it to double-check",
+        "Ask the AI again but more aggressively",
+        "Shrug and move on",
+        "Lose all trust immediately",
+        "Other"
+      ]
+    },
+    "poll_results": null,
+    "yesterdays_results": null
+  },
+  {
     "id": "lab-april-23-2026",
     "slug": "lab-april-23-2026",
     "publication": "the-lab",
