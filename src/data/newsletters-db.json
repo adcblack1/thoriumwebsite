@@ -126,16 +126,21 @@
       ]
     },
     "games": {
-      "game_poll_id": "PLACEHOLDER-GAME-POLL-ID",
+      "game_poll_id": "bbd742b5-82f9-481c-8e29-e0507a189751",
       "image_a": "/thumbnails/kicker-2026-04-27-ai.jpeg",
       "image_b": "/thumbnails/kicker-2026-04-27-real.jpg",
       "link_a": "https://gemini.google.com/share/7a1d5b8f64f7",
       "link_b": "https://unsplash.com/photos/small-house-nestled-against-misty-mountainside-WloQFV2KNWM"
     },
     "poll": {
-      "poll_id": "PLACEHOLDER-POLL-ID",
-      "question": "Have you switched (or considered switching) AI tools based on a company's values?",
-      "options": ["Yes", "No", "Other"]
+      "poll_id": "cdba99a2-0bcb-404e-89c7-884a1a254996",
+      "question": "Do you prefer using ChatGPT, Claude, or Gemini?",
+      "options": [
+        "ChatGPT",
+        "Claude",
+        "Gemini",
+        "Other"
+      ]
     },
     "poll_results": null,
     "yesterdays_results": {
