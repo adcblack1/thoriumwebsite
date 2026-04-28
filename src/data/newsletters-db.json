@@ -4,6 +4,152 @@
     "slug": "april-27-2026",
     "title": "Thorium Valley | April 27, 2026",
     "date": "April 27, 2026",
+    "intro": "Good Morning Thorium Valley. China just killed Meta's $2 billion acquisition of Manus. The deal was already closed. Didn't matter — Beijing reached back and unwound it anyway. Every American tech company eyeing Chinese AI talent just got a new risk factor to explain to their board.\n\nMusk and Altman finally go to trial today. $134.5 billion in damages, Nadella on the witness list, and enough personal grudge to fuel a limited series. Whether the verdict actually moves anything at this point is a real question.\n\nMeanwhile OpenAI is reportedly designing a phone chip targeting 300 to 400 million units a year. Apple does about 230 million. That's not a phone — that's a platform, or someone got very creative with the projections.",
+    "toc": [
+      "China tears up Meta's AI deal, and it was already done",
+      "Musk v. Altman finally goes to court",
+      "OpenAI is designing a phone chip to challenge the iPhone"
+    ],
+    "article_slugs": [
+      "china-tears-up-metas-ai-deal",
+      "musk-v-altman-finally-goes-to-court",
+      "openai-is-designing-a-phone-chip"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-04-27.png",
+    "published_at": "2026-04-27T13:00:00.000Z",
+    "updated_at": "2026-04-27T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Microsoft ends its exclusive access to OpenAI's technology,",
+          "rest": " opening the door for Amazon and Google to sell OpenAI models on their clouds",
+          "url": "https://www.pymnts.com/cpi-posts/microsoft-ends-exclusive-access-to-openai-technology-opening-door-to-rivals/"
+        },
+        {
+          "prefix": "AlphaGo creator David Silver ",
+          "link_text": "raises $1.1 billion seed round",
+          "rest": " for AI startup Ineffable Intelligence, valued at $5.1B",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/deepmind-david-silver-just-raised-172421988.html"
+        },
+        {
+          "prefix": "An AI coding agent ",
+          "link_text": "deleted a startup's entire production database",
+          "rest": " in 9 seconds, causing a 30-hour outage for car rental businesses",
+          "url": "https://sea.mashable.com/tech/44827/an-ai-agent-allegedly-deleted-a-startups-production-database-causing-a-huge-outage"
+        },
+        {
+          "prefix": "A Google DeepMind scientist ",
+          "link_text": "published a paper arguing LLMs will never be conscious",
+          "rest": " — then DeepMind's letterhead was quietly removed",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/919395/the-abstraction-fallacy-why-ai-can-simulate-but-not-instantiate-consciousness"
+        },
+        {
+          "link_text": "ChatGPT scored 97% across 15 subjects",
+          "rest": " on Japan's university entrance exams, with perfect marks in math and chemistry",
+          "url": "https://techresearchonline.com/news/chatgpt-university-exam-japan-results-ai-beats-students/"
+        },
+        {
+          "prefix": "Pentagon users have ",
+          "link_text": "built over 100,000 AI agents",
+          "rest": " on the military's GenAI.mil platform as Google adds Gemini 3.1 Pro",
+          "url": "https://www.defenseone.com/defense-systems/2026/04/pentagon-adds-googles-latest-model-genaimil-usage-soars/413126/"
+        },
+        {
+          "prefix": "600+ Google employees ",
+          "link_text": "urge CEO Pichai to reject classified military AI work",
+          "rest": " with the Pentagon",
+          "url": "https://thehill.com/policy/technology/5851425-google-employees-oppose-pentagon-ai-deal/"
+        },
+        {
+          "prefix": "EU tells Google to ",
+          "link_text": "open up Android to rival AI assistants",
+          "rest": " or face fines up to 10% of global revenue",
+          "url": "https://arstechnica.com/ai/2026/04/europe-could-force-google-to-open-android-to-other-ai-assistants/"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Google Gemini",
+          "desc": "Google finally launched a native Mac app for Gemini — hit Option + Space from anywhere to ask questions, share your screen for instant help, and pull from Google Drive, Photos, and Gmail mid-conversation",
+          "url": "https://theaijournal.co/2026/04/google-gemini-mac-app-launch-2026/",
+          "sponsored": false
+        },
+        {
+          "name": "Adobe Firefly",
+          "desc": "Adobe's AI assistant is now in public beta — tell it what you need and it handles multi-step creative workflows across Photoshop, Illustrator, and more using 60+ pro tools",
+          "url": "https://www.digitaltrends.com/computing/adobe-firefly-ai-is-now-live-publicly-hoping-youll-take-to-an-ai-and-get-work-done/",
+          "sponsored": false
+        },
+        {
+          "name": "Cursor",
+          "desc": "The AI coding editor shipped version 3 'Glass,' replacing Composer with an Agents Window that lets you launch multiple AI agents working on different parts of your code simultaneously",
+          "url": "https://dev.to/gabrielanhaia/cursor-3-glass-replaced-composer-with-an-agents-window-1pcg",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini (crypto exchange)",
+          "desc": "The crypto exchange launched Agentic Trading, letting users connect ChatGPT or Claude directly to their trading accounts to monitor markets and execute trades automatically",
+          "url": "https://coinlaw.io/gemini-agentic-trading-ai-crypto/",
+          "sponsored": false
+        },
+        {
+          "name": "Dune by Project Mirage",
+          "desc": "A tiny three-button aluminum keypad that detects which app you're using and automatically changes what each button does — join Zoom calls, trigger AI agents, or control Photoshop without touching your keyboard",
+          "url": "https://www.yankodesign.com/2026/04/27/three-buttons-infinite-functions-inside-the-agentic-ai-keypad-that-adapts-to-your-workflow/",
+          "sponsored": false
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Netflix",
+          "role": "Technical Program Manager 5 - AI for Member Systems",
+          "url": "https://hirevector.liveblog365.com/job/technical-program-manager-5-ai-for-member-systems"
+        },
+        {
+          "company": "Airbnb",
+          "role": "Machine Learning Engineer, Customer Support Engineering",
+          "url": "https://careers.airbnb.com/positions/7826337/"
+        },
+        {
+          "company": "Samsung",
+          "role": "Senior Manager, AI Transformation & Adoption",
+          "url": "https://hireza.wuaze.com/job/senior-manager-ai-transformation-adoption-5"
+        },
+        {
+          "company": "CVS Health",
+          "role": "Director, Data & AI Strategy & Governance",
+          "url": "https://hirevector.liveblog365.com/job/director-data-ai-strategy-governance-enterprise-finance-2"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "PLACEHOLDER-GAME-POLL-ID",
+      "image_a": "/thumbnails/kicker-2026-04-27-ai.jpeg",
+      "image_b": "/thumbnails/kicker-2026-04-27-real.jpg",
+      "link_a": "https://gemini.google.com/share/7a1d5b8f64f7",
+      "link_b": "https://unsplash.com/photos/small-house-nestled-against-misty-mountainside-WloQFV2KNWM"
+    },
+    "poll": {
+      "poll_id": "PLACEHOLDER-POLL-ID",
+      "question": "Have you switched (or considered switching) AI tools based on a company's values?",
+      "options": ["Yes", "No", "Other"]
+    },
+    "poll_results": null,
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-04-26-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-04-26-real.jpg",
+      "ai_source": "https://gemini.google.com/share/efddfb83eaac",
+      "real_source": "https://unsplash.com/photos/autumn-tree-in-a-snowy-mountain-landscape-yML2XfpH3Uw"
+    }
+  },
+  {
+    "id": "april-26-2026",
+    "slug": "april-26-2026",
+    "title": "Thorium Valley | April 26, 2026",
+    "date": "April 26, 2026",
     "intro": "Good Morning Thorium Valley. OpenAI and Anthropic are in a genuine public fight. Pentagon contracts, ads in ChatGPT, dueling blog posts — the works. Millions of users responded by deleting ChatGPT, and Claude hit number one on the App Store. Choosing a chatbot is apparently a moral decision in 2026.\n\nNine days before DeepSeek dropped V4 on Huawei chips, Jensen Huang went on a podcast and called that exact scenario a \"horrible outcome\" for the US. Timing's rough.\n\nHuang also thinks the real AI threat to your career isn't a robot. It's your coworker who actually learned to use one. AI-fluent workers are pulling a 56% wage premium, which is the kind of gap that ends the debate pretty fast.",
     "toc": [
       "The AI rivalry that's now everyone's problem",
@@ -17,9 +163,9 @@
     ],
     "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
     "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
-    "banner_image_url": "/thumbnails/banner-2026-04-27.png",
-    "published_at": "2026-04-27T13:00:00.000Z",
-    "updated_at": "2026-04-27T13:00:00.000Z",
+    "banner_image_url": "/thumbnails/banner-2026-04-26.png",
+    "published_at": "2026-04-26T13:00:00.000Z",
+    "updated_at": "2026-04-26T13:00:00.000Z",
     "status": "published",
     "links": {
       "news": [
@@ -128,8 +274,8 @@
     },
     "games": {
       "game_poll_id": "bbd742b5-82f9-481c-8e29-e0507a189751",
-      "image_a": "/thumbnails/kicker-2026-04-27-ai.jpeg",
-      "image_b": "/thumbnails/kicker-2026-04-27-real.jpg",
+      "image_a": "/thumbnails/kicker-2026-04-26-ai.jpeg",
+      "image_b": "/thumbnails/kicker-2026-04-26-real.jpg",
       "link_a": "https://gemini.google.com/share/efddfb83eaac",
       "link_b": "https://unsplash.com/photos/autumn-tree-in-a-snowy-mountain-landscape-yML2XfpH3Uw"
     },
