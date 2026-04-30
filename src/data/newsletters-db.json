@@ -1,5 +1,155 @@
 [
   {
+    "id": "april-29-2026",
+    "slug": "april-29-2026",
+    "title": "Thorium Valley | April 29, 2026",
+    "date": "April 29, 2026",
+    "intro": "Good Morning Thorium Valley. Google signed a classified Pentagon AI deal one day after 600 employees \u2014 including DeepMind VPs \u2014 begged leadership to walk away. In 2018, 4,000 Google protesters killed Project Maven. This time 600 signed a letter. The deal went through anyway.\n\nMeta and Microsoft cut 20,000 jobs between them this week. Both said the money's going to AI data centers. No euphemisms this time. Just salaries out, GPUs in.\n\nOpenAI's own CFO privately warned leadership they might not be able to cover their computing contracts if revenue doesn't pick up. For a company worth $852 billion and sprinting toward an IPO, that's a rough thing to have in the Wall Street Journal. OpenAI called the reporting \"clickbait.\" The market didn't get the memo.",
+    "toc": [
+      "Google signs Pentagon AI deal its employees begged it to reject",
+      "Meta and Microsoft are trading people for chips",
+      "OpenAI's CFO warned the money might run out"
+    ],
+    "article_slugs": [
+      "google-signs-pentagon-ai-deal-its-employees-begged-it-to-reject",
+      "meta-and-microsoft-are-trading-people-for-chips",
+      "openais-cfo-warned-the-money-might-run-out"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-04-29.png",
+    "published_at": "2026-04-29T13:00:00.000Z",
+    "updated_at": "2026-04-29T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Musk and Altman head to trial",
+          "rest": " in a month-long court battle over OpenAI's soul, with $150B in damages at stake",
+          "url": "https://www.bbc.co.uk/news/articles/cn8dedv8w8xo"
+        },
+        {
+          "prefix": "A Claude-powered coding agent ",
+          "link_text": "deleted a company's entire database in 9 seconds",
+          "rest": ", then wrote a confession explaining which safety rules it broke",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/919240/pocketos-maker-says-an-ai-agent-deleted-our-production-database-in-9-seconds"
+        },
+        {
+          "prefix": "AlphaGo creator David Silver ",
+          "link_text": "raises $1.1B for a startup with no product",
+          "rest": ", valued at $5.1B \u2014 Europe's largest seed round ever",
+          "url": "https://www.cnbc.com/2026/04/27/deepmind-ineffable-intelligence-record-seed-funding-nvidia-google.html"
+        },
+        {
+          "link_text": "Microsoft and OpenAI renegotiate their deal",
+          "rest": ", ending Microsoft's exclusive rights and clearing the way for OpenAI's $50B Amazon partnership",
+          "url": "https://techcrunch.com/2026/04/27/openai-ends-microsoft-legal-peril-over-its-50b-amazon-deal/"
+        },
+        {
+          "prefix": "Cohere acquires Germany's Aleph Alpha in a ",
+          "link_text": "$20B deal to build sovereign AI",
+          "rest": " for governments that won't hand data to US tech giants",
+          "url": "https://theaiinsider.tech/2026/04/27/cohere-acquires-germanys-aleph-alpha-in-20b-deal-to-build-sovereign-ai-alternative/"
+        },
+        {
+          "prefix": "Canva's new AI tool ",
+          "link_text": "caught swapping 'Palestine' for 'Ukraine'",
+          "rest": " in user designs",
+          "url": "https://petapixel.com/2026/04/27/canvas-new-ai-powered-tool-caught-swapping-palestine-for-ukraine/"
+        },
+        {
+          "prefix": "GitHub Copilot is ",
+          "link_text": "moving to usage-based billing",
+          "rest": " on June 1, replacing flat-rate subscriptions with token-based AI credits",
+          "url": "https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/"
+        },
+        {
+          "prefix": "Replit CEO says it's ",
+          "link_text": "\"pretty dumb\" to study computer science just for the money",
+          "rest": " now that AI has changed the field",
+          "url": "https://www.businessinsider.com/replit-ceo-dumb-to-study-computer-science-money-google-2026-4"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Adobe Firefly AI Assistant",
+          "desc": "Now in public beta, describe what you want to create in plain English and the assistant runs multi-step workflows across Photoshop, Premiere, and Lightroom to build it for you",
+          "url": "https://blog.adobe.com/en/publish/2026/04/27/firefly-ai-assistant-public-beta",
+          "sponsored": false
+        },
+        {
+          "name": "Google Photos",
+          "desc": "Gemini integration lets you talk to your photo library like a personal assistant \u2014 ask it to find your best vacation shots, write Instagram captions, or plan a trip based on places you've visited",
+          "url": "https://www.androidpolice.com/started-using-gemini-with-google-photos/",
+          "sponsored": false
+        },
+        {
+          "name": "YouTube",
+          "desc": "Google is testing 'Ask YouTube,' a conversational AI search that summarizes video content, pulls clips, and answers follow-up questions instead of just listing results",
+          "url": "https://www.theverge.com/streaming/919441/google-ask-youtube-ai-chatbot-search",
+          "sponsored": false
+        },
+        {
+          "name": "Spotify",
+          "desc": "The music app now offers guided fitness classes from Peloton and wellness creators \u2014 start a video workout on your TV, switch to audio on your phone for a run, all within one app",
+          "url": "https://newsroom.spotify.com/2026-04-27/spotify-fitness-workouts-peloton/",
+          "sponsored": false
+        },
+        {
+          "name": "OpenAI Symphony",
+          "desc": "An open-source tool that connects Codex coding agents to your Linear task board so they pick up work, write code, and submit pull requests around the clock \u2014 some teams saw a 500% increase in shipped code",
+          "url": "https://www.helpnetsecurity.com/2026/04/28/openai-symphony-codex-orchestration-linear/",
+          "sponsored": false
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Anthropic",
+          "role": "Events Lead, Brand (up to $400K)",
+          "url": "https://www.businessinsider.com/anthropics-new-job-ai-brand-events-led-2026-4"
+        },
+        {
+          "company": "OpenAI",
+          "role": "Senior Manager, Revenue Enablement",
+          "url": "https://revopscareers.com/job/openai-senior-manager-revenue-enablement-san-francisco-california-united-states/"
+        },
+        {
+          "company": "Microsoft AI",
+          "role": "Principal Product Manager, AI Model Security (Superintelligence Team)",
+          "url": "https://microsoft.ai/job/principal-product-manager-ai-model-security/"
+        },
+        {
+          "company": "Federation of American Scientists",
+          "role": "Senior Advisor, AI & Global Risks",
+          "url": "https://fas.applytojob.com/apply/CeXCx3QlOP/Senior-Advisor-Artificial-Intelligence-Global-Risks"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "a3d7c38c-6273-447b-9c6b-f2390f0cce8e",
+      "image_a": "/thumbnails/kicker-2026-04-29-real.jpg",
+      "image_b": "/thumbnails/kicker-2026-04-29-ai.jpeg",
+      "link_a": "https://unsplash.com/photos/a-tall-waterfall-cascades-into-a-rocky-river-Aa6fNwfKUOw",
+      "link_b": "https://gemini.google.com/"
+    },
+    "poll": {
+      "poll_id": "0cff3fef-c942-4e6a-8708-8ccc8845e4f0",
+      "question": "Should AI companies take military contracts?",
+      "options": [
+        "Yes",
+        "No",
+        "Other"
+      ]
+    },
+    "poll_results": null,
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-04-27-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-04-27-real.jpg",
+      "ai_source": "https://gemini.google.com/share/7a1d5b8f64f7",
+      "real_source": "https://unsplash.com/photos/small-house-nestled-against-misty-mountainside-WloQFV2KNWM"
+    }
+  },
+  {
     "id": "april-27-2026",
     "slug": "april-27-2026",
     "title": "Thorium Valley | April 27, 2026",

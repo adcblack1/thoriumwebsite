@@ -107,11 +107,9 @@ export function trackLead(email?: string) {
 }
 
 /**
- * Track a QualifiedLead — fires ONLY when the subscriber matches ICP.
+ * Track a QualifiedLead — fires when the subscriber completes the survey.
  * This is the event you optimize Meta campaigns toward.
  * Custom Conversion ID in Meta: 1486726819501859
- *
- * ICP blocklist: do NOT fire if seniority === 'Student' or company_size === 'Just me'
  */
 export function trackQualifiedLead(surveyData: {
   seniority: string;

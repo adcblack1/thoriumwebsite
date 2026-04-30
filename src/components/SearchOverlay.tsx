@@ -13,19 +13,17 @@ interface SearchResult {
     thumbnail_url?: string;
 }
 
-// All searchable articles — same as mock data in beehiiv.ts
-const ARTICLES: SearchResult[] = [
-    { id: '1', slug: 'openai-announces-gpt-5-preview', title: 'OpenAI Announces GPT-5 Preview with Breakthrough Reasoning Capabilities', subtitle: 'The next generation model shows significant improvements in complex reasoning, coding, and multimodal understanding.', thumbnail_url: '/thumb-1.avif' },
-    { id: '2', slug: 'anthropic-claude-enterprise', title: 'Anthropic Launches Claude Enterprise for Large Organizations', subtitle: 'New enterprise tier offers enhanced security, custom model fine-tuning, and dedicated support.', thumbnail_url: '/thumb-2.avif' },
-    { id: '3', slug: 'google-gemini-2-launch', title: 'Google Unveils Gemini 2.0 with Revolutionary Agent Capabilities', subtitle: 'The new model can autonomously browse the web, write code, and complete complex multi-step tasks.', thumbnail_url: '/thumb-3.avif' },
-    { id: '4', slug: 'meta-llama-4-open-source', title: 'Meta Releases Llama 4: The Most Powerful Open Source Model Yet', subtitle: 'Benchmarks show Llama 4 matching proprietary models while remaining fully open source.', thumbnail_url: '/thumb-4.avif' },
-    { id: '5', slug: 'ai-regulation-update-2026', title: 'EU AI Act Takes Effect: What Companies Need to Know', subtitle: 'Compliance deadlines approaching for high-risk AI systems as enforcement begins.', thumbnail_url: '/thumb-5.webp' },
-    { id: '6', slug: 'ai-agents-enterprise-adoption', title: 'AI Agents Go Mainstream: Fortune 500 Companies Lead Adoption', subtitle: 'Survey shows 70% of large enterprises now deploying autonomous AI agents in production.', thumbnail_url: '/thumb-6.avif' },
-    { id: '7', slug: 'nvidia-blackwell-ultra-announcement', title: 'NVIDIA Announces Blackwell Ultra: 5x Performance Increase', subtitle: 'Next-gen GPUs promise to accelerate AI training and inference to new heights.', thumbnail_url: '/thumb-7.avif' },
-    { id: '8', slug: 'ai-healthcare-breakthrough', title: 'AI System Achieves Human-Level Diagnosis Across 50 Conditions', subtitle: 'Stanford study shows AI matching expert physicians in diagnostic accuracy.', thumbnail_url: '/thumb-8.avif' },
-    { id: '9', slug: 'apple-ai-strategy-2026', title: "Apple's AI Strategy Revealed: On-Device Intelligence Takes Center Stage", subtitle: 'Privacy-focused approach prioritizes local processing over cloud-based AI.', thumbnail_url: '/thumb-9.avif' },
-    { id: '10', slug: 'coding-assistants-comparison', title: 'The State of AI Coding Assistants: Which Tool Leads in 2026?', subtitle: 'Comprehensive comparison of GitHub Copilot, Claude Code, and emerging competitors.', thumbnail_url: '/thumb-10.avif' },
-];
+// Import actual articles database
+import articlesDb from '@/data/articles-db.json';
+
+// Dynamically generate searchable articles from the database
+const ARTICLES: SearchResult[] = Object.entries(articlesDb).map(([slug, data]: [string, any]) => ({
+    id: slug,
+    slug: slug,
+    title: data.title,
+    subtitle: data.subtitle || data.category,
+    // We omit thumbnail_url since not all articles have a reliable static thumbnail mapping in the DB
+}));
 
 interface SearchOverlayProps {
     isOpen: boolean;
@@ -138,7 +136,7 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                                     {results.map((article) => (
                                         <Link
                                             key={article.id}
-                                            href={`/newsletter/${article.slug}`}
+                                            href={`/articles/${article.slug}`}
                                             onClick={onClose}
                                         >
                                             <div className="flex items-start gap-4 px-5 py-4 hover:bg-[#f8f8f8] transition-colors cursor-pointer border-t border-[#1b1b1b]/5">

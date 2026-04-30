@@ -38,6 +38,38 @@ const SPONSORED_TOOLS = [
   },
 ];
 
+// Littlebird A/B/C variations for partnership test
+const LB_UNDERLINE = 'underline decoration-[#5170ff] decoration-2 underline-offset-4';
+const LB_VARIATIONS: Record<string, { label: string; mediaType: 'image' | 'video'; mediaSrc: string; headline: string; subtext: string; subtext2: string; link: string }> = {
+  A: {
+    label: 'Meeting Recall',
+    mediaType: 'image',
+    mediaSrc: '/thumbnails/littlebird-meeting.png',
+    headline: 'meeting',
+    subtext: 'Littlebird is your AI memory for every meeting, tab, and thing you worked on. It watches your screen, takes notes in real time, and remembers everything \u2014 so when you forget where you saw something, you just ask.',
+    subtext2: 'No more retracing your steps through old emails, notes, and browser tabs. Littlebird gives you instant recall across your entire workday.',
+    link: 'https://try.littlebird.ai/thorium1',
+  },
+  B: {
+    label: 'Productivity',
+    mediaType: 'image',
+    mediaSrc: '/thumbnails/littlebird-productive.avif',
+    headline: 'productive',
+    subtext: 'Littlebird runs quietly in the background and remembers everything you see, read, and work on. When you need to pick up where you left off, pull up a detail from last week, or find that one thing you saw somewhere \u2014 just ask.',
+    subtext2: 'It\u2019s like having a second brain that never forgets. Less time searching, more time doing the work that actually matters.',
+    link: 'https://try.littlebird.ai/thorium2',
+  },
+  C: {
+    label: 'Video Demo',
+    mediaType: 'video',
+    mediaSrc: '/thumbnails/littlebird-demo.mp4',
+    headline: 'working',
+    subtext: 'Littlebird watches your screen in real time and builds a searchable memory of your entire workday \u2014 every meeting, every tab, every document. When you need context, you don\u2019t dig. You ask.',
+    subtext2: 'The more you work, the more it remembers. Less time searching, more time on the work that actually matters.',
+    link: 'https://try.littlebird.ai/thorium3',
+  },
+};
+
 
 const GOALS = [
   'Implement AI at my company',
@@ -181,6 +213,7 @@ export default function SubscribePage() {
   const [error, setError] = useState<string | null>(null);
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = back
   const [autoSubmitted, setAutoSubmitted] = useState(false);
+  const [lbVariation, setLbVariation] = useState<string>('A');
 
   // ── UTM params captured on arrival ──
   const [utmParams, setUtmParams] = useState<{
@@ -404,7 +437,7 @@ export default function SubscribePage() {
     // Trigger beehiiv + QualifiedLead at step 7→8 transition (after all survey data collected)
     if (step === 7) {
       completeSubscription();
-      // Fire QualifiedLead ONLY if ICP match (not Student, not Just me)
+      // Fire QualifiedLead for everyone who completes the survey
       trackQualifiedLead({
         seniority: formData.seniority,
         company_size: formData.company_size,
@@ -420,6 +453,30 @@ export default function SubscribePage() {
     setDirection(-1);
     setStep(prev => prev - 1);
   };
+
+  // ── Log sponsor tool clicks to Supabase ──
+  const logToolClick = (toolName: string, page: string) => {
+    if (!subscriberId) return;
+    try {
+      navigator.sendBeacon(
+        '/api/subscribe/sponsor-click',
+        new Blob(
+          [JSON.stringify({ subscriber_id: subscriberId, sponsor_slug: toolName.toLowerCase(), step: page })],
+          { type: 'application/json' }
+        )
+      );
+    } catch {}
+  };
+
+  // Assign Littlebird A/B/C variation when reaching step 9
+  useEffect(() => {
+    if (step === 9) {
+      fetch('/api/littlebird-test')
+        .then(r => r.json())
+        .then(d => { if (d.variation) setLbVariation(d.variation); })
+        .catch(() => {});
+    }
+  }, [step]);
 
   // Auto-advance for loading steps (8 and 10)
   useEffect(() => {
@@ -515,45 +572,42 @@ export default function SubscribePage() {
               </p>
             </div>
 
-            {/* Personalized tools – same layout as step 9 but white bg */}
+            {/* Littlebird partnership — single tool */}
             <div className="text-center mb-4 mt-2">
-              <p className="text-xs font-inter font-semibold uppercase tracking-widest mb-2" style={{ color: '#5170ff' }}>AI TOOLS <span className="text-[#1b1b1b]/40 normal-case font-normal">(Sponsored)</span></p>
-              <h3 className="font-times text-2xl lg:text-3xl" style={{ fontWeight: 500, letterSpacing: '-0.05em', color: '#1b1b1b' }}>
-                We picked these tools for <em>you</em>
-              </h3>
+              <div className="flex items-center justify-center gap-3 lg:gap-4 mb-3">
+                <img src="/Transparent White Logo.png" alt="Thorium Valley" className="h-8 lg:h-10 invert" style={{ objectFit: 'contain' }} />
+                <span className="text-[#1b1b1b]/30 font-inter text-base font-light">×</span>
+                <img src="/images/littlebird-logo-white.svg" alt="Littlebird" className="h-8 lg:h-12 invert" style={{ objectFit: 'contain' }} />
+              </div>
+              <p className="font-inter text-[10px] lg:text-[11px] font-semibold uppercase tracking-[0.15em]" style={{ color: '#5170ff' }}>
+                Official AI Assistant Partner
+              </p>
             </div>
-            <div className="w-full flex flex-col lg:flex-row items-stretch justify-center gap-5">
-              {[SPONSORED_TOOLS[1], SPONSORED_TOOLS[0], SPONSORED_TOOLS[2]].map((tool, i) => {
-                const desktopOrder = i === 0 ? 'lg:order-2' : i === 1 ? 'lg:order-1' : 'lg:order-3';
-                return (
-                  <a
-                    key={tool.name}
-                    href={tool.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`block rounded-xl overflow-hidden transition-all group hover:shadow-lg border border-[#1b1b1b]/10 ${desktopOrder} w-full lg:flex-1 ${
-                      i !== 0 ? 'lg:scale-[0.92]' : 'lg:z-10'
-                    }`}
-                    style={{ background: '#ffffff' }}
-                  >
-                    <div className="px-5 pt-5 pb-3">
-                      <h3 className="font-times text-[#1b1b1b] leading-tight" style={{ fontWeight: 500, letterSpacing: '-0.05em', fontSize: '22px' }}>
-                        {tool.primary}
-                      </h3>
-                    </div>
-                    <div className="px-4">
-                      <img src={tool.image} alt={tool.name} className="w-full rounded-lg" style={{ objectFit: 'contain' }} />
-                    </div>
-                    <div className="px-5 pt-3 pb-5">
-                      <p className="font-inter text-[#1b1b1b]/50 text-xs leading-relaxed">{tool.subtext}</p>
-                      <span className="inline-block mt-2 text-[#5170ff] text-xs font-inter font-semibold group-hover:underline">
-                        Try {tool.name} →
-                      </span>
-                    </div>
-                  </a>
-                );
-              })}
-            </div>
+            <a
+              href="https://try.littlebird.ai/thorium-valley"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => logToolClick('littlebird', 'confirmation')}
+              className="block w-full max-w-lg mx-auto rounded-xl overflow-hidden transition-all group hover:shadow-lg border border-[#1b1b1b]/10"
+              style={{ background: '#ffffff' }}
+            >
+              <div className="px-5 pt-5 pb-3">
+                <h3 className="font-times text-[#1b1b1b] leading-tight" style={{ fontWeight: 500, letterSpacing: '-0.05em', fontSize: '22px' }}>
+                  If you&rsquo;ve ever forgotten what someone said in a meeting, use Littlebird.
+                </h3>
+              </div>
+              <div className="px-4">
+                <img src="/thumbnails/littlebird-meeting.png" alt="Littlebird" className="w-full rounded-lg" style={{ objectFit: 'contain' }} />
+              </div>
+              <div className="px-5 pt-3 pb-5">
+                <p className="font-inter text-[#1b1b1b]/50 text-xs leading-relaxed">
+                  Littlebird is your AI memory for every meeting, tab, and thing you worked on.
+                </p>
+                <span className="inline-block mt-2 text-[#5170ff] text-xs font-inter font-semibold group-hover:underline">
+                  Try Littlebird →
+                </span>
+              </div>
+            </a>
           </div>
         </main>
         <FooterNew />
@@ -676,65 +730,59 @@ export default function SubscribePage() {
                 </div>
               )}
 
-              {/* Step 9: Recommended tools */}
-              {step === 9 && (
-                <div className="flex flex-col items-center gap-6">
-                  <div className="text-center mb-2">
-                    <p className="text-xs font-inter font-semibold uppercase tracking-widest mb-2" style={{ color: '#5170ff' }}>AI TOOLS <span className="text-white/40 normal-case font-normal">(Sponsored)</span></p>
-                    <h2 className="font-times text-2xl lg:text-3xl" style={{ fontWeight: 500, letterSpacing: '-0.05em', color: '#ffffff' }}>
-                      We picked these tools for <em>you</em>
-                    </h2>
-
+              {/* Step 9: Littlebird A/B/C partnership test */}
+              {step === 9 && (() => {
+                const v = LB_VARIATIONS[lbVariation] || LB_VARIATIONS.A;
+                return (
+                  <div className="flex flex-col items-center gap-6">
+                    {/* White card */}
+                    <a
+                      href={v.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => logToolClick(`littlebird_${lbVariation}`, 'tools_page')}
+                      className="block w-full rounded-2xl overflow-hidden transition-all group hover:shadow-2xl hover:shadow-white/10"
+                      style={{ background: '#ffffff' }}
+                    >
+                      {/* Blue section — logos + media */}
+                      <div style={{ backgroundColor: '#5170ff' }} className="px-6 pt-8 lg:pt-10 pb-6 lg:pb-8">
+                        <div className="flex items-center justify-center gap-4 lg:gap-5 mb-3">
+                          <img src="/Transparent White Logo.png" alt="Thorium Valley" className="h-12 lg:h-16" style={{ objectFit: 'contain' }} />
+                          <span className="text-white/50 font-inter text-lg lg:text-xl font-light">×</span>
+                          <img src="/images/littlebird-logo-white.svg" alt="Littlebird" className="h-12 lg:h-20" style={{ objectFit: 'contain' }} />
+                        </div>
+                        <p className="font-inter text-[10px] lg:text-[11px] font-semibold uppercase tracking-[0.15em] text-center mb-6 lg:mb-8" style={{ color: '#ffffff' }}>
+                          Official AI Assistant Partner
+                        </p>
+                        {v.mediaType === 'video' ? (
+                          <video key={v.mediaSrc} src={v.mediaSrc} autoPlay loop muted playsInline className="w-full lg:w-[90%] mx-auto rounded-xl shadow-2xl" />
+                        ) : (
+                          <img key={v.mediaSrc} src={v.mediaSrc} alt="Littlebird AI" className="w-full lg:w-[90%] mx-auto rounded-xl shadow-2xl" style={{ objectFit: 'contain' }} />
+                        )}
+                      </div>
+                      {/* White section — copy */}
+                      <div className="px-6 py-6 lg:px-10 lg:py-8">
+                        <span className="font-inter text-[11px] font-semibold uppercase tracking-widest mb-3 block" style={{ color: '#5170ff' }}>
+                          Our Team&apos;s Favorite AI Tool
+                        </span>
+                        <h3 className="font-times text-[#1b1b1b] leading-tight mb-3" style={{ fontWeight: 500, letterSpacing: '-0.04em', fontSize: '26px' }}>
+                          {v.headline === 'meeting' && <>If you&rsquo;ve ever forgotten what someone said in a meeting, use <span className={LB_UNDERLINE}>Littlebird</span>.</>}
+                          {v.headline === 'productive' && <>The AI tool that makes you more productive.</>}
+                          {v.headline === 'working' && <>The AI assistant that already knows what you&rsquo;re working on.</>}
+                        </h3>
+                        <p className="font-inter text-[#1b1b1b]/55 text-sm leading-relaxed mb-2">{v.subtext}</p>
+                        <p className="font-inter text-[#1b1b1b]/55 text-sm leading-relaxed mb-6">{v.subtext2}</p>
+                        <span className="flex items-center justify-center gap-2 w-full px-8 py-3.5 rounded-full font-inter font-semibold text-sm text-white transition-all group-hover:brightness-110" style={{ backgroundColor: '#5170ff' }}>
+                          Get your all-in-one AI assistant
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+                        </span>
+                        <p className="font-inter text-[11px] text-[#1b1b1b]/30 mt-3 text-center">Free to try</p>
+                      </div>
+                    </a>
+                    <PrimaryButton onClick={goNext}>Start reading →</PrimaryButton>
                   </div>
-
-                  {/* Cards - side by side on desktop, stacked on mobile (Littlebird first) */}
-                  <div className="w-full flex flex-col lg:flex-row items-stretch justify-center gap-5">
-                    {[SPONSORED_TOOLS[1], SPONSORED_TOOLS[0], SPONSORED_TOOLS[2]].map((tool, i) => {
-                      const desktopOrder = i === 0 ? 'lg:order-2' : i === 1 ? 'lg:order-1' : 'lg:order-3';
-
-                      return (
-                        <a
-                          key={tool.name}
-                          href={tool.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={`block rounded-xl overflow-hidden transition-all group hover:shadow-lg hover:shadow-white/10 ${desktopOrder} w-full lg:flex-1 ${
-                            i !== 0 ? 'lg:scale-[0.92]' : 'lg:z-10'
-                          }`}
-                          style={{ background: '#ffffff' }}
-                        >
-                          {/* Headline */}
-                          <div className="px-5 pt-5 pb-3">
-                            <h3 className="font-times text-[#1b1b1b] leading-tight" style={{ fontWeight: 500, letterSpacing: '-0.05em', fontSize: '22px' }}>
-                              {tool.primary}
-                            </h3>
-                          </div>
-                          {/* Screenshot thumbnail */}
-                          <div className="px-4">
-                            <img
-                              src={tool.image}
-                              alt={tool.name}
-                              className="w-full rounded-lg"
-                              style={{ objectFit: 'contain' }}
-                            />
-                          </div>
-                          {/* Subtext */}
-                          <div className="px-5 pt-3 pb-5">
-                            <p className="font-inter text-[#1b1b1b]/50 text-xs leading-relaxed">
-                              {tool.subtext}
-                            </p>
-                            <span className="inline-block mt-2 text-[#5170ff] text-xs font-inter font-semibold group-hover:underline">
-                              Try {tool.name} →
-                            </span>
-                          </div>
-                        </a>
-                      );
-                    })}
-                  </div>
-
-                  <PrimaryButton onClick={goNext}>Continue</PrimaryButton>
-                </div>
-              )}
+                );
+              })()}
 
               {/* Step 10: Thank you loading */}
               {step === 10 && (

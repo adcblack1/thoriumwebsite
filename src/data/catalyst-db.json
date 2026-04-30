@@ -1,5 +1,132 @@
 [
   {
+    "id": "catalyst-april-29-2026",
+    "slug": "catalyst-april-29-2026",
+    "publication": "the-catalyst",
+    "title": "The Case Against Adding AI Incrementally",
+    "date": "April 29, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to the Catalyst Newsletter.\n\nToday we've got a founder who had 1,100 paying customers, clients like KPMG, and $2 million in annual revenue, and then emailed his investors to say he was stopping all work on the product and rebuilding it from scratch.\n\nWe're also looking at what happens when consulting firms brag about how much time AI saves them and their clients start doing the math. Companies are now writing automatic discounts into consulting contracts whenever AI touches the work.\n\nAnd then there's Anthropic, which somehow won the enterprise spending race while charging two and a half times more than OpenAI. The answer has less to do with pricing and more to do with who's actually making the buying decisions.",
+    "toc": [
+      "The Case Against Adding AI Incrementally",
+      "Consulting Clients Are Writing AI Discounts Into the Fine Print",
+      "Why Anthropic Just Won the Enterprise Spending Race"
+    ],
+    "article_slugs": [
+      "the-case-against-adding-ai-incrementally",
+      "consulting-clients-are-writing-ai-discounts-into-the-fine-print",
+      "why-anthropic-just-won-the-enterprise-spending-race"
+    ],
+    "stories": [],
+    "sign_off": "That's the Catalyst for this issue. If you know a company doing something interesting with AI that nobody's covering, reply and tell us about it.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-catalyst-2026-04-29.png",
+    "thumbnail_url": "/thumbnails/the-case-against-adding-ai-incrementally.jpeg",
+    "published_at": "2026-04-29T13:00:00.000Z",
+    "updated_at": "2026-04-29T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Microsoft drops its exclusive lock on OpenAI",
+          "rest": " — the partnership that defined the AI boom is now open, and AWS started selling OpenAI models the next day",
+          "url": "https://thenextweb.com/news/microsoft-openai-exclusive-licence-ends"
+        },
+        {
+          "link_text": "Google signed a classified Pentagon AI deal",
+          "rest": " — for \"any lawful government purpose\" — one day after 600+ of its own employees begged the CEO not to",
+          "url": "https://techcrunch.com/2026/04/28/google-expands-pentagons-access-to-its-ai-after-anthropics-refusal/"
+        },
+        {
+          "link_text": "DeepMind's David Silver raised $1.1 billion",
+          "rest": " — to build AI that learns without any human data — he left Google a few months ago",
+          "url": "https://techcrunch.com/2026/04/27/deepminds-david-silver-just-raised-1-1b-to-build-an-ai-that-learns-without-human-data/"
+        },
+        {
+          "link_text": "The White House is pressuring Republican states",
+          "rest": " — to kill their own AI safety bills, threatening to pull hundreds of millions in federal broadband funding",
+          "url": "https://www.pymnts.com/cpi-posts/white-house-pressures-gop-led-states-to-back-off-ai-regulations/"
+        },
+        {
+          "link_text": "Oracle closed $16 billion in financing",
+          "rest": " — for a single Michigan data center campus that will power OpenAI",
+          "url": "https://tbreak.com/oracle-16-billion-openai-data-center/"
+        },
+        {
+          "link_text": "Elon Musk took the stand against Sam Altman",
+          "rest": " , seeking $130 billion and asking a jury to force OpenAI back into a nonprofit",
+          "url": "https://www.cnn.com/2026/04/28/tech/elon-musk-sam-altman-openai"
+        },
+        {
+          "prefix": "The White House is drafting guidance to ",
+          "link_text": "bypass Anthropic's supply-chain risk label",
+          "rest": " , potentially letting agencies use Mythos after weeks of standoff",
+          "url": "https://www.aol.com/articles/white-house-drafts-guidance-bypass-020523224.html"
+        },
+        {
+          "prefix": "The UK tech secretary warned that ",
+          "link_text": "five companies now control 70% of global AI compute",
+          "rest": " — and called on \"middle powers\" to push back",
+          "url": "https://www.gov.uk/government/news/britain-must-secure-greater-control-and-leverage-over-ai-to-protect-our-national-security-in-fractured-world"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Littlebird",
+          "desc": "Think of it as an AI that actually knows what you're working on. It watches your screen, takes notes in your meetings, and remembers all of it. So when you forget where you saw something, you just ask.",
+          "url": "https://try.littlebird.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Clico",
+          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type — no more copying your email into another tab and pasting the answer back",
+          "url": "https://tryclico.link/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Adobe for Creativity",
+          "desc": "A new connector lets you control Photoshop, Premiere, Illustrator, and 50+ other Adobe tools directly from Claude — describe what you want in plain English and it handles the editing, resizing, and exporting across apps without you opening any of them",
+          "url": "https://blog.adobe.com/en/publish/2026/04/28/adobe-for-creativity-connector",
+          "sponsored": false
+        },
+        {
+          "name": "Canva AI 2.0",
+          "desc": "Canva's biggest update since launch turns the design platform into a conversational workspace — describe a goal, and it picks the right tools, pulls in context from Slack and Gmail, remembers your brand preferences, and can even run recurring content tasks on a schedule",
+          "url": "https://techtravelmonitor.com/2026/04/27/canva-unveils-canva-ai-2-0-reimagining-how-the-world-designs-and-works/",
+          "sponsored": false
+        },
+        {
+          "name": "Google Gemini",
+          "desc": "Gemini can now generate PDFs, spreadsheets, config files, and Google Docs directly inside a conversation and bundle them into a downloadable ZIP — turning it into something closer to a working desktop than a chatbot",
+          "url": "https://nokiapoweruser.com/gemini-file-generation-docs-sheets-zip-pdf-update/",
+          "sponsored": false
+        },
+        {
+          "name": "GitHub Copilot",
+          "desc": "GitHub is switching Copilot to usage-based billing on June 1 — instead of counting premium requests, every plan gets a monthly pool of AI Credits based on actual token consumption, with new budget controls so teams can cap spend before it surprises them",
+          "url": "https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/",
+          "sponsored": false
+        },
+        {
+          "name": "Topaz Labs",
+          "desc": "The photo and video enhancement company dropped six new AI models at once for sharpening, denoising, and upscaling — and thanks to its new NeuroStream tech, they run locally on your computer using 95% less memory, so you don't need a cloud subscription or a high-end GPU",
+          "url": "https://www.prnewswire.com/news-releases/topaz-labs-announces-its-largest-single-release-of-ai-models-in-company-history-with-next-gen-launch-302756375.html",
+          "sponsored": false
+        }
+      ]
+    },
+    "poll": {
+      "poll_id": "1eaba18e-c8eb-4d45-ad11-bdc1df922747",
+      "question": "What's the biggest reason you're not using AI more at work?",
+      "options": [
+        "Don't know where to start",
+        "No time to figure it out",
+        "Tried it, wasn't impressed",
+        "Actually, I use it all the time",
+        "Other"
+      ]
+    }
+  },
+  {
     "id": "catalyst-april-27-2026",
     "slug": "catalyst-april-27-2026",
     "publication": "the-catalyst",
