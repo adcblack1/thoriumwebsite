@@ -633,8 +633,8 @@ export default function SubscribePage() {
       </div>
 
       {/* Main content */}
-      <div className={`flex-1 flex items-center justify-center px-3 lg:px-5 relative z-10 ${step <= 1 ? '-mt-16 lg:-mt-44' : 'lg:-mt-4'}`}>
-        <div className={`w-full ${step === 9 ? 'max-w-4xl' : step === 1 ? 'max-w-md lg:max-w-2xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
+      <div className={`flex-1 flex ${step === 9 ? 'items-start overflow-y-auto' : 'items-center'} justify-center ${step === 9 ? 'px-0 lg:px-5' : 'px-3 lg:px-5'} relative z-10 ${step <= 1 ? '-mt-16 lg:-mt-44' : 'lg:-mt-4'}`}>
+        <div className={`w-full ${step === 9 ? 'max-w-lg py-6 lg:py-8' : step === 1 ? 'max-w-md lg:max-w-2xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 9 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={step}
@@ -734,49 +734,49 @@ export default function SubscribePage() {
               {step === 9 && (() => {
                 const v = LB_VARIATIONS[lbVariation] || LB_VARIATIONS.A;
                 return (
-                  <div className="flex flex-col items-center gap-6">
+                  <div className="flex flex-col items-center gap-4 lg:gap-6 px-3 lg:px-0">
                     {/* White card */}
                     <a
                       href={v.link}
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => logToolClick(`littlebird_${lbVariation}`, 'tools_page')}
-                      className="block w-full rounded-2xl overflow-hidden transition-all group hover:shadow-2xl hover:shadow-white/10"
+                      className="block w-full rounded-xl lg:rounded-2xl overflow-hidden transition-all group hover:shadow-2xl hover:shadow-white/10"
                       style={{ background: '#ffffff' }}
                     >
                       {/* Blue section — logos + media */}
-                      <div style={{ backgroundColor: '#5170ff' }} className="px-6 pt-8 lg:pt-10 pb-6 lg:pb-8">
-                        <div className="flex items-center justify-center gap-4 lg:gap-5 mb-3">
-                          <img src="/Transparent White Logo.png" alt="Thorium Valley" className="h-12 lg:h-16" style={{ objectFit: 'contain' }} />
-                          <span className="text-white/50 font-inter text-lg lg:text-xl font-light">×</span>
-                          <img src="/images/littlebird-logo-white.svg" alt="Littlebird" className="h-12 lg:h-20" style={{ objectFit: 'contain' }} />
+                      <div style={{ backgroundColor: '#5170ff' }} className="px-4 pt-5 pb-4 lg:px-6 lg:pt-8 lg:pb-6">
+                        <div className="flex items-center justify-center gap-3 lg:gap-4 mb-2 lg:mb-3">
+                          <img src="/Transparent White Logo.png" alt="Thorium Valley" className="h-8 lg:h-12" style={{ objectFit: 'contain' }} />
+                          <span className="text-white/50 font-inter text-base lg:text-lg font-light">×</span>
+                          <img src="/images/littlebird-logo-white.svg" alt="Littlebird" className="h-8 lg:h-14" style={{ objectFit: 'contain' }} />
                         </div>
-                        <p className="font-inter text-[10px] lg:text-[11px] font-semibold uppercase tracking-[0.15em] text-center mb-6 lg:mb-8" style={{ color: '#ffffff' }}>
+                        <p className="font-inter text-[9px] lg:text-[10px] font-semibold uppercase tracking-[0.15em] text-center mb-4 lg:mb-6" style={{ color: '#ffffff' }}>
                           Official AI Assistant Partner
                         </p>
                         {v.mediaType === 'video' ? (
-                          <video key={v.mediaSrc} src={v.mediaSrc} autoPlay loop muted playsInline className="w-full lg:w-[90%] mx-auto rounded-xl shadow-2xl" />
+                          <video key={v.mediaSrc} src={v.mediaSrc} autoPlay loop muted playsInline className="w-full lg:w-[92%] mx-auto rounded-lg lg:rounded-xl shadow-2xl" />
                         ) : (
-                          <img key={v.mediaSrc} src={v.mediaSrc} alt="Littlebird AI" className="w-full lg:w-[90%] mx-auto rounded-xl shadow-2xl" style={{ objectFit: 'contain' }} />
+                          <img key={v.mediaSrc} src={v.mediaSrc} alt="Littlebird AI" className="w-full lg:w-[92%] mx-auto rounded-lg lg:rounded-xl shadow-2xl" style={{ objectFit: 'contain' }} />
                         )}
                       </div>
                       {/* White section — copy */}
-                      <div className="px-6 py-6 lg:px-10 lg:py-8">
-                        <span className="font-inter text-[11px] font-semibold uppercase tracking-widest mb-3 block" style={{ color: '#5170ff' }}>
+                      <div className="px-4 py-4 lg:px-8 lg:py-6">
+                        <span className="font-inter text-[10px] lg:text-[11px] font-semibold uppercase tracking-widest mb-2 block" style={{ color: '#5170ff' }}>
                           Our Team&apos;s Favorite AI Tool
                         </span>
-                        <h3 className="font-times text-[#1b1b1b] leading-tight mb-3" style={{ fontWeight: 500, letterSpacing: '-0.04em', fontSize: '26px' }}>
+                        <h3 className="font-times text-[#1b1b1b] leading-tight mb-2 lg:mb-3 text-[20px] lg:text-[22px]" style={{ fontWeight: 500, letterSpacing: '-0.04em' }}>
                           {v.headline === 'meeting' && <>If you&rsquo;ve ever forgotten what someone said in a meeting, use <span className={LB_UNDERLINE}>Littlebird</span>.</>}
                           {v.headline === 'productive' && <>The AI tool that makes you more productive.</>}
                           {v.headline === 'working' && <>The AI assistant that already knows what you&rsquo;re working on.</>}
                         </h3>
-                        <p className="font-inter text-[#1b1b1b]/55 text-sm leading-relaxed mb-2">{v.subtext}</p>
-                        <p className="font-inter text-[#1b1b1b]/55 text-sm leading-relaxed mb-6">{v.subtext2}</p>
-                        <span className="flex items-center justify-center gap-2 w-full px-8 py-3.5 rounded-full font-inter font-semibold text-sm text-white transition-all group-hover:brightness-110" style={{ backgroundColor: '#5170ff' }}>
+                        <p className="font-inter text-[#1b1b1b]/55 text-[13px] leading-relaxed mb-1.5">{v.subtext}</p>
+                        <p className="font-inter text-[#1b1b1b]/55 text-[13px] leading-relaxed mb-4 lg:mb-5">{v.subtext2}</p>
+                        <span className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full font-inter font-semibold text-[13px] text-white transition-all group-hover:brightness-110" style={{ backgroundColor: '#5170ff' }}>
                           Get your all-in-one AI assistant
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
                         </span>
-                        <p className="font-inter text-[11px] text-[#1b1b1b]/30 mt-3 text-center">Free to try</p>
+                        <p className="font-inter text-[10px] text-[#1b1b1b]/30 mt-2 text-center">Free to try</p>
                       </div>
                     </a>
                     <PrimaryButton onClick={goNext}>Start reading →</PrimaryButton>
