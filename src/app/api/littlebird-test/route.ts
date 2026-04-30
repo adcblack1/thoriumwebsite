@@ -14,6 +14,7 @@ function getSupabase() {
 
 const MAX_PER_VARIATION = 50;
 const VARIATIONS = ['A', 'B', 'C'] as const;
+const EXCLUDED_UIDS = ['alex@thoriumvalley.com'];
 
 // GET — assign a variation (balanced) or get results
 export async function GET(req: NextRequest) {
@@ -67,6 +68,11 @@ export async function POST(req: NextRequest) {
 
   if (!VARIATIONS.includes(variation) || !['view', 'click', 'skip'].includes(type)) {
     return NextResponse.json({ error: 'Invalid' }, { status: 400 });
+  }
+
+  // Skip internal/test emails
+  if (EXCLUDED_UIDS.includes(uid?.toLowerCase())) {
+    return NextResponse.json({ ok: true, skipped: true });
   }
 
   // Dedupe: don't log duplicate events for same uid+variation+type
