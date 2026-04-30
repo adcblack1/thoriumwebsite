@@ -1,5 +1,149 @@
 [
   {
+    "id": "lab-april-30-2026",
+    "slug": "lab-april-30-2026",
+    "publication": "the-lab",
+    "title": "Microsoft Copilot's $30 Problem",
+    "date": "April 30, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to The Lab.\n\nToday we're checking in on Microsoft's $30 office AI assistant, which just got a big upgrade because Microsoft itself admitted the original wasn't worth opening.\n\nWe're also testing a cheap image generator that claims it solved the one thing every other AI art tool still can't do: put readable text on a picture.\n\nAnd we're figuring out why everyone's picking the wrong AI video tool, and what you should actually be looking for instead.",
+    "toc": [
+      "Microsoft Copilot's $30 Problem",
+      "This $7 AI Tool Solved the One Thing Midjourney Can't",
+      "You're Picking the Wrong AI Video Tool"
+    ],
+    "article_slugs": [],
+    "stories": [
+      {
+        "title": "Microsoft Copilot's $30 Problem",
+        "category": "PRODUCTIVITY",
+        "thumbnail_url": "/thumbnails/microsoft-copilots-30-problem.jpeg",
+        "content": "<p>Microsoft recently called its own $30/month AI assistant \"passive.\" Their word, not ours. After two years of enterprise complaints and a <a href=\"https://samexpert.com/microsoft-q2-fy2026-earnings-licensing-impact/\">3.3% adoption rate</a> across 450 million commercial seats, the company shipped Agent Mode for Word, Excel, and PowerPoint — essentially admitting the original product wasn't worth opening.</p>\n<p>Agent Mode lets Copilot actually do things instead of waiting for step-by-step instructions. In Excel, it can now clean a dataset, build a chart, and write an analysis in one go. Microsoft's own numbers show Excel engagement <a href=\"https://www.microsoft.com/en-us/microsoft-365/blog/2026/04/22/copilots-agentic-capabilities-in-word-excel-and-powerpoint-are-generally-available/\">jumped 67%</a> after Agent Mode launched, and Word saw a 52% bump. Independent testers at <a href=\"https://office-watch.com/2026/copilot-agent-mode-word-excel-powerpoint/\">Office Watch</a> found it genuinely useful in those two apps — but described it as a fast editor that occasionally invents facts. PowerPoint still generates mediocre slides you'll spend 20 minutes fixing.</p>\n<p>The real problem isn't quality anymore — it's the math. A <a href=\"https://www.reconanalytics.com/ai-choice-2026-why-licenses-dont-equal-adoption/\">survey of over 150,000 enterprise users</a> with access to Copilot, ChatGPT, and Gemini simultaneously tells the story:</p>\n<p>Only 8% preferred Copilot. ChatGPT's workplace conversion rate was 83.1%. Copilot's was 35.8%.<br/>\nRoughly two out of three people given Copilot licenses just stop using it.<br/>\nMost enterprise buyers and analysts <a href=\"https://www.forrester.com/blogs/quantifying-microsoft-copilot-for-microsoft-365-use-just-got-easier/\">still can't quantify</a> hard-dollar ROI from usage.</p>\n<p>Meanwhile, Google is bundling Gemini into standard Workspace plans at no extra cost, and Claude gives you better writing quality at $20/month.</p>\n<h2>The Verdict</h2>\n<p>If you live in Excel and Word all day, Agent Mode is a real improvement and Copilot deserves a second look. But if your company is debating a blanket rollout, don't. License it for analysts, meeting-heavy managers, and anyone drowning in SharePoint docs. For everyone else, <a href=\"https://www.anthropic.com/claude-code\">Claude</a> at $20/month does more with less friction — and you won't need IT to deploy it.</p>\n<p><a href=\"https://www.microsoft.com/en-us/microsoft-365/try-copilot/individuals\">Try Microsoft Copilot Agent Mode</a></p>"
+      },
+      {
+        "title": "This $7 AI Tool Solved the One Thing Midjourney Can't",
+        "category": "DESIGN",
+        "thumbnail_url": "/thumbnails/this-7-ai-tool-solved-the-one-thing-midjourney-cant.jpeg",
+        "content": "<p>Ask Midjourney to make a \"Sale 50% Off\" banner and you'll get something like \"Slae 05% Fof.\" That's not an exaggeration — it's a <a href=\"https://arxiv.org/html/2312.02338v2\">near-universal experience</a> across every major image generator, and it's been the single most frustrating limitation of AI visuals since they launched. Ideogram exists because its founders decided to fix that specific problem.</p>\n<p>The reason text is so hard for AI image generators is fundamental: these models don't actually understand language in an image — they're pattern-matching pixels, not reading words. Ideogram's CEO Mohammad Norouzi <a href=\"https://en.wikipedia.org/wiki/Ideogram_(text-to-image_model)\">said at the launch of Ideogram 3.0</a> that text coherence was the specific flaw they built the company around solving. And based on what users are saying, they mostly pulled it off — with many reporting accurate text rendering roughly 99% of the time.</p>\n<p>The pricing alone makes it worth a look:</p>\n<p><strong>Ideogram</strong> starts at $7/month with a free tier<br/>\n<strong>Midjourney</strong> starts at $10 and runs up to $60<br/>\n<strong>ChatGPT image generation</strong> requires a $20/month Plus subscription</p>\n<p>For anyone who needs a social post, menu graphic, or product mockup with readable words on it, Ideogram is the cheapest path to something you can actually use.</p>\n<p>Now, Ideogram is not going to win a beauty contest against Midjourney. If you want a cinematic concept painting with perfect lighting and atmosphere, Midjourney is still better. But most people using AI images at work don't need cinematic concept paintings — they need an Instagram carousel that says \"NEW MENU\" without spelling it \"NWE MNEU.\" The catch is that Ideogram's moat is shrinking. Reve Image recently topped the Artificial Analysis leaderboard with strong text rendering at roughly <a href=\"https://artificialanalysis.ai/image/leaderboard/text-to-image\">$0.01 per image</a>, and Google's Nano Banana 2 and newer ChatGPT image tools are improving fast. What Ideogram still has is the simplest workflow at the lowest price for someone who needs to open a browser, type a prompt, and get a usable commercial graphic with accurate text in under a minute.</p>\n<h2>The Verdict</h2>\n<p>If you make social graphics, menus, posters, Etsy listings, or anything else that needs legible text baked into the image, Ideogram at $7/month is the easiest recommendation in AI image generation right now. If you care more about visual artistry, Midjourney still wins on aesthetics. And if you already pay for ChatGPT Plus, test its image generation first before adding another subscription. For everyone else, start with Ideogram's free tier and see if it covers you.</p>\n<p><a href=\"https://ideogram.ai/\">Try Ideogram</a></p>\n<p><a href=\"https://openai.com/index/introducing-chatgpt-images-2-0/\">Try an Alternative: ChatGPT Images 2.0</a></p>"
+      },
+      {
+        "title": "You're Picking the Wrong AI Video Tool",
+        "category": "DESIGN",
+        "thumbnail_url": "/thumbnails/youre-picking-the-wrong-ai-video-tool.jpeg",
+        "content": "<p>There are roughly 50 AI video generators right now and most comparison articles rank them by output quality. That's useless advice in 2026. The top models are so close together that most humans can't perceive the difference. Picking a video tool based on which one looks slightly better is like choosing a car by paint color.</p>\n<p>The real decision is what kind of video you need — and the market has quietly split into three lanes:</p>\n<p><strong>Cinematic tools</strong> like Runway ($12/month) are for visual storytelling, concept work, and anything where camera control matters. Runway just <a href=\"https://news.adobe.com/news/2025/12/adobe-and-runway-partner\">formed a preferred API partnership with Adobe, offering limited-time exclusive access to Gen-4.5</a>, which tells you exactly who this is for: professionals already living in Premiere and After Effects. The output is genuinely cinematic, but it can be pricey and still <a href=\"https://www.reddit.com/r/Freepik_AI/comments/1r6baar/my_deep_dive_into_ai_video_generators_in_2026/\">struggles with basic physics</a> — beautiful footage that's occasionally nonsensical.</p>\n<p><strong>Business presenter tools</strong> like HeyGen ($29/month) and Synthesia ($29/month) don't generate scenes at all. They generate a person talking on camera. Write a script, pick an avatar, get a training video in <a href=\"https://www.heygen.com/pricing\">175+ languages</a> without filming anything. This is where most office workers should be looking. Nobody on your team needs cinematic B-roll. They need the onboarding video that's been on the backlog for six months.</p>\n<p><strong>Fast social generators</strong> like Kling, Pika, and MiniMax's Hailuo are the volume play. Hailuo alone <a href=\"https://www.kapwing.com/blog/kapwing-partners-with-minimax-to-power-advanced-ai-video-models/\">produces millions of videos daily</a> across 90+ countries. These tools spit out 3 to 12 second clips for TikTok and Reels. They're fast, cheap, and imperfect — but Kling in particular offers the best balance of quality and cost.</p>\n<p>Meanwhile, OpenAI abruptly <a href=\"https://www.cbsnews.com/news/sora-ai-openai-discontinues/\">discontinued Sora in the consumer app and API</a>. The company that was supposed to dominate AI video just walked away from it. That tells you how unsettled this market still is.</p>\n<h2>The Verdict</h2>\n<p>If you make creative or concept videos, <a href=\"https://runwayml.com/pricing\">Runway</a> inside Adobe's ecosystem is the pro choice. If you need talking-head business videos at scale, HeyGen or Synthesia will save you more time than anything else here. If you need fast social clips, try Kling's free tier before paying for anything. And if you're still comparing all these tools on output quality alone, you're asking the wrong question. Flexibility matters a lot more than which model renders slightly better skin tones.</p>\n<p><a href=\"https://runwayml.com/pricing\">Try Runway</a></p>"
+      }
+    ],
+    "sign_off": "That's the Lab for this week. If a tool in here saved you time or wasted it, tell us — reply directly.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-lab-2026-04-30.png",
+    "thumbnail_url": "/thumbnails/microsoft-copilots-30-problem.jpeg",
+    "published_at": "2026-04-30T13:00:00.000Z",
+    "updated_at": "2026-04-30T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Google signed a classified AI deal with the Pentagon",
+          "rest": " for \"any lawful purpose\" — one day after 600+ employees signed a letter begging them not to",
+          "url": "https://techcrunch.com/2026/04/28/google-expands-pentagons-access-to-its-ai-after-anthropics-refusal/"
+        },
+        {
+          "link_text": "The White House is quietly trying to bring Anthropic back",
+          "rest": " after blacklisting the company two months ago — one source called it a plan to \"save face and bring em back in\"",
+          "url": "https://www.axios.com/2026/04/29/trump-anthropic-pentagon-ai-executive-order-gov"
+        },
+        {
+          "link_text": "Elon Musk and Sam Altman are finally in court",
+          "rest": " — a month-long trial over whether Altman betrayed OpenAI's nonprofit mission, with Satya Nadella and Musk's ex-board member (and mother of four of his children) set to testify",
+          "url": "https://www.bbc.co.uk/news/articles/cn8dedv8w8xo"
+        },
+        {
+          "link_text": "OpenAI hit 10 gigawatts of AI computing capacity",
+          "rest": " years ahead of its 2029 target",
+          "url": "https://www.bloomberg.com/news/articles/2026-04-30/openai-meets-key-ai-computing-capacity-goal-ahead-of-schedule"
+        },
+        {
+          "link_text": "An Alabama lawyer got banned from filing anything in the state Supreme Court",
+          "rest": " after his AI-written briefs cited cases that don't exist — even his promise to stop was followed by two more fake citations",
+          "url": "https://news.bloomberglaw.com/litigation/alabama-justices-toss-case-over-egregious-attorney-ai-misuse"
+        },
+        {
+          "link_text": "A federal court hit OpenAI, Sam Altman, and Jony Ive with an injunction",
+          "rest": " after a startup alleged Altman's hardware chief stole trade secrets — including downloading secret files 11 days after their TED talk went viral",
+          "url": "https://www.prnewswire.com/news-releases/federal-court-issues-preliminary-injunction-against-openai-sam-altman-and-sir-jony-ive-iyo-alleges-trade-secret-theft-by-altmans-hardware-chief-302754047.html"
+        },
+        {
+          "link_text": "Bipartisan lawmakers introduced the biggest AI bill yet",
+          "rest": ", combining 20+ proposals into one package covering deepfake penalties, whistleblower protections, and federal AI standards",
+          "url": "https://www.cnbc.com/2026/04/27/ai-legislation-deepfakes-whistleblowers.html"
+        },
+        {
+          "link_text": "Adobe is being sued by its own investor",
+          "rest": " for allegedly training AI on pirated books using an \"ask forgiveness not approval\" strategy",
+          "url": "https://news.bloomberglaw.com/securities-law/adobe-investor-sues-board-over-ai-training-copyright-accusations"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Wispr Flow",
+          "desc": "The new viral voice-to-text AI for iPhone and Mac that actually understands what you are saying every time",
+          "url": "https://ref.wisprflow.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Superpower",
+          "desc": "The health app that tests your blood and uses AI to tell you what is actually going on with your body before your doctor does",
+          "url": "https://partners.superpower.com/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Adobe Firefly AI Assistant",
+          "desc": "Now in public beta, you can describe what you want to create in plain English and Adobe's new assistant will orchestrate the work across Photoshop, Premiere, Lightroom, and 60+ pro tools — batch editing photos, building mood boards, and creating social content without opening each app yourself",
+          "url": "https://blog.adobe.com/en/publish/2026/04/27/firefly-ai-assistant-public-beta",
+          "sponsored": false
+        },
+        {
+          "name": "Adobe for Creativity in Claude",
+          "desc": "A new connector that brings 50+ Adobe tools directly into Claude's chat — edit photos, design social assets, resize videos for Reels or Shorts, and pull Express templates without ever leaving the conversation",
+          "url": "https://blog.adobe.com/en/publish/2026/04/28/adobe-for-creativity-connector",
+          "sponsored": false
+        },
+        {
+          "name": "Amazon Quick",
+          "desc": "AWS launched a desktop AI assistant that connects to your local files, calendar, Google Workspace, Zoom, Microsoft 365, and Salesforce in one place — and it can build presentations, live dashboards, and even full apps just from a text description",
+          "url": "https://www.aboutamazon.com/news/aws/amazon-quick-desktop-ai-assistant",
+          "sponsored": false
+        },
+        {
+          "name": "Visual Studio + Cloud Agents",
+          "desc": "Microsoft's April update lets developers launch remote AI coding sessions directly from Visual Studio, plus a new Debugger Agent that can take a bug report, reproduce the issue, set breakpoints, run the debug session, and suggest a fix — all on its own",
+          "url": "https://devblogs.microsoft.com/visualstudio/visual-studio-april-update-cloud-agent-integration/",
+          "sponsored": false
+        },
+        {
+          "name": "Logic",
+          "desc": "A new platform where you describe what you want an AI agent to do in plain English and it handles the rest — infrastructure, memory, model routing, everything — with a free tier and 250+ organizations already running 4 million agent executions on it",
+          "url": "https://www.prnewswire.com/news-releases/logic-launches-spec-driven-platform-for-fully-managed-ai-agents-302754664.html",
+          "sponsored": false
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "17425bce-8785-4611-aea7-d1d9f897db19",
+      "question": "What is your honest reaction when someone recommends a new AI tool?",
+      "options": [
+        "Ooh, signing up right now",
+        "Added to a list I will never look at",
+        "I already have too many",
+        "I will wait for someone else to test it first",
+        "Other"
+      ]
+    },
+    "poll_results": null,
+    "yesterdays_results": null
+  },
+  {
     "id": "lab-april-28-2026",
     "slug": "lab-april-28-2026",
     "publication": "the-lab",
