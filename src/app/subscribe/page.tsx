@@ -468,14 +468,26 @@ export default function SubscribePage() {
     } catch {}
   };
 
-  // Assign Littlebird A/B/C variation when reaching step 9
+  // Assign Littlebird A/B/C variation when reaching step 9, then log view
   useEffect(() => {
     if (step === 9) {
       fetch('/api/littlebird-test')
         .then(r => r.json())
-        .then(d => { if (d.variation) setLbVariation(d.variation); })
+        .then(d => {
+          if (d.variation) {
+            setLbVariation(d.variation);
+            // Log the view event
+            const uid = formData.email || 'anon';
+            fetch('/api/littlebird-test', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ variation: d.variation, type: 'view', uid }),
+            }).catch(() => {});
+          }
+        })
         .catch(() => {});
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
 
   // Auto-advance for loading steps (8 and 10)
@@ -633,7 +645,7 @@ export default function SubscribePage() {
       </div>
 
       {/* Main content */}
-      <div className={`flex-1 flex ${step === 9 ? 'items-start overflow-y-auto py-4 lg:py-6' : 'items-center'} justify-center ${step === 9 ? 'px-0 lg:px-8' : 'px-3 lg:px-5'} relative z-10 ${step <= 1 ? '-mt-16 lg:-mt-44' : step === 9 ? '' : 'lg:-mt-4'}`}>
+      <div className={`flex-1 flex ${step === 9 ? 'items-start lg:items-center overflow-y-auto py-4 lg:py-6' : 'items-center'} justify-center ${step === 9 ? 'px-0 lg:px-8' : 'px-3 lg:px-5'} relative z-10 ${step <= 1 ? '-mt-16 lg:-mt-44' : step === 9 ? '' : 'lg:-mt-4'}`}>
         <div className={`w-full ${step === 9 ? 'max-w-md lg:max-w-3xl mx-auto' : step === 1 ? 'max-w-md lg:max-w-2xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 9 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
@@ -740,7 +752,16 @@ export default function SubscribePage() {
                       href={v.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      onClick={() => logToolClick(`littlebird_${lbVariation}`, 'tools_page')}
+                      onClick={() => {
+                        logToolClick(`littlebird_${lbVariation}`, 'tools_page');
+                        // Log click to Supabase
+                        const uid = formData.email || 'anon';
+                        fetch('/api/littlebird-test', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ variation: lbVariation, type: 'click', uid }),
+                        }).catch(() => {});
+                      }}
                       className="block w-full rounded-xl lg:rounded-2xl overflow-hidden transition-all group hover:shadow-2xl hover:shadow-white/10"
                       style={{ background: '#ffffff' }}
                     >
@@ -781,7 +802,16 @@ export default function SubscribePage() {
                         </div>
                       </div>
                     </a>
-                    <PrimaryButton onClick={goNext}>Start reading →</PrimaryButton>
+                    <PrimaryButton onClick={() => {
+                      // Log skip to Supabase
+                      const uid = formData.email || 'anon';
+                      fetch('/api/littlebird-test', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ variation: lbVariation, type: 'skip', uid }),
+                      }).catch(() => {});
+                      goNext();
+                    }}>Start reading →</PrimaryButton>
                   </div>
                 );
               })()}
