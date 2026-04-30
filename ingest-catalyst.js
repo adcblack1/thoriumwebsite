@@ -27,20 +27,15 @@ function mdToHtml(text, category) {
   }
   let body = bodyLines.join('\n').trim();
 
-  // Convert raw URLs in parens: text (https://...) → <a href="...">text</a>
-  // Pattern: "link text" (URL) — where the linked text is just before the URL in parens
-  // This handles: Product Fruits (https://productfruits.com)
-  body = body.replace(/([^()\n]+?)\s*\(https?:\/\/[^)]+\)/g, (match, textBefore) => {
-    const urlMatch = match.match(/\((https?:\/\/[^)]+)\)/);
-    if (!urlMatch) return match;
-    const url = urlMatch[1];
+  // Convert markdown links FIRST: [text](url) → <a href="url">text</a>
+  body = body.replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2">$1</a>');
+
+  // Fallback: Convert raw URLs in parens: text (https://...) → <a href="...">text</a>
+  // Only matches if not already inside an <a> tag (i.e. not preceded by ">")
+  body = body.replace(/(?<!>)([^()<>\n]+?)\s*\((https?:\/\/[^)]+)\)/g, (match, textBefore, url) => {
     const linkText = textBefore.trim();
-    // Only linkify if the text before looks like a phrase, not a sentence start
     return `<a href="${url}">${linkText}</a>`;
   });
-
-  // Convert markdown links: [text](url) → <a href="url">text</a>
-  body = body.replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, '<a href="$2">$1</a>');
 
   // Convert **text** to <strong>text</strong>
   body = body.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');

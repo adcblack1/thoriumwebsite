@@ -3,7 +3,7 @@
     "id": "catalyst-april-29-2026",
     "slug": "catalyst-april-29-2026",
     "publication": "the-catalyst",
-    "title": "The Case Against Adding AI Incrementally",
+    "title": "The Catalyst | April 29, 2026",
     "date": "April 29, 2026",
     "intro": "Good Morning Thorium Valley, welcome back to the Catalyst Newsletter.\n\nToday we've got a founder who had 1,100 paying customers, clients like KPMG, and $2 million in annual revenue, and then emailed his investors to say he was stopping all work on the product and rebuilding it from scratch.\n\nWe're also looking at what happens when consulting firms brag about how much time AI saves them and their clients start doing the math. Companies are now writing automatic discounts into consulting contracts whenever AI touches the work.\n\nAnd then there's Anthropic, which somehow won the enterprise spending race while charging two and a half times more than OpenAI. The answer has less to do with pricing and more to do with who's actually making the buying decisions.",
     "toc": [
@@ -115,14 +115,12 @@
       ]
     },
     "poll": {
-      "poll_id": "1eaba18e-c8eb-4d45-ad11-bdc1df922747",
       "question": "What's the biggest reason you're not using AI more at work?",
       "options": [
         "Don't know where to start",
         "No time to figure it out",
         "Tried it, wasn't impressed",
-        "Actually, I use it all the time",
-        "Other"
+        "Actually, I use it all the time"
       ]
     }
   },
