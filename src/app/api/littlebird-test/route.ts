@@ -1,10 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+let _supabase: SupabaseClient | null = null;
+function getSupabase() {
+  if (!_supabase) {
+    _supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!
+    );
+  }
+  return _supabase;
+}
 
 const MAX_PER_VARIATION = 50;
 const VARIATIONS = ['A', 'B', 'C'] as const;
@@ -15,7 +21,7 @@ export async function GET(req: NextRequest) {
 
   // Results mode
   if (searchParams.get('results') === 'true') {
-    const { data } = await supabase.from('littlebird_test').select('variation, event_type');
+    const { data } = await getSupabase().from('littlebird_test').select('variation, event_type');
     const counts: Record<string, { views: number; clicks: number; skips: number }> = {};
     for (const v of VARIATIONS) counts[v] = { views: 0, clicks: 0, skips: 0 };
     for (const e of data || []) {
@@ -29,7 +35,7 @@ export async function GET(req: NextRequest) {
   }
 
   // Assignment mode — pick the variation with fewest views
-  const { data: viewRows } = await supabase
+  const { data: viewRows } = await getSupabase()
     .from('littlebird_test')
     .select('variation')
     .eq('event_type', 'view');
@@ -64,7 +70,7 @@ export async function POST(req: NextRequest) {
   }
 
   // Dedupe: don't log duplicate events for same uid+variation+type
-  const { data: existing } = await supabase
+  const { data: existing } = await getSupabase()
     .from('littlebird_test')
     .select('id')
     .eq('uid', uid)
@@ -73,7 +79,7 @@ export async function POST(req: NextRequest) {
     .limit(1);
 
   if (!existing || existing.length === 0) {
-    await supabase.from('littlebird_test').insert({
+    await getSupabase().from('littlebird_test').insert({
       variation,
       event_type: type,
       uid,
