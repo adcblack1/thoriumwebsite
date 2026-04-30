@@ -27,11 +27,11 @@ export default async function HomePage() {
   const { data: catalystNLs } = getCatalystNewsletters({ limit: 5, sort: 'newest' });
   const { data: labNLs } = getLabNewsletters({ limit: 5, sort: 'newest' });
 
-  // Each edition is one item — use the newsletter's own thumbnail + title
+  // Each edition is one item — use first toc headline as title (not generic "The Catalyst | Date")
   const buildEditionItems = (nls: typeof catalystNLs) => nls.map(nl => ({
     id: nl.id,
     slug: nl.slug,
-    title: nl.title,
+    title: nl.toc?.[0] || nl.title,  // Use first headline as main title
     thumbnail_url: nl.thumbnail_url || nl.stories?.[0]?.thumbnail_url || '',
     linkPrefix: '/newsletter',
     published_at: nl.published_at || '',
