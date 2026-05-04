@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import WireframeGlobe from '@/components/WireframeGlobe';
 import { Navigation } from '@/components/navigation';
 import { FooterNew } from '@/components/footer-new';
-import { trackLead, trackQualifiedLead } from '@/lib/meta-pixel';
+import { trackLead, trackQualifiedLead, setAdvancedMatching, trackSurveyComplete } from '@/lib/meta-pixel';
 
 // Sponsored tools shown after survey
 const SPONSORED_TOOLS = [
@@ -171,7 +171,7 @@ const CHILD_NEWSLETTERS = [
     id: 'the-lab',
     name: 'The Lab',
     logo: '/images/lab-logo.png',
-    description: 'Interesting and useful AI tools and whether they\'re worth trying out.',
+    description: 'Independent reviews of the AI tools your team is paying for.',
     frequency: 'Biweekly',
     isPartner: false,
   },
@@ -213,7 +213,8 @@ export default function SubscribePage() {
   const [error, setError] = useState<string | null>(null);
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = back
   const [autoSubmitted, setAutoSubmitted] = useState(false);
-  const [lbVariation, setLbVariation] = useState<string>('A');
+  const [lbVariation, setLbVariation] = useState<string>('C');
+  const hasTrackedQL = useRef(false); // Prevent duplicate QualifiedLead fires across step 9 + 11
 
   // ── UTM params captured on arrival ──
   const [utmParams, setUtmParams] = useState<{
@@ -278,7 +279,7 @@ export default function SubscribePage() {
         if (parsed.step && parsed.step > 1) setStep(parsed.step);
         if (parsed.subscriberId) setSubscriberId(parsed.subscriberId);
       }
-    } catch {}
+    } catch { }
   }, [searchParams]);
 
   // ── Save to localStorage on every change ──
@@ -290,7 +291,7 @@ export default function SubscribePage() {
           step,
           subscriberId,
         }));
-      } catch {}
+      } catch { }
     }
   }, [formData, step, subscriberId]);
 
@@ -372,7 +373,7 @@ export default function SubscribePage() {
       }),
     });
     // Clear saved progress on completion
-    try { localStorage.removeItem('tv_subscribe_progress'); } catch {}
+    try { localStorage.removeItem('tv_subscribe_progress'); } catch { }
   };
 
 
@@ -389,7 +390,8 @@ export default function SubscribePage() {
         const result = await createSubscriber();
         if (result === 'resumed') { setLoading(false); return; }
         if (!result) { setLoading(false); return; }
-        trackLead(formData.email); // General tracking + advanced matching
+        setAdvancedMatching(formData.email); // Set email for attribution
+        trackLead(); // Fire Lead event (once)
       } else if (step === 2) {
         await updateSubscriber({ child_newsletters: formData.child_newsletters });
       } else if (step === 3) {
@@ -434,17 +436,10 @@ export default function SubscribePage() {
     }
     setLoading(false);
 
-    // Trigger beehiiv + QualifiedLead at step 7→8 transition (after all survey data collected)
+    // Trigger beehiiv at step 7→8 transition (after all survey data collected)
+    // QualifiedLead (ICP) now fires on Littlebird click instead (step 9 + 11)
     if (step === 7) {
       completeSubscription();
-      // Fire QualifiedLead for everyone who completes the survey
-      trackQualifiedLead({
-        seniority: formData.seniority,
-        company_size: formData.company_size,
-        main_goal: formData.main_goal,
-        job_function: formData.job_function,
-        industry: formData.industry,
-      });
     }
   };
 
@@ -465,29 +460,21 @@ export default function SubscribePage() {
           { type: 'application/json' }
         )
       );
-    } catch {}
+    } catch { }
   };
 
-  // Assign Littlebird A/B/C variation when reaching step 9, then log view
+  // Littlebird – show winning variation C, log view
   useEffect(() => {
     if (step === 9) {
-      fetch('/api/littlebird-test')
-        .then(r => r.json())
-        .then(d => {
-          if (d.variation) {
-            setLbVariation(d.variation);
-            // Log the view event
-            const uid = formData.email || 'anon';
-            fetch('/api/littlebird-test', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ variation: d.variation, type: 'view', uid }),
-            }).catch(() => {});
-          }
-        })
-        .catch(() => {});
+      trackSurveyComplete(); // Fire pixel event for funnel tracking
+      const uid = formData.email || 'anon';
+      fetch('/api/littlebird-test', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ variation: 'C', type: 'view', uid }),
+      }).catch(() => { });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [step]);
 
   // Auto-advance for loading steps (8 and 10)
@@ -599,7 +586,37 @@ export default function SubscribePage() {
               href="https://try.littlebird.ai/thorium-valley"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => logToolClick('littlebird', 'confirmation')}
+              onClick={() => {
+                logToolClick('littlebird', 'confirmation');
+                // Fire QualifiedLead if they didn't click on step 9
+                if (!hasTrackedQL.current) {
+                  hasTrackedQL.current = true;
+                  const eventId = `ql_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
+                  trackQualifiedLead({
+                    seniority: formData.seniority,
+                    company_size: formData.company_size,
+                    main_goal: formData.main_goal,
+                    job_function: formData.job_function,
+                    industry: formData.industry,
+                  }, eventId);
+                  fetch('/api/meta-capi', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      event_id: eventId,
+                      email: formData.email,
+                      first_name: formData.first_name,
+                      fbp: metaCookies.fbp,
+                      fbc: metaCookies.fbc,
+                      seniority: formData.seniority,
+                      company_size: formData.company_size,
+                      main_goal: formData.main_goal,
+                      job_function: formData.job_function,
+                      industry: formData.industry,
+                    }),
+                  }).catch(() => { });
+                }
+              }}
               className="block w-full max-w-lg mx-auto rounded-xl overflow-hidden transition-all group hover:shadow-lg border border-[#1b1b1b]/10"
               style={{ background: '#ffffff' }}
             >
@@ -754,13 +771,41 @@ export default function SubscribePage() {
                       rel="noopener noreferrer"
                       onClick={() => {
                         logToolClick(`littlebird_${lbVariation}`, 'tools_page');
-                        // Log click to Supabase
+                        // Only fire QualifiedLead once per session (guard against step 9 + 11 double-fire)
+                        if (!hasTrackedQL.current) {
+                          hasTrackedQL.current = true;
+                          const eventId = `ql_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
+                          trackQualifiedLead({
+                            seniority: formData.seniority,
+                            company_size: formData.company_size,
+                            main_goal: formData.main_goal,
+                            job_function: formData.job_function,
+                            industry: formData.industry,
+                          }, eventId);
+                          fetch('/api/meta-capi', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                              event_id: eventId,
+                              email: formData.email,
+                              first_name: formData.first_name,
+                              fbp: metaCookies.fbp,
+                              fbc: metaCookies.fbc,
+                              seniority: formData.seniority,
+                              company_size: formData.company_size,
+                              main_goal: formData.main_goal,
+                              job_function: formData.job_function,
+                              industry: formData.industry,
+                            }),
+                          }).catch(() => { });
+                        }
+                        // Log click to Supabase (always — even on second click)
                         const uid = formData.email || 'anon';
                         fetch('/api/littlebird-test', {
                           method: 'POST',
                           headers: { 'Content-Type': 'application/json' },
                           body: JSON.stringify({ variation: lbVariation, type: 'click', uid }),
-                        }).catch(() => {});
+                        }).catch(() => { });
                       }}
                       className="block w-full rounded-xl lg:rounded-2xl overflow-hidden transition-all group hover:shadow-2xl hover:shadow-white/10"
                       style={{ background: '#ffffff' }}
@@ -809,7 +854,7 @@ export default function SubscribePage() {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ variation: lbVariation, type: 'skip', uid }),
-                      }).catch(() => {});
+                      }).catch(() => { });
                       goNext();
                     }}>Start reading →</PrimaryButton>
                   </div>
@@ -971,11 +1016,10 @@ function SelectableCard({
   return (
     <button
       onClick={onClick}
-      className={`w-full text-left px-4 py-3 rounded-xl border transition-all text-sm ${
-        selected
+      className={`w-full text-left px-4 py-3 rounded-xl border transition-all text-sm ${selected
           ? 'border-[#5170ff] bg-[#5170ff]/15 text-white'
           : 'border-white/15 bg-white/5 text-white/80 hover:border-white/30 hover:bg-white/8'
-      }`}
+        }`}
     >
       {children}
     </button>
@@ -1020,9 +1064,8 @@ function StyledSelect({
       <button
         type="button"
         onClick={onToggle}
-        className={`w-full px-5 py-3.5 rounded-full bg-white/10 border text-sm text-left outline-none cursor-pointer transition-all duration-200 flex items-center justify-between ${
-          isOpen ? 'border-[#5170ff] bg-white/[0.12]' : value ? 'border-white/30' : 'border-white/20'
-        }`}
+        className={`w-full px-5 py-3.5 rounded-full bg-white/10 border text-sm text-left outline-none cursor-pointer transition-all duration-200 flex items-center justify-between ${isOpen ? 'border-[#5170ff] bg-white/[0.12]' : value ? 'border-white/30' : 'border-white/20'
+          }`}
       >
         <span style={{ color: value ? '#fff' : 'rgba(255,255,255,0.4)' }}>
           {value || placeholder}
@@ -1045,7 +1088,8 @@ function StyledSelect({
             animation: 'dropdownIn 0.15s ease-out',
           }}
         >
-          <style dangerouslySetInnerHTML={{ __html: `
+          <style dangerouslySetInnerHTML={{
+            __html: `
             @keyframes dropdownIn {
               from { opacity: 0; transform: translateY(-6px); }
               to { opacity: 1; transform: translateY(0); }
@@ -1060,11 +1104,10 @@ function StyledSelect({
                   onChange(opt);
                   onClose?.();
                 }}
-                className={`w-full text-left px-5 py-2.5 text-sm transition-colors duration-100 ${
-                  value === opt
+                className={`w-full text-left px-5 py-2.5 text-sm transition-colors duration-100 ${value === opt
                     ? 'text-[#5170ff] bg-[#5170ff]/10 font-medium'
                     : 'text-white/80 hover:bg-white/[0.06] hover:text-white'
-                }`}
+                  }`}
               >
                 {opt}
               </button>
@@ -1108,7 +1151,8 @@ function StepEmail({
           priority
         />
       </div>
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @media(max-width:1023px){.subscribe-hero-h1{font-size:32px!important;}}
         @media(min-width:1024px){.subscribe-hero-h1{font-size:3.5rem!important;}}
       `}} />
@@ -1456,11 +1500,10 @@ function StepTools({
             <button
               key={tool.name}
               onClick={() => toggle(tool.name)}
-              className={`flex items-center gap-2 px-3 py-2.5 rounded-full border text-xs transition-all ${
-                checked
+              className={`flex items-center gap-2 px-3 py-2.5 rounded-full border text-xs transition-all ${checked
                   ? 'border-[#5170ff] bg-[#5170ff]/15 text-white'
                   : 'border-white/15 bg-white/5 text-white/70 hover:border-white/25'
-              }`}
+                }`}
             >
               {tool.logo && (
                 <img
@@ -1530,52 +1573,50 @@ function StepNewsletters({
       <StepSubtext>More from Thorium Valley</StepSubtext>
 
       {displayNewsletters.length > 0 && (
-      <div className="flex flex-col gap-3">
-        {displayNewsletters.map((nl) => {
-          const checked = formData.child_newsletters.includes(nl.id);
-          return (
-            <button
-              key={nl.id}
-              onClick={() => toggle(nl.id)}
-              className={`w-full text-left px-4 py-4 rounded-xl border transition-all ${
-                checked
-                  ? 'border-[#5170ff] bg-[#5170ff]/10'
-                  : 'border-white/15 bg-white/5 hover:border-white/25'
-              }`}
-            >
-              <div className="flex items-start gap-3">
-                <div
-                  className={`w-5 h-5 mt-0.5 rounded flex-shrink-0 flex items-center justify-center border transition-all ${
-                    checked
-                      ? 'bg-[#5170ff] border-[#5170ff]'
-                      : 'border-white/30 bg-transparent'
+        <div className="flex flex-col gap-3">
+          {displayNewsletters.map((nl) => {
+            const checked = formData.child_newsletters.includes(nl.id);
+            return (
+              <button
+                key={nl.id}
+                onClick={() => toggle(nl.id)}
+                className={`w-full text-left px-4 py-4 rounded-xl border transition-all ${checked
+                    ? 'border-[#5170ff] bg-[#5170ff]/10'
+                    : 'border-white/15 bg-white/5 hover:border-white/25'
                   }`}
-                >
-                  {checked && (
-                    <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  )}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <img
-                      src={nl.logo}
-                      alt=""
-                      className="h-14 w-auto object-contain"
-                      style={{ mixBlendMode: 'screen' }}
-                    />
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-white">
-                      {nl.frequency}
-                    </span>
+              >
+                <div className="flex items-start gap-3">
+                  <div
+                    className={`w-5 h-5 mt-0.5 rounded flex-shrink-0 flex items-center justify-center border transition-all ${checked
+                        ? 'bg-[#5170ff] border-[#5170ff]'
+                        : 'border-white/30 bg-transparent'
+                      }`}
+                  >
+                    {checked && (
+                      <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
                   </div>
-                  <p className="text-xs leading-relaxed" style={{ color: '#ffffff' }}>{nl.description}</p>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <img
+                        src={nl.logo}
+                        alt=""
+                        className="h-14 w-auto object-contain"
+                        style={{ mixBlendMode: 'screen' }}
+                      />
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-white">
+                        {nl.frequency}
+                      </span>
+                    </div>
+                    <p className="text-xs leading-relaxed" style={{ color: '#ffffff' }}>{nl.description}</p>
+                  </div>
                 </div>
-              </div>
-            </button>
-          );
-        })}
-      </div>
+              </button>
+            );
+          })}
+        </div>
       )}
 
       <div className="mt-6 space-y-3 pb-12 lg:pb-0">

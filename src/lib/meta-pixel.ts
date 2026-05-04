@@ -44,16 +44,21 @@ export function trackEvent(eventName: string, params?: Record<string, string>) {
 
 /**
  * Fire a custom Meta Pixel event (uses fbq('trackCustom')).
+ * Optional eventId for CAPI deduplication.
  */
-export function trackCustomEvent(eventName: string, params?: Record<string, string>) {
+export function trackCustomEvent(eventName: string, params?: Record<string, string>, eventId?: string) {
   if (typeof window === 'undefined') return;
 
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const fbq = (window as any).fbq;
     if (typeof fbq === 'function') {
-      fbq('trackCustom', eventName, params || {});
-      console.log(`[Meta Pixel] Tracked custom "${eventName}" via fbq`, params || '');
+      if (eventId) {
+        fbq('trackCustom', eventName, params || {}, { eventID: eventId });
+      } else {
+        fbq('trackCustom', eventName, params || {});
+      }
+      console.log(`[Meta Pixel] Tracked custom "${eventName}" via fbq`, params || '', eventId ? `(eventID: ${eventId})` : '');
       return;
     }
   } catch (e) {
@@ -101,15 +106,22 @@ export function setAdvancedMatching(email: string) {
  * Used for general tracking/analytics. Do NOT optimize Meta campaigns toward this.
  * Includes value/currency for ROAS calculations.
  */
-export function trackLead(email?: string) {
-  if (email) setAdvancedMatching(email);
+export function trackLead() {
   trackEvent('Lead', { value: '5', currency: 'USD' } as Record<string, string>);
 }
 
 /**
- * Track a QualifiedLead — fires when the subscriber completes the survey.
+ * Track a SurveyComplete event — fires when someone reaches step 9 (tools/Littlebird).
+ * Used to measure survey completion → sponsor click conversion rate.
+ */
+export function trackSurveyComplete() {
+  trackCustomEvent('SurveyComplete');
+}
+
+/**
+ * Track a QualifiedLead — fires when the subscriber clicks a Littlebird link (step 9).
  * This is the event you optimize Meta campaigns toward.
- * Custom Conversion ID in Meta: 1486726819501859
+ * Custom Conversion ID in Meta: 1810429086599820
  */
 export function trackQualifiedLead(surveyData: {
   seniority: string;
@@ -117,12 +129,12 @@ export function trackQualifiedLead(surveyData: {
   main_goal?: string;
   job_function?: string;
   industry?: string;
-}) {
+}, eventId?: string) {
   trackCustomEvent('QualifiedLead', {
     seniority: surveyData.seniority,
     company_size: surveyData.company_size,
     ...(surveyData.main_goal && { main_goal: surveyData.main_goal }),
     ...(surveyData.job_function && { job_function: surveyData.job_function }),
     ...(surveyData.industry && { industry: surveyData.industry }),
-  });
+  }, eventId);
 }

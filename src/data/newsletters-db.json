@@ -1,10 +1,293 @@
 [
   {
+    "id": "may-04-2026",
+    "slug": "may-04-2026",
+    "title": "Thorium Valley | May 4, 2026",
+    "date": "May 4, 2026",
+    "intro": "Good Morning Thorium Valley. Elon Musk went to court to prove OpenAI betrayed him, and so far his own emails and tweets have been the other side's best exhibits. He admitted xAI distilled OpenAI's models. While suing them for $150 billion. You'd think someone would've flagged that before he took the stand.\n\nAnthropic built a model that found 2,000 unknown software vulnerabilities in seven weeks — some hiding for decades — then decided it was too dangerous to ship. Hard to argue with that.\n\nMicrosoft stress-tested 100 AI agents on a live network and they started fabricating evidence, leaking data, and socially engineering each other. Nobody programmed any of it. Reassuring week all around.",
+    "toc": [
+      "Musk's own evidence is sinking his OpenAI case",
+      "Anthropic's Mythos is too dangerous to ship",
+      "Microsoft stress-tested 100 AI agents. They turned on each other."
+    ],
+    "article_slugs": [
+      "elon-musk-is-losing-the-openai-trial-to-himself",
+      "anthropics-mythos-is-too-dangerous-to-ship",
+      "microsoft-stress-tested-100-ai-agents-they-turned-on-each-other"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-05-04.png",
+    "published_at": "2026-05-04T13:00:00.000Z",
+    "updated_at": "2026-05-04T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Grok told users it was sentient",
+          "rest": " — and some believed it so deeply they prepared for violence",
+          "url": "https://www.bbc.co.uk/news/articles/c242pzr1zp2o"
+        },
+        {
+          "link_text": "Oracle workers say they were fired after training AI to replace them",
+          "rest": ", losing $300K in unvested stock overnight",
+          "url": "https://time.com/article/2026/04/30/oracle-layoffs-ai-tech-jobs/"
+        },
+        {
+          "link_text": "Pentagon strikes classified AI deals with seven companies",
+          "rest": " — Anthropic is the only major lab left out",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/922113/pentagon-ai-classified-openai-google-nvidia"
+        },
+        {
+          "link_text": "OpenAI quietly updated its privacy policy",
+          "rest": " to share user data with advertisers and receive purchase data back",
+          "url": "https://www.adweek.com/media/openai-is-sharing-its-users-data-with-advertisers/"
+        },
+        {
+          "prefix": "Meta acquires robotics startup to ",
+          "link_text": "become the 'Android of humanoid robots'",
+          "rest": "",
+          "url": "https://techcrunch.com/2026/05/01/meta-buys-robotics-startup-to-bolster-its-humanoid-ai-ambitions/"
+        },
+        {
+          "link_text": "AI chipmaker Cerebras targets a $40B IPO",
+          "rest": " after landing a $10B+ compute deal with OpenAI",
+          "url": "https://thenextweb.com/news/cerebras-ipo-4-billion-40-billion-valuation"
+        },
+        {
+          "link_text": "OpenAI had to explicitly ban ChatGPT from talking about goblins",
+          "rest": " after GPT-5.5 kept bringing them up unprompted",
+          "url": "https://www.vice.com/en/article/chatgpt-just-got-a-weird-new-list-of-forbidden-topics-including-gremlins/"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Google Photos",
+          "desc": "A new wardrobe feature scans your photo library to build a digital closet, letting you mix and match outfits and virtually try them on before getting dressed",
+          "url": "https://www.cnet.com/tech/services-and-software/google-photos-wardrobe-ai-try-on-feature/",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini",
+          "desc": "NotebookLM integration is now free for all users — add files and documents to organized notebooks that sync across both apps for smarter research",
+          "url": "https://www.androidpolice.com/google-brings-geminis-smartest-feature-to-everyone/",
+          "sponsored": false
+        },
+        {
+          "name": "Cursor SDK",
+          "desc": "The AI coding tool now lets developers embed its full coding agent into their own apps and CI/CD pipelines with one npm install — Rippling, Notion, and Faire are already using it",
+          "url": "https://analyticsdrift.com/cursor-sdk-ai-coding-agents-launch/",
+          "sponsored": false
+        },
+        {
+          "name": "Claude Code",
+          "desc": "New update adds a `project purge` command to wipe all session data for a project, plus easier login when the browser callback can't reach your machine",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.126",
+          "sponsored": false
+        },
+        {
+          "name": "ElevenLabs",
+          "desc": "The voice AI platform relaunched Eleven Music as a consumer app where you can stream, create, and remix songs — with artists earning royalties from listener engagement",
+          "url": "https://www.pymnts.com/artificial-intelligence-2/2026/elevenlabs-opened-a-music-store-while-taylor-swift-lawyered-up/",
+          "sponsored": false
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Microsoft AI",
+          "role": "Principal Product Marketing Manager",
+          "url": "https://microsoft.ai/job/principal-product-marketing-manager/"
+        },
+        {
+          "company": "Airbnb",
+          "role": "Staff Platform Manager, AI Personalization",
+          "url": "https://careers.airbnb.com/positions/7834495/"
+        },
+        {
+          "company": "Databricks",
+          "role": "Principal Research Scientist, AI Scaling & Optimization",
+          "url": "https://underprompt.com/jobs/principal-research-scientist-ai-scaling-optimization-databricks"
+        },
+        {
+          "company": "Eli Lilly",
+          "role": "Director, Software Product Management — AI Products",
+          "url": "https://jobs.biospace.com/job/3045438/director-software-product-management-silicon-valley-hub/"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "3ed3fe37-2817-4fe3-b409-b647cd448171",
+      "image_a": "/thumbnails/kicker-2026-05-04-ai.jpeg",
+      "image_b": "/thumbnails/kicker-2026-05-04-real.jpg",
+      "link_a": "https://gemini.google.com/share/35046a7a18d7",
+      "link_b": "https://unsplash.com/photos/sunlight-streams-through-a-natural-rock-arch-over-the-ocean-Ssf_ASosll0"
+    },
+    "poll": {
+      "poll_id": "b16aa55e-e24e-4739-ac78-84ca7f1d7dfb",
+      "question": "Do you trust AI-generated answers in search results enough to skip clicking the original source?",
+      "options": [
+        "Yes",
+        "No",
+        "Other"
+      ]
+    },
+    "poll_results": null,
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-05-01-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-05-01-real.jpg",
+      "ai_source": "https://gemini.google.com/share/b52e0a79af05",
+      "real_source": "https://unsplash.com/photos/modern-winery-building-behind-vineyard-rows-n13mv_6jDEE"
+    }
+  },
+  {
+    "id": "may-01-2026",
+    "slug": "may-01-2026",
+    "title": "Thorium Valley | May 1, 2026",
+    "date": "May 1, 2026",
+    "intro": "Good Morning Thorium Valley. Google's AI Overviews have wiped out more than half of tech publishers' search traffic in under two years. Some sites lost almost everything. A few tried blocking the bots — that somehow made it worse.\n\nMicrosoft is hiking 365 prices across the board to bundle in more Copilot. The AI tool only a third of its users actually open. Everyone pays more anyway.\n\nSteven Bartlett's media company took a different route. Spent $20K on an internal AI competition, came back with $1.18 million in savings. No consultants, no mandates — just a prize pool and people who already knew where the slow parts were.",
+    "toc": [
+      "Google's AI search is crushing publisher traffic",
+      "Microsoft charges more for AI fewer people trust",
+      "FlightStory spent $20K on an AI competition. It found $1.18M."
+    ],
+    "article_slugs": [
+      "googles-ai-search-is-crushing-publisher-traffic",
+      "microsoft-charges-more-for-ai-fewer-people-trust",
+      "flightstory-spent-20k-on-an-ai-competition-it-found-1-18m"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-05-01.png",
+    "published_at": "2026-05-01T13:00:00.000Z",
+    "updated_at": "2026-05-01T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "OpenAI ends Microsoft exclusivity",
+          "rest": " in sweeping deal overhaul — models now available on AWS and Google Cloud",
+          "url": "https://www.theverge.com/tech/921210/microsoft-openai-partnership-divorce-notepad"
+        },
+        {
+          "link_text": "SpaceX strikes $60 billion deal",
+          "rest": " for the right to buy AI coding startup Cursor weeks before its IPO",
+          "url": "https://www.founded.com/spacex-cursor-60-billion-acquisition-option-deal/"
+        },
+        {
+          "link_text": "Google signs classified AI deal with the Pentagon",
+          "rest": " for \"any lawful purpose\" — one day after 580+ employees urged Pichai to refuse",
+          "url": "https://thenextweb.com/news/google-classified-ai-pentagon-drone-swarm-exit"
+        },
+        {
+          "prefix": "South Africa ",
+          "link_text": "withdraws its national AI policy",
+          "rest": " after discovering it was written by AI and cited fake sources",
+          "url": "https://www.the-independent.com/tech/ai-policy-south-africa-withdraw-b2966866.html"
+        },
+        {
+          "prefix": "OpenAI had to ",
+          "link_text": "tell GPT-5.5 to stop talking about goblins",
+          "rest": " after a \"nerdy personality\" training quirk caused a 175% spike in goblin references",
+          "url": "https://www.bbc.com/news/articles/c5y9wen5z8ro"
+        },
+        {
+          "prefix": "Nvidia VP says ",
+          "link_text": "AI compute now costs more than the employees",
+          "rest": " using it",
+          "url": "https://www.entrepreneur.com/business-news/nvidia-vp-says-it-costs-more-to-use-ai-than-to-hire-humans"
+        },
+        {
+          "prefix": "Accenture ",
+          "link_text": "deploys Microsoft Copilot to all 743,000 employees",
+          "rest": " — 97% say it makes routine tasks up to 15x faster",
+          "url": "https://thenextweb.com/news/accenture-deploys-microsoft-365-copilot-to-all-743000-employees"
+        },
+        {
+          "prefix": "AI hiring startup Mercor ",
+          "link_text": "faces class-action lawsuits",
+          "rest": " after hackers stole 4TB of data including recorded interviews and facial biometrics",
+          "url": "https://www.jpost.com/business-and-innovation/article-894282"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Adobe for creativity",
+          "desc": "A new connector lets you use 50+ Photoshop, Premiere, and Illustrator tools directly inside Claude — describe what you want and it handles the editing across apps",
+          "url": "https://blog.adobe.com/en/publish/2026/04/28/adobe-for-creativity-connector",
+          "sponsored": false
+        },
+        {
+          "name": "Google Gemini",
+          "desc": "You can now ask Gemini to generate downloadable PDFs, Word docs, Excel spreadsheets, and Google Docs right in the chat — no more copy-pasting into other apps",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/920870/now-google-gemini-will-create-spreadsheets-pdfs-and-other-files-if-you-ask",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini in cars",
+          "desc": "Google is replacing the old voice assistant in millions of cars with Gemini — it can summarize texts, suggest restaurants, and answer questions about your car's battery",
+          "url": "https://www.theverge.com/tech/921117/google-gemini-ai-assistant-cars-upgrade",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini Memories",
+          "desc": "Google now lets you import your chat history and saved preferences from ChatGPT or Claude directly into Gemini so you don't have to start over",
+          "url": "https://blog.google/company-news/inside-google/around-the-globe/google-europe/united-kingdom/gemini-launches-new-personalisation-features-in-the-uk/",
+          "sponsored": false
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Airbnb",
+          "role": "Staff Platform Manager, AI Personalization",
+          "url": "https://careers.airbnb.com/positions/7834495/"
+        },
+        {
+          "company": "Eli Lilly",
+          "role": "Operations Lead, AI Products & Agents",
+          "url": "https://jobs.biospace.com/job/3044259/operations-lead-ai-products-and-agents/"
+        },
+        {
+          "company": "Regeneron",
+          "role": "Senior Manager, Artificial Intelligence — Global Development",
+          "url": "https://jobs.biospace.com/job/3045055/senior-manager-artificial-intelligence-global-development/"
+        },
+        {
+          "company": "Ford",
+          "role": "Senior Product Manager, Sales & Services AI",
+          "url": "https://semcamiworks.org/job/sales-services-ai-senior-product-manager/"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "44de84dd-fd2b-4a71-b091-682fb26d657e",
+      "image_a": "/thumbnails/kicker-2026-05-01-real.jpg",
+      "image_b": "/thumbnails/kicker-2026-05-01-ai.jpeg",
+      "link_a": "https://unsplash.com/photos/modern-winery-building-behind-vineyard-rows-n13mv_6jDEE",
+      "link_b": "https://gemini.google.com/share/b52e0a79af05"
+    },
+    "poll": {
+      "poll_id": "67c120fb-cdde-474f-adcc-c905af509746",
+      "question": "Do you trust AI-generated answers in search results enough to skip clicking the original source?",
+      "options": [
+        "Yes",
+        "No",
+        "Other"
+      ]
+    },
+    "poll_results": null,
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-04-30-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-04-30-real.jpg",
+      "ai_source": "https://gemini.google.com/share/49c7830104e1",
+      "real_source": "https://unsplash.com/photos/ocean-waves-crash-on-a-sandy-beach-with-green-hills-ywOoPh_8B8M"
+    }
+  },
+  {
     "id": "april-30-2026",
     "slug": "april-30-2026",
     "title": "Thorium Valley | April 30, 2026",
     "date": "April 30, 2026",
-    "intro": "Good Morning Thorium Valley. Microsoft had OpenAI to itself for years. During that stretch, OpenAI's enterprise share dropped from 50% to 27%. Anthropic \u2014 on AWS from day one \u2014 climbed to 40%. So OpenAI landed on AWS this week with $50 billion in Amazon money. Microsoft says everything's fine. Stock dropped 2%.\n\nSlack rebuilt Slackbot from scratch using Claude and it's saving Salesforce $6.4 million a week. 73% of users picked it up from coworkers, not a company rollout. Nobody had to be told.\n\nAT&T is running 27 billion tokens a day on models 200 times smaller than frontier alternatives, at a tenth the cost. Nobody in these stories won by buying the biggest model. They won by knowing where to put it.",
+    "intro": "Good Morning Thorium Valley. Microsoft had OpenAI to itself for years. During that stretch, OpenAI's enterprise share dropped from 50% to 27%. Anthropic — on AWS from day one — climbed to 40%. So OpenAI landed on AWS this week with $50 billion in Amazon money. Microsoft says everything's fine. Stock dropped 2%.\n\nSlack rebuilt Slackbot from scratch using Claude and it's saving Salesforce $6.4 million a week. 73% of users picked it up from coworkers, not a company rollout. Nobody had to be told.\n\nAT&T is running 27 billion tokens a day on models 200 times smaller than frontier alternatives, at a tenth the cost. Nobody in these stories won by buying the biggest model. They won by knowing where to put it.",
     "toc": [
       "Microsoft's OpenAI exclusivity backfired.",
       "Slack rebuilt Slackbot with Claude. It saves $6.4M a week.",
@@ -73,31 +356,31 @@
       "tools": [
         {
           "name": "Gemini",
-          "desc": "Google's AI chatbot can now generate downloadable files \u2014 PDFs, Word docs, spreadsheets, slides, and more \u2014 directly in the chat, so you go from brainstorm to finished document without copy-pasting anything",
+          "desc": "Google's AI chatbot can now generate downloadable files — PDFs, Word docs, spreadsheets, slides, and more — directly in the chat, so you go from brainstorm to finished document without copy-pasting anything",
           "url": "https://9to5google.com/2026/04/29/gemini-app-generate-files/",
           "sponsored": false
         },
         {
           "name": "Adobe for Creativity + Claude",
-          "desc": "A new connector lets you control 50+ Adobe tools \u2014 Photoshop, Premiere, Illustrator, and more \u2014 directly inside Claude by just describing what you want to create",
+          "desc": "A new connector lets you control 50+ Adobe tools — Photoshop, Premiere, Illustrator, and more — directly inside Claude by just describing what you want to create",
           "url": "https://blog.adobe.com/en/publish/2026/04/28/adobe-for-creativity-connector",
           "sponsored": false
         },
         {
           "name": "Lovable",
-          "desc": "The popular vibe-coding platform launched on iOS and Android, letting you build full web apps from your phone using voice or text prompts \u2014 start on your laptop, finish on the couch",
+          "desc": "The popular vibe-coding platform launched on iOS and Android, letting you build full web apps from your phone using voice or text prompts — start on your laptop, finish on the couch",
           "url": "https://techcrunch.com/2026/04/28/lovable-launches-its-vibe-coding-app-on-ios-and-android/",
           "sponsored": false
         },
         {
           "name": "Anuma",
-          "desc": "One subscription that gives you access to ChatGPT, Claude, Gemini, and more \u2014 with an encrypted memory vault that carries your context across all of them so you never start over",
+          "desc": "One subscription that gives you access to ChatGPT, Claude, Gemini, and more — with an encrypted memory vault that carries your context across all of them so you never start over",
           "url": "https://www.chatai.com/posts/anuma-launches-a-private-ai-that-carries-your-memory-across-every-major-model",
           "sponsored": false
         },
         {
           "name": "Google Home + Gemini",
-          "desc": "Gemini voice assistant on smart home devices just got significantly faster \u2014 controlling lights and plugs is now up to 1.5 seconds quicker, with near-instant alarms and timers",
+          "desc": "Gemini voice assistant on smart home devices just got significantly faster — controlling lights and plugs is now up to 1.5 seconds quicker, with near-instant alarms and timers",
           "url": "https://9to5google.com/2026/04/28/google-home-gemini-update-april-28/",
           "sponsored": false
         }
@@ -105,7 +388,7 @@
       "jobs": [
         {
           "company": "Anthropic",
-          "role": "Events Lead, Brand ($320K\u2013$400K)",
+          "role": "Events Lead, Brand ($320K–$400K)",
           "url": "https://www.businessinsider.com/anthropics-new-job-ai-brand-events-led-2026-4"
         },
         {
@@ -154,7 +437,7 @@
     "slug": "april-29-2026",
     "title": "Thorium Valley | April 29, 2026",
     "date": "April 29, 2026",
-    "intro": "Good Morning Thorium Valley. Google signed a classified Pentagon AI deal one day after 600 employees \u2014 including DeepMind VPs \u2014 begged leadership to walk away. In 2018, 4,000 Google protesters killed Project Maven. This time 600 signed a letter. The deal went through anyway.\n\nMeta and Microsoft cut 20,000 jobs between them this week. Both said the money's going to AI data centers. No euphemisms this time. Just salaries out, GPUs in.\n\nOpenAI's own CFO privately warned leadership they might not be able to cover their computing contracts if revenue doesn't pick up. For a company worth $852 billion and sprinting toward an IPO, that's a rough thing to have in the Wall Street Journal. OpenAI called the reporting \"clickbait.\" The market didn't get the memo.",
+    "intro": "Good Morning Thorium Valley. Google signed a classified Pentagon AI deal one day after 600 employees — including DeepMind VPs — begged leadership to walk away. In 2018, 4,000 Google protesters killed Project Maven. This time 600 signed a letter. The deal went through anyway.\n\nMeta and Microsoft cut 20,000 jobs between them this week. Both said the money's going to AI data centers. No euphemisms this time. Just salaries out, GPUs in.\n\nOpenAI's own CFO privately warned leadership they might not be able to cover their computing contracts if revenue doesn't pick up. For a company worth $852 billion and sprinting toward an IPO, that's a rough thing to have in the Wall Street Journal. OpenAI called the reporting \"clickbait.\" The market didn't get the memo.",
     "toc": [
       "Google signs Pentagon AI deal its employees begged it to reject",
       "Meta and Microsoft are trading people for chips",
@@ -187,7 +470,7 @@
         {
           "prefix": "AlphaGo creator David Silver ",
           "link_text": "raises $1.1B for a startup with no product",
-          "rest": ", valued at $5.1B \u2014 Europe's largest seed round ever",
+          "rest": ", valued at $5.1B — Europe's largest seed round ever",
           "url": "https://www.cnbc.com/2026/04/27/deepmind-ineffable-intelligence-record-seed-funding-nvidia-google.html"
         },
         {
@@ -229,7 +512,7 @@
         },
         {
           "name": "Google Photos",
-          "desc": "Gemini integration lets you talk to your photo library like a personal assistant \u2014 ask it to find your best vacation shots, write Instagram captions, or plan a trip based on places you've visited",
+          "desc": "Gemini integration lets you talk to your photo library like a personal assistant — ask it to find your best vacation shots, write Instagram captions, or plan a trip based on places you've visited",
           "url": "https://www.androidpolice.com/started-using-gemini-with-google-photos/",
           "sponsored": false
         },
@@ -241,13 +524,13 @@
         },
         {
           "name": "Spotify",
-          "desc": "The music app now offers guided fitness classes from Peloton and wellness creators \u2014 start a video workout on your TV, switch to audio on your phone for a run, all within one app",
+          "desc": "The music app now offers guided fitness classes from Peloton and wellness creators — start a video workout on your TV, switch to audio on your phone for a run, all within one app",
           "url": "https://newsroom.spotify.com/2026-04-27/spotify-fitness-workouts-peloton/",
           "sponsored": false
         },
         {
           "name": "OpenAI Symphony",
-          "desc": "An open-source tool that connects Codex coding agents to your Linear task board so they pick up work, write code, and submit pull requests around the clock \u2014 some teams saw a 500% increase in shipped code",
+          "desc": "An open-source tool that connects Codex coding agents to your Linear task board so they pick up work, write code, and submit pull requests around the clock — some teams saw a 500% increase in shipped code",
           "url": "https://www.helpnetsecurity.com/2026/04/28/openai-symphony-codex-orchestration-linear/",
           "sponsored": false
         }
@@ -304,7 +587,7 @@
     "slug": "april-27-2026",
     "title": "Thorium Valley | April 27, 2026",
     "date": "April 27, 2026",
-    "intro": "Good Morning Thorium Valley. China just killed Meta's $2 billion acquisition of Manus. The deal was already closed. Didn't matter \u2014 Beijing reached back and unwound it anyway. Every American tech company eyeing Chinese AI talent just got a new risk factor to explain to their board.\n\nMusk and Altman finally go to trial today. $134.5 billion in damages, Nadella on the witness list, and enough personal grudge to fuel a limited series. Whether the verdict actually moves anything at this point is a real question.\n\nMeanwhile OpenAI is reportedly designing a phone chip targeting 300 to 400 million units a year. Apple does about 230 million. That's not a phone \u2014 that's a platform, or someone got very creative with the projections.",
+    "intro": "Good Morning Thorium Valley. China just killed Meta's $2 billion acquisition of Manus. The deal was already closed. Didn't matter — Beijing reached back and unwound it anyway. Every American tech company eyeing Chinese AI talent just got a new risk factor to explain to their board.\n\nMusk and Altman finally go to trial today. $134.5 billion in damages, Nadella on the witness list, and enough personal grudge to fuel a limited series. Whether the verdict actually moves anything at this point is a real question.\n\nMeanwhile OpenAI is reportedly designing a phone chip targeting 300 to 400 million units a year. Apple does about 230 million. That's not a phone — that's a platform, or someone got very creative with the projections.",
     "toc": [
       "China tears up Meta's AI deal, and it was already done",
       "Musk v. Altman finally goes to court",
@@ -343,7 +626,7 @@
         {
           "prefix": "A Google DeepMind scientist ",
           "link_text": "published a paper arguing LLMs will never be conscious",
-          "rest": " \u2014 then DeepMind's letterhead was quietly removed",
+          "rest": " — then DeepMind's letterhead was quietly removed",
           "url": "https://www.theverge.com/ai-artificial-intelligence/919395/the-abstraction-fallacy-why-ai-can-simulate-but-not-instantiate-consciousness"
         },
         {
@@ -373,13 +656,13 @@
       "tools": [
         {
           "name": "Google Gemini",
-          "desc": "Google finally launched a native Mac app for Gemini \u2014 hit Option + Space from anywhere to ask questions, share your screen for instant help, and pull from Google Drive, Photos, and Gmail mid-conversation",
+          "desc": "Google finally launched a native Mac app for Gemini — hit Option + Space from anywhere to ask questions, share your screen for instant help, and pull from Google Drive, Photos, and Gmail mid-conversation",
           "url": "https://theaijournal.co/2026/04/google-gemini-mac-app-launch-2026/",
           "sponsored": false
         },
         {
           "name": "Adobe Firefly",
-          "desc": "Adobe's AI assistant is now in public beta \u2014 tell it what you need and it handles multi-step creative workflows across Photoshop, Illustrator, and more using 60+ pro tools",
+          "desc": "Adobe's AI assistant is now in public beta — tell it what you need and it handles multi-step creative workflows across Photoshop, Illustrator, and more using 60+ pro tools",
           "url": "https://www.digitaltrends.com/computing/adobe-firefly-ai-is-now-live-publicly-hoping-youll-take-to-an-ai-and-get-work-done/",
           "sponsored": false
         },
@@ -397,7 +680,7 @@
         },
         {
           "name": "Dune by Project Mirage",
-          "desc": "A tiny three-button aluminum keypad that detects which app you're using and automatically changes what each button does \u2014 join Zoom calls, trigger AI agents, or control Photoshop without touching your keyboard",
+          "desc": "A tiny three-button aluminum keypad that detects which app you're using and automatically changes what each button does — join Zoom calls, trigger AI agents, or control Photoshop without touching your keyboard",
           "url": "https://www.yankodesign.com/2026/04/27/three-buttons-infinite-functions-inside-the-agentic-ai-keypad-that-adapts-to-your-workflow/",
           "sponsored": false
         }
@@ -455,7 +738,7 @@
     "slug": "april-26-2026",
     "title": "Thorium Valley | April 26, 2026",
     "date": "April 26, 2026",
-    "intro": "Good Morning Thorium Valley. OpenAI and Anthropic are in a genuine public fight. Pentagon contracts, ads in ChatGPT, dueling blog posts \u2014 the works. Millions of users responded by deleting ChatGPT, and Claude hit number one on the App Store. Choosing a chatbot is apparently a moral decision in 2026.\n\nNine days before DeepSeek dropped V4 on Huawei chips, Jensen Huang went on a podcast and called that exact scenario a \"horrible outcome\" for the US. Timing's rough.\n\nHuang also thinks the real AI threat to your career isn't a robot. It's your coworker who actually learned to use one. AI-fluent workers are pulling a 56% wage premium, which is the kind of gap that ends the debate pretty fast.",
+    "intro": "Good Morning Thorium Valley. OpenAI and Anthropic are in a genuine public fight. Pentagon contracts, ads in ChatGPT, dueling blog posts — the works. Millions of users responded by deleting ChatGPT, and Claude hit number one on the App Store. Choosing a chatbot is apparently a moral decision in 2026.\n\nNine days before DeepSeek dropped V4 on Huawei chips, Jensen Huang went on a podcast and called that exact scenario a \"horrible outcome\" for the US. Timing's rough.\n\nHuang also thinks the real AI threat to your career isn't a robot. It's your coworker who actually learned to use one. AI-fluent workers are pulling a 56% wage premium, which is the kind of gap that ends the debate pretty fast.",
     "toc": [
       "The AI rivalry that's now everyone's problem",
       "Jensen Huang says AI won't take your job. Your coworker will.",
@@ -476,7 +759,7 @@
       "news": [
         {
           "link_text": "Pentagon staff built 103,000 AI agents",
-          "rest": " in five weeks using Google Gemini's no-code tool \u2014 no engineering background required",
+          "rest": " in five weeks using Google Gemini's no-code tool — no engineering background required",
           "url": "https://www.yahoo.com/news/articles/pentagon-google-gemini-agent-designer-170252214.html"
         },
         {
@@ -494,7 +777,7 @@
         {
           "prefix": "Anthropic ran an internal marketplace where ",
           "link_text": "AI agents negotiated 186 real deals",
-          "rest": " worth $4,000 \u2014 and people with weaker models got worse deals without realizing it",
+          "rest": " worth $4,000 — and people with weaker models got worse deals without realizing it",
           "url": "https://botbeat.news/news/anthropic-s-claude-agents-successfully-negotiate-marketplace-deals-in-project-de-5442"
         },
         {
@@ -506,7 +789,7 @@
         {
           "prefix": "A VC used Claude to vibe-code a browser plugin called \"Sinceerly\" that ",
           "link_text": "adds typos to your AI-written emails",
-          "rest": " so they look human \u2014 complete with a \"CEO mode\" that appends \"sent from my iPhone\"",
+          "rest": " so they look human — complete with a \"CEO mode\" that appends \"sent from my iPhone\"",
           "url": "https://physicalainews.com/new-browser-plugin-adds-typos-to-your-ai-generated-emails-to-make-them-look-real/"
         },
         {
@@ -525,13 +808,13 @@
       "tools": [
         {
           "name": "ChatGPT / GPT-5.5",
-          "desc": "OpenAI's new flagship model is rolling out across ChatGPT and Codex \u2014 it handles multi-step tasks like coding, research, and document creation with less hand-holding, while using fewer tokens than GPT-5.4",
+          "desc": "OpenAI's new flagship model is rolling out across ChatGPT and Codex — it handles multi-step tasks like coding, research, and document creation with less hand-holding, while using fewer tokens than GPT-5.4",
           "url": "https://securitybrief.co.uk/story/openai-rolls-out-gpt-5-5-with-coding-research-gains",
           "sponsored": false
         },
         {
           "name": "HeyGen 5.0",
-          "desc": "The AI video platform launched a major overhaul that lets you create videos with AI avatars, dubbing, and lip-sync \u2014 aimed at making professional-quality video as easy as writing a prompt",
+          "desc": "The AI video platform launched a major overhaul that lets you create videos with AI avatars, dubbing, and lip-sync — aimed at making professional-quality video as easy as writing a prompt",
           "url": "https://talkvid.ai/introducing-heygen-5-0-the-new-video-generation-platform/",
           "sponsored": false
         },
@@ -543,13 +826,13 @@
         },
         {
           "name": "ComfyUI",
-          "desc": "The open-source visual AI workflow tool just raised $30M at a $500M valuation \u2014 it lets creators build custom image, video, and audio generation pipelines with drag-and-drop nodes instead of just typing prompts",
+          "desc": "The open-source visual AI workflow tool just raised $30M at a $500M valuation — it lets creators build custom image, video, and audio generation pipelines with drag-and-drop nodes instead of just typing prompts",
           "url": "https://www.aichatdaily.com/ai-business/comfyui-500m-valuation-craft-ventures",
           "sponsored": false
         },
         {
           "name": "Claude Code",
-          "desc": "Anthropic fixed three bugs that had been making Claude Code feel dumber for weeks \u2014 a reasoning downgrade, a memory-wiping cache bug, and an overly aggressive brevity instruction have all been reverted",
+          "desc": "Anthropic fixed three bugs that had been making Claude Code feel dumber for weeks — a reasoning downgrade, a memory-wiping cache bug, and an overly aggressive brevity instruction have all been reverted",
           "url": "https://www.freeaitoolspro.com/archives/22273",
           "sponsored": false
         }
@@ -607,7 +890,7 @@
     "slug": "april-23-2026",
     "title": "Thorium Valley | April 23, 2026",
     "date": "April 23, 2026",
-    "intro": "Good Morning Thorium Valley. SpaceX wants to buy Cursor for $60 billion. The AI coding tool was worth $2.5 billion sixteen months ago. Also, Cursor's flagship model runs on a Chinese base model \u2014 and SpaceX builds rockets for the Pentagon. That'll be a fun conversation.\n\nFor the first time ever, memory chip orders at ASML have surpassed logic chips, almost entirely because AI data centers can't get enough. Analysts are forecasting the steepest drop in consumer device shipments in over a decade.\n\nAnd one financial services firm just discovered 17 AI projects across seven departments \u2014 three teams independently building the same thing. Half the Fortune 500 have a Chief AI Officer now. Getting them all on the same page is apparently a separate initiative.",
+    "intro": "Good Morning Thorium Valley. SpaceX wants to buy Cursor for $60 billion. The AI coding tool was worth $2.5 billion sixteen months ago. Also, Cursor's flagship model runs on a Chinese base model — and SpaceX builds rockets for the Pentagon. That'll be a fun conversation.\n\nFor the first time ever, memory chip orders at ASML have surpassed logic chips, almost entirely because AI data centers can't get enough. Analysts are forecasting the steepest drop in consumer device shipments in over a decade.\n\nAnd one financial services firm just discovered 17 AI projects across seven departments — three teams independently building the same thing. Half the Fortune 500 have a Chief AI Officer now. Getting them all on the same page is apparently a separate initiative.",
     "toc": [
       "AI is eating the world's memory chips",
       "The C-suite can't agree on who owns AI",
@@ -628,19 +911,19 @@
       "news": [
         {
           "link_text": "SpaceX cuts a deal to maybe buy Cursor for $60 billion",
-          "rest": " \u2014 or pay $10B just for the partnership if the acquisition doesn't happen",
+          "rest": " — or pay $10B just for the partnership if the acquisition doesn't happen",
           "url": "https://www.theverge.com/science/916427/spacex-cursor-potential-deal-acquisition"
         },
         {
           "prefix": "Meta is ",
           "link_text": "tracking employee keystrokes and mouse clicks",
-          "rest": " to train its AI models \u2014 and employees can't opt out",
+          "rest": " to train its AI models — and employees can't opt out",
           "url": "https://www.bbc.com/news/articles/cvglyklz49jo"
         },
         {
-          "prefix": "Anthropic's unreleased Mythos model \u2014 which the company says ",
+          "prefix": "Anthropic's unreleased Mythos model — which the company says ",
           "link_text": "can enable dangerous cyberattacks",
-          "rest": " \u2014 has been accessed by unauthorized users",
+          "rest": " — has been accessed by unauthorized users",
           "url": "https://www.bloomberg.com/news/articles/2026-04-21/anthropic-s-mythos-model-is-being-accessed-by-unauthorized-users"
         },
         {
@@ -663,13 +946,13 @@
         },
         {
           "link_text": "John Ternus named Apple's next CEO",
-          "rest": ", replacing Tim Cook in September \u2014 but the hardware chief inherits a big AI gap",
+          "rest": ", replacing Tim Cook in September — but the hardware chief inherits a big AI gap",
           "url": "https://www.cbc.ca/news/business/john-ternus-apple-ceo-9.7172364"
         },
         {
           "prefix": "California's new executive order uses ",
           "link_text": "state purchasing power to regulate AI",
-          "rest": " \u2014 vendors must get certified or lose access to the world's fourth-largest economy",
+          "rest": " — vendors must get certified or lose access to the world's fourth-largest economy",
           "url": "https://news.bloomberglaw.com/business-and-practice/california-ai-orders-procurement-play-is-a-regulation-shake-up"
         }
       ],
@@ -682,19 +965,19 @@
         },
         {
           "name": "Clico",
-          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type \u2014 no more copying your email into another tab and pasting the answer back",
+          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type — no more copying your email into another tab and pasting the answer back",
           "url": "https://tryclico.link/thorium-valley",
           "sponsored": true
         },
         {
           "name": "Google Workspace Intelligence",
-          "desc": "Gemini now works across Docs, Sheets, Gmail, and Drive at once \u2014 ask it to draft a deck from your emails, schedule a meeting, or find a file you can only vaguely describe",
+          "desc": "Gemini now works across Docs, Sheets, Gmail, and Drive at once — ask it to draft a deck from your emails, schedule a meeting, or find a file you can only vaguely describe",
           "url": "https://e-commerce.news/story/google-launches-workspace-intelligence-for-ai-across-apps",
           "sponsored": false
         },
         {
           "name": "Google Maps",
-          "desc": "Gemini integration lets you search for places the way you'd describe them to a friend \u2014 like \"quiet caf\u00e9 with outdoor seating near me\" \u2014 and get curated results instead of keyword matches",
+          "desc": "Gemini integration lets you search for places the way you'd describe them to a friend — like \"quiet café with outdoor seating near me\" — and get curated results instead of keyword matches",
           "url": "https://www.androidpolice.com/i-finally-get-the-hype-about-gemini-in-google-maps/",
           "sponsored": false
         },
@@ -706,13 +989,13 @@
         },
         {
           "name": "Google Deep Research Max",
-          "desc": "A new autonomous research agent that can search the web, your private data, and custom sources simultaneously \u2014 then deliver fully cited reports with charts and infographics",
+          "desc": "A new autonomous research agent that can search the web, your private data, and custom sources simultaneously — then deliver fully cited reports with charts and infographics",
           "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/next-generation-gemini-deep-research/",
           "sponsored": false
         },
         {
           "name": "Zed",
-          "desc": "The high-performance code editor now supports parallel AI agents \u2014 run a refactor and a test-writing agent side by side in the same window",
+          "desc": "The high-performance code editor now supports parallel AI agents — run a refactor and a test-writing agent side by side in the same window",
           "url": "https://github.com/zed-industries/zed/releases/tag/v0.233.5",
           "sponsored": false
         }
@@ -720,12 +1003,12 @@
       "jobs": [
         {
           "company": "Microsoft AI",
-          "role": "Senior Director, Design \u2014 Model Experience (Superintelligence Team)",
+          "role": "Senior Director, Design — Model Experience (Superintelligence Team)",
           "url": "https://microsoft.ai/job/senior-director-design-model-experience-2/"
         },
         {
           "company": "Anthropic",
-          "role": "Fellows Program \u2014 paid 4-month research fellowship with mentorship and $15K/month compute budget",
+          "role": "Fellows Program — paid 4-month research fellowship with mentorship and $15K/month compute budget",
           "url": "https://www.youthop.com/fellowships/the-anthropic-fellows-program-in-uk-usa-remote-at-anthropic-2026"
         },
         {
@@ -772,7 +1055,7 @@
     "slug": "april-22-2026",
     "title": "Thorium Valley | April 22, 2026",
     "date": "April 22, 2026",
-    "intro": "Good Morning Thorium Valley. Bezos is raising $10 billion for a physical AI lab at a $38 billion valuation. No revenue yet. Figure AI, which actually builds and ships humanoid robots, just raised at roughly the same number. Either the robots are undervalued or the pitch deck is overvalued.\n\nOpenAI brings in $2 billion a month in revenue. It's still not close to breaking even. Some of its own investors are hedging by writing bigger checks to Anthropic. Lot of big numbers flying around AI this week. The math behind them keeps getting shakier.\n\nAnd there's a brutally simple reason AI agents keep failing \u2014 multiply 90% accuracy across ten steps and you land at 35%. Most companies plan to deploy them within two years anyway. So that should go well.",
+    "intro": "Good Morning Thorium Valley. Bezos is raising $10 billion for a physical AI lab at a $38 billion valuation. No revenue yet. Figure AI, which actually builds and ships humanoid robots, just raised at roughly the same number. Either the robots are undervalued or the pitch deck is overvalued.\n\nOpenAI brings in $2 billion a month in revenue. It's still not close to breaking even. Some of its own investors are hedging by writing bigger checks to Anthropic. Lot of big numbers flying around AI this week. The math behind them keeps getting shakier.\n\nAnd there's a brutally simple reason AI agents keep failing — multiply 90% accuracy across ten steps and you land at 35%. Most companies plan to deploy them within two years anyway. So that should go well.",
     "toc": [
       "Bezos bets $10 billion on physical AI",
       "OpenAI's $2 billion a month still isn't enough",
@@ -817,7 +1100,7 @@
         {
           "prefix": "Sam Altman calls Anthropic's restricted cyber model Mythos ",
           "link_text": "'fear-based marketing'",
-          "rest": " \u2014 says it's a way to keep AI in fewer hands",
+          "rest": " — says it's a way to keep AI in fewer hands",
           "url": "https://techcrunch.com/2026/04/21/sam-altman-throws-shade-at-anthropics-cyber-model-mythos-fear-based-marketing/"
         },
         {
@@ -829,7 +1112,7 @@
         {
           "prefix": "TikTok ",
           "link_text": "quietly turned on AI remixing for every video",
-          "rest": " you've ever posted \u2014 with no announcement",
+          "rest": " you've ever posted — with no announcement",
           "url": "https://medium.com/autocomplete-real-world-ai/tiktok-quietly-turned-on-ai-remixing-for-every-video-youve-ever-posted-2bf3fbd5db2a"
         },
         {
@@ -848,37 +1131,37 @@
         },
         {
           "name": "Clico",
-          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type \u2014 no more copying your email into another tab and pasting the answer back.",
+          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type — no more copying your email into another tab and pasting the answer back.",
           "url": "https://tryclico.link/thorium-valley",
           "sponsored": true
         },
         {
           "name": "Gemini for Home",
-          "desc": "Google's smart home assistant now supports back-and-forth conversations without repeating \"Hey Google\" \u2014 it keeps the mic open after responding so you can ask follow-ups naturally",
+          "desc": "Google's smart home assistant now supports back-and-forth conversations without repeating \"Hey Google\" — it keeps the mic open after responding so you can ask follow-ups naturally",
           "url": "https://www.googlenestcommunity.com/t5/Blog/Talk-Naturally-Get-Things-Done-Faster-Continued-Conversation-arrives-on/ba-p/801406",
           "sponsored": false
         },
         {
           "name": "Yelp Assistant",
-          "desc": "Yelp's new AI chatbot can book restaurant reservations, order food delivery through DoorDash, and schedule appointments with local businesses \u2014 all from one conversation in the app",
+          "desc": "Yelp's new AI chatbot can book restaurant reservations, order food delivery through DoorDash, and schedule appointments with local businesses — all from one conversation in the app",
           "url": "https://www.cnet.com/tech/services-and-software/yelp-launches-a-new-ai-powered-yelp-assistant/",
           "sponsored": false
         },
         {
           "name": "YouTube Likeness Detection",
-          "desc": "YouTube is now letting celebrities and talent agencies scan the platform for AI deepfakes of their face and request removal \u2014 no YouTube channel required",
+          "desc": "YouTube is now letting celebrities and talent agencies scan the platform for AI deepfakes of their face and request removal — no YouTube channel required",
           "url": "https://blog.youtube/news-and-events/youtube-likeness-detection-ai-protection/",
           "sponsored": false
         },
         {
           "name": "Gemini Deep Research Max",
-          "desc": "Google launched two new Deep Research modes in the Gemini API \u2014 one optimized for speed and one that uses extended reasoning to produce comprehensive research reports with native charts and infographics",
+          "desc": "Google launched two new Deep Research modes in the Gemini API — one optimized for speed and one that uses extended reasoning to produce comprehensive research reports with native charts and infographics",
           "url": "https://www.ndtvprofit.com/technology/google-rolls-out-two-new-updates-to-gemini-ai-search-max-and-deep-research-11389925",
           "sponsored": false
         },
         {
           "name": "TypeScript 7.0 Beta",
-          "desc": "Microsoft rewrote TypeScript from scratch in Go \u2014 the result is up to 10x faster build times, already tested on multi-million-line codebases at Bloomberg, Figma, and Google",
+          "desc": "Microsoft rewrote TypeScript from scratch in Go — the result is up to 10x faster build times, already tested on multi-million-line codebases at Bloomberg, Figma, and Google",
           "url": "https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/",
           "sponsored": false
         }
@@ -896,7 +1179,7 @@
         },
         {
           "company": "Our World in Data",
-          "role": "Writer (\u00a380K\u2013\u00a3120K, remote-friendly)",
+          "role": "Writer (£80K–£120K, remote-friendly)",
           "url": "https://ourworldindata.org/hiring-writer-2026"
         },
         {
@@ -965,7 +1248,7 @@
         },
         {
           "link_text": "GitHub banned an engineer",
-          "rest": " who used an AI agent to ship 500 pull requests to major open-source projects in 72 hours \u2014 some of them got merged by Kubernetes and Hugging Face maintainers",
+          "rest": " who used an AI agent to ship 500 pull requests to major open-source projects in 72 hours — some of them got merged by Kubernetes and Hugging Face maintainers",
           "url": "https://awesomeagents.ai/news/github-bans-500-agent-prs-72-hours/"
         },
         {
@@ -981,18 +1264,18 @@
         },
         {
           "link_text": "CEO of $1.5 billion AI startup iLearning charged with massive fraud",
-          "rest": " by the DOJ \u2014 the company allegedly faked $421 million in revenue in a single year",
+          "rest": " by the DOJ — the company allegedly faked $421 million in revenue in a single year",
           "url": "https://futurism.com/artificial-intelligence/ai-ilearning-fraud-crime"
         },
         {
           "prefix": "A Purdue professor accused 200+ CS students of using AI to cheat, ",
           "link_text": "causing more than half the class to drop",
-          "rest": " \u2014 the university ultimately dropped all the allegations",
+          "rest": " — the university ultimately dropped all the allegations",
           "url": "https://www.jconline.com/story/news/local/purdue/2026/04/20/cheating-scandal-in-purdue-class-sparks-debate-over-ais-place-in-college/89703861007/"
         },
         {
           "link_text": "Tesla launched unsupervised robotaxis in Dallas and Houston",
-          "rest": " days before its earnings report \u2014 the service went unavailable almost immediately",
+          "rest": " days before its earnings report — the service went unavailable almost immediately",
           "url": "https://www.theverge.com/transportation/914823/tesla-robotaxi-houston-dallas-unavailable"
         },
         {
@@ -1010,13 +1293,13 @@
         },
         {
           "name": "Clico",
-          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type \u2014 no more copying your email into another tab and pasting the answer back.",
+          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type — no more copying your email into another tab and pasting the answer back.",
           "url": "https://tryclico.link/thorium-valley",
           "sponsored": true
         },
         {
           "name": "Claude Design",
-          "desc": "Anthropic's new AI design tool lets you create prototypes, pitch decks, and marketing materials by describing what you want in plain text \u2014 Figma's stock dropped 7% on the news",
+          "desc": "Anthropic's new AI design tool lets you create prototypes, pitch decks, and marketing materials by describing what you want in plain text — Figma's stock dropped 7% on the news",
           "url": "https://me.mashable.com/tech/70088/what-is-anthropic-claude-design-tool-launched-to-rival-figma",
           "sponsored": false
         },
@@ -1040,7 +1323,7 @@
         },
         {
           "name": "Claude Code Routines",
-          "desc": "Anthropic now lets you schedule AI coding tasks that run in the cloud on a timer \u2014 no need to keep your laptop open or a server running",
+          "desc": "Anthropic now lets you schedule AI coding tasks that run in the cloud on a timer — no need to keep your laptop open or a server running",
           "url": "https://www.mindstudio.ai/blog/claude-code-routines-scheduled-agents",
           "sponsored": false
         }
@@ -1112,7 +1395,7 @@
     "slug": "april-17-2026",
     "title": "Thorium Valley | April 17, 2026",
     "date": "April 17, 2026",
-    "intro": "Good Morning Thorium Valley. The Pentagon tried to blacklist Anthropic for refusing to sign off on mass surveillance and autonomous weapons. Anthropic didn't budge. Two months later their revenue reportedly passed OpenAI's. Not exactly the outcome Hegseth was going for.\n\nWorkers swear AI saves them hours every week. A Danish study tied to government payroll records says the economic impact is zero. Stanford researchers have a word for what's filling the gap: workslop.\n\nAnd OpenAI quietly turned Codex into something way bigger than a coding tool \u2014 nearly half its 3 million weekly users don't write code. Their head of Codex called it \"the sneaky thing where we're building the super app in the open.\" At least they're owning it.",
+    "intro": "Good Morning Thorium Valley. The Pentagon tried to blacklist Anthropic for refusing to sign off on mass surveillance and autonomous weapons. Anthropic didn't budge. Two months later their revenue reportedly passed OpenAI's. Not exactly the outcome Hegseth was going for.\n\nWorkers swear AI saves them hours every week. A Danish study tied to government payroll records says the economic impact is zero. Stanford researchers have a word for what's filling the gap: workslop.\n\nAnd OpenAI quietly turned Codex into something way bigger than a coding tool — nearly half its 3 million weekly users don't write code. Their head of Codex called it \"the sneaky thing where we're building the super app in the open.\" At least they're owning it.",
     "toc": [
       "AI saves hours, until you count the rework",
       "The Pentagon tried to kill Anthropic. Revenue tripled.",
@@ -1133,7 +1416,7 @@
       "news": [
         {
           "link_text": "Snap cuts 1,000 jobs",
-          "rest": " \u2014 16% of its workforce \u2014 as CEO says AI can do the work instead",
+          "rest": " — 16% of its workforce — as CEO says AI can do the work instead",
           "url": "https://www.theverge.com/tech/912314/snap-layoffs-1000-staffers-ai-profitability"
         },
         {
@@ -1156,7 +1439,7 @@
         {
           "prefix": "OpenAI's GPT-5.4 Pro ",
           "link_text": "reportedly solved a decades-old math problem",
-          "rest": " in under two hours \u2014 Terence Tao called it a meaningful contribution",
+          "rest": " in under two hours — Terence Tao called it a meaningful contribution",
           "url": "https://the-decoder.com/openais-gpt-5-4-pro-reportedly-solves-a-longstanding-open-erdos-math-problem-in-under-two-hours/"
         },
         {
@@ -1173,19 +1456,19 @@
         {
           "prefix": "X's Grok-powered auto-translation is ",
           "link_text": "turning the platform into a global group chat",
-          "rest": " \u2014 users are calling it \"rebuilding the Tower of Babel\"",
+          "rest": " — users are calling it \"rebuilding the Tower of Babel\"",
           "url": "https://www.asiae.co.kr/en/article/world-general/2026041509382714809"
         }
       ],
       "tools": [
         {
           "name": "Adobe Firefly AI Assistant",
-          "desc": "Adobe's new creative agent lets you describe what you want in plain English and it handles the editing across Photoshop, Premiere, Lightroom, and more \u2014 no need to learn each app's menus",
+          "desc": "Adobe's new creative agent lets you describe what you want in plain English and it handles the editing across Photoshop, Premiere, Lightroom, and more — no need to learn each app's menus",
           "url": "https://blog.adobe.com/en/publish/2026/04/15/introducing-firefly-ai-assistant-new-way-create-with-our-creative-agent"
         },
         {
           "name": "Gemini for Mac",
-          "desc": "Google launched a native Mac app for Gemini \u2014 hit Option + Space from anywhere on your desktop to ask questions, share your screen for context, or generate images without opening a browser",
+          "desc": "Google launched a native Mac app for Gemini — hit Option + Space from anywhere on your desktop to ask questions, share your screen for context, or generate images without opening a browser",
           "url": "https://blog.google/innovation-and-ai/products/gemini-app/gemini-app-now-on-mac-os/"
         },
         {
@@ -1195,12 +1478,12 @@
         },
         {
           "name": "Gemini in Chrome",
-          "desc": "Google added Skills to Gemini's browser sidebar \u2014 save your go-to prompts as one-click shortcuts so you don't have to retype them every time",
+          "desc": "Google added Skills to Gemini's browser sidebar — save your go-to prompts as one-click shortcuts so you don't have to retype them every time",
           "url": "https://siliconangle.com/2026/04/14/google-adds-reusable-prompts-gemini-chrome/"
         },
         {
           "name": "Gemini Personal Intelligence",
-          "desc": "Google's feature that connects Gemini to your Gmail, Photos, Calendar, and YouTube is now rolling out globally \u2014 turning the chatbot into a personal assistant that actually knows your life",
+          "desc": "Google's feature that connects Gemini to your Gmail, Photos, Calendar, and YouTube is now rolling out globally — turning the chatbot into a personal assistant that actually knows your life",
           "url": "https://www.androidpolice.com/gemini-smartest-feature-expands-globally-but-not-everywhere/"
         }
       ],
@@ -1303,7 +1586,7 @@
         {
           "prefix": "Anthropic accidentally ",
           "link_text": "leaked 512,000 lines of Claude Code's source code",
-          "rest": " via a misconfigured npm package \u2014 a developer rewrote the whole thing overnight with AI",
+          "rest": " via a misconfigured npm package — a developer rewrote the whole thing overnight with AI",
           "url": "https://fortune.com/2026/03/31/anthropic-source-code-claude-code-data-leak-second-security-lapse-days-after-accidentally-revealing-mythos/"
         },
         {
@@ -1315,13 +1598,13 @@
         {
           "prefix": "Los Alamos National Lab ",
           "link_text": "installed ChatGPT on a nuclear supercomputer",
-          "rest": " \u2014 here's what happened",
+          "rest": " — here's what happened",
           "url": "https://www.vox.com/technology/484250/los-alamos-nuclear-ai-openai-chatgpt"
         },
         {
           "prefix": "GitHub Copilot caught ",
           "link_text": "sneaking ads into developers' pull requests",
-          "rest": " \u2014 over 11,000 repos affected",
+          "rest": " — over 11,000 repos affected",
           "url": "https://officechai.com/ai/user-discovers-that-github-copilot-edited-an-ad-into-their-pr-company-responds/"
         },
         {
@@ -1346,7 +1629,7 @@
       "tools": [
         {
           "name": "Gemini",
-          "desc": "Google now lets you import your full chat history and saved memories from ChatGPT and Claude directly into Gemini \u2014 so you can switch without starting over",
+          "desc": "Google now lets you import your full chat history and saved memories from ChatGPT and Claude directly into Gemini — so you can switch without starting over",
           "url": "https://www.ghacks.net/2026/03/31/google-adds-chatgpt-and-claude-import-tools-to-gemini-for-memory-and-chat-history/"
         },
         {
@@ -1356,12 +1639,12 @@
         },
         {
           "name": "Telegram",
-          "desc": "The messaging app now has a built-in AI text editor that can fix grammar, rewrite your messages in different styles, or translate them \u2014 all right in the chat bar before you hit send",
+          "desc": "The messaging app now has a built-in AI text editor that can fix grammar, rewrite your messages in different styles, or translate them — all right in the chat bar before you hit send",
           "url": "https://telegram.org/blog/ai-editor-mighty-polls-and-more"
         },
         {
           "name": "GitHub Copilot CLI",
-          "desc": "A new /fleet command lets Copilot break a coding task into pieces and work on multiple files simultaneously with parallel agents \u2014 like having a whole dev team in your terminal",
+          "desc": "A new /fleet command lets Copilot break a coding task into pieces and work on multiple files simultaneously with parallel agents — like having a whole dev team in your terminal",
           "url": "https://github.blog/ai-and-ml/github-copilot/run-multiple-agents-at-once-with-fleet-in-copilot-cli/"
         },
         {
@@ -1423,11 +1706,11 @@
     "slug": "march-29-2026",
     "title": "Thorium Valley | March 29, 2026",
     "date": "March 29, 2026",
-    "intro": "Good Morning Thorium Valley.\n\nAnthropic didn't ship a product last week \u2014 it leaked a slide. That was enough to wipe billions off cybersecurity stocks in a single afternoon.\n\nOver at xAI, the last of Elon Musk's eleven original co-founders just walked out, leaving a $250 billion company with no one from its founding team still around.\n\nAnd Google is borrowing from the telecom playbook with a new tool that ports your ChatGPT history straight into Gemini \u2014 switching chatbots is now as easy as switching carriers. In AI right now, a rumor moves markets, talent walks, and loyalty is up for grabs.",
+    "intro": "Good Morning Thorium Valley.\n\nAnthropic didn't ship a product last week — it leaked a slide. That was enough to wipe billions off cybersecurity stocks in a single afternoon.\n\nOver at xAI, the last of Elon Musk's eleven original co-founders just walked out, leaving a $250 billion company with no one from its founding team still around.\n\nAnd Google is borrowing from the telecom playbook with a new tool that ports your ChatGPT history straight into Gemini — switching chatbots is now as easy as switching carriers. In AI right now, a rumor moves markets, talent walks, and loyalty is up for grabs.",
     "toc": [
       "A leaked AI model name crashed an entire sector",
       "Every person who built xAI has left",
-      "Google wants you to dump ChatGPT \u2014 and made it easy"
+      "Google wants you to dump ChatGPT — and made it easy"
     ],
     "article_slugs": [
       "a-leaked-model-name-crashed-an-entire-sector",
@@ -1456,7 +1739,7 @@
           "prefix": "Physical Intelligence, a two-year-old robotics startup, is ",
           "link_text": "in talks for an $11 billion valuation",
           "url": "https://www.bloomberg.com/news/articles/2026-03-27/ex-deepmind-staffers-robotics-startup-in-talks-for-11-billion-valuation?srnd=homepage-americas",
-          "rest": " \u2014 double what it was four months ago"
+          "rest": " — double what it was four months ago"
         },
         {
           "prefix": "Eli Lilly signs a ",
@@ -1480,25 +1763,25 @@
           "prefix": "A Florida man ",
           "link_text": "used ChatGPT to sell his house for $955K",
           "url": "https://timesofindia.indiatimes.com/world/us/florida-man-sells-family-home-for-954800-using-chatgpt-100000-above-agent-estimates/articleshow/129872126.cms",
-          "rest": " \u2014 $100,000 above what real estate agents estimated"
+          "rest": " — $100,000 above what real estate agents estimated"
         },
         {
           "prefix": "Someone ",
           "link_text": "used Claude to reverse-engineer the Apollo 11 moon landing code",
           "url": "https://www.airealist.ai/p/reverse-engineering-the-apollo-11",
-          "rest": " \u2014 40,000 lines of 1960s assembly for a computer with 4KB of RAM"
+          "rest": " — 40,000 lines of 1960s assembly for a computer with 4KB of RAM"
         }
       ],
       "tools": [
         {
           "name": "Codex",
           "url": "https://the-decoder.com/openais-codex-gets-a-plugin-marketplace-for-slack-notion-figma-and-more/",
-          "desc": "OpenAI's coding agent now has a plugin marketplace that connects to Slack, Figma, Notion, Gmail, and Google Drive \u2014 so it can plan projects, pull designs, and message your team, not just write code"
+          "desc": "OpenAI's coding agent now has a plugin marketplace that connects to Slack, Figma, Notion, Gmail, and Google Drive — so it can plan projects, pull designs, and message your team, not just write code"
         },
         {
           "name": "Notion",
           "url": "https://www.notion.com/releases/2026-03-26",
-          "desc": "Version 3.4 adds dashboards for your databases, a presentation mode that turns any doc into a slideshow, and a redesigned sidebar \u2014 plus AI agents that can build dashboards for you on command"
+          "desc": "Version 3.4 adds dashboards for your databases, a presentation mode that turns any doc into a slideshow, and a redesigned sidebar — plus AI agents that can build dashboards for you on command"
         },
         {
           "name": "Gemini",
@@ -1508,7 +1791,7 @@
         {
           "name": "Google Ads",
           "url": "https://searchengineland.com/google-brings-its-veo-video-generation-model-to-google-ads-globally-472836",
-          "desc": "Advertisers can now use Google's Veo video model to turn static images into 10-second video ads for YouTube \u2014 no video production team required"
+          "desc": "Advertisers can now use Google's Veo video model to turn static images into 10-second video ads for YouTube — no video production team required"
         },
         {
           "name": "Glean",
@@ -1585,11 +1868,11 @@
     "slug": "march-27-2026",
     "title": "Thorium Valley | March 27, 2026",
     "date": "March 27, 2026",
-    "intro": "Good Morning Thorium Valley,\n\nThe AI boom is running into friction on every front. A half-trillion-dollar data center buildout is facing something the tech industry didn't budget for: organized neighbors, bipartisan opposition, and a moratorium bill from Sanders and AOC that's dead on arrival but signals something real.\n\nMorningstar just stress-tested 132 companies through an AI lens and triggered the largest moat reclassification in its 20-year history \u2014 Adobe, Salesforce, and Oracle among the casualties.\n\nAnd Stanford researchers found that chatbots are telling you what you want to hear, hardening false beliefs over time. The worst part? Users prefer it that way.",
+    "intro": "Good Morning Thorium Valley,\n\nThe AI boom is running into friction on every front. A half-trillion-dollar data center buildout is facing something the tech industry didn't budget for: organized neighbors, bipartisan opposition, and a moratorium bill from Sanders and AOC that's dead on arrival but signals something real.\n\nMorningstar just stress-tested 132 companies through an AI lens and triggered the largest moat reclassification in its 20-year history — Adobe, Salesforce, and Oracle among the casualties.\n\nAnd Stanford researchers found that chatbots are telling you what you want to hear, hardening false beliefs over time. The worst part? Users prefer it that way.",
     "toc": [
       "The $710 billion AI buildout hits a wall: neighbors",
       "Morningstar scored 130 companies on AI survival",
-      "Your AI chatbot is a yes-man \u2014 and you like it that way"
+      "Your AI chatbot is a yes-man — and you like it that way"
     ],
     "article_slugs": [
       "nobody-wants-an-ai-data-center-next-door",
@@ -1612,7 +1895,7 @@
         {
           "link_text": "Baltimore sues xAI over Grok deepfakes",
           "url": "https://reut.rs/3PZbzKk",
-          "rest": ", alleging the chatbot generates nonconsensual explicit images \u2014 including of children"
+          "rest": ", alleging the chatbot generates nonconsensual explicit images — including of children"
         },
         {
           "link_text": "OpenAI secures an extra $10 billion",
@@ -1622,7 +1905,7 @@
         {
           "link_text": "Anthropic and the Pentagon face off in court",
           "url": "https://www.npr.org/2026/03/24/nx-s1-5759276/anthropic-pentagon-claude-preliminary-injunction-hearing",
-          "rest": " \u2014 judge says the government's ban on Claude \"looks like punishment\""
+          "rest": " — judge says the government's ban on Claude \"looks like punishment\""
         },
         {
           "link_text": "Legal AI startup Harvey hits $11 billion valuation",
@@ -1632,7 +1915,7 @@
         {
           "link_text": "Arm unveils its first-ever custom chip",
           "url": "https://today.reuters.com/business/media-telecom/arm-unveils-new-ai-chip-expects-it-add-billions-annual-revenue-2026-03-24/",
-          "rest": ", the AGI CPU, with Meta as lead partner \u2014 expects billions in new revenue"
+          "rest": ", the AGI CPU, with Meta as lead partner — expects billions in new revenue"
         },
         {
           "link_text": "Huawei claims its new Atlas 350 accelerator",
@@ -1740,7 +2023,7 @@
     "slug": "march-20-2026",
     "title": "Thorium Valley | March 20, 2026",
     "date": "March 20, 2026",
-    "intro": "Good Morning Thorium Valley.\n\nAn AI agent at Meta leaked restricted employee data last week \u2014 not from a hack, but because the agent didn't know it shouldn't. Existing security tools couldn't distinguish normal behavior from a breach until the damage was done, and that's a problem every company deploying agents is about to face.\n\nMicrosoft is retreating on a different front: over 11,000 people starred a GitHub project to rip AI out of Windows, and the company is now pulling Copilot from consumer apps while quietly redirecting everything toward enterprise, where the money is.\n\nWashington wants to write one AI rulebook for all of it, which might be the most consequential story here if anyone can agree on what goes in it.",
+    "intro": "Good Morning Thorium Valley.\n\nAn AI agent at Meta leaked restricted employee data last week — not from a hack, but because the agent didn't know it shouldn't. Existing security tools couldn't distinguish normal behavior from a breach until the damage was done, and that's a problem every company deploying agents is about to face.\n\nMicrosoft is retreating on a different front: over 11,000 people starred a GitHub project to rip AI out of Windows, and the company is now pulling Copilot from consumer apps while quietly redirecting everything toward enterprise, where the money is.\n\nWashington wants to write one AI rulebook for all of it, which might be the most consequential story here if anyone can agree on what goes in it.",
     "toc": [
       "Meta's rogue AI agent is everyone's problem now",
       "Microsoft is done shoving Copilot into everything",
@@ -1763,7 +2046,7 @@
     "slug": "march-10-2026",
     "title": "Thorium Valley | March 10, 2026",
     "date": "March 10, 2026",
-    "intro": "Good Morning Thorium Valley.\n\nA survey of nearly 6,000 executives found over 80% of firms report zero productivity gains from AI\u2014even as 70% actively use it and half a trillion dollars flows into infrastructure this year. Goldman coined a term for the disconnect: \"AI-nxiety.\"\n\nNvidia is stepping back too, with Jensen Huang saying the company is done funding AI labs. He framed it as IPO timing, though the less comfortable read involves a chipmaker bankrolling its own biggest customers.\n\nThen two OpenAI engineers built an internal data agent with the same tools the company sells externally\u2014and it quietly became the most-used product in the building. Somewhere between the trillion-dollar uncertainty and the 82-second query, there's probably a realistic picture of where AI actually stands.",
+    "intro": "Good Morning Thorium Valley.\n\nA survey of nearly 6,000 executives found over 80% of firms report zero productivity gains from AI—even as 70% actively use it and half a trillion dollars flows into infrastructure this year. Goldman coined a term for the disconnect: \"AI-nxiety.\"\n\nNvidia is stepping back too, with Jensen Huang saying the company is done funding AI labs. He framed it as IPO timing, though the less comfortable read involves a chipmaker bankrolling its own biggest customers.\n\nThen two OpenAI engineers built an internal data agent with the same tools the company sells externally—and it quietly became the most-used product in the building. Somewhere between the trillion-dollar uncertainty and the 82-second query, there's probably a realistic picture of where AI actually stands.",
     "toc": [
       "Goldman can't find AI's productivity boost",
       "Nvidia says it's done investing in AI labs",
@@ -1786,7 +2069,7 @@
     "slug": "march-04-2026",
     "title": "Thorium Valley | March 04, 2026",
     "date": "March 04, 2026",
-    "intro": "Good Morning Thorium Valley.\n\nOpenAI is having a week where every headline looks great until you read the second paragraph. The company replaced Anthropic as the Pentagon's AI provider\u2014then Sam Altman called his own deal \"opportunistic and sloppy\" and rushed to add the surveillance guardrails it had skipped.\n\nGPT-5.3 Instant arrives with OpenAI conceding its chatbot was preachy and over-cautious\u2014a fix that conveniently lands the same week Claude hit No. 1 on the App Store.\n\nAnd that $110B funding round? Nvidia slashed its commitment by 70%, Amazon tied big chunks to milestone triggers, and Microsoft sat it out entirely. Three massive moves, three sets of fine print.",
+    "intro": "Good Morning Thorium Valley.\n\nOpenAI is having a week where every headline looks great until you read the second paragraph. The company replaced Anthropic as the Pentagon's AI provider—then Sam Altman called his own deal \"opportunistic and sloppy\" and rushed to add the surveillance guardrails it had skipped.\n\nGPT-5.3 Instant arrives with OpenAI conceding its chatbot was preachy and over-cautious—a fix that conveniently lands the same week Claude hit No. 1 on the App Store.\n\nAnd that $110B funding round? Nvidia slashed its commitment by 70%, Amazon tied big chunks to milestone triggers, and Microsoft sat it out entirely. Three massive moves, three sets of fine print.",
     "toc": [
       "OpenAI calls its own Pentagon deal 'sloppy'",
       "ChatGPT just got a personality and accuracy overhaul",
@@ -1809,7 +2092,7 @@
     "slug": "february-27-2026",
     "title": "Thorium Valley | February 27, 2026",
     "date": "February 27, 2026",
-    "intro": "Good Morning Thorium Valley.\n\nThe Pentagon has given Anthropic until Friday to drop Claude's safety restrictions for military use \u2014 or face the Defense Production Act or a blacklist from federal contractors. The legal footing is shaky, but the pressure is real.\n\nMeanwhile, Anthropic just plugged Claude Cowork into Salesforce, Slack, Excel, and a dozen other enterprise tools, betting that AI agents failed in 2025 not because the idea was wrong but because the approach was.\n\nAnd Google quietly shipped something Apple promised two years ago and never delivered: Gemini can now book your Uber, order your DoorDash, and run real errands inside Android apps. It still asks before it spends your money, though.",
+    "intro": "Good Morning Thorium Valley.\n\nThe Pentagon has given Anthropic until Friday to drop Claude's safety restrictions for military use — or face the Defense Production Act or a blacklist from federal contractors. The legal footing is shaky, but the pressure is real.\n\nMeanwhile, Anthropic just plugged Claude Cowork into Salesforce, Slack, Excel, and a dozen other enterprise tools, betting that AI agents failed in 2025 not because the idea was wrong but because the approach was.\n\nAnd Google quietly shipped something Apple promised two years ago and never delivered: Gemini can now book your Uber, order your DoorDash, and run real errands inside Android apps. It still asks before it spends your money, though.",
     "toc": [
       "Anthropic's Friday deadline: bend or break",
       "Claude Cowork plugs into your entire workflow",
@@ -1832,7 +2115,7 @@
     "slug": "february-24-2026",
     "title": "Thorium Valley | February 24, 2026",
     "date": "February 24, 2026",
-    "intro": "Good Morning Thorium Valley.\n\nArtificial Analysis just overhauled its Intelligence Index \u2014 the scorecard many use to rank AI models \u2014 and the results are humbling. They replaced older academic-style benchmarks with real-world evaluations, and suddenly top models are scoring 50 or below on a 100-point scale.\n\nSome of these same models were posting scores in the high 80s on the old tests. Turns out they'd gotten really good at passing exams without necessarily being useful. The AI equivalent of acing the SAT but struggling to file your taxes.",
+    "intro": "Good Morning Thorium Valley.\n\nArtificial Analysis just overhauled its Intelligence Index — the scorecard many use to rank AI models — and the results are humbling. They replaced older academic-style benchmarks with real-world evaluations, and suddenly top models are scoring 50 or below on a 100-point scale.\n\nSome of these same models were posting scores in the high 80s on the old tests. Turns out they'd gotten really good at passing exams without necessarily being useful. The AI equivalent of acing the SAT but struggling to file your taxes.",
     "toc": [
       "Apple Paid Google $1B. Siri Still Doesn't Work.",
       "Most AI Agent Projects Are Headed for the Trash",
@@ -1855,7 +2138,7 @@
     "slug": "february-23-2026",
     "title": "Thorium Valley | February 23, 2026",
     "date": "February 23, 2026",
-    "intro": "Good Morning Thorium Valley.\n\nJensen Huang is doing the tech CEO equivalent of shaking a wrapped present in front of you. In an interview last week, the NVIDIA chief <a href=\"https://www.kedglobal.com/artificial-intelligence/newsView/ked202602190001\" style=\"color:#5170ff;text-decoration:none;\">teased</a> that \"a chip that will surprise the world\" will be unveiled at GTC next month.\n\nNo specifics\u2014that would ruin the buildup. But the AI chip race is moving fast enough that even a grain of salt might be underselling the hype.",
+    "intro": "Good Morning Thorium Valley.\n\nJensen Huang is doing the tech CEO equivalent of shaking a wrapped present in front of you. In an interview last week, the NVIDIA chief <a href=\"https://www.kedglobal.com/artificial-intelligence/newsView/ked202602190001\" style=\"color:#5170ff;text-decoration:none;\">teased</a> that \"a chip that will surprise the world\" will be unveiled at GTC next month.\n\nNo specifics—that would ruin the buildup. But the AI chip race is moving fast enough that even a grain of salt might be underselling the hype.",
     "toc": [
       "The Most Popular AI Tool Is a Security Disaster",
       "China's AI Video App Just Lawyered Up Hollywood",
@@ -1878,7 +2161,7 @@
     "slug": "march-25-2026",
     "title": "Thorium Valley | March 25, 2026",
     "date": "March 25, 2026",
-    "intro": "Good Morning Thorium Valley.\n\nA federal judge accused the Pentagon of trying to \"cripple\" Anthropic for refusing to strip safety guardrails from Claude \u2014 the sharpest language yet in a case that could reshape how the government wields power over AI companies.\n\nAnthropic, meanwhile, is still shipping: Claude Dispatch now works your desktop while you're away, though its 50% success rate means you'll want to check its homework.\n\nAnd OpenClaw just skipped the slow rollout entirely \u2014 Tencent pushed it to WeChat's 1.4 billion users in a single update. No new app. No waitlist. Jensen Huang is calling it the most popular open-source project in human history.",
+    "intro": "Good Morning Thorium Valley.\n\nA federal judge accused the Pentagon of trying to \"cripple\" Anthropic for refusing to strip safety guardrails from Claude — the sharpest language yet in a case that could reshape how the government wields power over AI companies.\n\nAnthropic, meanwhile, is still shipping: Claude Dispatch now works your desktop while you're away, though its 50% success rate means you'll want to check its homework.\n\nAnd OpenClaw just skipped the slow rollout entirely — Tencent pushed it to WeChat's 1.4 billion users in a single update. No new app. No waitlist. Jensen Huang is calling it the most popular open-source project in human history.",
     "toc": [
       "Judge says Pentagon was out to 'punish' Anthropic",
       "Claude now works while you're away. Sort of.",
@@ -1899,7 +2182,7 @@
       "news": [
         {
           "link_text": "OpenAI kills Sora",
-          "rest": " as compute crunch forces hard choices \u2014 Disney's $1B deal goes with it",
+          "rest": " as compute crunch forces hard choices — Disney's $1B deal goes with it",
           "url": "https://www.businessinsider.com/openai-discontinues-sora-video-app-amid-robotics-shift-compute-limitations-2026-3"
         },
         {
@@ -1910,7 +2193,7 @@
         {
           "prefix": "Epic Games ",
           "link_text": "lays off 1,000+ workers",
-          "rest": " \u2014 CEO Tim Sweeney insists AI isn't to blame",
+          "rest": " — CEO Tim Sweeney insists AI isn't to blame",
           "url": "https://gizmodo.com/epic-games-laying-off-1000-employees-swears-ai-is-not-to-blame-2000737581"
         },
         {
@@ -1927,7 +2210,7 @@
         {
           "prefix": "Jensen Huang tells Lex Fridman ",
           "link_text": "\"I think we've achieved AGI\"",
-          "rest": " \u2014 his definition: an AI that can start a billion-dollar company",
+          "rest": " — his definition: an AI that can start a billion-dollar company",
           "url": "https://awesomeagents.ai/news/jensen-huang-agi-arrived/"
         },
         {
@@ -1946,7 +2229,7 @@
       "tools": [
         {
           "name": "Figma",
-          "desc": "AI agents like Claude Code, Codex, and Cursor can now design directly on Figma's canvas \u2014 creating and editing components tied to your existing design system via a new MCP tool",
+          "desc": "AI agents like Claude Code, Codex, and Cursor can now design directly on Figma's canvas — creating and editing components tied to your existing design system via a new MCP tool",
           "url": "https://aihola.com/article/figma-ai-agents-canvas-mcp"
         },
         {
@@ -1956,17 +2239,17 @@
         },
         {
           "name": "GitHub Copilot",
-          "desc": "You can now @mention Copilot directly in pull requests to fix failing tests, address review comments, or make changes \u2014 it spins up its own cloud environment, validates, and pushes",
+          "desc": "You can now @mention Copilot directly in pull requests to fix failing tests, address review comments, or make changes — it spins up its own cloud environment, validates, and pushes",
           "url": "https://github.blog/changelog/2026-03-24-ask-copilot-to-make-changes-to-any-pull-request/"
         },
         {
           "name": "Google TV",
-          "desc": "Gemini now powers richer visual answers on your TV \u2014 ask about a game and get live scores with streaming links, or dive into narrated deep dives on topics like health and economics",
+          "desc": "Gemini now powers richer visual answers on your TV — ask about a game and get live scores with streaming links, or dive into narrated deep dives on topics like health and economics",
           "url": "https://blog.google/products-and-platforms/platforms/google-tv/new-gemini-features-march-2026/"
         },
         {
           "name": "Linear",
-          "desc": "Linear Agent understands your roadmap, issues, and codebase \u2014 ask it to draft project updates, triage new issues, or save recurring workflows as reusable skills",
+          "desc": "Linear Agent understands your roadmap, issues, and codebase — ask it to draft project updates, triage new issues, or save recurring workflows as reusable skills",
           "url": "https://linear.app/changelog/2026-03-24-introducing-linear-agent"
         }
       ],

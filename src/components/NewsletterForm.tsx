@@ -2,7 +2,7 @@
 
 import { useActionState, useEffect } from 'react';
 import { subscribeAction } from '@/app/actions/subscribe';
-import { trackLead } from '@/lib/meta-pixel';
+import { trackLead, setAdvancedMatching } from '@/lib/meta-pixel';
 
 interface NewsletterFormProps {
   className?: string;
@@ -15,7 +15,8 @@ export function NewsletterForm({ className = '' }: NewsletterFormProps) {
     if (state?.success) {
       // Grab email from the form for advanced matching
       const emailInput = document.querySelector<HTMLInputElement>('input[name="email"]');
-      trackLead(emailInput?.value || undefined);
+      if (emailInput?.value) setAdvancedMatching(emailInput.value);
+      trackLead();
     }
   }, [state?.success]);
 

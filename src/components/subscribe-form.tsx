@@ -4,7 +4,7 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { subscribeAction } from "@/app/actions/subscribe"
-import { trackLead } from "@/lib/meta-pixel"
+import { trackLead, setAdvancedMatching } from "@/lib/meta-pixel"
 
 interface SubscribeFormProps {
     variant?: "hero" | "footer" | "navbar"
@@ -52,7 +52,8 @@ export function SubscribeForm({ variant = "hero", className = "", redirectOnSucc
             const data = await res.json()
 
             if (data.subscriber_id) {
-                trackLead(email)
+                setAdvancedMatching(email)
+                trackLead()
                 // Store subscriber info so /subscribe can pick it up
                 localStorage.setItem('tv_subscribe_progress', JSON.stringify({
                     formData: {

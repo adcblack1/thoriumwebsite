@@ -23,7 +23,7 @@ const NEWSLETTERS = [
     id: 'the-lab',
     name: 'The Lab',
     logo: '/images/lab-logo-dark.png',
-    description: 'Interesting and useful AI tools and whether they\'re worth trying out.',
+    description: 'Independent reviews of the AI tools your team is paying for.',
     frequency: 'Biweekly',
   },
 ];

@@ -1,5 +1,142 @@
 [
   {
+    "id": "catalyst-may-04-2026",
+    "slug": "catalyst-may-04-2026",
+    "publication": "the-catalyst",
+    "title": "The Catalyst | May 4, 2026",
+    "date": "May 4, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to the Catalyst Newsletter.\n\nToday we've got a bank CEO who let his AI clone deliver 30 minutes of a Wall Street earnings call before telling anyone it wasn't him. The financials behind the stunt are what make it hard to laugh off.\n\nWe're also looking at a guy who can't write a single line of code but manages more than 30 AI agents every day, and how his actual job quietly turned into something nobody had a title for a year ago.\n\nAnd then there's BCG telling companies to spend dramatically more on AI tokens, while a growing pile of research, including some tied to BCG itself, suggests that more usage doesn't actually mean better work. Meta and Salesforce already went all in on tracking it. The early results are not what anyone expected.",
+    "toc": [
+      "CEO's AI Clone Faces Wall Street",
+      "He Manages More Than 30 AI Agents and Can't Write a Line of Code",
+      "BCG Says 'Start the Pump' on AI Tokens. Its Own Research Disagrees."
+    ],
+    "article_slugs": [
+      "ceos-ai-clone-faces-wall-street",
+      "he-manages-more-than-30-ai-agents-and-cant-write-a-line-of-code",
+      "bcg-says-start-the-pump-on-ai-tokens-its-own-research-disagrees"
+    ],
+    "stories": [],
+    "sign_off": "That's the Catalyst for this issue. If you know a company doing something interesting with AI that nobody's covering, reply and tell us about it.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-catalyst-2026-05-04.png",
+    "thumbnail_url": "/thumbnails/ceos-ai-clone-faces-wall-street.jpeg",
+    "published_at": "2026-05-04T13:00:00.000Z",
+    "updated_at": "2026-05-04T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Pentagon signs classified AI deals with seven companies",
+          "rest": " — including SpaceX, OpenAI, and Nvidia — while deliberately freezing out Anthropic for refusing to remove safety limits on military use",
+          "url": "https://thenextweb.com/news/pentagon-ai-deals-anthropic-safety-limits"
+        },
+        {
+          "link_text": "Oracle workers say they were fired after training AI to replace them",
+          "rest": " — up to 30,000 laid off in a single month while the company borrows billions for data centers",
+          "url": "https://time.com/article/2026/04/30/oracle-layoffs-ai-tech-jobs/"
+        },
+        {
+          "link_text": "Zuckerberg told employees AI spending is why they're losing their jobs",
+          "rest": " and declined to rule out more cuts, saying \"I don't have a crystal ball\"",
+          "url": "https://www.cnbc.com/2026/05/01/meta-ceo-warns-more-layoffs-possible-blames-capital-spending-ai.html"
+        },
+        {
+          "link_text": "OpenAI is now sharing user data with advertisers",
+          "rest": " — a quiet privacy policy update formalizes receiving purchase data from ad partners and targeting users with third-party ads",
+          "url": "https://www.adweek.com/media/openai-is-sharing-its-users-data-with-advertisers/"
+        },
+        {
+          "link_text": "Nvidia's B300 servers are selling for $1 million each on China's grey market",
+          "rest": ", nearly double the U.S. price, as a crackdown on chip smuggling dries up supply",
+          "url": "https://telecom.economictimes.indiatimes.com/news/devices/prices-of-nvidias-b300-server-at-1-million-in-china-on-us-curbs/130667536"
+        },
+        {
+          "link_text": "Boston Dynamics is losing its entire C-suite",
+          "rest": " — the CEO retired, the CTO defected to Google DeepMind, and the board is pushing to speed up humanoid robot production for Hyundai's factories",
+          "url": "https://www.semafor.com/article/05/01/2026/c-suite-exodus-at-boston-dynamics"
+        },
+        {
+          "link_text": "AI chipmaker Cerebras is targeting a $40 billion IPO",
+          "rest": " after landing a $10 billion deal with OpenAI — up from an $8 billion valuation just five months ago",
+          "url": "https://thenextweb.com/news/cerebras-ipo-4-billion-40-billion-valuation"
+        },
+        {
+          "prefix": "Only 13% of Trump voters want the government to ",
+          "link_text": "stay out of regulating AI",
+          "rest": " — three-quarters want strict rules, and nearly half say the risks outweigh the benefits",
+          "url": "https://www.yahoo.com/news/articles/poll-gop-voters-skeptical-ai-110000511.html"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Wispr Flow",
+          "desc": "The new viral voice-to-text AI for iPhone and Mac that actually understands what you're saying every time",
+          "url": "https://ref.wisprflow.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Superpower",
+          "desc": "The health app that tests your blood and uses AI to tell you what's actually going on with your body before your doctor does",
+          "url": "https://partners.superpower.com/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Perplexity Personal Computer",
+          "desc": "Perplexity's agentic platform now runs locally on your Mac mini 24/7 — you can start a task from your phone and come back to find it done, with new integrations for Microsoft Teams, Excel, and a 1Password partnership that lets it work inside password-protected tools without ever seeing your credentials",
+          "url": "https://9to5mac.com/2026/05/01/following-apple-shoutout-perplexity-elaborates-on-mac-native-personal-computer-platform/",
+          "sponsored": false
+        },
+        {
+          "name": "Claude Design",
+          "desc": "Anthropic's standalone design tool lets you describe a presentation, poster, or social graphic in plain English and get a polished result in minutes — you can tweak individual elements through conversation instead of dragging things around, then export straight to PowerPoint, PDF, or Canva",
+          "url": "https://www.xda-developers.com/claude-design-quietly-replaced-canva-adobe-express-figma-and-notebooklm-for-me/",
+          "sponsored": false
+        },
+        {
+          "name": "NotebookLM in Gemini",
+          "desc": "Google opened up notebooks inside the Gemini app to all free and paid users — you can now add files and documents to a notebook for context, keep all your research conversations in one place, and everything syncs with NotebookLM automatically",
+          "url": "https://www.androidpolice.com/google-brings-geminis-smartest-feature-to-everyone/",
+          "sponsored": false
+        },
+        {
+          "name": "Keeper Agent Kit",
+          "desc": "An open-source toolkit that lets AI coding agents like Claude Code, Cursor, and GitHub Copilot pull passwords and API keys securely at runtime — so your credentials never get pasted into a chat prompt or leaked into your code history",
+          "url": "https://securitybrief.ca/story/keeper-security-launches-agent-kit-for-ai-coding-agents",
+          "sponsored": false
+        },
+        {
+          "name": "Mistral Medium 3.5",
+          "desc": "Mistral's new model powers coding sessions that keep running in the cloud after you close your laptop — start a task in Le Chat or the Vibe CLI, walk away, and check back later to see the finished work with a full log of every file change",
+          "url": "https://aipressa.com/top-stories/mistral-launches-medium-3-5-enabling-cloud-based-remote-coding-agents-in-vibe-and-le-chat/",
+          "sponsored": false
+        }
+      ]
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "35cd7248-178f-49db-8fbe-770544b75913",
+      "question": "What's the biggest reason you're not using AI more at work?",
+      "options": [
+        "Don't know where to start",
+        "No time to figure it out",
+        "Tried it, wasn't impressed",
+        "Actually, I use it all the time",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "What's the biggest reason you're not using AI more at work?",
+      "results": [
+        {
+          "option": "No time to figure it out",
+          "pct": 100
+        }
+      ]
+    },
+    "yesterdays_results": null
+  },
+  {
     "id": "catalyst-april-29-2026",
     "slug": "catalyst-april-29-2026",
     "publication": "the-catalyst",

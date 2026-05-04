@@ -111,7 +111,7 @@ export default function NewsletterArchivePage() {
             {[
               { id: 'the-catalyst', name: 'The Catalyst', logo: '/images/catalyst-logo-dark.png', desc: 'How businesses and people are implementing AI.', freq: 'Biweekly', order: 'order-1', depth: true, logoH: 'h-20' },
               { id: 'thorium-valley', name: 'Thorium Valley', logo: '/Transparent Black Logo.png', desc: 'Our flagship daily newsletter covering everything happening in AI. News, tools, and what it means for you.', freq: 'Daily', flagship: true, order: 'order-2', depth: false, logoH: 'h-12' },
-              { id: 'the-lab', name: 'The Lab', logo: '/images/lab-logo-dark.png', desc: 'Interesting and useful AI tools and whether they\'re worth trying out.', freq: 'Biweekly', order: 'order-3', depth: true, logoH: 'h-20' },
+              { id: 'the-lab', name: 'The Lab', logo: '/images/lab-logo-dark.png', desc: 'Independent reviews of the AI tools your team is paying for.', freq: 'Biweekly', order: 'order-3', depth: true, logoH: 'h-20' },
             ].map((nl) => {
               const isSelected = selected.includes(nl.id);
               return (
@@ -166,7 +166,7 @@ export default function NewsletterArchivePage() {
             {[
               { id: 'thorium-valley', name: 'Thorium Valley', logo: '/Transparent Black Logo.png', desc: 'Our flagship daily newsletter covering everything happening in AI.', freq: 'Daily', flagship: true, logoH: 'h-8' },
               { id: 'the-catalyst', name: 'The Catalyst', logo: '/images/catalyst-logo-dark.png', desc: 'How businesses and people are implementing AI.', freq: 'Biweekly', logoH: 'h-12' },
-              { id: 'the-lab', name: 'The Lab', logo: '/images/lab-logo-dark.png', desc: 'Interesting and useful AI tools and whether they\'re worth trying out.', freq: 'Biweekly', logoH: 'h-12' },
+              { id: 'the-lab', name: 'The Lab', logo: '/images/lab-logo-dark.png', desc: 'Independent reviews of the AI tools your team is paying for.', freq: 'Biweekly', logoH: 'h-12' },
             ].map((nl) => {
               const isSelected = selected.includes(nl.id);
               return (

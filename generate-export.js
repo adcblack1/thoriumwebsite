@@ -29,6 +29,9 @@ function processBody(html, isFirst) {
   // Replace vv-header div with into-the-valley image
   html = html.replace(/<div[^>]*class="vv-header"[^>]*>.*?<\/div>/gs,
     `<div style="padding:16px 0 4px;"><img src="${BASE}/thumbnails/into-the-valley.png" alt="Into the Valley" style="display:block;width:100%;height:auto;padding:0;" /></div>`);
+  // Also convert raw <h2>Into the Valley</h2> to image
+  html = html.replace(/<h2[^>]*>.*?Into the Valley.*?<\/h2>/gi,
+    `<div style="padding:16px 0 4px;"><img src="${BASE}/thumbnails/into-the-valley.png" alt="Into the Valley" style="display:block;width:100%;height:auto;padding:0;" /></div>`);
   // Style <p> tags
   html = html.replace(/<p>/g, `<p style="font-family:${SANS};font-size:16px;line-height:1.5;color:${TEXT};padding:10px 0;margin:0;">`);
   // Style <strong>
@@ -257,7 +260,7 @@ html += `<div style="padding:15px 15px;text-align:center;">
 html += `</div>`;
 
 // Write output
-const outDir = path.join(__dirname, '..', 'APRIL 29 CONTENT');
+const outDir = path.join(__dirname, '..', 'APRIL 31 CONTENT');
 const outPath = path.join(outDir, 'beehiiv-export.html');
 fs.writeFileSync(outPath, html, 'utf-8');
 const sizeKB = (Buffer.byteLength(html, 'utf-8') / 1024).toFixed(1);
