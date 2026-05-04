@@ -260,7 +260,17 @@ export default function SubscribePage() {
     }, {} as Record<string, string>);
     const mc: typeof metaCookies = {};
     if (cookies['_fbp']) mc.fbp = cookies['_fbp'];
-    if (cookies['_fbc']) mc.fbc = cookies['_fbc'];
+    
+    if (cookies['_fbc']) {
+      mc.fbc = cookies['_fbc'];
+    } else {
+      // Construct fbc from URL fbclid if pixel is blocked
+      const fbclid = searchParams.get('fbclid');
+      if (fbclid) {
+        mc.fbc = `fb.1.${Date.now()}.${fbclid}`;
+      }
+    }
+
     if (Object.keys(mc).length > 0) setMetaCookies(mc);
   }, [searchParams]);
 
