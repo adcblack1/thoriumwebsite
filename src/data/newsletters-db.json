@@ -1,5 +1,328 @@
 [
   {
+    "id": "may-06-2026",
+    "slug": "may-06-2026",
+    "title": "Thorium Valley | May 6, 2026",
+    "date": "May 6, 2026",
+    "intro": "Good Morning Thorium Valley. Beijing killed Meta's deal to buy Manus, a Chinese AI startup that incorporated in Singapore thinking that made it fair game for Western money. It did not. Founders have been told to pick a side.\n\nAnthropic and OpenAI — who agree on basically nothing — both announced near-identical enterprise joint ventures with private equity firms. On the same Sunday. Building the model was apparently the easy part.\n\nCompanies that told developers to go wild with AI coding tools are finding out what that actually costs. Some devs spend $500 a day on Claude Code. GitHub just ditched flat pricing for Copilot because it was quietly eating the difference.",
+    "toc": [
+      "China forces AI founders to pick a side",
+      "AI's biggest rivals built the same company overnight",
+      "Nobody budgeted for the AI bill"
+    ],
+    "article_slugs": [
+      "china-forces-ai-founders-to-pick-a-side",
+      "ais-biggest-rivals-built-the-same-company-overnight",
+      "nobody-budgeted-for-the-ai-bill"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-05-06.png",
+    "published_at": "2026-05-06T13:00:00.000Z",
+    "updated_at": "2026-05-06T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "tricked Grok into sending $204,000 in crypto",
+          "url": "https://coinstelegram.com/news/x-user-tricked-grok-into-sending-204000-in-crypto-with-a-hidden-code-trick-then-sent-it-back/",
+          "prefix": "An X user ",
+          "rest": " by hiding a transaction command inside a coding question — then sent it all back"
+        },
+        {
+          "link_text": "zero market share in China",
+          "url": "https://www.technobezz.com/news/nvidia-ceo-jensen-huang-confirms-company-has-zero-market-share-in-china-after-export-restrictions",
+          "prefix": "Nvidia CEO Jensen Huang confirms the company now has ",
+          "rest": "— down from 95% two years ago"
+        },
+        {
+          "link_text": "acquire Prior Labs and invest €1 billion",
+          "url": "https://news.sap.com/2026/05/sap-to-acquire-prior-labs-establish-frontier-ai-lab-europe/",
+          "prefix": "SAP to ",
+          "rest": " to build Europe's leading frontier AI lab — focused on the spreadsheet data that LLMs still can't handle"
+        },
+        {
+          "link_text": "streaks, badges, and manager check-ins",
+          "url": "https://www.businessinsider.com/disney-pushes-ai-usage-manager-checkin-messages-2026-4",
+          "prefix": "Disney is gamifying AI adoption with ",
+          "rest": "— one engineer says they haven't written code by hand in months"
+        },
+        {
+          "link_text": "let the US government review their AI models",
+          "url": "https://www.theglobeandmail.com/business/international-business/us-business/article-microsoft-google-and-xai-to-allow-us-government-to-vet-new-ai-models/",
+          "prefix": "Google, Microsoft, and xAI agreed to ",
+          "rest": " before public release — all five major labs are now in"
+        },
+        {
+          "link_text": "raises $950M at a $15 billion valuation",
+          "url": "https://techcrunch.com/2026/05/04/sierra-raises-950m-as-the-race-to-own-enterprise-ai-gets-serious/",
+          "prefix": "Bret Taylor's Sierra ",
+          "rest": ", now serving over 40% of the Fortune 50 with AI customer service agents"
+        },
+        {
+          "link_text": "acquires Israeli startup Astrix for $400M",
+          "url": "https://www.calcalistech.com/ctechnews/article/dy5obf581",
+          "prefix": "Cisco ",
+          "rest": " to secure the non-human identities that AI agents use to access company data"
+        },
+        {
+          "link_text": "run AI inference on ocean-powered computers",
+          "url": "https://www.prnewswire.com/news-releases/panthalassa-raises-140-million-to-power-ai-at-sea-302761078.html",
+          "prefix": "Panthalassa raises $140M from Peter Thiel to ",
+          "rest": " floating at sea"
+        }
+      ],
+      "tools": [
+        {
+          "name": "ChatGPT",
+          "desc": "OpenAI's new default model, GPT-5.5 Instant, hallucinates 52% less on medical and legal questions, gives shorter answers, and finally dials back the gratuitous emoji",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/924225/openai-chatgpt-default-model-gpt-5-5-instant"
+        },
+        {
+          "name": "Gemini",
+          "desc": "Google's AI assistant is getting a full visual redesign across iOS and Android — gradient backgrounds, a simplified prompt bar, and all tools unified under one clean menu",
+          "url": "https://9to5google.com/2026/05/03/gemini-full-redesign/"
+        },
+        {
+          "name": "Google Docs",
+          "desc": "Gemini in Docs now remembers your formatting preferences across all documents — set rules like \"always use bullet points\" once and they stick",
+          "url": "https://9to5google.com/2026/05/05/gemini-for-google-docs-gets-persistent-instruction-support/"
+        },
+        {
+          "name": "OpenAI Codex",
+          "desc": "Now controls your Mac screen, connects to 90+ apps like Jira and Slack, and can schedule its own tasks to keep working while you sleep — turning from a coding tool into a full AI workspace",
+          "url": "https://opentools.ai/news/openai-codex-screen-control-90-plugins-ai-workspace"
+        },
+        {
+          "name": "Gemini API File Search",
+          "desc": "Google's developer tool now searches images alongside text, adds metadata filters, and cites the exact page number where it found each answer",
+          "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanded-gemini-api-file-search-multimodal-rag/"
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Netflix",
+          "role": "Principal Machine Learning Architect, Content Promotion & Distribution",
+          "url": "https://hireza.wuaze.com/job/principal-machine-learning-architect-l7-content-promotion-distribution-3"
+        },
+        {
+          "company": "Regeneron",
+          "role": "Senior Manager, Artificial Intelligence — Global Development",
+          "url": "https://jobs.biospace.com/job/3045055/senior-manager-artificial-intelligence-global-development/"
+        },
+        {
+          "company": "Airbnb",
+          "role": "Staff Platform Manager, AI Personalization",
+          "url": "https://careers.airbnb.com/positions/7834495/"
+        },
+        {
+          "company": "Disney Entertainment",
+          "role": "Senior Principal Machine Learning Architect, Ad Platforms",
+          "url": "https://hireza.wuaze.com/job/senior-principal-machine-learning-architect-ad-platforms-4"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "79b723b8-aaa5-42f6-b005-4cdfe4ee788e",
+      "image_a": "/thumbnails/kicker-2026-05-06-real.jpg",
+      "image_b": "/thumbnails/kicker-2026-05-06-ai.jpeg",
+      "link_a": "https://unsplash.com/photos/coastal-town-with-boats-and-ocean-at-sunset-J0QxlbreoXc",
+      "link_b": "https://gemini.google.com/share/3d6b55cc62be"
+    },
+    "poll": {
+      "poll_id": "7069c566-c92b-4db9-b5f7-ae1872e4adc2",
+      "question": "Are most \"AI layoffs\" actually about AI?",
+      "options": [
+        "Yes",
+        "No",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "Are most \"AI layoffs\" actually about AI?",
+      "total_votes": 3,
+      "results": [
+        {
+          "answer": "No",
+          "count": 2,
+          "percentage": 67
+        },
+        {
+          "answer": "Yes",
+          "count": 1,
+          "percentage": 33
+        }
+      ]
+    },
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-05-05-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-05-05-real.jpg",
+      "ai_source": "https://gemini.google.com/share/7aff46a8fa54",
+      "real_source": "https://unsplash.com/photos/river-winding-through-forested-hills-at-sunset-wWFcv6e08pc"
+    }
+  },
+  {
+    "id": "may-05-2026",
+    "slug": "may-05-2026",
+    "title": "Thorium Valley | May 5, 2026",
+    "date": "May 5, 2026",
+    "intro": "Good Morning Thorium Valley. Anthropic cut OpenClaw off from Claude subscriptions. Four weeks later, OpenAI opened the door for all of those users. Sam Altman signed off with \"Happy lobstering.\" Real subtle, Sam.\n\nTurns out 59% of companies admit they exaggerate AI's role in layoffs because it plays better with investors. Ninety-two percent of them are still hiring this year. The AI job apocalypse is looking a lot more like a PR strategy than an actual workforce shift.\n\nAnd on May Day, protesters showed up at Anthropic, OpenAI, and xAI — not with op-eds or tweets, but picket signs. AI labs are used to congressional pressure. Angry crowds at the front door is a different thing entirely.",
+    "toc": [
+      "Anthropic blocked OpenClaw. OpenAI was waiting.",
+      "59% of companies admit AI layoffs are for show",
+      "May Day protesters marched on the AI labs"
+    ],
+    "article_slugs": [
+      "anthropic-blocked-openclaw-openai-was-waiting",
+      "59-percent-of-companies-admit-ai-layoffs-are-for-show",
+      "may-day-protesters-marched-on-the-ai-labs"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-05-05.png",
+    "published_at": "2026-05-05T13:00:00.000Z",
+    "updated_at": "2026-05-05T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Meta cuts 8,000 jobs",
+          "rest": " to fund its $125–145B AI infrastructure splurge — Zuckerberg told staff it's a zero-sum choice between people and compute",
+          "url": "https://finance.biggo.com/news/202605021200_Meta_Cuts_8000_Jobs_for_AI_Infrastructure"
+        },
+        {
+          "link_text": "Musk admitted on the stand",
+          "rest": " that xAI trained on OpenAI's models — a rough first week in his $130B lawsuit against Altman",
+          "url": "https://www.cnbc.com/2026/05/02/musk-testimony-dominated-first-week-musk-v-altman-trial-in-oakland.html"
+        },
+        {
+          "prefix": "Families of a Canadian school shooting ",
+          "link_text": "sue OpenAI",
+          "rest": ", alleging ChatGPT failed to alert police after flagging the shooter's account months earlier",
+          "url": "https://www.kqed.org/news/12082064/openai-back-in-court-over-canada-school-shooters-use-of-chatgpt"
+        },
+        {
+          "link_text": "Anthropic's use of entire books for AI training counts as fair use",
+          "rest": " — even though it downloaded 7 million e-books from illegal sources",
+          "url": "https://themunicheye.com/anthropic-partial-win-copyright-case-23639"
+        },
+        {
+          "link_text": "VS Code quietly started crediting GitHub Copilot",
+          "rest": " as co-author on every git commit — even when AI features were turned off",
+          "url": "https://awesomeagents.ai/news/vscode-1-118-copilot-coauthor-commits/"
+        },
+        {
+          "prefix": "Wall Street now expects Big Tech AI spending to ",
+          "link_text": "top $1 trillion in 2027",
+          "rest": " after Microsoft, Google, Amazon, and Meta all raised their 2026 budgets",
+          "url": "https://www.briefs.co/news/ai-capex-1-trillion/"
+        },
+        {
+          "link_text": "The creator of the 'This is fine' meme says",
+          "rest": " AI startup Artisan stole his art for a subway ad — and he's looking for a lawyer",
+          "url": "https://tech.yahoo.com/ai/deals/articles/fine-creator-says-ai-startup-201651894.html"
+        },
+        {
+          "link_text": "Sony's table tennis robot",
+          "rest": " beat elite human players three out of five matches — reacting to 20 m/s balls in under half a second",
+          "url": "https://techxplore.com/news/2026-04-table-tennis-robot-defeats-world.html"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Gemini",
+          "desc": "Google's AI app just got a major redesign — image generation, video, music, deep research, and canvas are now grouped into one clean scrollable menu instead of scattered across the app",
+          "url": "https://www.fortuneindia.com/technology/google-rolls-out-gemini-redesign-with-unified-tools-layout/135832",
+          "sponsored": false
+        },
+        {
+          "name": "Adobe for Creativity + Claude",
+          "desc": "A new connector lets Claude orchestrate workflows across 50+ Adobe tools — tell it what you need in plain English and it handles the Photoshop edits, video reframing, and asset packaging for you",
+          "url": "https://bluelightningtv.com/2026/05/02/claude-now-runs-adobe-creative-cloud-workflows/",
+          "sponsored": false
+        },
+        {
+          "name": "Cursor 3.0",
+          "desc": "The AI coding editor now lets you spin up multiple agents working in parallel — one refactors your code while another writes tests, and you can hand off long tasks to the cloud and close your laptop",
+          "url": "https://dev.to/ashutosh_maurya/the-third-era-of-coding-exploring-cursor-30-5mf",
+          "sponsored": false
+        },
+        {
+          "name": "Google TV + Gemini",
+          "desc": "You can now create AI images with Nano Banana, generate videos with Veo, and search your Google Photos by voice — all from your TV remote",
+          "url": "https://ppc.land/google-tv-brings-gemini-image-and-video-creation-to-the-living-room/",
+          "sponsored": false
+        },
+        {
+          "name": "MLJAR Studio",
+          "desc": "A desktop app that turns plain English questions about your data into executable Python notebooks — everything runs locally on your machine, so sensitive data never leaves your computer",
+          "url": "https://headlinesbriefing.com/dev/hacker-news/mljar-studio-private-ai-data-analyst-tool-for-local-machine-learning-workflows-672e43cb",
+          "sponsored": false
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Ontra",
+          "role": "Senior Product Manager",
+          "url": "https://www.ontra.ai/job/senior-product-manager/"
+        },
+        {
+          "company": "Microsoft AI",
+          "role": "Principal Product Marketing Manager",
+          "url": "https://microsoft.ai/job/principal-product-marketing-manager-4/"
+        },
+        {
+          "company": "Airbnb",
+          "role": "Staff Platform Manager, AI Personalization",
+          "url": "https://careers.airbnb.com/positions/7834495/"
+        },
+        {
+          "company": "Nuro",
+          "role": "Senior/Staff ML Research Scientist, Generative Modeling for Planning",
+          "url": "https://underprompt.com/jobs/seniorstaff-machine-learning-research-scientist-generative-modeling-for-planning-nuro"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "1d1c0ec0-3a9b-4959-9914-fe24a3d37e63",
+      "image_a": "/thumbnails/kicker-2026-05-05-ai.jpeg",
+      "image_b": "/thumbnails/kicker-2026-05-05-real.jpg",
+      "link_a": "https://gemini.google.com/share/7aff46a8fa54",
+      "link_b": "https://unsplash.com/photos/river-winding-through-forested-hills-at-sunset-wWFcv6e08pc"
+    },
+    "poll": {
+      "poll_id": "c3efec12-a9d6-4909-bb76-97256d99bebf",
+      "question": "Are most \"AI layoffs\" actually about AI?",
+      "options": [
+        "Yes",
+        "No",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "Do you trust AI-generated answers in search results enough to skip clicking the original source?",
+      "total_votes": 3,
+      "results": [
+        {
+          "answer": "Yes",
+          "count": 1,
+          "percentage": 33
+        },
+        {
+          "answer": "No",
+          "count": 2,
+          "percentage": 67
+        }
+      ]
+    },
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-05-04-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-05-04-real.jpg",
+      "ai_source": "https://gemini.google.com/share/35046a7a18d7",
+      "real_source": "https://unsplash.com/photos/sunlight-streams-through-a-natural-rock-arch-over-the-ocean-Ssf_ASosll0"
+    }
+  },
+  {
     "id": "may-04-2026",
     "slug": "may-04-2026",
     "title": "Thorium Valley | May 4, 2026",

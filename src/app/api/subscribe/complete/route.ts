@@ -12,6 +12,7 @@ const PUB_MAP: Record<string, string | undefined> = {
   'thorium-valley': process.env.BEEHIIV_PUBLICATION_ID,
   'the-catalyst': process.env.BEEHIIV_PUB_CATALYST,
   'the-lab': process.env.BEEHIIV_PUB_LAB,
+  'vibe3': process.env.BEEHIIV_PUB_VIBE3,
 };
 
 async function subscribeToBeehiiv(
@@ -95,6 +96,7 @@ export async function POST(request: Request) {
     const hasTV = childNewsletters.includes('thorium-valley');
     const hasCatalyst = childNewsletters.includes('the-catalyst');
     const hasLab = childNewsletters.includes('the-lab');
+    const hasVibe3 = childNewsletters.includes('vibe3');
 
     // Build custom fields for subscriber data
     const customFields = [
@@ -151,9 +153,20 @@ export async function POST(request: Request) {
       }
     }
 
+    // Subscribe to Vibe3 if selected
+    if (hasVibe3) {
+      const vibe3PubId = PUB_MAP['vibe3'];
+      if (vibe3PubId) {
+        const id = await subscribeToBeehiiv(
+          vibe3PubId, subscriber.email, false, customFields, BEEHIIV_API_KEY
+        );
+        subscriptionResults['vibe3'] = id;
+        if (!mainBeehiivId) mainBeehiivId = id;
+      }
+    }
+
     // 5. SparkLoop: subscribe to partner newsletters via Upscribe API
     const SPARKLOOP_REF_CODES: Record<string, string> = {
-      'tldr': '54f14dd8c3',
     };
 
     const selectedPartners = childNewsletters

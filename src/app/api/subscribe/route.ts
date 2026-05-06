@@ -64,6 +64,7 @@ export async function POST(request: Request) {
       'thorium-valley': process.env.BEEHIIV_PUBLICATION_ID,
       'the-catalyst': process.env.BEEHIIV_PUB_CATALYST,
       'the-lab': process.env.BEEHIIV_PUB_LAB,
+      'vibe3': process.env.BEEHIIV_PUB_VIBE3,
     };
 
     if (BEEHIIV_API_KEY) {
@@ -126,6 +127,13 @@ export async function POST(request: Request) {
           if (!mainBeehiivId) mainBeehiivId = id;
         }
 
+        // Vibe3 always sends its own welcome — it's a separate publication
+        const hasVibe3 = newsletters.includes('vibe3');
+        if (hasVibe3 && PUB_MAP['vibe3']) {
+          const id = await subscribeToBeehiiv(PUB_MAP['vibe3']!, true);
+          if (!mainBeehiivId) mainBeehiivId = id;
+        }
+
         // Store first beehiiv ID in Supabase
         if (mainBeehiivId) {
           await supabase()
@@ -174,7 +182,6 @@ export async function PATCH(request: Request) {
       if (sub?.email) {
         // SparkLoop for paid partners
         const SPARKLOOP_REF_CODES: Record<string, string> = {
-          'tldr': '54f14dd8c3',
         };
 
         const selectedPartners = (fields.child_newsletters as string[])
@@ -211,6 +218,7 @@ export async function PATCH(request: Request) {
         const CHILD_PUB_MAP: Record<string, string | undefined> = {
           'the-catalyst': process.env.BEEHIIV_PUB_CATALYST,
           'the-lab': process.env.BEEHIIV_PUB_LAB,
+          'vibe3': process.env.BEEHIIV_PUB_VIBE3,
         };
 
         if (BEEHIIV_API_KEY) {

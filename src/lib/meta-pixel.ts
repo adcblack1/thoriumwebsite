@@ -119,7 +119,7 @@ export function trackSurveyComplete() {
 }
 
 /**
- * Track a QualifiedLead — fires when the subscriber clicks a Littlebird link (step 9).
+ * Track a QualifiedLead — fires when the subscriber reaches step 9 (page view).
  * This is the event you optimize Meta campaigns toward.
  * Custom Conversion ID in Meta: 1810429086599820
  */

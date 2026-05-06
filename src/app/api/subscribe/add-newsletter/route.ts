@@ -11,6 +11,7 @@ const PUB_MAP: Record<string, string | undefined> = {
   'thorium-valley': process.env.BEEHIIV_PUBLICATION_ID,
   'the-catalyst': process.env.BEEHIIV_PUB_CATALYST,
   'the-lab': process.env.BEEHIIV_PUB_LAB,
+  'vibe3': process.env.BEEHIIV_PUB_VIBE3,
 };
 
 // POST — add a single newsletter subscription (cross-sell)

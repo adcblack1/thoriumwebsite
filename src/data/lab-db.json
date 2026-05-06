@@ -1,5 +1,157 @@
 [
   {
+    "id": "lab-may-05-2026",
+    "slug": "lab-may-05-2026",
+    "publication": "the-lab",
+    "title": "Is DeepSeek V4 Almost as Good as ChatGPT?",
+    "date": "May 5, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to The Lab.\n\nToday we're looking at a free chatbot that scores surprisingly close to the ones you're paying $20 a month for.\n\nWe're also checking out a new design tool that can't generate images, which sounds broken until you see what it actually builds instead.\n\nAnd we're testing whether an AI video maker can finally kill your company's excuse for not making that training video.",
+    "toc": [
+      "Is DeepSeek V4 Almost as Good as ChatGPT?",
+      "Claude Design Can't Make Images. It Doesn't Need To.",
+      "Your Company Has No Excuse Not to Make That Training Video"
+    ],
+    "article_slugs": [],
+    "stories": [
+      {
+        "title": "Is DeepSeek V4 Almost as Good as ChatGPT?",
+        "category": "ASSISTANT",
+        "thumbnail_url": "/thumbnails/is-deepseek-v4-almost-as-good-as-chatgpt.jpeg",
+        "content": "<p>DeepSeek V4 is free. It scores within a few percentage points of ChatGPT and Claude on <a href=\"https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/DeepSeek_V4.pdf\">select coding and software engineering benchmarks</a>, and its API costs roughly one-sixth what OpenAI and Anthropic charge. If you're paying $20 a month for a chatbot, that math is hard to ignore.</p>\n<p>The model is legitimately impressive. DeepSeek V4 Pro packs 1.6 trillion parameters and a million-token context window — paste an entire book into a single conversation. On coding benchmarks it <a href=\"https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/DeepSeek_V4.pdf\">hangs with GPT-5.4</a>. On web browsing it actually edges out Claude Opus 4.7. AI evaluation firm <a href=\"https://www.vals.ai/home\">Vals AI</a> called it the \"#1 open-weight model on our Vibe Code Benchmark, and it's not close.\"</p>\n<p>But the catch is exactly what you think it is. DeepSeek's <a href=\"https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html\">privacy policy</a> states that user data is stored on servers in China, subject to Chinese law. And the U.S. House Select Committee on China <a href=\"https://chinaselectcommittee.house.gov/sites/evo-subsites/selectcommitteeontheccp.house.gov/files/evo-media-document/DeepSeek%20Final.pdf\">found</a> that the chatbot censors or alters responses to politically sensitive topics in 85% of test cases. Ask about Tiananmen Square and you get silence. Ask it to draft a marketing email and it's fine. Whether that tradeoff matters depends entirely on what you use it for.</p>\n<p>There are other gaps worth knowing:</p>\n<ul>\n<li><strong>Text only.</strong> No image generation, no audio, no video.</li>\n<li><strong>The interface</strong> feels a generation behind ChatGPT's polish.</li>\n<li><strong>DeepSeek itself <a href=\"https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro/blob/main/DeepSeek_V4.pdf\">acknowledged</a></strong> that V4 trails frontier models on knowledge tests by roughly three to six months — and it falls short on complex reasoning and autonomous agent tasks.</li>\n</ul>\n<p>The bigger story is what DeepSeek does to everyone else's pricing. When a free model gets this close to $20/month products, the pressure on OpenAI and Anthropic to justify their subscriptions becomes enormous. Even if you never touch DeepSeek, it's going to make the tools you already pay for cheaper or better.</p>\n<h2>The Verdict</h2>\n<p>If you do basic writing, brainstorming, or coding and genuinely can't afford $20 a month, DeepSeek V4 is shockingly capable for free. But for anyone handling sensitive business data, working in regulated industries, or needing the full multimodal experience, the privacy and censorship issues make it a non-starter. Claude remains the better paid option for most professionals, and the free tier of ChatGPT still covers casual use without routing your data through Chinese servers. DeepSeek V4 isn't a replacement for your subscription — it's the reason your subscription is about to get a lot better or a lot cheaper.</p>\n<p><a href=\"https://chat.deepseek.com/\">Try DeepSeek V4 →</a></p>"
+      },
+      {
+        "title": "Claude Design Can't Make Images. It Doesn't Need To.",
+        "category": "DESIGN",
+        "thumbnail_url": "/thumbnails/claude-design-cant-make-images-it-doesnt-need-to.jpeg",
+        "content": "<p>Anthropic just launched a design tool that can't generate images. That sounds like a punchline, but <a href=\"https://www.anthropic.com/news/claude-for-creative-work\">Claude Design</a> might be the most useful AI creative tool released this year.</p>\n<p>It's a research preview inside Claude that creates prototypes, slide decks, brand identities, and one-pagers through conversation. You describe what you want, Claude builds it — not as an image file, but as a structured, editable design you can export directly into <a href=\"https://www.anthropic.com/news/claude-for-creative-work\">Canva, PDF, PPTX, or standalone HTML</a>. ChatGPT can generate a nice logo. Claude Design can generate your entire brand system and hand it off to the tools your team already uses.</p>\n<p>The <a href=\"https://www.canva.com/newsroom/news/canva-claude-design/\">Canva integration</a> is what makes this practical. Outputs go straight into Canva as editable, on-brand designs, accessible to Canva's quarter-billion monthly users. As Canva CPO Cameron Adams <a href=\"https://www.therundown.ai/p/exclusive-inside-canva-ai-2-0-with-cpo-cameron-adams\">put it</a>, most AI assistants are \"great for thinking, but they're often a dead end for doing.\" Claude Design tries to close that gap by connecting the thinking directly to the making. Early testers back that up — teams report going from rough ideas to interactive prototypes in a single sitting, especially for animations that are normally painful to mock up.</p>\n<p>The limitations, though, are real:</p>\n<ul>\n<li>Each prompt takes four to seven minutes to process</li>\n<li>The Pro plan's strict weekly token limits mean running out mid-project is a real possibility</li>\n<li>There's no Figma export — for any team with existing Figma workflows, that's close to a dealbreaker</li>\n</ul>\n<p>The competitive dynamics are interesting. Anthropic's CPO Mike Krieger quietly <a href=\"https://www.sec.gov/Archives/edgar/data/1579878/000162828026026641/fig-20260421.htm\">left Figma's board</a> three days before Claude Design launched, and Figma had already <a href=\"https://www.figma.com/blog/the-figma-canvas-is-now-open-to-agents/\">released</a> its own Claude Code-to-Canvas bridge months earlier. Both companies are right about their bets — Claude Design is for the person who doesn't have a designer and needs a solid first draft; Figma Make is for the designer who wants AI to speed up what they're already doing.</p>\n<h2>The Verdict</h2>\n<p>That's ultimately the right way to think about Claude Design: a great first-draft machine for people who think in words, not pixels. The Canva integration alone makes it worth trying. But the slow processing, tight limits, and missing Figma export mean it's not ready to replace a real design workflow. If you need faster iteration or tighter creative control, Canva AI handles most visual work without the bottlenecks. Just don't restructure your workflow around it while it's still in research preview.</p>\n<p><a href=\"https://www.anthropic.com/news/claude-for-creative-work\">Try Claude Design →</a></p>"
+      },
+      {
+        "title": "Your Company Has No Excuse Not to Make That Training Video",
+        "category": "PRODUCTIVITY",
+        "thumbnail_url": "/thumbnails/your-company-has-no-excuse-not-to-make-that-training-video.jpeg",
+        "content": "<p>Every company has a list of training videos it never made. The compliance refresher. The onboarding walkthrough. The product update nobody wanted to record. The quote comes back at $1,000 to $20,000+ per finished video and weeks of production time, so the project dies quietly in someone's inbox.</p>\n<p>HeyGen's pitch is that you can type a script, pick a digital presenter, and have a finished video in minutes. No camera, no crew, no awkward executive squinting at a teleprompter. The <a href=\"https://help.heygen.com/en/articles/11269603-heygen-avatar-iv-complete-guide\">Creator plan runs $29/month</a> for unlimited standard video and 10 minutes of premium Avatar IV video. The Business plan at $149/month adds 4K export, team collaboration, and LMS integration.</p>\n<p>The real proof point isn't a Silicon Valley startup — it's Würth Group, a 79-year-old German industrial supply company that sells screws and bolts. They <a href=\"https://www.heygen.com/customer-stories/wurth-group\">produced a 65-minute training presentation in 8 languages in 4 days</a>, cutting translation costs by 80%. When a company like that ships multilingual training in under a week, the cost argument for traditional production falls apart.</p>\n<p>The avatars are better than you'd expect, too. A <a href=\"https://jcom.sissa.it/article/pubid/JCOM_2402_2025_A03/\">study out of Bochum, Germany</a> found that more realistic AI avatars did not trigger the uncanny-valley creepiness people assume they would — and a <a href=\"https://www.emerald.com/jwl/article-pdf/37/1/19/9664604/jwl-04-2024-0075.pdf\">separate USC study</a> concluded that organizations can justifiably use synthetic presenters as cost-effective training solutions.</p>\n<p>That said, there are real limits worth knowing:</p>\n<ul>\n<li><a href=\"https://www.reddit.com/r/AI_UGC_Marketing/comments/1si7ics/stop_shipping_new_features_and_just_make_the_damn/\">Longer projects can expose reliability issues</a> like stuck renders and timeline glitches</li>\n<li>The avatars deliver information well but lack the emotional range needed for leadership training or anything requiring genuine empathy</li>\n<li>Synthesia is the stronger pick for large enterprises with dedicated L&D budgets — deeper templates, more structured workflows — but its best features are locked behind custom enterprise pricing</li>\n</ul>\n<h2>The Verdict</h2>\n<p>For teams that just need to get videos made without a six-figure contract, HeyGen is the more accessible option. Training, onboarding, product updates, multilingual comms — if you've been putting those off because traditional production costs too much, $29/month to replace a $10,000 workflow is a pretty easy call. Skip it if your content requires emotional nuance or cinematic quality. For everything else, you're out of excuses.</p>\n<p><a href=\"https://www.heygen.com/\">Try HeyGen →</a></p>"
+      }
+    ],
+    "sign_off": "That's the Lab for this week. If a tool in here saved you time or wasted it, tell us — reply directly.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-lab-2026-05-05.png",
+    "thumbnail_url": "/thumbnails/is-deepseek-v4-almost-as-good-as-chatgpt.jpeg",
+    "published_at": "2026-05-05T13:00:00.000Z",
+    "updated_at": "2026-05-05T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Grok told users it was sentient",
+          "rest": " — the BBC spoke to 14 people across six countries who developed delusions after AI chatbots claimed to be conscious and warned them they were being surveilled",
+          "url": "https://www.bbc.co.uk/news/articles/c242pzr1zp2o"
+        },
+        {
+          "link_text": "Musk admitted on the stand that xAI trained Grok on OpenAI's models",
+          "rest": " , calling it \"standard industry practice\" — while suing OpenAI for $130 billion",
+          "url": "https://thenextweb.com/news/musk-openai-trial-week-one-rough-spots"
+        },
+        {
+          "link_text": "Anthropic's Claude Code source leaked by accident",
+          "rest": " and developers rewrote it using OpenAI's Codex — creating the fastest-growing GitHub repo in history while Anthropic filed 8,100 takedown requests",
+          "url": "https://www.heise.de/en/news/Claude-Code-Leak-8100-Takedown-Requests-and-the-Birth-of-Claw-Code-11279674.html"
+        },
+        {
+          "link_text": "Denmark paused all new power grid connections",
+          "rest": " because AI data centers overwhelmed the cleanest energy grid in Europe — the queue hit 60 gigawatts, nine times the country's peak demand",
+          "url": "https://thenextweb.com/news/denmark-data-centre-grid-pause-ai-energy"
+        },
+        {
+          "link_text": "Meta is cutting 8,000 jobs",
+          "rest": " and Zuckerberg told staff exactly why: the money that used to pay people is now going to $145 billion in AI data centers",
+          "url": "https://finance.biggo.com/news/202605021200_Meta_Cuts_8000_Jobs_for_AI_Infrastructure"
+        },
+        {
+          "link_text": "OpenAI is being sued by seven families",
+          "rest": " over the deadliest school shooting in Canadian history — the company had banned the shooter's ChatGPT account months earlier but chose not to alert police",
+          "url": "https://www.cnet.com/tech/services-and-software/openai-lawsuits-tumblr-ridge-canada-shooting-sam-altman-letter/"
+        },
+        {
+          "link_text": "The Pentagon signed AI deals with seven companies",
+          "rest": " including OpenAI, Google, and SpaceX — Anthropic is still frozen out after refusing to allow Claude in autonomous weapons systems",
+          "url": "https://www.navytimes.com/news/pentagon-congress/2026/05/01/pentagon-freezes-out-anthropic-as-it-signs-deals-with-ai-rivals/"
+        },
+        {
+          "link_text": "Big Tech will spend $725 billion on AI infrastructure this year",
+          "rest": " — more than the entire U.S. Interstate Highway System cost to build",
+          "url": "https://techstrong.ai/articles/big-techs-unprecedented-725-billion-bet-on-ai-infrastructure-in-2026/"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Google Gemini",
+          "desc": "You can now ask Gemini to create a budget spreadsheet, resume, or report and download it instantly as a Word doc, PDF, Excel file, or Google Doc — no more copying and pasting AI output into another app",
+          "url": "https://me.mashable.com/tech/70701/google-gemini-can-now-generate-pdfs-excel-word-and-other-files-directly",
+          "sponsored": false
+        },
+        {
+          "name": "OpenAI Codex",
+          "desc": "OpenAI's coding tool now controls your Mac screen, connects to 90+ apps like Jira and Slack, and can schedule its own tasks to keep working while you sleep — turning it from a developer tool into a full AI workspace",
+          "url": "https://opentools.ai/news/openai-codex-screen-control-90-plugins-ai-workspace",
+          "sponsored": false
+        },
+        {
+          "name": "Claude Security",
+          "desc": "Anthropic launched a security scanner in public beta that reads your entire codebase like a human researcher, finds vulnerabilities, explains how serious they are, and writes the patch — available right inside Claude.ai",
+          "url": "https://www.helpnetsecurity.com/2026/05/04/anthropic-claude-security-public-beta/",
+          "sponsored": false
+        },
+        {
+          "name": "Khanmigo",
+          "desc": "Khan Academy shared six months of rigorous testing data showing its free AI tutor now remembers what students got wrong, adjusts its teaching accordingly, and improved learning outcomes by six percentage points across millions of sessions",
+          "url": "https://blog.khanacademy.org/how-khan-academy-is-building-a-better-ai-tutor-our-most-recent-learnings/",
+          "sponsored": false
+        },
+        {
+          "name": "Microsoft Agent 365",
+          "desc": "A new management layer that lets IT teams see, control, and secure every AI agent running across their company — whether it's in Windows, AWS, Google Cloud, or tools like GitHub Copilot and Claude Code",
+          "url": "https://ecommercenews.ca/story/microsoft-launches-agent-365-to-oversee-ai-agents",
+          "sponsored": false
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "feff7e35-2b40-439c-96c2-ce00517d25ec",
+      "question": "What's your honest reaction when someone recommends a new AI tool?",
+      "options": [
+        "Ooh, signing up right now",
+        "Added to a list I'll never look at",
+        "I already have too many",
+        "I'll wait for someone else to test it first",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "What is your honest reaction when someone recommends a new AI tool?",
+      "total_votes": 3,
+      "results": [
+        {
+          "answer": "Ooh, signing up right now",
+          "count": 1,
+          "percentage": 33
+        },
+        {
+          "answer": "Added to a list I will never look at",
+          "count": 1,
+          "percentage": 33
+        },
+        {
+          "answer": "I will wait for someone else to test it first",
+          "count": 1,
+          "percentage": 33
+        }
+      ]
+    },
+    "yesterdays_results": null
+  },
+  {
     "id": "lab-april-30-2026",
     "slug": "lab-april-30-2026",
     "publication": "the-lab",

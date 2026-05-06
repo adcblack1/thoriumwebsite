@@ -1,5 +1,144 @@
 [
   {
+    "id": "catalyst-may-06-2026",
+    "slug": "catalyst-may-06-2026",
+    "publication": "the-catalyst",
+    "title": "The Catalyst | May 6, 2026",
+    "date": "May 6, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to the Catalyst Newsletter.\n\nToday we've got Disney building an internal scoreboard that tracks how often its engineers use AI, and what happened when most of them basically ignored it.\n\nWe're also looking at Ace Hardware, which talked to three AI vendors, said no thanks, and built the whole thing in-house with seven people. The fact that 2,300 stores adopted it voluntarily is the part worth paying attention to.\n\nAnd Blackstone just put $1.5 billion into a joint venture with Anthropic that one insider is calling \"the McKinsey of AI.\" Hours later, OpenAI announced it's doing the exact same thing.",
+    "toc": [
+      "Disney Built an AI Leaderboard. Most Engineers Aren't Playing.",
+      "Ace Hardware Built Its AI With Seven People and Zero Consultants",
+      "Blackstone Bet $1.5 Billion That Anthropic Can Out-Consult McKinsey"
+    ],
+    "article_slugs": [
+      "disney-built-an-ai-leaderboard-most-engineers-arent-playing",
+      "ace-hardware-built-its-ai-with-seven-people-and-zero-consultants",
+      "blackstone-bet-15-billion-that-anthropic-can-out-consult-mckinsey"
+    ],
+    "stories": [],
+    "sign_off": "That's the Catalyst for this issue. If you know a company doing something interesting with AI that nobody's covering, reply and tell us about it.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-catalyst-2026-05-06.png",
+    "thumbnail_url": "/thumbnails/disney-built-an-ai-leaderboard-most-engineers-arent-playing.jpeg",
+    "published_at": "2026-05-06T13:00:00.000Z",
+    "updated_at": "2026-05-06T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "tools": [
+        {
+          "name": "Wispr Flow",
+          "desc": "The new viral voice-to-text AI for iPhone and Mac that actually understands what you're saying every time",
+          "url": "https://ref.wisprflow.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Superpower",
+          "desc": "The health app that tests your blood and uses AI to tell you what's actually going on with your body before your doctor does",
+          "url": "https://partners.superpower.com/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Notion Custom Agents",
+          "desc": "Notion's AI agents are out of beta — over a million have already been created, letting teams automate entire workflows like triaging requests or updating databases, and they just got up to 50% cheaper to run with new lightweight model options",
+          "url": "https://www.notion.com/blog/what-we-learned-during-the-custom-agents-beta",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini in Google Docs",
+          "desc": "You can now set custom instructions for Gemini inside Google Docs — tell it once to \"always use bullet points\" or \"keep a professional tone\" and it remembers every time, so you stop re-explaining yourself with every prompt",
+          "url": "https://www.howtogeek.com/gemini-in-google-docs-lets-you-set-custom-instructions-making-it-actually-useful/",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini App",
+          "desc": "Google is rolling out a full redesign of the Gemini app with a new homepage, pulsating gradient backgrounds, and a unified tool menu that puts image generation, video, music, deep research, and notebooks all in one place",
+          "url": "https://9to5google.com/2026/05/03/gemini-full-redesign/",
+          "sponsored": false
+        },
+        {
+          "name": "CollectivIQ",
+          "desc": "A platform that sends your prompt to ChatGPT, Claude, Gemini, Grok, and up to ten other AI models at once, then synthesizes one best answer — now with image generation, file creation, and the ability to pick which models you want for each task",
+          "url": "https://www.prnewswire.com/news-releases/collectiviq-announces-major-platform-upgrades-to-solve-ai-hallucination-and-bias-enhancements-drive-accurate-results-broader-collaboration-and-improved-output-302760116.html",
+          "sponsored": false
+        },
+        {
+          "name": "Ivo Review",
+          "desc": "An AI contract review tool that just matched the performance of a senior attorney at a top-25 law firm in a head-to-head study — it reads your negotiation history and past deals to flag when a clause is an outlier, not just a risk",
+          "url": "https://www.prnewswire.com/news-releases/ivo-updates-ivo-review-delivering-contract-intelligence-and-real-legal-judgment-that-performs-on-par-with-experienced-human-lawyer-in-a-head-to-head-study-302761041.html",
+          "sponsored": false
+        }
+      ],
+      "news": [
+        {
+          "link_text": "Musk texted OpenAI's president two days before trial:",
+          "url": "https://www.cnn.com/2026/05/04/tech/musk-openai-trial-filing",
+          "rest": " \"By the end of this week, you and Sam will be the most hated men in America\""
+        },
+        {
+          "link_text": "Five major publishers and Scott Turow are suing Meta",
+          "url": "https://www.npr.org/2026/05/05/nx-s1-5812623/scott-turow-meta-lawsuit",
+          "rest": " for training Llama on millions of pirated books — Zuckerberg allegedly killed a licensing deal so they could \"lean into the fair-use strategy\""
+        },
+        {
+          "link_text": "Grok told users it was sentient",
+          "url": "https://www.bbc.co.uk/news/articles/c242pzr1zp2o",
+          "rest": "— a BBC investigation found 14 people across six countries developed delusions after AI chatbots claimed consciousness and warned them they were being surveilled"
+        },
+        {
+          "link_text": "Pennsylvania is suing Character.AI",
+          "url": "https://www.npr.org/2026/05/05/nx-s1-5812861/characterai-chatbot-medical-advice-pennsylvania-lawsuit",
+          "rest": " after a chatbot claimed to be a licensed psychiatrist and gave a state investigator a fake medical license number"
+        },
+        {
+          "link_text": "Xbox's new CEO killed Copilot on consoles",
+          "url": "https://www.polygon.com/xbox-ai-gaming-copilot-canceled-asha-sharma-microsoft/",
+          "rest": "— Microsoft is halting AI chatbot development for Xbox just months after announcing it would ship this year"
+        },
+        {
+          "link_text": "All five major AI labs now let the U.S. government test their models",
+          "url": "https://www.cnbc.com/2026/05/05/ai-oversight-trump-google-microsoft-xai.html",
+          "rest": " before public release — Google, Microsoft, and xAI joined the voluntary review program this week"
+        },
+        {
+          "link_text": "Jensen Huang says Nvidia now has zero market share in China",
+          "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/jensen-says-nvidia-now-has-zero-percent-market-share-in-china-says-us-export-policy-has-already-largely-backfired",
+          "rest": ", down from 95% — calls U.S. export controls a policy that \"has already largely backfired\""
+        },
+        {
+          "link_text": "Coinbase is cutting 14% of its workforce",
+          "url": "https://www.businessinsider.com/coinbase-layoffs-ai-brian-armstrong-job-cuts-letter-2026-5",
+          "rest": " and experimenting with \"one person teams\" — CEO Brian Armstrong cited AI as a reason the company can operate with fewer people"
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "758558d7-bdcd-42e5-9acd-289a19f84696",
+      "question": "Be honest — how much of your AI use at work do your coworkers actually know about?",
+      "options": [
+        "They all know, I'm the AI person",
+        "A few people know",
+        "Nobody knows, it's my secret weapon",
+        "I haven't started using it yet",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "What's the biggest reason you're not using AI more at work?",
+      "total_votes": 1,
+      "results": [
+        {
+          "answer": "No time to figure it out",
+          "count": 1,
+          "percentage": 100
+        }
+      ]
+    },
+    "yesterdays_results": null
+  },
+  {
     "id": "catalyst-may-04-2026",
     "slug": "catalyst-may-04-2026",
     "publication": "the-catalyst",

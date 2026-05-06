@@ -176,12 +176,12 @@ const CHILD_NEWSLETTERS = [
     isPartner: false,
   },
   {
-    id: 'tldr',
-    name: 'TLDR',
-    logo: '/images/tldr-logo.jpg',
-    description: 'The free daily newsletter with links and TLDRs of the most interesting stories in startups, tech, and programming.',
-    frequency: 'Daily',
-    isPartner: true,
+    id: 'vibe3',
+    name: 'Vibe3',
+    logo: '/images/vibe3-logo.png',
+    description: 'Where AI is going next. The frontier of agents, autonomous systems, and what\'s coming before anyone else sees it.',
+    frequency: 'Biweekly',
+    isPartner: false,
   },
 ];
 
@@ -236,7 +236,7 @@ export default function SubscribePage() {
     industry: '',
     company_size: '',
     ai_tools: [],
-    child_newsletters: ['thorium-valley', 'the-catalyst', 'the-lab', 'tldr', 'cautious-optimism'],
+    child_newsletters: ['thorium-valley', 'the-catalyst', 'the-lab', 'vibe3'],
   });
 
   // ── Capture UTM params + Meta cookies on mount ──
@@ -345,7 +345,7 @@ export default function SubscribePage() {
           industry: existing.industry || '',
           company_size: existing.company_size || '',
           ai_tools: existing.ai_tools || [],
-          child_newsletters: existing.child_newsletters || ['thorium-valley', 'the-catalyst', 'the-lab', 'tldr', 'cautious-optimism'],
+          child_newsletters: existing.child_newsletters || ['thorium-valley', 'the-catalyst', 'the-lab', 'vibe3'],
         };
         setFormData(restored);
 
@@ -473,10 +473,40 @@ export default function SubscribePage() {
     } catch { }
   };
 
-  // Littlebird – show winning variation C, log view
+  // Littlebird – show winning variation C, log view + fire QualifiedLead on page view
   useEffect(() => {
     if (step === 9) {
       trackSurveyComplete(); // Fire pixel event for funnel tracking
+
+      // Fire QualifiedLead on reaching page 9 (not on Littlebird click)
+      if (!hasTrackedQL.current) {
+        hasTrackedQL.current = true;
+        const eventId = `ql_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
+        trackQualifiedLead({
+          seniority: formData.seniority,
+          company_size: formData.company_size,
+          main_goal: formData.main_goal,
+          job_function: formData.job_function,
+          industry: formData.industry,
+        }, eventId);
+        fetch('/api/meta-capi', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            event_id: eventId,
+            email: formData.email,
+            first_name: formData.first_name,
+            fbp: metaCookies.fbp,
+            fbc: metaCookies.fbc,
+            seniority: formData.seniority,
+            company_size: formData.company_size,
+            main_goal: formData.main_goal,
+            job_function: formData.job_function,
+            industry: formData.industry,
+          }),
+        }).catch(() => { });
+      }
+
       const uid = formData.email || 'anon';
       fetch('/api/littlebird-test', {
         method: 'POST',
@@ -598,34 +628,7 @@ export default function SubscribePage() {
               rel="noopener noreferrer"
               onClick={() => {
                 logToolClick('littlebird', 'confirmation');
-                // Fire QualifiedLead if they didn't click on step 9
-                if (!hasTrackedQL.current) {
-                  hasTrackedQL.current = true;
-                  const eventId = `ql_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
-                  trackQualifiedLead({
-                    seniority: formData.seniority,
-                    company_size: formData.company_size,
-                    main_goal: formData.main_goal,
-                    job_function: formData.job_function,
-                    industry: formData.industry,
-                  }, eventId);
-                  fetch('/api/meta-capi', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                      event_id: eventId,
-                      email: formData.email,
-                      first_name: formData.first_name,
-                      fbp: metaCookies.fbp,
-                      fbc: metaCookies.fbc,
-                      seniority: formData.seniority,
-                      company_size: formData.company_size,
-                      main_goal: formData.main_goal,
-                      job_function: formData.job_function,
-                      industry: formData.industry,
-                    }),
-                  }).catch(() => { });
-                }
+                // QualifiedLead now fires on page 9 view, not click
               }}
               className="block w-full max-w-lg mx-auto rounded-xl overflow-hidden transition-all group hover:shadow-lg border border-[#1b1b1b]/10"
               style={{ background: '#ffffff' }}
@@ -781,34 +784,7 @@ export default function SubscribePage() {
                       rel="noopener noreferrer"
                       onClick={() => {
                         logToolClick(`littlebird_${lbVariation}`, 'tools_page');
-                        // Only fire QualifiedLead once per session (guard against step 9 + 11 double-fire)
-                        if (!hasTrackedQL.current) {
-                          hasTrackedQL.current = true;
-                          const eventId = `ql_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
-                          trackQualifiedLead({
-                            seniority: formData.seniority,
-                            company_size: formData.company_size,
-                            main_goal: formData.main_goal,
-                            job_function: formData.job_function,
-                            industry: formData.industry,
-                          }, eventId);
-                          fetch('/api/meta-capi', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                              event_id: eventId,
-                              email: formData.email,
-                              first_name: formData.first_name,
-                              fbp: metaCookies.fbp,
-                              fbc: metaCookies.fbc,
-                              seniority: formData.seniority,
-                              company_size: formData.company_size,
-                              main_goal: formData.main_goal,
-                              job_function: formData.job_function,
-                              industry: formData.industry,
-                            }),
-                          }).catch(() => { });
-                        }
+                        // QualifiedLead now fires on page 9 view, not click
                         // Log click to Supabase (always — even on second click)
                         const uid = formData.email || 'anon';
                         fetch('/api/littlebird-test', {
@@ -1613,7 +1589,7 @@ function StepNewsletters({
                       <img
                         src={nl.logo}
                         alt=""
-                        className="h-14 w-auto object-contain"
+                        className={`${nl.id === 'vibe3' ? 'h-10' : 'h-14'} w-auto object-contain`}
                         style={{ mixBlendMode: 'screen' }}
                       />
                       <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-white">
