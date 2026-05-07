@@ -190,5 +190,21 @@
     "publication": "the-lab",
     "type": "verdict",
     "prompt": "Thorium Valley reviewed Fathom (free tier with unlimited recording,\npaid plans from $15-19/user/month) and found it's the best free\nmeeting notes tool available. Great for individuals and small teams\nwho want accurate transcription without paying. Skip it if you need\nadvanced analytics, in-person recording, or real-time collaboration.\n\nHere are the key takeaways:\n- Unlimited free recording and transcription with no time caps\n- Strong accuracy and fast summaries, but no coaching or sentiment analysis\n- Bot-free Zoom recording is a real advantage over Otter.ai\n- Best alternative for analytics-heavy teams is Fireflies.ai; for\n  real-time collaboration, Otter.ai still leads\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Fathom is right for you. Could I get a little more context on:\n1. What kinds of meetings do you record most often, and what do you\n   need to do with the notes afterward?\n2. What are you currently using for meeting notes, and what's\n   frustrating you about it?\""
+  },
+  {
+    "slug": "perplexity-built-a-browser-now-it-wants-your-data",
+    "title": "Perplexity Built a Browser. Now It Wants Your Data.",
+    "newsletter_slug": "lab-may-07-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed Perplexity Pro ($20/month) and found that the\ncore research product is still the best citation-based search tool\navailable, but the company's expansion into a browser, ads, and a\n$200/month tier raises real trust concerns. Pro is worth it for\nresearch-heavy roles. The browser and Max tier are skippable for most.\n\nHere are the key takeaways:\n- Best for anyone whose work requires sourced, verifiable answers\n- The free tier with 5 Pro searches/day covers most casual needs\n- The Comet browser collects browsing data for ad targeting and has\n  known security vulnerabilities, so keep your browser separate\n- Claude Pro at $20/month is the better all-around alternative if\n  you need writing, analysis, and research in one tool\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Perplexity Pro is worth it for you. Could I get a little\nmore context on:\n1. What kind of research do you do regularly, and how important is\n   it that every claim you use has a verifiable source attached?\n2. What are you currently using for research and quick answers, and\n   what's frustrating you about it?\""
+  },
+  {
+    "slug": "chatgpt-s-8-plan-looks-like-a-deal-it-s-a-trap",
+    "title": "ChatGPT's $8 Plan Looks Like a Deal. It's a Trap.",
+    "newsletter_slug": "lab-may-07-2026",
+    "publication": "the-lab",
+    "type": "verdict",
+    "prompt": "Thorium Valley reviewed ChatGPT's pricing tiers and found that the\nnew $8/month Go plan covers basic chatbot use but misses every\nadvanced feature that makes ChatGPT a real productivity tool. Plus\nat $20/month is the right pick for anyone who uses AI for actual\nwork. Pro tiers ($100-$200) are only worth it if you hit Plus\nlimits regularly.\n\nHere are the key takeaways:\n- Go at $8 handles casual use like drafting, brainstorming, and\n  quick questions but includes ads and no advanced features\n- Plus at $20 unlocks Deep Research, Agent Mode, Codex, reasoning\n  models, and an ad-free experience\n- Pro tiers are overkill unless AI is your primary work tool\n- Claude Pro at $20/month is a strong alternative, especially for\n  writing and long document work\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhich ChatGPT plan is right for you. Could I get a little more\ncontext on:\n1. What do you mainly use ChatGPT for day to day, and how often\n   do you run into message limits or missing features?\n2. Are you currently on a paid plan or using the free tier, and\n   what's frustrating you about it?\""
   }
 ]

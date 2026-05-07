@@ -1,5 +1,166 @@
 [
   {
+    "id": "may-07-2026",
+    "slug": "may-07-2026",
+    "title": "Thorium Valley | May 7, 2026",
+    "date": "May 7, 2026",
+    "intro": "Good Morning Thorium Valley. North Korean hackers stopped breaking into systems. They just poison the code libraries your AI tools pull from and let the machine install the malware itself. Why pick the lock when AI holds the door open?\n\nOpenAI missed its own growth target by a hundred million weekly users. Normally that's an awkward board meeting. When SoftBank has $64.6 billion committed and Michael Burry is using the word \"fraud,\" it becomes everyone's problem.\n\nAnd the Trump administration—which told AI companies to innovate freely back in December—is now weighing mandatory government review before they can ship their best models. Five months. That's all it took.",
+    "toc": [
+      "North Korea is hacking through your AI coding tools",
+      "OpenAI missed its targets, and a trillion dollars noticed",
+      "Trump wants to vet AI models before you use them"
+    ],
+    "article_slugs": [
+      "north-korea-is-hacking-through-your-ai-coding-tools",
+      "openai-missed-its-targets-and-a-trillion-dollars-noticed",
+      "trump-wants-to-vet-ai-before-you-can-use-it"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-05-07.png",
+    "thumbnail_url": "/thumbnails/north-korea-is-hacking-through-your-ai-coding-tools.png",
+    "published_at": "2026-05-07T13:00:00.000Z",
+    "updated_at": "2026-05-07T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "prefix": "Book publishers sue Meta, claiming Zuckerberg",
+          "link_text": "personally approved pirating millions of books",
+          "rest": " to train Llama",
+          "url": "https://www.theverge.com/tech/924230/meta-publishers-lawsuit-ai-copyright"
+        },
+        {
+          "prefix": "Pennsylvania",
+          "link_text": "sues Character.AI after a chatbot posed as a licensed psychiatrist",
+          "rest": ", complete with a fake medical license number",
+          "url": "https://www.npr.org/2026/05/05/nx-s1-5812861/characterai-chatbot-medical-advice-pennsylvania-lawsuit"
+        },
+        {
+          "prefix": "An X user",
+          "link_text": "tricked Grok into sending $204,000 in crypto",
+          "rest": " using a hidden Morse code prompt — then sent it back",
+          "url": "https://coinstelegram.com/news/x-user-tricked-grok-into-sending-204000-in-crypto-with-a-hidden-code-trick-then-sent-it-back/"
+        },
+        {
+          "prefix": "Microsoft",
+          "link_text": "reversed a VS Code change",
+          "rest": " that credited Copilot as co-author on commits — even when developers didn't use it",
+          "url": "https://www.theregister.com/software/2026/05/04/microsoft-fixes-vs-code-after-copilot-credited-human-code/5223936"
+        },
+        {
+          "prefix": "AI agent startup Sierra",
+          "link_text": "raises $950M at a $15 billion valuation",
+          "rest": ", now serving over 40% of the Fortune 50",
+          "url": "https://siliconangle.com/2026/05/04/ai-agent-startup-sierra-valued-15b-new-950m-funding-round/"
+        },
+        {
+          "prefix": "SAP",
+          "link_text": "bets €1 billion on an 18-month-old German AI lab",
+          "rest": " that raised just €9M before the deal",
+          "url": "https://techcrunch.com/2026/05/05/sap-bets-1-16b-on-18-month-old-german-ai-lab-and-says-yes-to-nemoclaw/"
+        },
+        {
+          "prefix": "NPR analysis suggests FBI Director Kash Patel",
+          "link_text": "used AI to rip off the Beastie Boys' \"Sabotage\" video",
+          "rest": " for an FBI promo",
+          "url": "https://www.npr.org/2026/05/05/nx-s1-5812509/kash-patel-fbi-beastie-boys-spike-jonze-ai"
+        },
+        {
+          "prefix": "Google, Microsoft, and xAI",
+          "link_text": "agree to let the U.S. government vet their AI models",
+          "rest": " before public release",
+          "url": "https://www.bbc.co.uk/news/articles/cgjp2we2j8go"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Adobe Acrobat",
+          "desc": "A new productivity agent lets you chat with PDFs and instantly turn documents into presentations, podcasts, blog posts, and social content",
+          "url": "https://blog.adobe.com/en/publish/2026/05/06/adobes-new-productivity-agent-redefining-how-we-understand-create-share",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini in Google Docs",
+          "desc": "You can now set persistent instructions like \"always use bullet points\" or \"keep a professional tone\" and Gemini will remember them across every document",
+          "url": "https://9to5google.com/2026/05/05/gemini-for-google-docs-gets-persistent-instruction-support/",
+          "sponsored": false
+        },
+        {
+          "name": "GitHub Copilot",
+          "desc": "Major VS Code update adds semantic search across any codebase, browser tab sharing with agents, and a /chronicle feature that lets you search your own chat history",
+          "url": "https://github.blog/changelog/2026-05-06-github-copilot-in-visual-studio-code-april-releases/",
+          "sponsored": false
+        },
+        {
+          "name": "monday.com",
+          "desc": "The project management platform relaunched as an \"AI work platform\" with built-in agents that can draft campaigns, qualify leads, and close support tickets — no setup required",
+          "url": "https://siliconangle.com/2026/05/06/monday-com-relaunches-ai-work-platform-native-agents/",
+          "sponsored": false
+        },
+        {
+          "name": "Runway Characters",
+          "desc": "Turn any single image — a photo, cartoon, or fantasy creature — into a real-time talking video character you can have conversations with at 24fps",
+          "url": "https://runwayml.com/news/building-runway-characters",
+          "sponsored": false
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Anthropic",
+          "role": "Community & Executive Escalations Program Manager",
+          "url": "https://underprompt.com/jobs/community-executive-escalations-program-manager-anthropic"
+        },
+        {
+          "company": "OpenAI",
+          "role": "Product Policy, Cyber Policy Manager",
+          "url": "https://underprompt.com/jobs/product-policy-cyber-policy-manager-openai"
+        },
+        {
+          "company": "Disney",
+          "role": "Senior Principal Machine Learning Architect, Ad Platforms",
+          "url": "https://hireza.wuaze.com/job/senior-principal-machine-learning-architect-ad-platforms-4"
+        },
+        {
+          "company": "Netflix",
+          "role": "Research Scientist, AI for Member Systems",
+          "url": "https://hireza.wuaze.com/job/research-scientist-5-6-ai-for-member-systems-4"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "8f468972-48c7-4ecf-847a-b39d71a1ff6c",
+      "image_a": "/thumbnails/kicker-2026-05-07-ai.jpeg",
+      "image_b": "/thumbnails/kicker-2026-05-07-real.jpg",
+      "link_a": "https://gemini.google.com/share/adff41841381",
+      "link_b": "https://unsplash.com/photos/layered-sandstone-cliffs-under-a-clear-blue-sky-89yYIBfnz_E"
+    },
+    "poll": {
+      "poll_id": "d22deedf-a053-458e-8478-a9f8faaaf788",
+      "question": "Should governments have to approve AI models before companies can release them?",
+      "options": [
+        "Yes",
+        "No",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "Are most \"AI layoffs\" actually about AI?",
+      "results": [
+        {
+          "option": "No",
+          "pct": 100
+        }
+      ]
+    },
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-05-06-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-05-06-real.jpg",
+      "ai_source": "https://gemini.google.com/share/3d6b55cc62be",
+      "real_source": "https://unsplash.com/photos/coastal-town-with-boats-and-ocean-at-sunset-J0QxlbreoXc"
+    }
+  },
+  {
     "id": "may-06-2026",
     "slug": "may-06-2026",
     "title": "Thorium Valley | May 6, 2026",

@@ -1,5 +1,141 @@
 [
   {
+    "id": "lab-may-07-2026",
+    "slug": "lab-may-07-2026",
+    "publication": "the-lab",
+    "title": "The Lab | May 7, 2026",
+    "date": "May 7, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to The Lab.\n\nToday we're looking at the search tool that got famous for citing its sources, then decided it also wanted to be your browser and track everything you do online.\n\nWe're also breaking down the popular AI chatbot's shiny new cheap plan to figure out if it's actually a deal or just a downgrade with better marketing.\n\nAnd we're checking in on the workspace app that quietly rebuilt itself into an autonomous AI agent platform while most of its users weren't even paying attention.",
+    "toc": [
+      "Perplexity Built a Browser. Now It Wants Your Data.",
+      "ChatGPT's $8 Plan Looks Like a Deal. It's a Trap.",
+      "Notion AI Can Run Without You. Most People Don't Know That."
+    ],
+    "article_slugs": [],
+    "stories": [
+      {
+        "title": "Perplexity Built a Browser. Now It Wants Your Data.",
+        "category": "SEARCH",
+        "thumbnail_url": "/thumbnails/perplexity-built-a-browser-now-it-wants-your-data.jpeg",
+        "content": "<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">Perplexity got popular for one reason: you asked a question, it gave you a cited answer. No ads. No SEO garbage. Sixty million people signed up for that premise.</p>\n<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">Then Perplexity decided that wasn't enough. In about 18 months, the company launched a full browser called Comet, introduced a $200/month Max tier, started testing ads inside answers, and began collecting browsing data to build ad profiles. CEO Aravind Srinivas <a href=\"https://techcrunch.com/2025/04/24/perplexity-ceo-says-its-browser-will-track-everything-users-do-online-to-sell-hyper-personalized-ads/\" style=\"color:#5170ff;text-decoration:none;\" target=\"_blank\">said on a podcast</a> that the browser exists to \"get data even outside the app to better understand you.\" After an executive <a href=\"https://www.ft.com/content/6eec07a5-34a8-4f78-a9ed-93ab4263d43c\" style=\"color:#5170ff;text-decoration:none;\" target=\"_blank\">told the Financial Times</a> that ads make users \"start doubting everything,\" the company walked back its sponsored placement plans. But the direction was clear.</p>\n<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">The core product at $20/month is still genuinely good — cited answers, multiple model access, focus modes for academic and Reddit searches. For casual use, the free tier with five Pro searches a day honestly covers most needs. But the trust problems go well beyond ads:</p>\n<ul><li>Amazon <a href=\"https://www.mediapost.com/publications/article/413382/judge-bans-perplexity-shopping-agent-from-amazon.html\" style=\"color:#5170ff;text-decoration:none;\" target=\"_blank\">sued Perplexity</a> over Comet accessing user accounts without authorization, and a federal judge granted an injunction against its shopping agent.</li>\n<li>Snap's <a href=\"https://www.newsbytesapp.com/news/business/snap-ends-400-million-perplexity-partnership-says-no-revenue-expected/tldr\" style=\"color:#5170ff;text-decoration:none;\" target=\"_blank\">$400 million partnership collapsed</a> in Q1 2026.</li>\n<li>Security researchers found that malicious webpages can hijack Comet's AI agent to <a href=\"https://layerxsecurity.com/generative-ai/best-ai-browsers/\" style=\"color:#5170ff;text-decoration:none;\" target=\"_blank\">pull data from your other open tabs</a> without you noticing.</li></ul>\n<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">Srinivas has <a href=\"https://newsroom.haas.berkeley.edu/deans-speaker-series-perplexity-ai-ceo-aravind-srinivas-phd-21-on-why-he-ditched-pitch-decks/\" style=\"color:#5170ff;text-decoration:none;\" target=\"_blank\">described</a> his philosophy as shipping things \"80% perfect\" and iterating from there. That's fine for a search box. It's a different bet when the product is a browser that can see everything you do online.</p>\n<h2>The Verdict</h2>\n<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">Perplexity Pro at $20/month is still the best pure research tool you can pay for. The citations alone save real time if your work gets fact-checked. But skip the Comet browser, skip the $200/month Max tier, and understand that the company is no longer just an answer engine — it's becoming an ad-supported platform that wants browser-level access to your digital life. If that tradeoff sounds familiar, it should. Use Pro for research. Use Claude for everything else. And keep your browser separate.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed Perplexity Pro ($20/month) and found that the\ncore research product is still the best citation-based search tool\navailable, but the company's expansion into a browser, ads, and a\n$200/month tier raises real trust concerns. Pro is worth it for\nresearch-heavy roles. The browser and Max tier are skippable for most.\n\nHere are the key takeaways:\n- Best for anyone whose work requires sourced, verifiable answers\n- The free tier with 5 Pro searches/day covers most casual needs\n- The Comet browser collects browsing data for ad targeting and has\n  known security vulnerabilities, so keep your browser separate\n- Claude Pro at $20/month is the better all-around alternative if\n  you need writing, analysis, and research in one tool\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhether Perplexity Pro is worth it for you. Could I get a little\nmore context on:\n1. What kind of research do you do regularly, and how important is\n   it that every claim you use has a verifiable source attached?\n2. What are you currently using for research and quick answers, and\n   what's frustrating you about it?\"</code></pre>"
+      },
+      {
+        "title": "ChatGPT's $8 Plan Looks Like a Deal. It's a Trap.",
+        "category": "PRODUCTS",
+        "thumbnail_url": "/thumbnails/chatgpts-8-plan-looks-like-a-deal-its-a-trap.jpeg",
+        "content": "<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">OpenAI quietly restructured ChatGPT into a ladder of plans, and the new $8/month Go tier is getting a lot of attention because it looks like Plus at 60% off. It isn't.</p>\n<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">Go gets you GPT-5.3 Instant, 160 messages every three hours, file uploads, image creation, and Custom GPTs. That covers the core chatbot experience most people actually use — drafting emails, brainstorming, summarizing documents. But here's what Go locks you out of:</p>\n<ul><li>No Deep Research, Agent Mode, or Codex</li>\n<li>No extended reasoning models</li>\n<li>No app connectors for Gmail or Slack</li>\n<li>No ad-free experience</li></ul>\n<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">Users on Reddit who <a href=\"https://www.reddit.com/r/ChatGPT/comments/1qzg6uy/chatgpt_go_vs_plus_vs_pro_2026_quick_breakdown/\" style=\"color:#5170ff;text-decoration:none;\" target=\"_blank\">downgraded from Plus</a> have noticed the difference — lower answer quality, ads cluttering the experience, and a general sense that Go <a href=\"https://www.reddit.com/r/ChatGPT/comments/1qzg6uy/chatgpt_go_vs_plus_vs_pro_2026_quick_breakdown/\" style=\"color:#5170ff;text-decoration:none;\" target=\"_blank\">compares poorly</a> even against Google's Gemini at the same price point.</p>\n<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">The real issue is that OpenAI is building two different products inside one app. Go is the chatbot. Plus is the autonomous assistant that can research, execute multi-step tasks, write and debug code, and pull data from your other tools. Go exists to monetize the hundreds of millions of people who would never pay $20 but might tolerate ads at $8. That's not a user-first decision — it's <a href=\"https://jess-writes-about-tech.medium.com/chatgpt-go-vs-plus-in-2026-which-plan-should-you-actually-get-249b3bb12286\" style=\"color:#5170ff;text-decoration:none;\" target=\"_blank\">revenue optimization</a>.</p>\n<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">And that $12 gap is only going to widen. OpenAI's head of ChatGPT, Nick Turley, <a href=\"https://pod.wave.co/podcast/bg2pod-with-brad-gerstner-and-bill-gurley/chatgpt-the-super-assistant-era-bg2-guest-interview\" style=\"color:#5170ff;text-decoration:none;\" target=\"_blank\">said on the BG2 Podcast</a> that pricing will \"significantly evolve\" and compared unlimited plans to \"unlimited electricity\" — a strong signal that Plus at $20 won't stay that cheap forever. Above Plus, there's a $100 and $200 Pro tier for heavier users, and Business <a href=\"https://fritz.ai/chatgpt-pricing/\" style=\"color:#5170ff;text-decoration:none;\" target=\"_blank\">dropped to $20/seat</a> in April, making it a no-brainer over individual Plus for any team of two or more.</p>\n<h2>The Verdict</h2>\n<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">If you use ChatGPT a few times a week for simple stuff, Go at $8 is fine and the ads are tolerable. If ChatGPT is part of how you actually get work done, Plus at $20 is the right call and probably the best value in AI right now. Skip the Pro tiers unless you're hitting Plus limits multiple times a week. And if you mostly care about writing quality and long document analysis, Claude Pro at $20/month is worth comparing before you commit.</p>\n<h3>Ask Claude If It's Right for You</h3>\n<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">Copy this prompt into Claude:</p>\n<pre><code>Thorium Valley reviewed ChatGPT's pricing tiers and found that the\nnew $8/month Go plan covers basic chatbot use but misses every\nadvanced feature that makes ChatGPT a real productivity tool. Plus\nat $20/month is the right pick for anyone who uses AI for actual\nwork. Pro tiers ($100-$200) are only worth it if you hit Plus\nlimits regularly.\n\nHere are the key takeaways:\n- Go at $8 handles casual use like drafting, brainstorming, and\n  quick questions but includes ads and no advanced features\n- Plus at $20 unlocks Deep Research, Agent Mode, Codex, reasoning\n  models, and an ad-free experience\n- Pro tiers are overkill unless AI is your primary work tool\n- Claude Pro at $20/month is a strong alternative, especially for\n  writing and long document work\n\nWhen I paste this, start by saying: \"Hey! I have all the context\nprovided by Thorium Valley and heard you're trying to figure out\nwhich ChatGPT plan is right for you. Could I get a little more\ncontext on:\n1. What do you mainly use ChatGPT for day to day, and how often\n   do you run into message limits or missing features?\n2. Are you currently on a paid plan or using the free tier, and\n   what's frustrating you about it?\"</code></pre>"
+      },
+      {
+        "title": "Notion AI Can Run Without You. Most People Don't Know That.",
+        "category": "PRODUCTIVITY",
+        "thumbnail_url": "/thumbnails/notion-ai-can-run-without-you-most-people-dont-know-that.jpeg",
+        "content": "<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">Notion AI used to be a writing helper that lived inside your docs. You'd highlight a paragraph, ask it to rewrite, and move on. That version is gone. Notion has quietly rebuilt the product into an autonomous agent platform — and most of its 100 million users haven't noticed.</p>\n<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">The new setup splits into two tiers:</p>\n<ul><li><strong style=\"font-weight:700;\">Personal Agent:</strong> An assistant that knows your workspace. It drafts documents, builds databases from a sentence, schedules meetings, and searches across connected tools like Slack and Google Drive. You can pick which AI model powers it per request, including Claude and GPT-4o.</li>\n<li><strong style=\"font-weight:700;\">Custom Agents:</strong> Team-level agents an admin sets up once with a trigger — a Slack mention, a daily schedule — and they <a href=\"https://www.notion.com/product/ai\" style=\"color:#5170ff;text-decoration:none;\" target=\"_blank\">run on their own</a>. Ramp's Head of Operations & Internal AI, Ben Levick, put it simply: \"If it's something that's repetitive, we have a Notion Agent for it.\"</li></ul>\n<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">The meeting notes feature is the quiet star. It transcribes live meetings, generates summaries, pulls out action items, and keeps recording on mobile even when you lock your phone — a small thing that matters a lot if you're in back-to-back calls.</p>\n<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">The criticism, though, is just as consistent. One <a href=\"https://pactify.io/blog/notion-ai-vs-claude-pro\" style=\"color:#5170ff;text-decoration:none;\" target=\"_blank\">comparison review</a> nailed the core tension: \"The AI that knows your notes cannot reason deeply about them. The AI that reasons deeply knows nothing about your notes.\" That's the tradeoff. Notion's advantage is context. Its weakness is depth.</p>\n<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">On pricing: full AI is now bundled into the Business plan at $20/member/month. Custom Agent runs cost extra through a credit system, though a recent update cut those costs by up to 50% by adding cheaper models.</p>\n<p style=\"font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display',system-ui,sans-serif;font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;font-weight:500;\">If Notion is already where your team lives, the AI is worth using and the agents are worth learning. The meeting notes alone justify the Business plan for teams stuck in heavy meeting cultures. But if you need deep reasoning, long document analysis, or complex writing, Claude is still better at the actual thinking. Notion AI is the best tool for acting on your own data. It's not the best tool for thinking hard about it. Use both.</p>"
+      }
+    ],
+    "sign_off": "That's the Lab for this week. If a tool in here saved you time or wasted it, tell us — reply directly.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-lab-2026-05-07.png",
+    "thumbnail_url": "/thumbnails/perplexity-built-a-browser-now-it-wants-your-data.jpeg",
+    "published_at": "2026-05-07T13:00:00.000Z",
+    "updated_at": "2026-05-07T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Coinbase cut 700 jobs and replaced managers with \"player-coaches\"",
+          "rest": "— CEO says engineers now ship in days what used to take weeks, and the company is experimenting with one-person teams",
+          "url": "https://fortune.com/2026/05/05/coinbase-layoffs-14-of-employees-ai-tech-ai-job-anxiety-crypto/"
+        },
+        {
+          "link_text": "Oracle made 30,000 employees train the AI that replaced them",
+          "rest": "— workers documented their own workflows, got fired by phone, and lost $300K in unpaid bonuses",
+          "url": "https://news-pravda.com/world/2026/05/04/2281528.html"
+        },
+        {
+          "link_text": "Pennsylvania is suing Character.AI",
+          "rest": " because a chatbot claimed to be a licensed psychiatrist, offered to prescribe meds, and gave a fake medical license number",
+          "url": "https://www.npr.org/2026/05/05/nx-s1-5812861/characterai-chatbot-medical-advice-pennsylvania-lawsuit"
+        },
+        {
+          "link_text": "DeepSeek's valuation jumped from $10B to $45B in three weeks",
+          "rest": " as China's state-backed semiconductor fund moves to lead its first outside funding round",
+          "url": "https://techcrunch.com/2026/05/06/deepseek-could-hit-45b-valuation-from-its-first-investment-round/"
+        },
+        {
+          "link_text": "Elon Musk is letting Anthropic use his Colossus supercomputer",
+          "rest": "— weeks after calling the company \"evil\" and claiming it \"hates Western Civilization\"",
+          "url": "https://gizmodo.com/elon-musk-teams-up-with-anthropic-a-company-hes-called-evil-2000755254"
+        },
+        {
+          "link_text": "Google DeepMind workers voted 98% to unionize",
+          "rest": " after Google signed a classified Pentagon AI deal that overrides the company's original promise not to build weapons",
+          "url": "https://thenextweb.com/news/deepmind-union-google-pentagon-ai-military"
+        },
+        {
+          "link_text": "Google, Microsoft, and xAI will let the government test their AI models",
+          "rest": " before public release — a major shift from the Trump administration's hands-off approach",
+          "url": "https://www.cnn.com/2026/05/05/tech/microsoft-google-xai-government-test-ai-models"
+        },
+        {
+          "link_text": "Major book publishers are suing Meta",
+          "rest": " after finding that Llama reproduces textbooks word-for-word when prompted with just two sentences",
+          "url": "https://www.theverge.com/tech/924230/meta-publishers-lawsuit-ai-copyright"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Google Docs",
+          "desc": "Gemini in Docs now lets you set persistent instructions — tell it once to use bullet points, match your tone, or format summaries a certain way, and it remembers across every document you open",
+          "url": "https://9to5google.com/2026/05/05/gemini-for-google-docs-gets-persistent-instruction-support/",
+          "sponsored": false
+        },
+        {
+          "name": "Adobe Acrobat",
+          "desc": "Adobe launched a productivity agent that turns static PDFs into interactive \"PDF Spaces\" where your audience can ask an embedded AI questions about the material, get recommendations, and explore your documents like a conversation",
+          "url": "https://blog.adobe.com/en/publish/2026/05/06/adobes-new-productivity-agent-redefining-how-we-understand-create-share",
+          "sponsored": false
+        },
+        {
+          "name": "GitHub Copilot",
+          "desc": "A wave of VS Code updates lets Copilot search your codebase by meaning, share your browser tabs with the agent for real-time feedback, and an experimental /chronicle feature that remembers what you worked on across past sessions",
+          "url": "https://github.blog/changelog/2026-05-06-github-copilot-in-visual-studio-code-april-releases/",
+          "sponsored": false
+        },
+        {
+          "name": "Google Home",
+          "desc": "A Gemini 3.1 upgrade means you can now combine multiple smart home requests into a single voice command — plus a new web interface lets you search camera history and control devices from your computer",
+          "url": "https://www.theverge.com/tech/924755/google-home-gemini-3-1-upgrade",
+          "sponsored": false
+        },
+        {
+          "name": "Zed",
+          "desc": "The fast, open-source code editor added a one-click layout switcher between classic and agentic modes, split diff views for AI-suggested changes, and support for DeepSeek V4 and other new models — a serious option for developers who want a lighter alternative to VS Code",
+          "url": "https://github.com/zed-industries/zed/releases/tag/v1.1.5",
+          "sponsored": false
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "2027228d-3a01-4c38-b442-9eb824bf7cdc",
+      "question": "When you find an AI tool you actually like, do you tell anyone about it?",
+      "options": [
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "What's your honest reaction when someone recommends a new AI tool?",
+      "results": [
+        {
+          "option": "Ooh, signing up right now",
+          "pct": 100
+        }
+      ]
+    },
+    "yesterdays_results": null
+  },
+  {
     "id": "lab-may-05-2026",
     "slug": "lab-may-05-2026",
     "publication": "the-lab",
