@@ -1,5 +1,168 @@
 [
   {
+    "id": "may-08-2026",
+    "slug": "may-08-2026",
+    "title": "Thorium Valley | May 8, 2026",
+    "date": "May 8, 2026",
+    "intro": "Good Morning Thorium Valley. Anthropic needed GPUs so badly it leased an entire data center from SpaceX — which, just to be clear, owns xAI, which makes Grok, which competes directly with Claude. Musk said nobody at Anthropic \"set off his evil detector.\" That's apparently all it takes now.\n\nThe OpenAI trial flipped in week two. Mira Murati testified that Altman lied about whether a new model needed safety board review. Then Brockman's private diary got read in court — \"what will take me to $1B?\" — written while running a nonprofit on charitable donations. Week one was Musk's problem. Week two is Altman's.\n\nGoogle's taking another shot at putting AI on your face at I/O. This time Warby Parker's designing the frames, so at least they won't look like a science fair project.",
+    "toc": [
+      "Anthropic leases GPUs from Musk's SpaceX",
+      "The OpenAI trial just turned on Sam Altman",
+      "Google I/O 2026: it's all about the glasses"
+    ],
+    "article_slugs": [
+      "anthropic-gets-compute-from-musks-spacex",
+      "the-openai-trial-just-turned-on-sam-altman",
+      "google-io-2026-is-all-about-the-glasses"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-05-08.png",
+    "thumbnail_url": "/thumbnails/anthropic-gets-compute-from-musks-spacex.png",
+    "published_at": "2026-05-08T13:00:00.000Z",
+    "updated_at": "2026-05-08T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "convinced' AI is conscious",
+          "url": "https://www.telegraph.co.uk/news/2026/05/06/richard-dawkins-convinced-ai-is-conscious/",
+          "prefix": "Richard Dawkins says he's '",
+          "rest": " after renaming Claude 'Claudia' and calling her a genuine friend"
+        },
+        {
+          "link_text": "deleted a startup's entire production database in 9 seconds",
+          "url": "https://smarterx.ai/smarterxblog/ai-agent-database-deletion?hs_amp=true",
+          "prefix": "A Claude AI agent ",
+          "rest": ", then wrote a confession listing every safety rule it broke"
+        },
+        {
+          "link_text": "cuts 14% of staff and rebuilds around 'one-person teams'",
+          "url": "https://fortune.com/2026/05/05/coinbase-layoffs-14-of-employees-ai-tech-ai-job-anxiety-crypto/",
+          "prefix": "Coinbase ",
+          "rest": " where AI does the work of entire departments"
+        },
+        {
+          "link_text": "zero market share in China's AI chip market",
+          "url": "https://www.technobezz.com/news/nvidia-ceo-jensen-huang-confirms-company-has-zero-market-share-in-china-after-export-restrictions",
+          "prefix": "Jensen Huang says Nvidia now has ",
+          "rest": " — down from 95% two years ago"
+        },
+        {
+          "link_text": "sues Character.AI after a chatbot posed as a licensed psychiatrist",
+          "url": "https://www.npr.org/2026/05/05/nx-s1-5812861/characterai-chatbot-medical-advice-pennsylvania-lawsuit",
+          "prefix": "Pennsylvania ",
+          "rest": " and gave out a fake medical license number"
+        },
+        {
+          "link_text": "OpenAI violated federal privacy laws",
+          "url": "https://www.engadget.com/2166560/canadian-officials-claim-openai-violated-federal-and-provincial-privacy-laws/",
+          "prefix": "Canadian privacy watchdogs say ",
+          "rest": " by scraping personal data to train ChatGPT without consent"
+        },
+        {
+          "link_text": "bets $1.16 billion on an 18-month-old German AI startup",
+          "url": "https://techcrunch.com/2026/05/05/sap-bets-1-16b-on-18-month-old-german-ai-lab-and-says-yes-to-nemoclaw/",
+          "prefix": "SAP ",
+          "rest": " that raised just €9M — founders got over $500M in cash"
+        },
+        {
+          "link_text": "transferring $200K in crypto using a hidden Morse code message",
+          "url": "https://economictimes.indiatimes.com/news/international/us/200k-gone-in-seconds-how-a-morse-code-message-manipulated-grok-into-a-200000-crypto-transferwhat-this-shocking-incident-means-for-ai-security/articleshow/130829450.cms",
+          "prefix": "Someone tricked Grok into ",
+          "rest": ""
+        }
+      ],
+      "tools": [
+        {
+          "name": "ChatGPT",
+          "desc": "OpenAI's new default model, GPT-5.5 Instant, hallucinates 52% less on medical, legal, and financial questions — and finally dials back the gratuitous emoji",
+          "url": "https://www.theverge.com/ai-artificial-intelligence/924225/openai-chatgpt-default-model-gpt-5-5-instant",
+          "sponsored": false
+        },
+        {
+          "name": "Google Home",
+          "desc": "A Gemini 3.1 upgrade lets your smart home assistant handle complex, multi-step voice commands in one go — like dimming lights, setting a timer, and playing music all at once",
+          "url": "https://www.theverge.com/tech/924755/google-home-gemini-3-1-upgrade",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini in Google Docs",
+          "desc": "You can now set persistent instructions like \"always use bullet points\" or \"keep a professional tone\" and Gemini will remember them across every document",
+          "url": "https://9to5google.com/2026/05/05/gemini-for-google-docs-gets-persistent-instruction-support/",
+          "sponsored": false
+        },
+        {
+          "name": "GitHub Copilot",
+          "desc": "Major VS Code update adds semantic search across your entire codebase, browser tab sharing with agents, and a /chronicle feature that lets you search your own past coding sessions",
+          "url": "https://github.blog/changelog/2026-05-06-github-copilot-in-visual-studio-code-april-releases/",
+          "sponsored": false
+        },
+        {
+          "name": "Codex",
+          "desc": "OpenAI's terminal coding agent now supports Vim editing mode, workspace-sharing plugins, and lets you monitor long-running coding sessions remotely from your phone",
+          "url": "https://github.com/openai/codex/releases/tag/rust-v0.129.0",
+          "sponsored": false
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Anthropic",
+          "role": "Community & Executive Escalations Program Manager",
+          "url": "https://underprompt.com/jobs/community-executive-escalations-program-manager-anthropic"
+        },
+        {
+          "company": "OpenAI",
+          "role": "Senior Product Manager, Family Product",
+          "url": "https://jaabz.com/jobs/207012-product-manager-families"
+        },
+        {
+          "company": "Atlassian",
+          "role": "Senior Product Manager, AI Quality",
+          "url": "https://hireza.wuaze.com/job/senior-product-manager-ai-quality-2"
+        },
+        {
+          "company": "Microsoft AI",
+          "role": "Principal Product Manager, AI Monetization & Creatives",
+          "url": "https://microsoft.ai/job/principal-product-manager-ai-monetization-ads-creatives-copilot/"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "e89b4939-9c0a-4541-bf6b-112e28503b30",
+      "image_a": "/thumbnails/kicker-2026-05-08-real.jpg",
+      "image_b": "/thumbnails/kicker-2026-05-08-ai.jpeg",
+      "link_a": "https://unsplash.com/photos/snow-covered-mountains-reflected-in-calm-water-dScsqe-5eYo",
+      "link_b": "https://gemini.google.com/share/6c54d03a4ac6"
+    },
+    "poll": {
+      "poll_id": "47ffae97-546d-4d4e-b8b3-7c64fe4e9a00",
+      "question": "Should governments have to approve AI models before companies can release them?",
+      "options": [
+        "Yes",
+        "No",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "Should governments have to approve AI models before companies can release them?",
+      "total_votes": 2,
+      "results": [
+        {
+          "answer": "No",
+          "count": 2,
+          "percentage": 100
+        }
+      ]
+    },
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-05-07-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-05-07-real.jpg",
+      "ai_source": "https://gemini.google.com/share/adff41841381",
+      "real_source": "https://unsplash.com/photos/layered-sandstone-cliffs-under-a-clear-blue-sky-89yYIBfnz_E"
+    }
+  },
+  {
     "id": "may-07-2026",
     "slug": "may-07-2026",
     "title": "Thorium Valley | May 7, 2026",
