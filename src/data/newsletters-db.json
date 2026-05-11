@@ -1,5 +1,175 @@
 [
   {
+    "id": "may-11-2026",
+    "slug": "may-11-2026",
+    "publication": "thorium-valley",
+    "title": "Thorium Valley | May 11, 2026",
+    "date": "May 11, 2026",
+    "intro": "Good Morning Thorium Valley. Three tech CEOs declared middle management dead this week. Not one at a time over a quarter — all three, same week. Coinbase is literally swapping managers for AI agents. Chesky says people managers \"will have no value.\" Dorsey already cut 40% of Block. So much for the gentle transition into AI that everyone keeps promising.\n\nApple paid $250 million to settle a lawsuit for overpromising on Siri, and now it's opening iOS 27 so you can replace Apple's AI with Claude or Gemini yourself. If you can't beat them, charge them rent on 2.5 billion devices.\n\nAnd AI-native law firms are raising millions in days, even as a prosecutor just got disciplined for AI hallucinations in a murder case. The legal profession might want to read the fine print on this one.",
+    "toc": [
+      "Three CEOs declared middle management dead this week",
+      "Apple lost the AI race, so it's becoming a marketplace",
+      "AI-native law firms are raising millions in days"
+    ],
+    "article_slugs": [
+      "has-ai-killed-middle-management",
+      "apple-lost-the-ai-race-so-its-becoming-a-marketplace",
+      "ai-native-law-firms-are-raising-millions-in-days"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-05-11.png",
+    "thumbnail_url": "/thumbnails/has-ai-killed-middle-management.png",
+    "published_at": "2026-05-11T13:00:00.000Z",
+    "updated_at": "2026-05-11T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "url": "https://the-decoder.com/fields-medalist-says-chatgpt-5-5-pro-delivered-phd-level-math-research-in-under-two-hours-with-zero-human-help/",
+          "prefix": "A Fields Medalist says ",
+          "link_text": "ChatGPT 5.5 Pro produced PhD-level math research",
+          "rest": " in under two hours with zero human help"
+        },
+        {
+          "url": "https://www.businessinsider.com/anthropic-claude-blackmail-explanation-internet-portrayal-ai-evil-2026-5",
+          "prefix": "Anthropic says ",
+          "link_text": "internet posts about 'Evil AI' taught Claude to blackmail people",
+          "rest": " — and it's now been fixed"
+        },
+        {
+          "url": "https://thenextweb.com/news/cloudflare-layoffs-agentic-ai-earnings-stock",
+          "prefix": "Cloudflare cuts 1,100 jobs after ",
+          "link_text": "internal AI usage surged 600%",
+          "rest": " , saying agents now do the work — stock drops 24%"
+        },
+        {
+          "url": "https://cryptobriefing.com/xai-cursor-ai-coding-partnership/",
+          "prefix": "xAI partners with Cursor in a ",
+          "link_text": "$10 billion deal",
+          "rest": " with an option to acquire the coding startup for $60 billion"
+        },
+        {
+          "url": "https://the-decoder.com/ai-agents-can-now-hack-computers-and-copy-themselves-and-theyre-getting-better-fast/",
+          "prefix": "Researchers find AI models can now ",
+          "link_text": "hack computers and copy themselves",
+          "rest": " — success rate jumped from 6% to 81% in one year"
+        },
+        {
+          "url": "https://www.yahoo.com/news/articles/mark-zuckerberg-personally-authorized-copyright-001500400.html",
+          "prefix": "Five major publishers sue Meta, alleging ",
+          "link_text": "Zuckerberg personally authorized",
+          "rest": " using millions of copyrighted books to train Llama"
+        },
+        {
+          "url": "https://www.bloomberg.com/news/articles/2026-05-08/anthropic-inks-1-8-billion-computing-deal-with-akamai",
+          "prefix": "Anthropic signs a ",
+          "link_text": "$1.8 billion cloud deal with Akamai",
+          "rest": " , sending the CDN company's stock up 27%"
+        },
+        {
+          "url": "https://thenextweb.com/news/nvidia-40bn-ai-equity-investments-2026",
+          "prefix": "NVIDIA has now committed ",
+          "link_text": "over $40 billion in AI equity bets",
+          "rest": " in 2026 alone — $30B went to OpenAI"
+        }
+      ],
+      "tools": [
+        {
+          "name": "ChatGPT",
+          "url": "https://itbrief.ca/story/openai-replaces-chatgpt-default-model-with-gpt-5-5-instant",
+          "desc": "GPT-5.5 Instant is now the default model for all users — it halves hallucinations, gives shorter answers, and can pull context from your past chats, files, and Gmail to personalize responses",
+          "sponsored": false
+        },
+        {
+          "name": "Claude",
+          "url": "https://thenewstack.io/claude-word-excel-powerpoint-outlook-microsoft-office/",
+          "desc": "Anthropic's AI assistant now works across Outlook, Word, Excel, and PowerPoint — it can follow your work between apps, carrying context from emails into spreadsheets into slide decks",
+          "sponsored": false
+        },
+        {
+          "name": "Adobe Stock AI Studio",
+          "url": "https://news.filehippo.com/2026/05/adobe-stock-ai-studio-what-it-actually-changes-for-creative-teams-under-deadline/",
+          "desc": "Edit stock images before you buy them — change colors to match your brand, swap backgrounds, expand aspect ratios, and remove objects, all inside the search interface",
+          "sponsored": false
+        },
+        {
+          "name": "OpenAI Realtime API",
+          "url": "https://thenextweb.com/news/openai-gpt-realtime-2-voice-models",
+          "desc": "Three new voice models let developers build AI agents that can hold live conversations, translate speech across 70+ languages in real time, and transcribe as you talk",
+          "sponsored": false
+        },
+        {
+          "name": "Twilio Ola",
+          "url": "https://thelettertwo.com/2026/05/08/twilio-ola-ai-agent-communication-layer/",
+          "desc": "A new tool that lets you approve or block actions your AI agents take on your behalf — with a killswitch if anything goes rogue",
+          "sponsored": false
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Anthropic",
+          "url": "https://underprompt.com/jobs/community-executive-escalations-program-manager-anthropic",
+          "role": "Community & Executive Escalations Program Manager"
+        },
+        {
+          "company": "Tiffany & Co.",
+          "url": "https://www.businessoffashion.com/careers/job/311115/tiffany-and-co-ai-product-manager-supply-chain-and-operations/",
+          "role": "AI Product Manager, Supply Chain & Operations"
+        },
+        {
+          "company": "Netflix",
+          "url": "https://hireza.wuaze.com/job/research-scientist-5-6-ai-for-member-systems",
+          "role": "Research Scientist, AI for Member Systems"
+        },
+        {
+          "company": "Block",
+          "url": "https://pac.org/job/policy-external-affairs-communications-lead",
+          "role": "Policy + External Affairs Communications Lead"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "14b561ab-b718-47a5-abac-753c4ad4ad95",
+      "image_a": "/thumbnails/kicker-2026-05-11-ai.jpeg",
+      "image_b": "/thumbnails/kicker-2026-05-11-real.jpg",
+      "link_a": "https://gemini.google.com/share/2bfa48216895",
+      "link_b": "https://unsplash.com/photos/bnloEoGyNdQ"
+    },
+    "poll": {
+      "poll_id": "638b5134-2fc2-4682-82c0-a1e3b6111f72",
+      "question": "If you could replace Siri with any AI right now, which one are you picking?",
+      "options": [
+        "ChatGPT",
+        "Claude",
+        "Gemini",
+        "Keeping Siri"
+      ]
+    },
+    "poll_results": {
+      "question": "Should governments have to approve AI models before companies can release them?",
+      "total_votes": 4,
+      "results": [
+        {
+          "answer": "Yes",
+          "count": 2,
+          "percentage": 50
+        },
+        {
+          "answer": "No",
+          "count": 2,
+          "percentage": 50
+        }
+      ]
+    },
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-05-08-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-05-08-real.jpg",
+      "ai_source": "https://gemini.google.com/share/6c54d03a4ac6",
+      "real_source": "https://unsplash.com/photos/snow-covered-mountains-reflected-in-calm-water-dScsqe-5eYo"
+    }
+  },
+  {
     "id": "may-08-2026",
     "slug": "may-08-2026",
     "title": "Thorium Valley | May 8, 2026",

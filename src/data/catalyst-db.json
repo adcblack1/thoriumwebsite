@@ -1,5 +1,144 @@
 [
   {
+    "id": "catalyst-may-11-2026",
+    "slug": "catalyst-may-11-2026",
+    "publication": "the-catalyst",
+    "title": "The Catalyst | May 11, 2026",
+    "date": "May 11, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to the Catalyst Newsletter.\n\nToday we've got the story of why Goldman Sachs refuses to track how much its engineers use AI, and new data from 12,000 developers that suggests the companies obsessively monitoring every prompt might be measuring the wrong thing entirely.\n\nWe're also looking at Cloudflare, which just posted its best quarter in company history and then laid off a fifth of its workforce the same week. The CEO says AI made them so productive they don't need the people anymore. The stock dropped 24%.\n\nAnd then there's a $42 billion auto supplier that most people have never heard of, quietly wiring AI into 327 factories across 28 countries. No flashy announcements, no moonshot language. Just sensors, robots, and a philosophy that the boring stuff is where the real gains are.",
+    "toc": [
+      "Goldman Won't Track Individual AI Use",
+      "Cloudflare Cut 1,100 People After Its Best Quarter Ever",
+      "The $42B Company Wiring AI Into 327 Factories"
+    ],
+    "article_slugs": [
+      "goldman-wont-track-individual-ai-use",
+      "cloudflare-cut-1-100-people-after-its-best-quarter-ever",
+      "the-42b-company-wiring-ai-into-327-factories"
+    ],
+    "stories": [],
+    "sign_off": "That's the Catalyst for this issue. If you know a company doing something interesting with AI that nobody's covering, reply and tell us about it.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": null,
+    "thumbnail_url": "/thumbnails/goldman-wont-track-individual-ai-use.jpeg",
+    "published_at": "2026-05-11T13:00:00.000Z",
+    "updated_at": "2026-05-11T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "url": "https://thenextweb.com/news/anthropic-mythos-cybersecurity-banks-vulnerability",
+          "link_text": "Anthropic's AI found thousands of zero-day vulnerabilities",
+          "rest": " in every major operating system and browser — the Fed chair called bank CEOs to discuss it"
+        },
+        {
+          "url": "https://nymag.com/intelligencer/article/the-chaos-inside-openai-is-spilling-out-in-court.html",
+          "link_text": "OpenAI's president testified he's made $30 billion",
+          "rest": " while Altman takes a $76K salary — the Musk trial is surfacing chaos, 2 a.m. texts, and a coup that almost killed the company"
+        },
+        {
+          "url": "https://coinpulsehq.com/david-silver-ineffable-intelligence-ai-funding/",
+          "link_text": "DeepMind's AlphaZero creator raised $1.1 billion in a seed round",
+          "rest": " to build AI that learns without any human data — valued at $5.1 billion before shipping a product"
+        },
+        {
+          "url": "https://thenextweb.com/news/nvidia-40bn-ai-equity-investments-2026",
+          "link_text": "Nvidia has poured $40 billion into AI equity bets this year alone",
+          "rest": " , and critics say it's basically bankrolling its own customers to buy its own chips"
+        },
+        {
+          "url": "https://www.businessinsider.com/ai-pilled-ceo-deepl-layoffs-memo-playbook-2026-5",
+          "link_text": "DeepL's CEO cut 21% of staff and his memo is the new layoff template",
+          "rest": " — smaller teams, fewer managers, founder mode, AI-native everything"
+        },
+        {
+          "url": "https://abit.ee/en/artificial-intelligence/google-deepmind-ai-co-mathematician-gemini-31-ai-mathematics-kourovka-notebook-frontiermath-benchmar-en",
+          "link_text": "Google's AI co-mathematician solved a 60-year-old open problem",
+          "rest": " from a notebook maintained in Novosibirsk since 1965"
+        },
+        {
+          "url": "https://www.jpost.com/international/article-895305",
+          "link_text": "Apple settled for $250 million",
+          "rest": " after customers sued over Apple Intelligence features that were advertised but never actually worked"
+        },
+        {
+          "url": "https://techcrunch.com/2026/05/10/were-feeling-cynical-about-xais-big-deal-with-anthropic/",
+          "link_text": "SpaceX is dissolving xAI and rebranding it \"SpaceXAI\"",
+          "rest": " after selling its data center compute to Anthropic — because Grok wasn't even being used internally"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Littlebird",
+          "url": "https://try.littlebird.ai/thorium-valley",
+          "desc": "Think of it as an AI that actually knows what you're working on. It watches your screen, takes notes in your meetings, and remembers all of it. So when you forget where you saw something, you just ask.",
+          "sponsored": true
+        },
+        {
+          "name": "Clico",
+          "url": "https://tryclico.link/thorium-valley",
+          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type — no more copying your email into another tab and pasting the answer back",
+          "sponsored": true
+        },
+        {
+          "name": "Claude for Microsoft 365",
+          "url": "https://thenewstack.io/claude-word-excel-powerpoint-outlook-microsoft-office/",
+          "desc": "Anthropic's AI assistant now works across Outlook, Word, Excel, and PowerPoint simultaneously — you can triage your inbox, pull numbers from a spreadsheet, draft a summary, and update a slide deck all in one conversation without re-explaining yourself between apps",
+          "sponsored": false
+        },
+        {
+          "name": "Google Gemini File Generation",
+          "url": "https://www.newsbytesapp.com/news/science/google-gemini-launches-file-generation-for-word-pdf-and-excel/tldr",
+          "desc": "You can now ask Gemini to create fully formatted Word docs, PDFs, and Excel files directly from a chat — pick a layout, describe what you need, and download a ready-to-share file instead of copy-pasting into a template",
+          "sponsored": false
+        },
+        {
+          "name": "ChatGPT",
+          "url": "https://itbrief.ca/story/openai-replaces-chatgpt-default-model-with-gpt-5-5-instant",
+          "desc": "OpenAI swapped in GPT-5.5 Instant as the default model for all users — it hallucinates 50% less, gives shorter answers, and a new \"memory sources\" button lets you see exactly which past conversations and files shaped each response",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini Canvas",
+          "url": "https://www.androidpolice.com/gemini-canvas-best-google-tool-youre-probably-not-using/",
+          "desc": "Instead of going back and forth with prompts, Canvas keeps everything in one evolving workspace where you can write, edit, and ask Gemini to reshape what's already there — then convert it into a web page, flashcards, an infographic, or even a simple app",
+          "sponsored": false
+        },
+        {
+          "name": "GPT for Work",
+          "url": "https://gptforwork.com/blog/gpt-for-work-2026-april-updates",
+          "desc": "The spreadsheet add-on now runs GPT-5.5 and Claude Opus 4.7 as AI agents directly inside Google Sheets and Excel — give it a task like building a chart or pivot table and it handles the whole thing, with new skills that activate automatically based on what you're asking",
+          "sponsored": false
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "ad2e4779-ee4a-4af0-8fd5-c7fe57db3b6f",
+      "question": "Does your company track how much you personally use AI?",
+      "options": [
+        "Yes, and it feels like a quota",
+        "Yes, but nobody cares about the numbers",
+        "No, they measure team output instead",
+        "No idea, I just use it",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "What's the biggest reason you're not using AI more at work?",
+      "total_votes": 1,
+      "results": [
+        {
+          "answer": "No time to figure it out",
+          "count": 1,
+          "percentage": 100
+        }
+      ]
+    },
+    "yesterdays_results": null
+  },
+  {
     "id": "catalyst-may-06-2026",
     "slug": "catalyst-may-06-2026",
     "publication": "the-catalyst",
