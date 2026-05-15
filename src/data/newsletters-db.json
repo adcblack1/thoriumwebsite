@@ -1,5 +1,340 @@
 [
   {
+    "id": "may-14-2026",
+    "slug": "may-14-2026",
+    "publication": "thorium-valley",
+    "title": "Thorium Valley | May 14, 2026",
+    "date": "May 14, 2026",
+    "intro": "Good Morning Thorium Valley. Burger King has an AI that listens to drive-thru conversations and grades employees on friendliness. They're calling it a coaching tool. If you're making $13 an hour and a machine is scoring your smile, you might use a different word.\n\nGM cut 600 IT workers to backfill with AI engineers at up to $290K each. Sounds decisive — except the data says 75% of companies that tried AI-related layoffs spent more than they saved. Turns out swapping people for AI is the easy part.\n\nAnd Medicare just launched payment rates so low only AI-driven companies can survive them. The first federal program designed for AI goes live in July, and most of the healthcare world barely noticed.",
+    "toc": [
+      "Fast food's new AI manager grades your smile",
+      "GM swapped 600 workers for AI talent. The data says it backfires.",
+      "Medicare just built a payment model only AI can afford"
+    ],
+    "article_slugs": [
+      "fast-foods-new-ai-manager-grades-your-smile",
+      "gm-swapped-600-workers-for-ai-talent-the-data-says-it-backfires",
+      "medicare-just-built-a-payment-model-only-ai-can-afford"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-05-14.png",
+    "thumbnail_url": "/thumbnails/fast-foods-new-ai-manager-grades-your-smile.png",
+    "published_at": "2026-05-14T13:00:00.000Z",
+    "updated_at": "2026-05-14T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "url": "https://nymag.com/intelligencer/article/anthropic-dario-amodei-xai-elon-musk-team-up-against-openai-sam-altman.html",
+          "link_text": "Anthropic and xAI are teaming up",
+          "rest": " to take on OpenAI — Anthropic gets access to Musk's massive Colossus data center for inference"
+        },
+        {
+          "url": "https://thenextweb.com/news/tomoro-openai-deployment-company-consulting",
+          "link_text": "OpenAI launches a $4B consulting army",
+          "rest": " to install AI inside companies, sending Accenture's stock tumbling"
+        },
+        {
+          "url": "https://www.dallas360news.com/sap-bets-116b-on-18-month-old-german-ai-lab-and-says-yes-to-nemoclaw",
+          "prefix": "SAP ",
+          "link_text": "bets $1.16B on an 18-month-old German AI lab",
+          "rest": " that's built models for spreadsheets, not chatbots"
+        },
+        {
+          "url": "https://enterpriseai.economictimes.indiatimes.com/news/industry/nvidia-ceo-jensen-huang-joins-trump-in-beijing-hopes-rise-for-h200-chip-deal/131059808",
+          "prefix": "Nvidia CEO Jensen Huang ",
+          "link_text": "boards Air Force One for Beijing",
+          "rest": " after Trump's last-minute call, sparking hopes for a China chip deal"
+        },
+        {
+          "url": "https://github.com/google-gemini/gemini-cli/issues/26856",
+          "prefix": "Gemini CLI user's viral GitHub rant: ",
+          "link_text": "AI deleted 10,000 Obsidian files",
+          "rest": " after being told to only remove old ones"
+        },
+        {
+          "url": "https://thenextweb.com/news/anthropic-claude-blackmail-internet-evil-ai-training",
+          "prefix": "Anthropic says Claude ",
+          "link_text": "learned to blackmail by reading sci-fi",
+          "rest": " about evil AI — and fixed it by writing stories about good AI"
+        },
+        {
+          "url": "https://www.prnewswire.com/news-releases/isomorphic-labs-secures-2-1-billion-funding-to-scale-its-ai-drug-design-engine-302769674.html",
+          "link_text": "Isomorphic Labs raises $2.1B",
+          "rest": " to scale its AI drug discovery engine, backed by Thrive Capital and the UK Sovereign AI Fund"
+        },
+        {
+          "url": "https://www.straitstimes.com/world/i-applied-to-be-pope-losing-grip-on-reality-while-using-chatgpt",
+          "prefix": "ChatGPT users describe ",
+          "link_text": "losing grip on reality",
+          "rest": " — one man applied to be pope, another spent five hours a night talking to a chatbot named Eva"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Gemini Intelligence",
+          "desc": "Google's new Android AI layer can automate multi-step tasks across apps, fill out forms using your personal data, and let you vibe-code custom home screen widgets by describing them in plain English",
+          "url": "https://blog.google/products-and-platforms/platforms/android/gemini-intelligence/"
+        },
+        {
+          "name": "Adobe for Creativity Connector",
+          "desc": "Use Photoshop, Illustrator, Premiere, and 50+ Adobe tools directly inside Claude — just describe what you want and the AI picks the right app and runs it",
+          "url": "https://www.newsy-today.com/adobe-launches-adobe-for-creativity-connector-for-claude-ai-integration/"
+        },
+        {
+          "name": "Krea 2",
+          "desc": "A new image model built from scratch with a style transfer system that lets you pass in any reference image, control how much it influences the output, and combine multiple styles together",
+          "url": "https://www.krea.ai/blog/krea-2-image-model"
+        },
+        {
+          "name": "Rivian AI Assistant",
+          "desc": "Say \"Hey Rivian\" to control your car's climate, drive modes, ride height, and more — something Tesla's competing Grok assistant still can't do",
+          "url": "https://electrek.co/2026/05/12/rivian-hey-rivian-ai-assistant-vehicle-control/"
+        },
+        {
+          "name": "Google Finance",
+          "desc": "The AI-powered redesign now lets you ask questions about stocks and market trends, follow live earnings calls with AI-highlighted insights, and use Deep Search for complex financial research",
+          "url": "https://blog.google/products-and-platforms/products/search/ai-powered-google-finance-in-europe/"
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Anthropic",
+          "role": "Privacy Counsel",
+          "url": "https://www.jobleads.com/us/job/privacy-counsel--san-francisco--e5182d767f653182b47d9a3964a9ae2be"
+        },
+        {
+          "company": "Microsoft AI",
+          "role": "Member of Technical Staff — Copilot Security & Privacy",
+          "url": "https://microsoft.ai/job/member-of-technical-staff-technical-program-manager-7/"
+        },
+        {
+          "company": "Salesforce",
+          "role": "Senior Applied Scientist, Responsible AI",
+          "url": "https://hireza.wuaze.com/job/senior-lead-applied-scientist-responsible-ai"
+        },
+        {
+          "company": "Adobe",
+          "role": "Sr. Engineering Manager, AI Enablement",
+          "url": "https://tryjeremy.com/jobs/adobe-sr-engineering-manager-ai-enablement-019e160fc6e0"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "a31e5787-1cb3-4b15-b1f5-2a04ca0411c4",
+      "image_a": "/thumbnails/kicker-2026-05-14-real.jpg",
+      "image_b": "/thumbnails/kicker-2026-05-14-ai.jpeg",
+      "link_a": "https://unsplash.com/photos/misty-mountains-with-golden-light-and-blue-sky-6jT9GvXWB5M",
+      "link_b": "https://gemini.google.com/share/5103ef6aa566"
+    },
+    "poll": {
+      "poll_id": "35080d8f-7669-41ca-81fb-fbabde8e02b3",
+      "question": "Do you think AI tools make you more productive, or just busier?",
+      "options": [
+        "Yes",
+        "No",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "Do you think AI tools make you more productive, or just busier?",
+      "total_votes": 6,
+      "results": [
+        {
+          "answer": "Both",
+          "count": 3,
+          "percentage": 50
+        },
+        {
+          "answer": "More productive",
+          "count": 2,
+          "percentage": 33
+        },
+        {
+          "answer": "Yes",
+          "count": 1,
+          "percentage": 17
+        }
+      ]
+    },
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-05-13-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-05-13-real.jpg",
+      "ai_source": "https://gemini.google.com/share/be4c9f881286",
+      "real_source": "https://unsplash.com/photos/misty-mountain-landscape"
+    }
+  },
+  {
+    "id": "may-13-2026",
+    "slug": "may-13-2026",
+    "publication": "thorium-valley",
+    "title": "Thorium Valley | May 13, 2026",
+    "date": "May 13, 2026",
+    "intro": "Good Morning Thorium Valley. Google caught hackers using AI to build a zero-day exploit — a first. The tell was almost embarrassing: the code included a hallucinated security score and formatting so clean no real hacker would ship it. AI snitched on itself.\n\nFunny enough, that same AI capability is what finally got the US and China talking about safety. Diplomacy couldn't pull it off for years. One Anthropic model that autonomously cracks decades-old browser vulnerabilities managed it in about a week.\n\nMeanwhile, developers dumping money into AI tokens hoping to supercharge their output — tokenmaxxing, they're calling it — are spending 607x more than lighter users for roughly double the results. More AI doesn't always mean more productive. Sometimes it just means more.",
+    "toc": [
+      "Hackers built a zero-day with AI. Google caught them.",
+      "AI scared the US and China into talking",
+      "AI's heaviest users aren't its most productive"
+    ],
+    "article_slugs": [
+      "hackers-built-a-zero-day-with-ai-google-caught-them",
+      "ai-scared-the-us-and-china-into-talking",
+      "ais-heaviest-users-arent-its-most-productive"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-05-13.png",
+    "thumbnail_url": "/thumbnails/hackers-built-a-zero-day-with-ai-google-caught-them.png",
+    "published_at": "2026-05-13T13:00:00.000Z",
+    "updated_at": "2026-05-13T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "url": "https://www.bloomberg.com/news/articles/2026-05-12/anthropic-in-talks-to-raise-30-billion-at-900-billion-valuation",
+          "prefix": "Anthropic ",
+          "link_text": "in talks to raise $30 billion at a $900 billion valuation",
+          "rest": " , which would be its largest funding round ever"
+        },
+        {
+          "url": "https://thenextweb.com/news/anthropic-claude-blackmail-internet-evil-ai-training",
+          "prefix": "Anthropic says ",
+          "link_text": "Claude learned to blackmail by reading sci-fi stories about evil AI",
+          "rest": " — and fixed it by teaching the model *why* blackmail is wrong"
+        },
+        {
+          "url": "https://www.theregister.com/ai-ml/2026/05/11/microsoft-researchers-find-ai-models-and-agents-cant-handle-long-running-tasks/5238263",
+          "prefix": "Microsoft researchers find ",
+          "link_text": "frontier AI models corrupt 25% of your documents",
+          "rest": " during long workflows — and giving them more tools makes it worse"
+        },
+        {
+          "url": "https://thenextweb.com/news/google-ai-zero-day-exploit-cybersecurity-arms-race",
+          "prefix": "Google identified the ",
+          "link_text": "first zero-day exploit it believes was built with AI",
+          "rest": " and stopped the attack before it launched"
+        },
+        {
+          "url": "https://www.cnbc.com/2026/05/12/nvidia-ceo-huang-trump-china-trip-chip-sales.html",
+          "prefix": "Jensen Huang ",
+          "link_text": "left off Trump's China delegation",
+          "rest": " , then personally called by Trump to join at the last minute"
+        },
+        {
+          "url": "https://thenextweb.com/news/gitlab-layoffs-agentic-era-devops-ai",
+          "prefix": "GitLab ",
+          "link_text": "announces layoffs to go all-in on AI agents",
+          "rest": " , with CEO saying \"software will be built by machines, directed by people\""
+        },
+        {
+          "url": "https://www.bloomberg.com/news/articles/2026-05-12/deepmind-spinout-isomorphic-labs-raises-2-1-billion-to-design-drugs-with-ai",
+          "prefix": "Alphabet's Isomorphic Labs ",
+          "link_text": "raises $2.1 billion to design drugs with AI",
+          "rest": " , backed by sovereign wealth funds from Abu Dhabi, Singapore, and the UK"
+        },
+        {
+          "url": "https://www.governing.com/policy/colorado-revamps-landmark-ai-law",
+          "prefix": "Colorado ",
+          "link_text": "passes a revamped AI law",
+          "rest": " regulating AI decisions on jobs, healthcare, and housing — expected to become a model for other states"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Adobe Premiere Pro",
+          "url": "https://aidailyshot.com/blog/adobe-generative-ai-video-backgrounds-premiere-pro",
+          "desc": "The May update lets you type a text prompt — like \"urban rooftop at sunset\" — and instantly generate or replace video backgrounds right inside your timeline, no plugins needed",
+          "sponsored": false
+        },
+        {
+          "name": "GitHub Copilot",
+          "url": "https://github.blog/news-insights/company-news/github-copilot-individual-plans-introducing-flex-allotments-in-pro-and-pro-and-a-new-max-plan/",
+          "desc": "Ahead of June 1's switch to usage-based billing, GitHub added a new Max plan ($100/mo with $200 in credits) and gave Pro and Pro+ users extra flex credits at no additional cost",
+          "sponsored": false
+        },
+        {
+          "name": "Miro",
+          "url": "https://community.miro.com/product-news-31/new-mcp-tools-create-boards-stickies-frames-layouts-comments-images-code-widgets-more-28246",
+          "desc": "A big batch of MCP tools now lets AI assistants like Claude create entire whiteboards — frames, sticky notes, images, and code widgets — from a single prompt",
+          "sponsored": false
+        },
+        {
+          "name": "Adobe Acrobat",
+          "url": "https://androidguys.com/news/adobes-new-productivity-agent-redefines-how-people-understand-create-and-share-information/",
+          "desc": "A new AI productivity agent turns PDFs into presentations, podcasts, and social content through conversation — plus a new \"PDF Spaces\" feature for collaborative research and publishing",
+          "sponsored": false
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Netflix",
+          "url": "https://hireza.wuaze.com/job/technical-director-genai-games",
+          "role": "Technical Director, GenAI — Games"
+        },
+        {
+          "company": "Capital One",
+          "url": "https://time.news/senior-lead-ai-engineer-gen-ai-platform-services-agentic-ai-at-capital-one/",
+          "role": "Senior Lead AI Engineer, Agentic AI"
+        },
+        {
+          "company": "Adobe",
+          "url": "https://tryjeremy.com/jobs/adobe-sr-engineering-manager-ai-enablement-019e160fc6e0",
+          "role": "Sr. Engineering Manager, AI Enablement"
+        },
+        {
+          "company": "Regeneron",
+          "url": "https://jobs.biospace.com/job/3046625/senior-manager-global-development-ai-engineer/",
+          "role": "Senior Manager, Global Development AI Engineer"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "73efdf37-049e-441a-be6a-4cf7d50cd413",
+      "image_a": "/thumbnails/kicker-2026-05-13-ai.jpeg",
+      "image_b": "/thumbnails/kicker-2026-05-13-real.jpg",
+      "link_a": "https://gemini.google.com/share/be4c9f881286",
+      "link_b": "https://unsplash.com/photos/misty-mountain-landscape"
+    },
+    "poll": {
+      "poll_id": "bc8b880f-f7d5-4501-95c3-9f78cd3f9978",
+      "question": "Do you think AI tools make you more productive, or just busier?",
+      "options": [
+        "More productive",
+        "Just busier",
+        "Both",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "Do you think AI has made managers' jobs less necessary?",
+      "total_votes": 6,
+      "results": [
+        {
+          "answer": "Yes",
+          "count": 4,
+          "percentage": 67
+        },
+        {
+          "answer": "No",
+          "count": 1,
+          "percentage": 17
+        },
+        {
+          "answer": "Other",
+          "count": 1,
+          "percentage": 17
+        }
+      ]
+    },
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-05-11-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-05-11-real.jpg",
+      "ai_source": "https://gemini.google.com/share/05ba4a5977fa",
+      "real_source": "https://unsplash.com/photos/GRkfmitFY5M"
+    }
+  },
+  {
     "id": "may-11-2026",
     "slug": "may-11-2026",
     "publication": "thorium-valley",
@@ -3111,5 +3446,170 @@
     },
     "poll_results": null,
     "yesterdays_results": null
+  },
+  {
+    "id": "may-12-2026",
+    "slug": "may-12-2026",
+    "publication": "thorium-valley",
+    "title": "Thorium Valley | May 12, 2026",
+    "date": "May 12, 2026",
+    "intro": "Good Morning Thorium Valley.Google gained 34% in April — its best month in 21 years — and is weeks away from passing Nvidia as the world's most valuable company. When you own your own chips, train your own models, run one of the biggest clouds, and have a self-driving car company on the side, eventually the market notices.\n\nPerplexity offered Snap $400 million to wedge its search engine into Snapchat. Users tried it, didn't care, and the whole thing collapsed in under five months. Expensive way to find out you can't buy product-market fit.\n\nAnd a16z just dropped data showing coding dominates enterprise AI spending by nearly 10x over everything else. Spotify's top devs haven't handwritten a line since December. That dial only turns one direction.",
+    "toc": [
+      "Google is weeks from becoming the world's most valuable company",
+      "Snap's $400M Perplexity deal died after user testing flopped",
+      "Coding is eating every other AI use case alive"
+    ],
+    "article_slugs": [
+      "google-is-about-to-become-the-worlds-most-valuable-company",
+      "snaps-400m-perplexity-deal-died-after-user-testing-flopped",
+      "coding-is-eating-every-other-ai-use-case-alive"
+    ],
+    "sign_off": "That's all for today. If this issue made you think, share it with someone who needs to think harder.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-2026-05-12.png",
+    "thumbnail_url": "/thumbnails/google-is-about-to-become-the-worlds-most-valuable-company.png",
+    "published_at": "2026-05-12T13:00:00.000Z",
+    "updated_at": "2026-05-12T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Claude learned to blackmail by reading sci-fi about evil AI",
+          "url": "https://thenextweb.com/news/anthropic-claude-blackmail-internet-evil-ai-training",
+          "prefix": "Anthropic says",
+          "rest": " — and the fix was teaching it *why* being good matters"
+        },
+        {
+          "link_text": "GPT-5.5 Pro produced PhD-level math research",
+          "url": "https://the-decoder.com/fields-medalist-says-chatgpt-5-5-pro-delivered-phd-level-math-research-in-under-two-hours-with-zero-human-help/",
+          "prefix": "Fields Medalist says",
+          "rest": " in under two hours with zero human help"
+        },
+        {
+          "link_text": "new $4 billion unit to embed AI engineers",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/openai-creates-unit-4-billion-130102076.html",
+          "prefix": "OpenAI creates a",
+          "rest": " directly inside companies"
+        },
+        {
+          "link_text": "$10 billion deal with a $60 billion acquisition option",
+          "url": "https://cryptobriefing.com/xai-cursor-ai-coding-partnership/",
+          "prefix": "xAI partners with Cursor in a",
+          "rest": " waiting in the wings"
+        },
+        {
+          "link_text": "beg people to stop flooding them with AI-generated code",
+          "url": "https://kotaku.com/playstation-3-emulator-devs-politely-ask-that-people-stop-flooding-it-with-ai-code-pull-requests-2000694656",
+          "prefix": "PlayStation 3 emulator devs",
+          "rest": ""
+        },
+        {
+          "link_text": "topped $40 billion in AI equity bets this year",
+          "url": "https://www.cnbc.com/2026/05/09/nvidia-embraces-ai-investor-topping-40-billion-in-equity-bets-2026.html",
+          "prefix": "Nvidia has now",
+          "rest": ", financing the entire supply chain around its own chips"
+        },
+        {
+          "link_text": "ruled DOGE's use of ChatGPT to decide grant funding",
+          "url": "https://computereport.com/us-court-rules-government-ai-grant-decisions-unconstitutional/",
+          "prefix": "A federal judge",
+          "rest": " unconstitutional"
+        },
+        {
+          "link_text": "shop 4 billion items by talking to an AI agent",
+          "url": "https://thenextweb.com/news/alibaba-integrates-qwen-ai-with-taobao-for-end-to-end-agentic-shopping",
+          "prefix": "Alibaba integrates Qwen AI with Taobao so you can",
+          "rest": " that handles everything through checkout"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Claude",
+          "desc": "Anthropic's AI assistant now works across Outlook, Word, Excel, and PowerPoint — carrying context between apps so you can go from triaging emails to updating a spreadsheet to building a slide deck in one conversation",
+          "url": "https://thenewstack.io/claude-word-excel-powerpoint-outlook-microsoft-office/"
+        },
+        {
+          "name": "Google Finance",
+          "desc": "The redesigned AI-powered Google Finance is expanding to Europe with features like live earnings call transcripts, AI-generated highlights, and a deep search tool for market research",
+          "url": "https://blog.google/products-and-platforms/products/search/ai-powered-google-finance-in-europe/"
+        },
+        {
+          "name": "Perplexity",
+          "desc": "A new Mac app turns Perplexity into a personal AI agent that can access your local files, sort your downloads folder, and complete multi-step tasks across your computer and the web",
+          "url": "https://www.cultofmac.com/news/perplexity-personal-computer-ai-app-for-mac"
+        },
+        {
+          "name": "Cursor",
+          "desc": "Version 3.3 lets developers review pull requests, run parallel coding tasks, and automatically split oversized PRs — all without leaving the editor",
+          "url": "https://www.joinnextdev.com/blog/cursor-33-turns-your-ide-into-a-pr-command-center"
+        },
+        {
+          "name": "Gemini 3.1 Flash-Lite",
+          "desc": "Google's fastest and cheapest AI model is now generally available — built for developers who need ultra-low latency responses for things like real-time code completion and agentic tool calling",
+          "url": "https://cloud.google.com/blog/products/ai-machine-learning/gemini-3-1-flash-lite-is-now-generally-available"
+        }
+      ],
+      "jobs": [
+        {
+          "company": "Anthropic",
+          "role": "Community & Executive Escalations Program Manager",
+          "url": "https://underprompt.com/jobs/community-executive-escalations-program-manager-anthropic"
+        },
+        {
+          "company": "OpenAI",
+          "role": "Product Policy, Cyber Policy Manager",
+          "url": "https://underprompt.com/jobs/product-policy-cyber-policy-manager-openai"
+        },
+        {
+          "company": "Netflix",
+          "role": "AI Product Manager, Content Platform Operations & Publishing",
+          "url": "https://hireza.wuaze.com/job/ai-product-manager-content-platform-operations-publishing-2"
+        },
+        {
+          "company": "Block",
+          "role": "Policy + External Affairs Communications Lead",
+          "url": "https://pac.org/job/policy-external-affairs-communications-lead"
+        }
+      ]
+    },
+    "games": {
+      "game_poll_id": "56762e7e-8df8-48b1-88ed-6929d0bb3122",
+      "image_a": "/thumbnails/kicker-2026-05-11-ai.jpeg",
+      "image_b": "/thumbnails/kicker-2026-05-11-real.jpg",
+      "link_a": "https://gemini.google.com/share/05ba4a5977fa",
+      "link_b": "https://unsplash.com/photos/GRkfmitFY5M"
+    },
+    "poll": {
+      "poll_id": "4bf9c2c5-7283-478f-afbc-f0c0b1dd58a4",
+      "question": "Do you think AI has made managers' jobs less necessary?",
+      "options": [
+        "Yes",
+        "No",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "Would you trust an AI agent to work on your computer unsupervised?",
+      "results": [
+        {
+          "option": "Yes",
+          "pct": 67
+        },
+        {
+          "option": "No",
+          "pct": 33
+        },
+        {
+          "option": "Other",
+          "pct": 0
+        }
+      ]
+    },
+    "yesterdays_results": {
+      "ai_image": "/thumbnails/kicker-2026-03-25-ai.jpeg",
+      "real_image": "/thumbnails/kicker-2026-03-25-real.jpg",
+      "ai_source": "https://gemini.google.com/share/1c3f2c1b98fd",
+      "real_source": "https://unsplash.com/photos/a-butterfly-and-bee-on-lavender-flowers-qWyelajhfSc"
+    }
   }
 ]

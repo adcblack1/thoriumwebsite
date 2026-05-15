@@ -83,31 +83,40 @@ export function trackCustomEvent(eventName: string, params?: Record<string, stri
 }
 
 /**
- * Pass user data (email) to Meta Pixel for Advanced Matching.
- * Call this after the user subscribes so Meta can match the conversion
- * to the ad click more accurately.
+ * Advanced matching is now handled server-side via CAPI.
+ * The CAPI route sends the hashed email directly to Meta, which is more
+ * reliable than client-side matching and avoids the fbq('init') double-fire bug.
+ *
+ * This function is kept as a no-op so existing call sites don't break.
  */
-export function setAdvancedMatching(email: string) {
+export function setAdvancedMatching(_email: string) {
+  // No-op: CAPI sends hashed email server-side for matching.
+  // Do NOT call fbq('init') here — it creates a duplicate pixel instance.
+}
+
+/**
+ * Track a Lead event (fires at Step 9 — survey completion).
+ * This is the primary optimization event for Meta campaigns.
+ * Includes value/currency for ROAS calculations.
+ * Pass eventId to deduplicate with the server-side CAPI event.
+ */
+export function trackLead(eventId?: string) {
   if (typeof window === 'undefined') return;
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const fbq = (window as any).fbq;
     if (typeof fbq === 'function') {
-      fbq('init', PIXEL_ID, { em: email.toLowerCase().trim() });
-      console.log('[Meta Pixel] Advanced matching set for:', email);
+      if (eventId) {
+        fbq('track', 'Lead', { value: 5, currency: 'USD' }, { eventID: eventId });
+      } else {
+        fbq('track', 'Lead', { value: 5, currency: 'USD' });
+      }
+      console.log(`[Meta Pixel] Tracked "Lead" via fbq`, eventId ? `(eventID: ${eventId})` : '');
+      return;
     }
   } catch (e) {
-    console.warn('[Meta Pixel] Advanced matching failed:', e);
+    console.warn('[Meta Pixel] Lead tracking failed:', e);
   }
-}
-
-/**
- * Track a Lead event (fires on Step 1 — email submit).
- * Used for general tracking/analytics. Do NOT optimize Meta campaigns toward this.
- * Includes value/currency for ROAS calculations.
- */
-export function trackLead() {
-  trackEvent('Lead', { value: '5', currency: 'USD' } as Record<string, string>);
 }
 
 /**

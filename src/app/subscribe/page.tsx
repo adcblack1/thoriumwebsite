@@ -401,7 +401,7 @@ export default function SubscribePage() {
         if (result === 'resumed') { setLoading(false); return; }
         if (!result) { setLoading(false); return; }
         setAdvancedMatching(formData.email); // Set email for attribution
-        trackLead(); // Fire Lead event (once)
+        // Lead event now fires at step 9 (survey completion) for better Meta optimization
       } else if (step === 2) {
         await updateSubscriber({ child_newsletters: formData.child_newsletters });
       } else if (step === 3) {
@@ -478,10 +478,17 @@ export default function SubscribePage() {
     if (step === 9) {
       trackSurveyComplete(); // Fire pixel event for funnel tracking
 
-      // Fire QualifiedLead on reaching page 9 (not on Littlebird click)
+      // Fire Lead + QualifiedLead ONCE on reaching step 9
+      // Both pixel (client) and CAPI (server) fire with the same event_id
+      // so Meta deduplicates them into a single conversion
       if (!hasTrackedQL.current) {
         hasTrackedQL.current = true;
         const eventId = `ql_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
+
+        // Client-side: Standard Lead (pixel) — for dual tracking with CAPI
+        trackLead(`lead_${eventId}`);
+
+        // Client-side: Custom QualifiedLead (pixel) — for internal tracking
         trackQualifiedLead({
           seniority: formData.seniority,
           company_size: formData.company_size,
@@ -489,6 +496,8 @@ export default function SubscribePage() {
           job_function: formData.job_function,
           industry: formData.industry,
         }, eventId);
+
+        // Server-side: CAPI fires BOTH Lead + QualifiedLead with matching event_ids
         fetch('/api/meta-capi', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -675,7 +684,7 @@ export default function SubscribePage() {
       </div>
 
       {/* Main content */}
-      <div className={`flex-1 flex ${step === 9 ? 'items-start lg:items-center overflow-y-auto py-4 lg:py-6' : 'items-center'} justify-center ${step === 9 ? 'px-0 lg:px-8' : 'px-3 lg:px-5'} relative z-10 ${step <= 1 ? '-mt-16 lg:-mt-44' : step === 9 ? '' : 'lg:-mt-4'}`}>
+      <div className={`flex-1 flex ${step === 9 ? 'items-start lg:items-center overflow-y-auto py-4 lg:py-6' : 'items-center'} justify-center ${step === 9 ? 'px-0 lg:px-8' : 'px-3 lg:px-5'} relative z-10 ${step <= 1 ? 'mt-8 lg:-mt-44' : step === 9 ? '' : 'lg:-mt-4'}`}>
         <div className={`w-full ${step === 9 ? 'max-w-md lg:max-w-3xl mx-auto' : step === 1 ? 'max-w-md lg:max-w-2xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 9 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
@@ -892,21 +901,40 @@ export default function SubscribePage() {
         </a>
       </div>
 
-      {/* OpenClaw phone — desktop only, peeks out from bottom */}
+      {/* Company logos — social proof (desktop + mobile, absolute so it doesn't shift form) */}
       {step === 1 && (
-        <div
-          className="absolute bottom-0 left-1/2 z-[5] hidden lg:block"
-          style={{ transform: 'translateX(-50%) translateY(57%)' }}
-        >
-          <Image
-            src="/images/openclaw-phone.png"
-            alt="Thorium Valley on mobile"
-            width={400}
-            height={800}
-            className="w-[22vw] max-w-[380px] h-auto"
-            priority
-          />
-        </div>
+        <>
+          {/* Desktop */}
+          <div
+            className="absolute bottom-0 left-0 right-0 z-[5] hidden lg:flex flex-col items-center"
+            style={{ paddingBottom: '160px' }}
+          >
+            <p
+              className="text-center mb-6"
+              style={{ color: 'rgba(255,255,255,0.6)', fontSize: '16px', fontWeight: 400 }}
+            >
+              Join professionals from companies like
+            </p>
+            <div className="flex items-center justify-center gap-x-12 gap-y-5 flex-wrap px-16 max-w-[700px]">
+              {[
+                { src: '/images/companies/google logo white.png', alt: 'Google', h: 28 },
+                { src: '/images/companies/meta white logo.png', alt: 'Meta', h: 26 },
+                { src: '/images/companies/anduril white logo.png', alt: 'Anduril', h: 22 },
+                { src: '/images/companies/cisco white logo.png', alt: 'Cisco', h: 30 },
+                { src: '/images/companies/fidelity white logo.png', alt: 'Fidelity', h: 24 },
+                { src: '/images/companies/adobe white logo.png', alt: 'Adobe', h: 28 },
+                { src: '/images/companies/morgan stanley white logo.png', alt: 'Morgan Stanley', h: 26 },
+              ].map((logo) => (
+                <img
+                  key={logo.alt}
+                  src={logo.src}
+                  alt={logo.alt}
+                  style={{ height: logo.h, width: 'auto' }}
+                />
+              ))}
+            </div>
+          </div>
+        </>
       )}
     </main>
   );
@@ -1167,21 +1195,21 @@ function StepEmail({
             onNext();
           }}
         >
-          {/* Desktop: inline pill */}
-          <div className="hidden lg:flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2.5 sm:py-3 border border-white/20">
+          {/* Desktop: stacked like mobile */}
+          <div className="hidden lg:flex flex-col gap-3">
             <input
               type="email"
               placeholder="Work Email"
               value={formData.email}
               onChange={(e) => updateField('email', e.target.value)}
-              className="flex-1 min-w-0 bg-transparent text-white placeholder:text-white/60 outline-none text-sm sm:text-base"
+              className="w-full bg-white/10 backdrop-blur-sm text-white placeholder:text-white/60 outline-none text-base px-5 py-4 rounded-xl border border-white/20"
               required
               disabled={loading}
             />
             <button
               type="submit"
               disabled={loading}
-              className="px-3 sm:px-6 py-2 rounded-full bg-white text-[#1b1b1b] text-sm sm:text-base font-medium hover:bg-white/90 transition-colors whitespace-nowrap disabled:opacity-50 shrink-0"
+              className="w-full py-4 rounded-xl bg-white text-[#1b1b1b] text-base font-semibold hover:bg-white/90 transition-colors disabled:opacity-50"
             >
               {loading ? '...' : 'Subscribe'}
             </button>
@@ -1216,16 +1244,32 @@ function StepEmail({
       </p>
 
       {/* Social proof - mobile only */}
-      <div className="lg:hidden mt-12 flex justify-center">
-        <Image
-          src="/images/started-at.png"
-          alt="Started at"
-          width={360}
-          height={60}
-          className="w-[90%] max-w-[360px] h-auto opacity-70"
-        />
+      <div className="lg:hidden mt-16 flex flex-col items-center gap-3">
+        <p
+          className="text-center"
+          style={{ color: 'rgba(255,255,255,0.6)', fontSize: '13px', fontWeight: 400 }}
+        >
+          Join professionals from companies like
+        </p>
+        <div className="flex items-center justify-center gap-x-7 gap-y-4 flex-wrap px-4 max-w-[340px]">
+          {[
+            { src: '/images/companies/google logo white.png', alt: 'Google', h: 20 },
+            { src: '/images/companies/meta white logo.png', alt: 'Meta', h: 20 },
+            { src: '/images/companies/morgan stanley white logo.png', alt: 'Morgan Stanley', h: 20 },
+            { src: '/images/companies/cisco white logo.png', alt: 'Cisco', h: 20 },
+            { src: '/images/companies/fidelity white logo.png', alt: 'Fidelity', h: 20 },
+            { src: '/images/companies/adobe white logo.png', alt: 'Adobe', h: 20 },
+            { src: '/images/companies/anduril white logo.png', alt: 'Anduril', h: 20 },
+          ].map((logo) => (
+            <img
+              key={logo.alt}
+              src={logo.src}
+              alt={logo.alt}
+              style={{ height: logo.h, width: 'auto' }}
+            />
+          ))}
+        </div>
       </div>
-
 
     </div>
   );

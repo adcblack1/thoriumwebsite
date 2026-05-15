@@ -18,8 +18,13 @@ function sha256(value: string): string {
 /**
  * POST /api/meta-capi
  *
- * Sends a server-side QualifiedLead event to Meta's Conversions API.
- * This runs alongside the client-side pixel — Meta deduplicates via event_id.
+ * Sends BOTH a standard Lead event AND a custom QualifiedLead event
+ * to Meta's Conversions API in a single request.
+ *
+ * Lead fires as a standard event (for Meta campaign optimization).
+ * QualifiedLead fires as a custom event (for internal tracking).
+ * Both share the same event_id base so Meta can deduplicate with any
+ * client-side pixel events.
  *
  * Body: {
  *   event_id: string,        // Shared with pixel for dedup
@@ -79,9 +84,27 @@ export async function POST(request: NextRequest) {
     if (job_function) custom_data.job_function = job_function;
     if (industry) custom_data.industry = industry;
 
-    const event = {
+    const now = Math.floor(Date.now() / 1000);
+
+    // Event 1: Standard Lead (what Meta campaigns optimize toward)
+    const leadEvent = {
+      event_name: 'Lead',
+      event_time: now,
+      event_id: `lead_${event_id}`,     // Unique ID for Lead dedup
+      event_source_url: 'https://thoriumvalley.com/subscribe',
+      action_source: 'website',
+      user_data,
+      custom_data: {
+        value: 5.00,
+        currency: 'USD',
+        ...custom_data,
+      },
+    };
+
+    // Event 2: Custom QualifiedLead (internal tracking + legacy)
+    const qualifiedLeadEvent = {
       event_name: 'QualifiedLead',
-      event_time: Math.floor(Date.now() / 1000),
+      event_time: now,
       event_id,
       event_source_url: 'https://thoriumvalley.com/subscribe',
       action_source: 'website',
@@ -89,13 +112,13 @@ export async function POST(request: NextRequest) {
       custom_data,
     };
 
-    // Send to Meta Conversions API
+    // Send BOTH events to Meta in a single API call
     const url = `https://graph.facebook.com/${API_VERSION}/${PIXEL_ID}/events`;
     const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        data: [event],
+        data: [leadEvent, qualifiedLeadEvent],
         access_token: token,
       }),
     });
@@ -107,7 +130,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: false, error: result }, { status: res.status });
     }
 
-    console.log('[CAPI] QualifiedLead sent successfully:', result);
+    console.log('[CAPI] Lead + QualifiedLead sent successfully:', result);
     return NextResponse.json({ ok: true, events_received: result.events_received });
   } catch (err) {
     console.error('[CAPI] Failed to send event:', err);

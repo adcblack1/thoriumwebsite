@@ -1,5 +1,144 @@
 [
   {
+    "id": "catalyst-may-13-2026",
+    "slug": "catalyst-may-13-2026",
+    "publication": "the-catalyst",
+    "title": "The Catalyst | May 13, 2026",
+    "date": "May 13, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to the Catalyst Newsletter.\n\nToday we've got the story of a company whose entire product helps developers ship code faster, and what happened when the CEO turned that same logic inward and told 2,580 employees that AI agents are replacing up to three layers of management.\n\nWe're also looking at what happened after McDonald's killed its AI drive-thru experiment. Turns out the industry didn't give up on automation, it just pointed the AI at the workers instead of the customers. Now there's an AI living inside Burger King headsets scoring how friendly you sound.\n\nAnd then there's an insurance startup that skipped the part where you spend decades building systems and then panic about how to add AI later. They built the whole thing around AI from day one, hit $100 million in revenue, and the contrast with the insurers getting sued for letting algorithms deny claims without a doctor ever looking at them is something.",
+    "toc": [
+      "GitLab's AI worked too well for its own org chart",
+      "The AI cashier failed, so fast food built an AI boss",
+      "Reserv built insurance around AI from scratch and hit $100 million in under four years"
+    ],
+    "article_slugs": [
+      "gitlabs-ai-worked-too-well-for-its-own-org-chart",
+      "the-ai-cashier-failed-so-fast-food-built-an-ai-boss",
+      "reserv-built-insurance-around-ai-from-scratch-and-hit-100-million-in-under-four-years"
+    ],
+    "stories": [],
+    "sign_off": "That's the Catalyst for this issue. If you know a company doing something interesting with AI that nobody's covering, reply and tell us about it.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-catalyst-2026-05-13.png",
+    "thumbnail_url": "/thumbnails/gitlabs-ai-worked-too-well-for-its-own-org-chart.jpeg",
+    "published_at": "2026-05-13T13:00:00.000Z",
+    "updated_at": "2026-05-13T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "url": "https://www.bloomberg.com/news/articles/2026-05-12/anthropic-in-talks-to-raise-30-billion-at-900-billion-valuation",
+          "link_text": "Anthropic in talks to raise $30 billion",
+          "rest": " at a $900 billion valuation"
+        },
+        {
+          "url": "https://www.theverge.com/tech/928007/google-ai-zero-day-exploit-stopped",
+          "link_text": "Google stopped the first zero-day hack built with AI",
+          "rest": " — the exploit code had hallucinated scores and textbook formatting that gave it away"
+        },
+        {
+          "url": "https://www.cbsnews.com/news/open-ai-chatgpt-drug-overdose-lawsuit/",
+          "link_text": "A 19-year-old died after ChatGPT told him",
+          "rest": " it was safe to mix Xanax with kratom — his parents are suing OpenAI"
+        },
+        {
+          "url": "https://thenextweb.com/news/anthropic-claude-blackmail-internet-evil-ai-training",
+          "link_text": "Anthropic says Claude learned to blackmail people",
+          "rest": " by reading sci-fi stories about evil AI — and the fix was writing it better stories"
+        },
+        {
+          "url": "https://www.benzinga.com/markets/tech/26/05/52513268/trump-jensen-huang-china-trip-xi-open-country",
+          "link_text": "Trump personally called Jensen Huang",
+          "rest": " to join his China trip at the last minute after backlash over leaving him off the list"
+        },
+        {
+          "url": "https://www.bbc.com/news/articles/czj2k2exdzlo",
+          "link_text": "Sam Altman testified that Musk wanted OpenAI control",
+          "rest": " to pass to his children when he dies"
+        },
+        {
+          "url": "https://deepmind.google/blog/ai-pointer/",
+          "link_text": "Google DeepMind is reimagining the mouse pointer",
+          "rest": " — point at anything on screen, speak, and Gemini acts on it without a prompt"
+        },
+        {
+          "url": "https://helixar.ai/press/ai-agent-self-replication-palisade-research-2026/",
+          "link_text": "AI agents can now autonomously copy themselves",
+          "rest": " across servers — one open-source model replicated across four countries in under three hours"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Littlebird",
+          "url": "https://try.littlebird.ai/thorium-valley",
+          "desc": "Think of it as an AI that actually knows what you're working on. It watches your screen, takes notes in your meetings, and remembers all of it. So when you forget where you saw something, you just ask.",
+          "sponsored": true
+        },
+        {
+          "name": "Clico",
+          "url": "https://tryclico.link/thorium-valley",
+          "desc": "A free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type — no more copying your email into another tab and pasting the answer back",
+          "sponsored": true
+        },
+        {
+          "name": "Claude Code",
+          "url": "https://github.com/anthropics/claude-code/releases/tag/v2.1.139",
+          "desc": "Anthropic's terminal-based coding agent added a `/goal` command — set a finish line and Claude keeps working across turns until it hits it, showing live progress on elapsed time, turns, and tokens as it goes",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini in Chrome for Android",
+          "url": "https://9to5google.com/2026/05/12/gemini-chrome-android/",
+          "desc": "Google is putting a Gemini button right next to the address bar on Android — it can summarize pages, answer questions about what you're reading, and a new \"auto browse\" feature lets it scroll, tap, and fill out forms on your behalf to complete tasks like booking parking or updating an order",
+          "sponsored": false
+        },
+        {
+          "name": "Xcode 26.5",
+          "url": "https://9to5mac.com/2026/05/12/xcode-26-5-adds-two-features-that-make-agentic-coding-more-useful/",
+          "desc": "Apple's developer tool now lets you queue up multiple messages to your AI coding assistant without waiting for each response, and agents can ask clarifying questions before diving in — small changes that make a big difference when 60% of Airbnb's new code is already AI-written",
+          "sponsored": false
+        },
+        {
+          "name": "GitHub Copilot Max",
+          "url": "https://github.blog/news-insights/company-news/github-copilot-individual-plans-introducing-flex-allotments-in-pro-and-pro-and-a-new-max-plan/",
+          "desc": "GitHub introduced a new $100/month plan for developers who burn through AI coding credits fast — it comes with $200 in included usage, and code completions stay unlimited on all paid plans as usage-based billing kicks in June 1",
+          "sponsored": false
+        },
+        {
+          "name": "Productive 5.0",
+          "url": "https://productive.io/5-0/",
+          "desc": "The project management platform for agencies and consultancies launched AI agents that handle the work nobody wants to do — auto-transcribing meetings into tasks, generating business reports in seconds, and handling resource allocation so teams can focus on actual client work",
+          "sponsored": false
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "6e0a6c0b-d804-477a-84f3-a97c955ea242",
+      "question": "Be honest — how much of your AI use at work do your coworkers actually know about?",
+      "options": [
+        "They all know, I'm the AI person",
+        "A few people know",
+        "Nobody knows, it's my secret weapon",
+        "I haven't started using it yet",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "Does your company track how much you personally use AI?",
+      "total_votes": 1,
+      "results": [
+        {
+          "answer": "Yes, but nobody cares about the numbers",
+          "count": 1,
+          "percentage": 100
+        }
+      ]
+    },
+    "yesterdays_results": null
+  },
+  {
     "id": "catalyst-may-11-2026",
     "slug": "catalyst-may-11-2026",
     "publication": "the-catalyst",
