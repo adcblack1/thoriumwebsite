@@ -100,7 +100,7 @@ export function setAdvancedMatching(_email: string) {
  * Includes value/currency for ROAS and lead_score for quality signal.
  * Pass eventId to deduplicate with the server-side CAPI event.
  */
-export function trackLead(eventId?: string, leadScore?: number) {
+export function trackLead(eventId?: string, leadScore?: number, externalId?: string) {
   if (typeof window === 'undefined') return;
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -108,6 +108,7 @@ export function trackLead(eventId?: string, leadScore?: number) {
     if (typeof fbq === 'function') {
       const params: Record<string, unknown> = { value: 5, currency: 'USD' };
       if (leadScore !== undefined) params.lead_score = leadScore;
+      if (externalId) params.external_id = externalId;
       if (eventId) {
         fbq('track', 'Lead', params, { eventID: eventId });
       } else {

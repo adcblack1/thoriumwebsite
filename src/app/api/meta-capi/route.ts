@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 
 const PIXEL_ID = '773797471916037';
-const API_VERSION = 'v21.0';
+const API_VERSION = 'v22.0';
 
 /**
  * Hash a value with SHA-256 for Meta CAPI.
@@ -60,6 +60,7 @@ export async function POST(request: NextRequest) {
       job_function,
       industry,
       lead_score,
+      subscriber_id,
     } = body;
 
     if (!email || !event_id) {
@@ -76,6 +77,7 @@ export async function POST(request: NextRequest) {
     if (first_name) user_data.fn = sha256(first_name);
     if (fbp) user_data.fbp = fbp;   // NOT hashed — Meta's own cookie
     if (fbc) user_data.fbc = fbc;    // NOT hashed — Meta's click ID
+    if (subscriber_id) user_data.external_id = sha256(subscriber_id); // Stable user key for cross-device matching
 
     // Build custom_data with survey fields
     const custom_data: Record<string, string> = {};

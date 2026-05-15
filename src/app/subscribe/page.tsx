@@ -575,7 +575,7 @@ export default function SubscribePage() {
         console.log(`[Lead Score] ${leadScore}/100`, { seniority: formData.seniority, company_size: formData.company_size });
 
         // Client-side: Standard Lead (pixel) — for dual tracking with CAPI
-        trackLead(`lead_${eventId}`, leadScore);
+        trackLead(`lead_${eventId}`, leadScore, subscriberId || undefined);
 
         // Client-side: Custom QualifiedLead (pixel) — for internal tracking
         trackQualifiedLead({
@@ -602,6 +602,7 @@ export default function SubscribePage() {
             job_function: formData.job_function,
             industry: formData.industry,
             lead_score: leadScore,
+            subscriber_id: subscriberId,
           }),
         }).catch(() => { });
       }
