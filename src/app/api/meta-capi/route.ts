@@ -39,6 +39,29 @@ function sha256(value: string): string {
  *   industry?: string,
  * }
  */
+/**
+ * Determine lead tier and dollar value from a 0-100 lead score.
+ * Mirrors DeepView's exact tier boundaries.
+ */
+function getLeadTier(score: number): { tier: string; value: number } {
+  if (score > 74) return { tier: 'lead_high', value: 5.00 };
+  if (score > 59) return { tier: 'lead_good', value: 3.00 };
+  if (score > 40) return { tier: 'lead_medium', value: 1.50 };
+  return { tier: 'lead_low', value: 0.25 };
+}
+
+/**
+ * POST /api/meta-capi
+ *
+ * Sends 5 events to Meta's Conversions API in a single request:
+ *   1. Lead        — standard, for campaign optimization
+ *   2. Subscribe   — standard, for email capture signal
+ *   3. Purchase    — standard, with dynamic value for VBO
+ *   4. Custom tier — lead_high/good/medium/low for audiences + columns
+ *   5. QualifiedLead — custom, for internal tracking
+ *
+ * All share event_id base for deduplication with client-side pixel.
+ */
 export async function POST(request: NextRequest) {
   const token = process.env.META_CAPI_TOKEN;
   if (!token) {
@@ -75,54 +98,99 @@ export async function POST(request: NextRequest) {
     };
 
     if (first_name) user_data.fn = sha256(first_name);
-    if (fbp) user_data.fbp = fbp;   // NOT hashed — Meta's own cookie
-    if (fbc) user_data.fbc = fbc;    // NOT hashed — Meta's click ID
-    if (subscriber_id) user_data.external_id = sha256(subscriber_id); // Stable user key for cross-device matching
+    if (fbp) user_data.fbp = fbp;
+    if (fbc) user_data.fbc = fbc;
+    if (subscriber_id) user_data.external_id = sha256(subscriber_id);
 
     // Build custom_data with survey fields
-    const custom_data: Record<string, string> = {};
-    if (seniority) custom_data.seniority = seniority;
-    if (company_size) custom_data.company_size = company_size;
-    if (main_goal) custom_data.main_goal = main_goal;
-    if (job_function) custom_data.job_function = job_function;
-    if (industry) custom_data.industry = industry;
+    const survey_data: Record<string, string> = {};
+    if (seniority) survey_data.seniority = seniority;
+    if (company_size) survey_data.company_size = company_size;
+    if (main_goal) survey_data.main_goal = main_goal;
+    if (job_function) survey_data.job_function = job_function;
+    if (industry) survey_data.industry = industry;
 
     const now = Math.floor(Date.now() / 1000);
+    const source_url = 'https://thoriumvalley.com/subscribe';
 
-    // Event 1: Standard Lead (what Meta campaigns optimize toward)
+    // Get tier + dollar value from lead score
+    const { tier, value } = getLeadTier(lead_score ?? 0);
+
+    // Event 1: Standard Lead
     const leadEvent = {
       event_name: 'Lead',
       event_time: now,
-      event_id: `lead_${event_id}`,     // Unique ID for Lead dedup
-      event_source_url: 'https://thoriumvalley.com/subscribe',
+      event_id: `lead_${event_id}`,
+      event_source_url: source_url,
       action_source: 'website',
       user_data,
       custom_data: {
         value: 5.00,
         currency: 'USD',
         ...(lead_score !== undefined && { lead_score }),
-        ...custom_data,
+        ...survey_data,
       },
     };
 
-    // Event 2: Custom QualifiedLead (internal tracking + legacy)
+    // Event 2: Standard Subscribe
+    const subscribeEvent = {
+      event_name: 'Subscribe',
+      event_time: now,
+      event_id: `sub_${event_id}`,
+      event_source_url: source_url,
+      action_source: 'website',
+      user_data,
+      custom_data: survey_data,
+    };
+
+    // Event 3: Standard Purchase (with dynamic tier value for VBO)
+    const purchaseEvent = {
+      event_name: 'Purchase',
+      event_time: now,
+      event_id: `pur_${event_id}`,
+      event_source_url: source_url,
+      action_source: 'website',
+      user_data,
+      custom_data: {
+        value,
+        currency: 'USD',
+        lead_type: tier,
+        ...survey_data,
+      },
+    };
+
+    // Event 4: Custom tier event (lead_high / lead_good / lead_medium / lead_low)
+    const tierEvent = {
+      event_name: tier,
+      event_time: now,
+      event_id: `tier_${event_id}`,
+      event_source_url: source_url,
+      action_source: 'website',
+      user_data,
+      custom_data: {
+        lead_type: tier,
+        ...survey_data,
+      },
+    };
+
+    // Event 5: Custom QualifiedLead (internal tracking + legacy)
     const qualifiedLeadEvent = {
       event_name: 'QualifiedLead',
       event_time: now,
-      event_id,
-      event_source_url: 'https://thoriumvalley.com/subscribe',
+      event_id: event_id,
+      event_source_url: source_url,
       action_source: 'website',
       user_data,
-      custom_data,
+      custom_data: survey_data,
     };
 
-    // Send BOTH events to Meta in a single API call
+    // Send ALL events to Meta in a single API call
     const url = `https://graph.facebook.com/${API_VERSION}/${PIXEL_ID}/events`;
     const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        data: [leadEvent, qualifiedLeadEvent],
+        data: [leadEvent, subscribeEvent, purchaseEvent, tierEvent, qualifiedLeadEvent],
         access_token: token,
       }),
     });
@@ -134,10 +202,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: false, error: result }, { status: res.status });
     }
 
-    console.log('[CAPI] Lead + QualifiedLead sent successfully:', result);
-    return NextResponse.json({ ok: true, events_received: result.events_received });
+    console.log(`[CAPI] 5 events sent (Lead + Subscribe + Purchase[$${value}] + ${tier} + QualifiedLead):`, result);
+    return NextResponse.json({ ok: true, events_received: result.events_received, tier, value });
   } catch (err) {
-    console.error('[CAPI] Failed to send event:', err);
+    console.error('[CAPI] Failed to send events:', err);
     return NextResponse.json({ ok: false, error: 'Internal error' }, { status: 500 });
   }
 }

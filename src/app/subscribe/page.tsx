@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import WireframeGlobe from '@/components/WireframeGlobe';
 import { Navigation } from '@/components/navigation';
 import { FooterNew } from '@/components/footer-new';
-import { trackLead, trackQualifiedLead, setAdvancedMatching, trackSurveyComplete } from '@/lib/meta-pixel';
+import { trackLead, trackSubscribe, trackPurchase, trackLeadTier, trackQualifiedLead, setAdvancedMatching, trackSurveyComplete } from '@/lib/meta-pixel';
 
 // Sponsored tools shown after survey
 const SPONSORED_TOOLS = [
@@ -599,6 +599,17 @@ export default function SubscribePage() {
 
         // Client-side: Standard Lead (pixel) — for dual tracking with CAPI
         trackLead(`lead_${eventId}`, leadScore, subscriberId || undefined);
+
+        // Client-side: Standard Subscribe (pixel) — for campaign flexibility
+        trackSubscribe(eventId, subscriberId || undefined);
+
+        // Client-side: Standard Purchase (pixel) — for value-based optimization
+        // Value is dynamically set based on lead score tier ($5/$3/$1.50/$0.25)
+        trackPurchase(eventId, leadScore, subscriberId || undefined);
+
+        // Client-side: Custom tier event (lead_high/good/medium/low) — for audience building
+        // Fires the tier NAME as the event name for Ads Manager columns + lookalike seeds
+        trackLeadTier(eventId, leadScore, subscriberId || undefined);
 
         // Client-side: Custom QualifiedLead (pixel) — for internal tracking
         trackQualifiedLead({

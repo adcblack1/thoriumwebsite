@@ -95,6 +95,19 @@ export function setAdvancedMatching(_email: string) {
 }
 
 /**
+ * Determine lead tier and dollar value from a 0-100 lead score.
+ * Mirrors DeepView's exact tier boundaries:
+ *   >74 = lead_high ($5), 60-74 = lead_good ($3),
+ *   41-59 = lead_medium ($1.50), <41 = lead_low ($0.25)
+ */
+function getLeadTier(score: number): { tier: string; value: number } {
+  if (score > 74) return { tier: 'lead_high', value: 5.00 };
+  if (score > 59) return { tier: 'lead_good', value: 3.00 };
+  if (score > 40) return { tier: 'lead_medium', value: 1.50 };
+  return { tier: 'lead_low', value: 0.25 };
+}
+
+/**
  * Track a Lead event (fires at Step 9 — survey completion).
  * This is the primary optimization event for Meta campaigns.
  * Includes value/currency for ROAS and lead_score for quality signal.
@@ -119,6 +132,82 @@ export function trackLead(eventId?: string, leadScore?: number, externalId?: str
     }
   } catch (e) {
     console.warn('[Meta Pixel] Lead tracking failed:', e);
+  }
+}
+
+/**
+ * Track a Subscribe event — standard Meta event for email capture.
+ * Fires alongside Lead for campaign flexibility.
+ */
+export function trackSubscribe(eventId?: string, externalId?: string) {
+  if (typeof window === 'undefined') return;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const fbq = (window as any).fbq;
+    if (typeof fbq === 'function') {
+      const params: Record<string, unknown> = {};
+      if (externalId) params.external_id = externalId;
+      if (eventId) {
+        fbq('track', 'Subscribe', params, { eventID: `sub_${eventId}` });
+      } else {
+        fbq('track', 'Subscribe', params);
+      }
+      console.log(`[Meta Pixel] Tracked "Subscribe" via fbq`);
+    }
+  } catch (e) {
+    console.warn('[Meta Pixel] Subscribe tracking failed:', e);
+  }
+}
+
+/**
+ * Track a Purchase event with dynamic value from lead scoring.
+ * This is the KEY event for value-based optimization (VBO).
+ * Meta uses the value to optimize for high-scoring subscribers.
+ */
+export function trackPurchase(eventId?: string, leadScore?: number, externalId?: string) {
+  if (typeof window === 'undefined') return;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const fbq = (window as any).fbq;
+    if (typeof fbq === 'function') {
+      const { value } = getLeadTier(leadScore ?? 0);
+      const params: Record<string, unknown> = { value, currency: 'USD' };
+      if (externalId) params.external_id = externalId;
+      if (eventId) {
+        fbq('track', 'Purchase', params, { eventID: `pur_${eventId}` });
+      } else {
+        fbq('track', 'Purchase', params);
+      }
+      console.log(`[Meta Pixel] Tracked "Purchase" via fbq (value: $${value})`);
+    }
+  } catch (e) {
+    console.warn('[Meta Pixel] Purchase tracking failed:', e);
+  }
+}
+
+/**
+ * Track a custom tier event (lead_high, lead_good, lead_medium, lead_low).
+ * Fires the TIER NAME as the event name — used for audience building,
+ * Ads Manager columns, and lookalike seed audiences.
+ */
+export function trackLeadTier(eventId?: string, leadScore?: number, externalId?: string) {
+  if (typeof window === 'undefined') return;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const fbq = (window as any).fbq;
+    if (typeof fbq === 'function') {
+      const { tier } = getLeadTier(leadScore ?? 0);
+      const params: Record<string, unknown> = { lead_type: tier };
+      if (externalId) params.external_id = externalId;
+      if (eventId) {
+        fbq('trackCustom', tier, params, { eventID: `tier_${eventId}` });
+      } else {
+        fbq('trackCustom', tier, params);
+      }
+      console.log(`[Meta Pixel] Tracked custom "${tier}" via fbq`);
+    }
+  } catch (e) {
+    console.warn('[Meta Pixel] Tier tracking failed:', e);
   }
 }
 
