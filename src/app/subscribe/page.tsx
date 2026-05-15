@@ -150,6 +150,84 @@ const AI_TOOLS: { name: string; logo: string | null }[] = [
   { name: 'None yet', logo: null },
 ];
 
+// ── Lead Scoring (0-100) ──────────────────
+// Mirrors Deep View's algorithm: seniority×company_size matrix + job function + goal + tools + industry
+function calculateLeadScore(data: {
+  seniority: string;
+  company_size: string;
+  job_function: string;
+  main_goal: string;
+  industry: string;
+  ai_tools: string[];
+}): number {
+  // 1. Seniority tier (A=highest, E=lowest)
+  const seniorityTier: Record<string, string> = {
+    'Founder/CEO': 'A', 'C-Suite': 'A',
+    'VP/Director': 'B', 'Manager': 'C',
+    'Individual Contributor': 'E', 'Freelance/Solo': 'E', 'Student': 'E',
+  };
+
+  // 2. Company size tier
+  const sizeTier: Record<string, string> = {
+    '1,000+': 'enterprise', '501-1,000': 'large',
+    '101-500': 'mid', '26-100': 'small', '2-25': 'small', 'Just me': 'small',
+  };
+
+  // 3. Base score matrix: seniority × company size
+  const matrix: Record<string, number> = {
+    'A-enterprise': 55, 'A-large': 48, 'A-mid': 40, 'A-small': 30,
+    'B-enterprise': 45, 'B-large': 38, 'B-mid': 30, 'B-small': 22,
+    'C-enterprise': 35, 'C-large': 28, 'C-mid': 22, 'C-small': 15,
+    'D-enterprise': 25, 'D-large': 20, 'D-mid': 15, 'D-small': 10,
+    'E-enterprise': 12, 'E-large': 10, 'E-mid': 8,  'E-small': 5,
+  };
+
+  // 4. Job function points
+  const jobPoints: Record<string, number> = {
+    'Running the company': 15, 'Product/Engineering': 15, 'Data/Analytics': 15,
+    'Strategy/Consulting': 15, 'Sales/Revenue': 10, 'Marketing/Content': 10,
+    'Customer Success': 10, 'Finance': 5, 'Operations/Project Management': 5,
+    'Legal/Compliance': 5, 'HR/People': 5, 'Design': 5, 'Other': 0,
+  };
+
+  // 5. Goal points
+  const goalPoints: Record<string, number> = {
+    'Implement AI at my company': 10, 'Build products with AI': 10,
+    'Automate repetitive work': 8, 'Grow my career': 6,
+    'Stay ahead of industry trends': 5, 'Work faster with AI': 5,
+  };
+
+  // 6. Industry points
+  const industryPoints: Record<string, number> = {
+    'AI/Tech/Software': 5, 'Financial Services': 3, 'Healthcare': 3,
+    'Media/Marketing/Advertising': 3, 'Professional Services': 3,
+    'Retail/E-commerce': 1, 'Education': 1, 'Manufacturing': 1,
+    'Real Estate/Construction': 1, 'Government': 1, 'Other': 0,
+  };
+
+  // 7. AI tools: automation (+4), creative (+3), general (+3), capped at 10
+  const automation = new Set(['Microsoft Copilot', 'Zapier', 'Make', 'n8n']);
+  const creative = new Set(['Midjourney', 'Runway', 'HeyGen', 'ElevenLabs', 'Canva AI']);
+  const general = new Set(['ChatGPT', 'Claude', 'Gemini', 'Perplexity', 'NotebookLM', 'Cursor']);
+
+  let toolScore = 0;
+  const tools = data.ai_tools || [];
+  if (tools.some(t => automation.has(t))) toolScore += 4;
+  if (tools.some(t => creative.has(t))) toolScore += 3;
+  if (tools.some(t => general.has(t))) toolScore += 3;
+  toolScore = Math.min(10, toolScore);
+
+  // Calculate
+  const tier = seniorityTier[data.seniority] || 'E';
+  const size = sizeTier[data.company_size] || 'mid';
+  const base = matrix[`${tier}-${size}`] || 8;
+  const job = jobPoints[data.job_function] || 0;
+  const goal = goalPoints[data.main_goal] || 4;
+  const ind = industryPoints[data.industry] || 0;
+
+  return Math.min(100, Math.max(0, base + job + goal + toolScore + ind));
+}
+
 const CHILD_NEWSLETTERS = [
   {
     id: 'thorium-valley',
@@ -485,8 +563,19 @@ export default function SubscribePage() {
         hasTrackedQL.current = true;
         const eventId = `ql_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
 
+        // Calculate lead score (0-100)
+        const leadScore = calculateLeadScore({
+          seniority: formData.seniority,
+          company_size: formData.company_size,
+          job_function: formData.job_function,
+          main_goal: formData.main_goal,
+          industry: formData.industry,
+          ai_tools: formData.ai_tools,
+        });
+        console.log(`[Lead Score] ${leadScore}/100`, { seniority: formData.seniority, company_size: formData.company_size });
+
         // Client-side: Standard Lead (pixel) — for dual tracking with CAPI
-        trackLead(`lead_${eventId}`);
+        trackLead(`lead_${eventId}`, leadScore);
 
         // Client-side: Custom QualifiedLead (pixel) — for internal tracking
         trackQualifiedLead({
@@ -512,6 +601,7 @@ export default function SubscribePage() {
             main_goal: formData.main_goal,
             job_function: formData.job_function,
             industry: formData.industry,
+            lead_score: leadScore,
           }),
         }).catch(() => { });
       }

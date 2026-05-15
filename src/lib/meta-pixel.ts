@@ -97,21 +97,23 @@ export function setAdvancedMatching(_email: string) {
 /**
  * Track a Lead event (fires at Step 9 — survey completion).
  * This is the primary optimization event for Meta campaigns.
- * Includes value/currency for ROAS calculations.
+ * Includes value/currency for ROAS and lead_score for quality signal.
  * Pass eventId to deduplicate with the server-side CAPI event.
  */
-export function trackLead(eventId?: string) {
+export function trackLead(eventId?: string, leadScore?: number) {
   if (typeof window === 'undefined') return;
   try {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const fbq = (window as any).fbq;
     if (typeof fbq === 'function') {
+      const params: Record<string, unknown> = { value: 5, currency: 'USD' };
+      if (leadScore !== undefined) params.lead_score = leadScore;
       if (eventId) {
-        fbq('track', 'Lead', { value: 5, currency: 'USD' }, { eventID: eventId });
+        fbq('track', 'Lead', params, { eventID: eventId });
       } else {
-        fbq('track', 'Lead', { value: 5, currency: 'USD' });
+        fbq('track', 'Lead', params);
       }
-      console.log(`[Meta Pixel] Tracked "Lead" via fbq`, eventId ? `(eventID: ${eventId})` : '');
+      console.log(`[Meta Pixel] Tracked "Lead" via fbq`, eventId ? `(eventID: ${eventId})` : '', leadScore !== undefined ? `(lead_score: ${leadScore})` : '');
       return;
     }
   } catch (e) {

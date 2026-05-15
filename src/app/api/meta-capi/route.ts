@@ -59,6 +59,7 @@ export async function POST(request: NextRequest) {
       main_goal,
       job_function,
       industry,
+      lead_score,
     } = body;
 
     if (!email || !event_id) {
@@ -97,6 +98,7 @@ export async function POST(request: NextRequest) {
       custom_data: {
         value: 5.00,
         currency: 'USD',
+        ...(lead_score !== undefined && { lead_score }),
         ...custom_data,
       },
     };
