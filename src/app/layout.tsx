@@ -114,6 +114,30 @@ export default function RootLayout({
               fbq('init', '773797471916037');
               fbq('set', 'autoConfig', false, '773797471916037');
               fbq('track', 'PageView');
+
+              // Block Meta's automatic Lead events (cs_est:true) while allowing our manual ones
+              (function() {
+                var _origFbq = fbq;
+                fbq = function() {
+                  var args = Array.prototype.slice.call(arguments);
+                  // Block auto-fired Lead events (they lack our lead_score parameter)
+                  if (args[0] === 'track' && args[1] === 'Lead') {
+                    var params = args[2] || {};
+                    if (!params.lead_score && params.lead_score !== 0) {
+                      console.log('[Meta Pixel] Blocked automatic Lead event (cs_est)');
+                      return;
+                    }
+                  }
+                  return _origFbq.apply(this, args);
+                };
+                // Preserve all fbq properties
+                for (var k in _origFbq) { if (_origFbq.hasOwnProperty(k)) fbq[k] = _origFbq[k]; }
+                fbq.callMethod = _origFbq.callMethod;
+                fbq.queue = _origFbq.queue;
+                fbq.loaded = _origFbq.loaded;
+                fbq.version = _origFbq.version;
+                fbq.push = fbq;
+              })();
             `,
           }}
         />
