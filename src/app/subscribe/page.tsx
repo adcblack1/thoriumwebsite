@@ -485,10 +485,8 @@ export default function SubscribePage() {
         const result = await createSubscriber(subEventId);
         if (result === 'resumed') { setLoading(false); return; }
         if (!result) { setLoading(false); return; }
-        setAdvancedMatching(formData.email); // Set email for attribution
-        // Fire Subscribe pixel (client-side) — CAPI already fired server-side in /api/subscribe
+        setAdvancedMatching(formData.email);
         trackSubscribe(subEventId, subscriberId || undefined);
-        // CAPI Subscribe fires server-side in /api/subscribe route
       } else if (step === 2) {
         await updateSubscriber({ child_newsletters: formData.child_newsletters });
       } else if (step === 3) {
