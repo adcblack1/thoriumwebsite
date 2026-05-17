@@ -55,10 +55,11 @@ function getLeadTier(score: number): { tier: string; value: number } {
  *
  * Sends 5 events to Meta's Conversions API in a single request:
  *   1. Lead        — standard, for campaign optimization
- *   2. Subscribe   — standard, for email capture signal
- *   3. Purchase    — standard, with dynamic value for VBO
- *   4. Custom tier — lead_high/good/medium/low for audiences + columns
- *   5. QualifiedLead — custom, for internal tracking
+ *   2. Purchase    — standard, with dynamic value for VBO
+ *   3. Custom tier — lead_high/good/medium/low for audiences + columns
+ *   4. QualifiedLead — custom, for internal tracking
+ *
+ * Subscribe fires separately at step 1 via /api/subscribe.
  *
  * All share event_id base for deduplication with client-side pixel.
  */
@@ -130,16 +131,6 @@ export async function POST(request: NextRequest) {
       },
     };
 
-    // Event 2: Standard Subscribe
-    const subscribeEvent = {
-      event_name: 'Subscribe',
-      event_time: now,
-      event_id: `sub_${event_id}`,
-      event_source_url: source_url,
-      action_source: 'website',
-      user_data,
-      custom_data: survey_data,
-    };
 
     // Event 3: Standard Purchase (with dynamic tier value for VBO)
     const purchaseEvent = {
@@ -188,7 +179,7 @@ export async function POST(request: NextRequest) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        data: [leadEvent, subscribeEvent, purchaseEvent, tierEvent, qualifiedLeadEvent],
+        data: [leadEvent, purchaseEvent, tierEvent, qualifiedLeadEvent],
         access_token: token,
       }),
     });
@@ -200,7 +191,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: false, error: result }, { status: res.status });
     }
 
-    console.log(`[CAPI] 5 events sent (Lead + Subscribe + Purchase[$${value}] + ${tier} + QualifiedLead):`, result);
+    console.log(`[CAPI] 4 events sent (Lead + Purchase[$${value}] + ${tier} + QualifiedLead):`, result);
     return NextResponse.json({ ok: true, events_received: result.events_received, tier, value });
   } catch (err) {
     console.error('[CAPI] Failed to send events:', err);

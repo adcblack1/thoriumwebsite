@@ -10,7 +10,7 @@ const supabase = () =>
 // POST — create a new subscriber record (Step 1)
 export async function POST(request: Request) {
   try {
-    const { email, child_newsletters, fbp, fbc, utm_source, utm_medium, utm_campaign, utm_content } = await request.json();
+    const { email, child_newsletters, fbp, fbc, utm_source, utm_medium, utm_campaign, utm_content, sub_event_id } = await request.json();
 
     if (!email) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
@@ -147,6 +147,40 @@ export async function POST(request: Request) {
             .update({ beehiiv_subscriber_id: mainBeehiivId })
             .eq('id', data.id);
         }
+      }
+    }
+
+    // Fire CAPI Subscribe event for deduplication with client-side pixel
+    if (sub_event_id) {
+      const CAPI_TOKEN = process.env.META_CAPI_TOKEN;
+      const PIXEL_ID = '773797471916037';
+      if (CAPI_TOKEN) {
+        const crypto = await import('crypto');
+        const sha256 = (v: string) => crypto.createHash('sha256').update(v.toLowerCase().trim()).digest('hex');
+        const user_data: Record<string, string> = { em: sha256(email) };
+        if (fbp) user_data.fbp = fbp;
+        if (fbc) user_data.fbc = fbc;
+
+        fetch(`https://graph.facebook.com/v22.0/${PIXEL_ID}/events`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            data: [{
+              event_name: 'Subscribe',
+              event_time: Math.floor(Date.now() / 1000),
+              event_id: sub_event_id,
+              event_source_url: 'https://thoriumvalley.com/subscribe',
+              action_source: 'website',
+              user_data,
+            }],
+            access_token: CAPI_TOKEN,
+          }),
+        })
+          .then(async (res) => {
+            if (!res.ok) console.error('[CAPI Subscribe] Error:', await res.text());
+            else console.log('[CAPI Subscribe] Sent for', email);
+          })
+          .catch((err) => console.error('[CAPI Subscribe] Failed:', err));
       }
     }
 

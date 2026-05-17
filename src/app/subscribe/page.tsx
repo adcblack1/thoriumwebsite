@@ -406,11 +406,11 @@ export default function SubscribePage() {
 
   // ── API helpers ──────────────────────────
 
-  const createSubscriber = async () => {
+  const createSubscriber = async (subEventId?: string) => {
     const res = await fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: formData.email, ...metaCookies, ...utmParams }),
+      body: JSON.stringify({ email: formData.email, ...metaCookies, ...utmParams, ...(subEventId ? { sub_event_id: subEventId } : {}) }),
     });
     const data = await res.json();
     if (data.subscriber_id) {
@@ -480,11 +480,15 @@ export default function SubscribePage() {
     try {
       if (step === 1) {
         if (!formData.email) { setError('Please enter your email'); setLoading(false); return; }
-        const result = await createSubscriber();
+        // Generate Subscribe event_id BEFORE createSubscriber so CAPI + pixel share the same ID
+        const subEventId = `sub_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
+        const result = await createSubscriber(subEventId);
         if (result === 'resumed') { setLoading(false); return; }
         if (!result) { setLoading(false); return; }
         setAdvancedMatching(formData.email); // Set email for attribution
-        // Lead event now fires at step 9 (survey completion) for better Meta optimization
+        // Fire Subscribe pixel (client-side) — CAPI already fired server-side in /api/subscribe
+        trackSubscribe(subEventId, subscriberId || undefined);
+        // CAPI Subscribe fires server-side in /api/subscribe route
       } else if (step === 2) {
         await updateSubscriber({ child_newsletters: formData.child_newsletters });
       } else if (step === 3) {
@@ -582,8 +586,6 @@ export default function SubscribePage() {
         // Client-side: Standard Lead (pixel) — for dual tracking with CAPI
         trackLead(`lead_${eventId}`, leadScore, subscriberId || undefined);
 
-        // Client-side: Standard Subscribe (pixel) — for campaign flexibility
-        trackSubscribe(eventId, subscriberId || undefined);
 
         // Client-side: Standard Purchase (pixel) — for value-based optimization
         // Value is dynamically set based on lead score tier ($5/$3/$1.50/$0.25)
