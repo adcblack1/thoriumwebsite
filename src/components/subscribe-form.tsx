@@ -53,7 +53,6 @@ export function SubscribeForm({ variant = "hero", className = "", redirectOnSucc
 
             if (data.subscriber_id) {
                 setAdvancedMatching(email)
-                trackLead()
                 // Store subscriber info so /subscribe can pick it up
                 localStorage.setItem('tv_subscribe_progress', JSON.stringify({
                     formData: {

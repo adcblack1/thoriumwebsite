@@ -20,13 +20,13 @@ const SPONSORED_TOOLS = [
     accent: '#F59E0B',
   },
   {
-    name: 'Littlebird',
-    primary: "If you've ever forgotten what someone said in a meeting, use Littlebird.",
-    subtext: 'Littlebird is your AI memory for every meeting, tab, and thing you worked on.',
-    url: 'https://try.littlebird.ai/thorium-valley',
-    image: '/thumbnails/littlebird.webp',
+    name: 'Granola',
+    primary: 'The TV team loves Granola.',
+    subtext: 'The only AI notetaker that actually saves you time. Summarizes every meeting, creates action items from your perspective, and saves us ~10 hours a week per person.',
+    url: 'https://granola.ai?via=thorium',
+    image: '/thumbnails/granola.avif',
     featured: true,
-    accent: '#4A9B8E',
+    accent: '#F5A623',
   },
   {
     name: 'Clico',
@@ -38,35 +38,17 @@ const SPONSORED_TOOLS = [
   },
 ];
 
-// Littlebird A/B/C variations for partnership test
+// Granola partnership — single variation (replacing Littlebird A/B/C test)
 const LB_UNDERLINE = 'underline decoration-[#5170ff] decoration-2 underline-offset-4';
 const LB_VARIATIONS: Record<string, { label: string; mediaType: 'image' | 'video'; mediaSrc: string; headline: string; subtext: string; subtext2: string; link: string }> = {
-  A: {
-    label: 'Meeting Recall',
-    mediaType: 'image',
-    mediaSrc: '/thumbnails/littlebird-meeting.png',
-    headline: 'meeting',
-    subtext: 'Littlebird is your AI memory for every meeting, tab, and thing you worked on. It watches your screen, takes notes in real time, and remembers everything \u2014 so when you forget where you saw something, you just ask.',
-    subtext2: 'No more retracing your steps through old emails, notes, and browser tabs. Littlebird gives you instant recall across your entire workday.',
-    link: 'https://try.littlebird.ai/thorium1',
-  },
-  B: {
-    label: 'Productivity',
-    mediaType: 'image',
-    mediaSrc: '/thumbnails/littlebird-productive.avif',
-    headline: 'productive',
-    subtext: 'Littlebird runs quietly in the background and remembers everything you see, read, and work on. When you need to pick up where you left off, pull up a detail from last week, or find that one thing you saw somewhere \u2014 just ask.',
-    subtext2: 'It\u2019s like having a second brain that never forgets. Less time searching, more time doing the work that actually matters.',
-    link: 'https://try.littlebird.ai/thorium2',
-  },
   C: {
-    label: 'Video Demo',
-    mediaType: 'video',
-    mediaSrc: '/thumbnails/littlebird-demo.mp4',
-    headline: 'working',
-    subtext: 'Littlebird watches your screen in real time and builds a searchable memory of your entire workday \u2014 every meeting, every tab, every document. When you need context, you don\u2019t dig. You ask.',
-    subtext2: 'The more you work, the more it remembers. Less time searching, more time on the work that actually matters.',
-    link: 'https://try.littlebird.ai/thorium3',
+    label: 'Granola',
+    mediaType: 'image',
+    mediaSrc: '/thumbnails/granola.avif',
+    headline: 'granola',
+    subtext: 'Not the food. It\'s an AI notepad that does the one thing every other notetaker promises and none of them deliver: it actually makes your notes useful. You write during the meeting, it transcribes in the background, and when the call ends you get clean summaries and action items from your perspective. Saves our team about an hour a day each.',
+    subtext2: 'Don\'t believe us? Try it for one call and you\'ll see what we\'re talking about.',
+    link: 'https://granola.ai?via=thorium',
   },
 };
 
@@ -745,42 +727,41 @@ export default function SubscribePage() {
               </p>
             </div>
 
-            {/* Littlebird partnership — single tool */}
+            {/* Granola partnership — single tool */}
             <div className="text-center mb-4 mt-2">
               <div className="flex items-center justify-center gap-3 lg:gap-4 mb-3">
                 <img src="/Transparent White Logo.png" alt="Thorium Valley" className="h-8 lg:h-10 invert" style={{ objectFit: 'contain' }} />
                 <span className="text-[#1b1b1b]/30 font-inter text-base font-light">×</span>
-                <img src="/images/littlebird-logo-white.svg" alt="Littlebird" className="h-8 lg:h-12 invert" style={{ objectFit: 'contain' }} />
+                <img src="/images/granola-logo.avif" alt="Granola" className="h-8 lg:h-12" style={{ objectFit: 'contain' }} />
               </div>
               <p className="font-inter text-[10px] lg:text-[11px] font-semibold uppercase tracking-[0.15em]" style={{ color: '#5170ff' }}>
-                Official AI Assistant Partner
+                Official AI Meeting Tool Partner
               </p>
             </div>
             <a
-              href="https://try.littlebird.ai/thorium-valley"
+              href="https://granola.ai?via=thorium"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => {
-                logToolClick('littlebird', 'confirmation');
-                // QualifiedLead now fires on page 9 view, not click
+                logToolClick('granola', 'confirmation');
               }}
               className="block w-full max-w-lg mx-auto rounded-xl overflow-hidden transition-all group hover:shadow-lg border border-[#1b1b1b]/10"
               style={{ background: '#ffffff' }}
             >
               <div className="px-5 pt-5 pb-3">
                 <h3 className="font-times text-[#1b1b1b] leading-tight" style={{ fontWeight: 500, letterSpacing: '-0.05em', fontSize: '22px' }}>
-                  If you&rsquo;ve ever forgotten what someone said in a meeting, use Littlebird.
+                  Why we can&rsquo;t stop talking about Granola.
                 </h3>
               </div>
               <div className="px-4">
-                <img src="/thumbnails/littlebird-meeting.png" alt="Littlebird" className="w-full rounded-lg" style={{ objectFit: 'contain' }} />
+                <img src="/thumbnails/granola.avif" alt="Granola" className="w-full rounded-lg" style={{ objectFit: 'contain' }} />
               </div>
               <div className="px-5 pt-3 pb-5">
                 <p className="font-inter text-[#1b1b1b]/50 text-xs leading-relaxed">
-                  Littlebird is your AI memory for every meeting, tab, and thing you worked on.
+                  Not the food. It&rsquo;s an AI notepad that actually makes your notes useful. Saves our team about an hour a day each.
                 </p>
                 <span className="inline-block mt-2 text-[#5170ff] text-xs font-inter font-semibold group-hover:underline">
-                  Try Littlebird →
+                  Try Granola free →
                 </span>
               </div>
             </a>
@@ -906,9 +887,9 @@ export default function SubscribePage() {
                 </div>
               )}
 
-              {/* Step 9: Littlebird A/B/C partnership test */}
+              {/* Step 9: Granola partnership */}
               {step === 9 && (() => {
-                const v = LB_VARIATIONS[lbVariation] || LB_VARIATIONS.A;
+                const v = LB_VARIATIONS[lbVariation] || LB_VARIATIONS.C;
                 return (
                   <div className="flex flex-col items-center gap-4 lg:gap-5 px-3 lg:px-0 pb-16 lg:pb-0">
                     {/* Card — stacked on mobile, side-by-side on desktop */}
@@ -917,66 +898,47 @@ export default function SubscribePage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => {
-                        logToolClick(`littlebird_${lbVariation}`, 'tools_page');
-                        // QualifiedLead now fires on page 9 view, not click
-                        // Log click to Supabase (always — even on second click)
-                        const uid = formData.email || 'anon';
-                        fetch('/api/littlebird-test', {
-                          method: 'POST',
-                          headers: { 'Content-Type': 'application/json' },
-                          body: JSON.stringify({ variation: lbVariation, type: 'click', uid }),
-                        }).catch(() => { });
+                        logToolClick('granola', 'tools_page');
                       }}
-                      className="block w-full rounded-xl lg:rounded-2xl overflow-hidden transition-all group hover:shadow-2xl hover:shadow-white/10"
+                      className="block w-full max-w-xl mx-auto rounded-xl overflow-hidden transition-all group hover:shadow-2xl hover:shadow-white/10"
                       style={{ background: '#ffffff' }}
                     >
-                      <div className="flex flex-col lg:flex-row">
+                      <div className="flex flex-col">
                         {/* Blue section — logos + media */}
-                        <div style={{ backgroundColor: '#5170ff' }} className="px-4 pt-5 pb-4 lg:px-6 lg:pt-6 lg:pb-6 lg:flex-1 lg:flex lg:flex-col lg:justify-center">
-                          <div className="flex items-center justify-center gap-3 lg:gap-4 mb-2 lg:mb-3">
-                            <img src="/Transparent White Logo.png" alt="Thorium Valley" className="h-8 lg:h-10" style={{ objectFit: 'contain' }} />
-                            <span className="text-white/50 font-inter text-base lg:text-lg font-light">×</span>
-                            <img src="/images/littlebird-logo-white.svg" alt="Littlebird" className="h-8 lg:h-12" style={{ objectFit: 'contain' }} />
+                        <div style={{ backgroundColor: '#5170ff' }} className="px-5 pt-3 pb-4 lg:px-8 lg:pb-6 flex flex-col items-center">
+                          <div className="flex items-center justify-center gap-2 lg:gap-3 mb-1">
+                            <img src="/Transparent White Logo.png" alt="Thorium Valley" className="h-5 lg:h-6" style={{ objectFit: 'contain' }} />
+                            <span className="text-white/50 font-inter text-xs font-light">×</span>
+                            <img src="/images/granola-logo.avif" alt="Granola" className="h-5 lg:h-7 invert brightness-0" style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
                           </div>
-                          <p className="font-inter text-[9px] lg:text-[10px] font-semibold uppercase tracking-[0.15em] text-center mb-4 lg:mb-5" style={{ color: '#ffffff' }}>
-                            Official AI Assistant Partner
+                          <p className="font-inter text-[7px] lg:text-[8px] font-semibold uppercase tracking-[0.15em] text-center mb-3" style={{ color: '#ffffff' }}>
+                            Official AI Meeting Tool Partner
                           </p>
-                          {v.mediaType === 'video' ? (
-                            <video key={v.mediaSrc} src={v.mediaSrc} autoPlay loop muted playsInline className="w-full mx-auto rounded-lg lg:rounded-xl shadow-2xl" />
-                          ) : (
-                            <img key={v.mediaSrc} src={v.mediaSrc} alt="Littlebird AI" className="w-full mx-auto rounded-lg lg:rounded-xl shadow-2xl" style={{ objectFit: 'contain' }} />
-                          )}
+                          <img key={v.mediaSrc} src={v.mediaSrc} alt="Granola AI" className="w-full rounded-lg shadow-xl" style={{ objectFit: 'contain' }} />
                         </div>
                         {/* White section — copy */}
-                        <div className="px-4 py-4 lg:px-7 lg:py-6 lg:flex-1 lg:flex lg:flex-col lg:justify-center">
-                          <span className="font-inter text-[10px] lg:text-[11px] font-semibold uppercase tracking-widest mb-2 block" style={{ color: '#5170ff' }}>
-                            Our Team&apos;s Favorite AI Tool
+                        <div className="px-6 py-3 lg:px-10 lg:py-4">
+                          <span className="font-inter text-[10px] lg:text-[11px] font-semibold uppercase tracking-widest mb-1 block" style={{ color: '#5170ff' }}>
+                            Our Favorite AI Tool
                           </span>
-                          <h3 className="font-times text-[#1b1b1b] leading-tight mb-2 lg:mb-3 text-[20px] lg:text-[24px]" style={{ fontWeight: 500, letterSpacing: '-0.04em' }}>
-                            {v.headline === 'meeting' && <>If you&rsquo;ve ever forgotten what someone said in a meeting, use <span className={LB_UNDERLINE}>Littlebird</span>.</>}
-                            {v.headline === 'productive' && <>The AI tool that makes you more productive.</>}
-                            {v.headline === 'working' && <>The AI assistant that already knows what you&rsquo;re working on.</>}
+                          <h3 className="font-times text-[#1b1b1b] leading-tight mb-1.5 text-[16px] lg:text-[18px]" style={{ fontWeight: 500, letterSpacing: '-0.04em' }}>
+                            Why we can&rsquo;t stop talking about <span className={LB_UNDERLINE}>Granola</span>.
                           </h3>
-                          <p className="font-inter text-[#1b1b1b]/55 text-[13px] leading-relaxed mb-1.5">{v.subtext}</p>
-                          <p className="font-inter text-[#1b1b1b]/55 text-[13px] leading-relaxed mb-4 lg:mb-5">{v.subtext2}</p>
+                          <p className="font-inter text-[#1b1b1b]/55 text-[10px] lg:text-[11px] leading-relaxed mb-0.5">{v.subtext}</p>
+                          <p className="font-inter text-[#1b1b1b]/55 text-[10px] lg:text-[11px] leading-relaxed mb-2.5">{v.subtext2}</p>
                           <span className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full font-inter font-semibold text-[13px] text-white transition-all group-hover:brightness-110" style={{ backgroundColor: '#5170ff' }}>
-                            Get your all-in-one AI assistant
-                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+                            Try Granola free
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
                           </span>
-                          <p className="font-inter text-[10px] text-[#1b1b1b]/30 mt-2 text-center">Free to try</p>
+                          <p className="font-inter text-[8px] text-[#1b1b1b]/30 mt-1 text-center">Free to try</p>
                         </div>
                       </div>
                     </a>
-                    <PrimaryButton onClick={() => {
-                      // Log skip to Supabase
-                      const uid = formData.email || 'anon';
-                      fetch('/api/littlebird-test', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ variation: lbVariation, type: 'skip', uid }),
-                      }).catch(() => { });
-                      goNext();
-                    }}>Start reading →</PrimaryButton>
+                    <div className="w-full max-w-xl mx-auto">
+                      <PrimaryButton onClick={() => {
+                        goNext();
+                      }}>Start reading →</PrimaryButton>
+                    </div>
                   </div>
                 );
               })()}

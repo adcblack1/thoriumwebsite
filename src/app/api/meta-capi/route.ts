@@ -125,8 +125,6 @@ export async function POST(request: NextRequest) {
       action_source: 'website',
       user_data,
       custom_data: {
-        value: 5.00,
-        currency: 'USD',
         ...(lead_score !== undefined && { lead_score }),
         ...survey_data,
       },

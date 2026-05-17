@@ -76,6 +76,11 @@ export async function POST(request: Request) {
       // Subscribe to each selected publication
       const subscribeToBeehiiv = async (pubId: string, sendWelcome: boolean) => {
         try {
+          // Build custom fields from UTM params available at step 1
+          const step1CustomFields: { name: string; value: string }[] = [];
+          if (utm_content) step1CustomFields.push({ name: 'ad_creative', value: utm_content });
+          if (utm_campaign) step1CustomFields.push({ name: 'ad_campaign', value: utm_campaign });
+
           const res = await fetch(
             `https://api.beehiiv.com/v2/publications/${pubId}/subscriptions`,
             {
@@ -89,6 +94,7 @@ export async function POST(request: Request) {
                 reactivate_existing: true,
                 send_welcome_email: sendWelcome,
                 utm_source: 'subscribe_flow',
+                ...(step1CustomFields.length > 0 ? { custom_fields: step1CustomFields } : {}),
               }),
             }
           );

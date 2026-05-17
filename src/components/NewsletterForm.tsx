@@ -16,7 +16,6 @@ export function NewsletterForm({ className = '' }: NewsletterFormProps) {
       // Grab email from the form for advanced matching
       const emailInput = document.querySelector<HTMLInputElement>('input[name="email"]');
       if (emailInput?.value) setAdvancedMatching(emailInput.value);
-      trackLead();
     }
   }, [state?.success]);
 

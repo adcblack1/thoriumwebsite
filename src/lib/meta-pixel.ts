@@ -119,7 +119,7 @@ export function trackLead(eventId?: string, leadScore?: number, externalId?: str
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const fbq = (window as any).fbq;
     if (typeof fbq === 'function') {
-      const params: Record<string, unknown> = { value: 5, currency: 'USD' };
+      const params: Record<string, unknown> = {};
       if (leadScore !== undefined) params.lead_score = leadScore;
       if (externalId) params.external_id = externalId;
       if (eventId) {
