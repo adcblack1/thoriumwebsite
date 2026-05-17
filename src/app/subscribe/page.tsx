@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import WireframeGlobe from '@/components/WireframeGlobe';
 import { Navigation } from '@/components/navigation';
 import { FooterNew } from '@/components/footer-new';
-import { trackLead, trackSubscribe, trackPurchase, trackLeadTier, trackQualifiedLead, setAdvancedMatching, trackSurveyComplete } from '@/lib/meta-pixel';
+import { trackLead, trackSubscribe, trackPurchase, trackLeadTier, setAdvancedMatching } from '@/lib/meta-pixel';
 
 // Sponsored tools shown after survey
 const SPONSORED_TOOLS = [
@@ -558,12 +558,12 @@ export default function SubscribePage() {
     } catch { }
   };
 
-  // Littlebird – show winning variation C, log view + fire QualifiedLead on page view
+  // Step 9 — fire Lead, Purchase, and tier events for Meta optimization
   useEffect(() => {
     if (step === 9) {
-      trackSurveyComplete(); // Fire pixel event for funnel tracking
 
-      // Fire Lead + QualifiedLead ONCE on reaching step 9
+
+      // Fire Lead + Purchase + Tier ONCE on reaching step 9
       // Both pixel (client) and CAPI (server) fire with the same event_id
       // so Meta deduplicates them into a single conversion
       if (!hasTrackedQL.current) {
@@ -593,16 +593,9 @@ export default function SubscribePage() {
         // Fires the tier NAME as the event name for Ads Manager columns + lookalike seeds
         trackLeadTier(eventId, leadScore, subscriberId || undefined);
 
-        // Client-side: Custom QualifiedLead (pixel) — for internal tracking
-        trackQualifiedLead({
-          seniority: formData.seniority,
-          company_size: formData.company_size,
-          main_goal: formData.main_goal,
-          job_function: formData.job_function,
-          industry: formData.industry,
-        }, eventId);
 
-        // Server-side: CAPI fires BOTH Lead + QualifiedLead with matching event_ids
+
+        // Server-side: CAPI fires Lead + Purchase + Tier with matching event_ids
         fetch('/api/meta-capi', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

@@ -53,11 +53,10 @@ function getLeadTier(score: number): { tier: string; value: number } {
 /**
  * POST /api/meta-capi
  *
- * Sends 5 events to Meta's Conversions API in a single request:
+ * Sends 3 events to Meta's Conversions API in a single request:
  *   1. Lead        — standard, for campaign optimization
  *   2. Purchase    — standard, with dynamic value for VBO
  *   3. Custom tier — lead_high/good/medium/low for audiences + columns
- *   4. QualifiedLead — custom, for internal tracking
  *
  * Subscribe fires separately at step 1 via /api/subscribe.
  *
@@ -162,24 +161,13 @@ export async function POST(request: NextRequest) {
       },
     };
 
-    // Event 5: Custom QualifiedLead (internal tracking + legacy)
-    const qualifiedLeadEvent = {
-      event_name: 'QualifiedLead',
-      event_time: now,
-      event_id: event_id,
-      event_source_url: source_url,
-      action_source: 'website',
-      user_data,
-      custom_data: survey_data,
-    };
-
     // Send ALL events to Meta in a single API call
     const url = `https://graph.facebook.com/${API_VERSION}/${PIXEL_ID}/events`;
     const res = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        data: [leadEvent, purchaseEvent, tierEvent, qualifiedLeadEvent],
+        data: [leadEvent, purchaseEvent, tierEvent],
         access_token: token,
       }),
     });
@@ -191,7 +179,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ ok: false, error: result }, { status: res.status });
     }
 
-    console.log(`[CAPI] 4 events sent (Lead + Purchase[$${value}] + ${tier} + QualifiedLead):`, result);
+    console.log(`[CAPI] 3 events sent (Lead + Purchase[$${value}] + ${tier}):`, result);
     return NextResponse.json({ ok: true, events_received: result.events_received, tier, value });
   } catch (err) {
     console.error('[CAPI] Failed to send events:', err);

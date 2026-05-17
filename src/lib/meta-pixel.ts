@@ -211,31 +211,4 @@ export function trackLeadTier(eventId?: string, leadScore?: number, externalId?:
   }
 }
 
-/**
- * Track a SurveyComplete event — fires when someone reaches step 9 (tools/Littlebird).
- * Used to measure survey completion → sponsor click conversion rate.
- */
-export function trackSurveyComplete() {
-  trackCustomEvent('SurveyComplete');
-}
 
-/**
- * Track a QualifiedLead — fires when the subscriber reaches step 9 (page view).
- * This is the event you optimize Meta campaigns toward.
- * Custom Conversion ID in Meta: 1810429086599820
- */
-export function trackQualifiedLead(surveyData: {
-  seniority: string;
-  company_size: string;
-  main_goal?: string;
-  job_function?: string;
-  industry?: string;
-}, eventId?: string) {
-  trackCustomEvent('QualifiedLead', {
-    seniority: surveyData.seniority,
-    company_size: surveyData.company_size,
-    ...(surveyData.main_goal && { main_goal: surveyData.main_goal }),
-    ...(surveyData.job_function && { job_function: surveyData.job_function }),
-    ...(surveyData.industry && { industry: surveyData.industry }),
-  }, eventId);
-}
