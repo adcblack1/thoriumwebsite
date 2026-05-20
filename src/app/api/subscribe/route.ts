@@ -166,7 +166,7 @@ export async function POST(request: Request) {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             data: [{
-              event_name: 'Subscribe',
+              event_name: 'subscriber.created',
               event_time: Math.floor(Date.now() / 1000),
               event_id: sub_event_id,
               event_source_url: 'https://thoriumvalley.com/subscribe',
@@ -177,10 +177,10 @@ export async function POST(request: Request) {
           }),
         })
           .then(async (res) => {
-            if (!res.ok) console.error('[CAPI Subscribe] Error:', await res.text());
-            else console.log('[CAPI Subscribe] Sent for', email);
+            if (!res.ok) console.error('[CAPI subscriber.created] Error:', await res.text());
+            else console.log('[CAPI subscriber.created] Sent for', email);
           })
-          .catch((err) => console.error('[CAPI Subscribe] Failed:', err));
+          .catch((err) => console.error('[CAPI subscriber.created] Failed:', err));
       }
     }
 

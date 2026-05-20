@@ -136,8 +136,8 @@ export function trackLead(eventId?: string, leadScore?: number, externalId?: str
 }
 
 /**
- * Track a Subscribe event — standard Meta event for email capture.
- * Fires alongside Lead for campaign flexibility.
+ * Track a subscriber.created event — custom event for email capture at step 1.
+ * Replaces the standard Subscribe event to escape historical step-9 training bias.
  */
 export function trackSubscribe(eventId?: string, externalId?: string) {
   if (typeof window === 'undefined') return;
@@ -148,14 +148,14 @@ export function trackSubscribe(eventId?: string, externalId?: string) {
       const params: Record<string, unknown> = {};
       if (externalId) params.external_id = externalId;
       if (eventId) {
-        fbq('track', 'Subscribe', params, { eventID: `sub_${eventId}` });
+        fbq('trackCustom', 'subscriber.created', params, { eventID: eventId });
       } else {
-        fbq('track', 'Subscribe', params);
+        fbq('trackCustom', 'subscriber.created', params);
       }
-      console.log(`[Meta Pixel] Tracked "Subscribe" via fbq`);
+      console.log(`[Meta Pixel] Tracked custom "subscriber.created" via fbq`);
     }
   } catch (e) {
-    console.warn('[Meta Pixel] Subscribe tracking failed:', e);
+    console.warn('[Meta Pixel] subscriber.created tracking failed:', e);
   }
 }
 
