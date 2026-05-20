@@ -150,14 +150,21 @@ export async function POST(request: Request) {
       }
     }
 
-    // Fire CAPI Subscribe event for deduplication with client-side pixel
+    // Fire CAPI subscriber.created event for deduplication with client-side pixel
     if (sub_event_id) {
       const CAPI_TOKEN = process.env.META_CAPI_TOKEN;
       const PIXEL_ID = '773797471916037';
       if (CAPI_TOKEN) {
         const crypto = await import('crypto');
         const sha256 = (v: string) => crypto.createHash('sha256').update(v.toLowerCase().trim()).digest('hex');
-        const user_data: Record<string, string> = { em: sha256(email) };
+        // Pass all available identifiers to maximize Event Match Quality (EMQ)
+        // and link this step-1 event to step-9 events via external_id
+        const user_data: Record<string, string> = {
+          em: sha256(email),
+          client_ip_address: request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '',
+          client_user_agent: request.headers.get('user-agent') || '',
+          external_id: sha256(data.id), // Hashed Supabase subscriber_id — matches step-9 CAPI format
+        };
         if (fbp) user_data.fbp = fbp;
         if (fbc) user_data.fbc = fbc;
 
