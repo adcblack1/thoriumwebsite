@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { NextResponse } from 'next/server';
+import { NextResponse, after } from 'next/server';
 
 const supabase = () =>
   createClient(
@@ -168,33 +168,36 @@ export async function POST(request: Request) {
         if (fbp) user_data.fbp = fbp;
         if (fbc) user_data.fbc = fbc;
 
-        // AWAIT this fetch — Vercel serverless tears down the function once
-        // the response is sent, killing any in-flight fire-and-forget fetches.
-        // We need the CAPI call to complete before returning to the client.
-        try {
-          const capiRes = await fetch(`https://graph.facebook.com/v22.0/${PIXEL_ID}/events`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              data: [{
-                event_name: 'subscriber.created',
-                event_time: Math.floor(Date.now() / 1000),
-                event_id: sub_event_id,
-                event_source_url: 'https://thoriumvalley.com/subscribe',
-                action_source: 'website',
-                user_data,
-              }],
-              access_token: CAPI_TOKEN,
-            }),
-          });
-          if (!capiRes.ok) {
-            console.error('[CAPI subscriber.created] Error:', await capiRes.text());
-          } else {
-            console.log('[CAPI subscriber.created] Sent for', email);
+        // Use after() from next/server to defer the CAPI call until AFTER
+        // the response is sent. Vercel keeps the function alive specifically
+        // for after() callbacks, fixing the fire-and-forget bug while
+        // preserving fast response time for the user.
+        after(async () => {
+          try {
+            const capiRes = await fetch(`https://graph.facebook.com/v22.0/${PIXEL_ID}/events`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                data: [{
+                  event_name: 'subscriber.created',
+                  event_time: Math.floor(Date.now() / 1000),
+                  event_id: sub_event_id,
+                  event_source_url: 'https://thoriumvalley.com/subscribe',
+                  action_source: 'website',
+                  user_data,
+                }],
+                access_token: CAPI_TOKEN,
+              }),
+            });
+            if (!capiRes.ok) {
+              console.error('[CAPI subscriber.created] Error:', await capiRes.text());
+            } else {
+              console.log('[CAPI subscriber.created] Sent for', email);
+            }
+          } catch (err) {
+            console.error('[CAPI subscriber.created] Failed:', err);
           }
-        } catch (err) {
-          console.error('[CAPI subscriber.created] Failed:', err);
-        }
+        });
       }
     }
 
