@@ -168,26 +168,33 @@ export async function POST(request: Request) {
         if (fbp) user_data.fbp = fbp;
         if (fbc) user_data.fbc = fbc;
 
-        fetch(`https://graph.facebook.com/v22.0/${PIXEL_ID}/events`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            data: [{
-              event_name: 'subscriber.created',
-              event_time: Math.floor(Date.now() / 1000),
-              event_id: sub_event_id,
-              event_source_url: 'https://thoriumvalley.com/subscribe',
-              action_source: 'website',
-              user_data,
-            }],
-            access_token: CAPI_TOKEN,
-          }),
-        })
-          .then(async (res) => {
-            if (!res.ok) console.error('[CAPI subscriber.created] Error:', await res.text());
-            else console.log('[CAPI subscriber.created] Sent for', email);
-          })
-          .catch((err) => console.error('[CAPI subscriber.created] Failed:', err));
+        // AWAIT this fetch — Vercel serverless tears down the function once
+        // the response is sent, killing any in-flight fire-and-forget fetches.
+        // We need the CAPI call to complete before returning to the client.
+        try {
+          const capiRes = await fetch(`https://graph.facebook.com/v22.0/${PIXEL_ID}/events`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              data: [{
+                event_name: 'subscriber.created',
+                event_time: Math.floor(Date.now() / 1000),
+                event_id: sub_event_id,
+                event_source_url: 'https://thoriumvalley.com/subscribe',
+                action_source: 'website',
+                user_data,
+              }],
+              access_token: CAPI_TOKEN,
+            }),
+          });
+          if (!capiRes.ok) {
+            console.error('[CAPI subscriber.created] Error:', await capiRes.text());
+          } else {
+            console.log('[CAPI subscriber.created] Sent for', email);
+          }
+        } catch (err) {
+          console.error('[CAPI subscriber.created] Failed:', err);
+        }
       }
     }
 
