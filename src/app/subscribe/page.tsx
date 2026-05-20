@@ -439,7 +439,9 @@ export default function SubscribePage() {
         return 'resumed';
       }
 
-      return true;
+      // Return the actual subscriber_id so callers can use it immediately
+      // (React state update is async and won't be available on next line)
+      return data.subscriber_id as string;
     }
     setError(data.error || 'Failed to create subscriber');
     return false;
@@ -486,7 +488,10 @@ export default function SubscribePage() {
         if (result === 'resumed') { setLoading(false); return; }
         if (!result) { setLoading(false); return; }
         setAdvancedMatching(formData.email);
-        trackSubscribe(subEventId, subscriberId || undefined);
+        // Use the returned subscriber_id directly — React state (subscriberId) is stale here
+        // because setSubscriberId was just called and hasn't re-rendered yet
+        const newSubId = typeof result === 'string' ? result : subscriberId || undefined;
+        trackSubscribe(subEventId, newSubId);
       } else if (step === 2) {
         await updateSubscriber({ child_newsletters: formData.child_newsletters });
       } else if (step === 3) {
