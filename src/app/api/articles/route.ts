@@ -8,7 +8,7 @@ export async function GET(req: NextRequest) {
     const category = searchParams.get('category') || undefined;
     const status = searchParams.get('status') || 'published';
 
-    const result = getArticles({ limit, page, category, status });
+    const result = await getArticles({ limit, page, category, status });
 
     return NextResponse.json(result);
 }

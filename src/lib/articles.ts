@@ -1,5 +1,8 @@
-import fs from 'fs';
-import path from 'path';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export interface Article {
     id: string;
@@ -18,86 +21,121 @@ export interface Article {
     reading_time: number;
     content: string;
     newsletter_content?: string;  // condensed version for email newsletter
+    publication?: string;
 }
 
-const DB_PATH = path.join(process.cwd(), 'src/data/articles-db.json');
-
-function readDB(): Article[] {
-    try {
-        const raw = fs.readFileSync(DB_PATH, 'utf-8');
-        return JSON.parse(raw);
-    } catch {
-        return [];
-    }
-}
-
-function writeDB(articles: Article[]): void {
-    fs.writeFileSync(DB_PATH, JSON.stringify(articles, null, 2), 'utf-8');
+// Map Supabase row → Article interface
+function mapRow(row: any): Article {
+    return {
+        id: row.id || row.slug,
+        slug: row.slug,
+        title: row.headline || row.slug,
+        subtitle: row.subtitle || row.hook || '',
+        author: row.author || 'Thorium Valley',
+        category: row.category || '',
+        tags: row.tags || [],
+        thumbnail_url: row.thumbnail_url || '',
+        published_at: row.published_at || row.created_at || '',
+        updated_at: row.updated_at || row.created_at || '',
+        status: row.status || 'published',
+        featured: row.featured || false,
+        reading_time: row.reading_time || 4,
+        content: row.body || '',
+        newsletter_content: row.condensed_content || '',
+        publication: row.newsletter || 'main',
+    };
 }
 
 // ── Query functions ──
 
-export function getArticles(options?: {
+export async function getArticles(options?: {
     limit?: number;
     page?: number;
     category?: string;
     status?: string;
     sort?: 'newest' | 'oldest';
-}): { data: Article[]; total: number; page: number } {
-    let articles = readDB();
-
-    // Filter by status (default: published only)
-    const statusFilter = options?.status || 'published';
-    if (statusFilter !== 'all') {
-        articles = articles.filter((a) => a.status === statusFilter);
-    }
-
-    // Filter by category
-    if (options?.category) {
-        articles = articles.filter(
-            (a) => a.category.toLowerCase() === options.category!.toLowerCase()
-        );
-    }
-
-    // Sort
-    const sortDir = options?.sort || 'newest';
-    articles.sort((a, b) => {
-        const da = new Date(a.published_at).getTime();
-        const db = new Date(b.published_at).getTime();
-        return sortDir === 'newest' ? db - da : da - db;
-    });
-
-    const total = articles.length;
+    publication?: string;
+}): Promise<{ data: Article[]; total: number; page: number }> {
     const limit = options?.limit || 20;
     const page = options?.page || 1;
     const start = (page - 1) * limit;
-    const data = articles.slice(start, start + limit);
+    const statusFilter = options?.status || 'published';
+    const sortDir = options?.sort || 'newest';
 
-    return { data, total, page };
+    let query = supabase
+        .from('newsroom_articles')
+        .select('*', { count: 'exact' });
+
+    if (statusFilter !== 'all') {
+        query = query.eq('status', statusFilter);
+    }
+    if (options?.category) {
+        query = query.ilike('category', options.category);
+    }
+    if (options?.publication) {
+        query = query.eq('newsletter', options.publication);
+    }
+
+    query = query.order('published_at', { ascending: sortDir === 'oldest' });
+    query = query.range(start, start + limit - 1);
+
+    const { data, error, count } = await query;
+    if (error) { console.error('getArticles error:', error); return { data: [], total: 0, page }; }
+
+    return {
+        data: (data || []).map(mapRow),
+        total: count || 0,
+        page,
+    };
 }
 
-export function getArticleBySlug(slug: string): Article | null {
-    const articles = readDB();
-    return articles.find((a) => a.slug === slug) || null;
+export async function getArticleBySlug(slug: string): Promise<Article | null> {
+    const { data, error } = await supabase
+        .from('newsroom_articles')
+        .select('*')
+        .eq('slug', slug)
+        .single();
+    if (error || !data) return null;
+    return mapRow(data);
 }
 
-export function getArticlesByCategory(category: string, limit = 10): Article[] {
-    const articles = readDB().filter(
-        (a) => a.status === 'published' && a.category.toLowerCase() === category.toLowerCase()
-    );
-    articles.sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
-    return articles.slice(0, limit);
+export async function getArticlesByCategory(category: string, limit = 10): Promise<Article[]> {
+    const { data, error } = await supabase
+        .from('newsroom_articles')
+        .select('*')
+        .eq('status', 'published')
+        .ilike('category', category)
+        .order('published_at', { ascending: false })
+        .limit(limit);
+    if (error) { console.error('getArticlesByCategory error:', error); return []; }
+    return (data || []).map(mapRow);
 }
 
-export function getFeaturedArticles(limit = 5): Article[] {
-    const articles = readDB().filter((a) => a.status === 'published');
-    // Featured first, then by date
-    articles.sort((a, b) => {
-        if (a.featured && !b.featured) return -1;
-        if (!a.featured && b.featured) return 1;
-        return new Date(b.published_at).getTime() - new Date(a.published_at).getTime();
-    });
-    return articles.slice(0, limit);
+export async function getFeaturedArticles(limit = 5): Promise<Article[]> {
+    // Get featured first, then fill with newest
+    const { data: featured } = await supabase
+        .from('newsroom_articles')
+        .select('*')
+        .eq('status', 'published')
+        .eq('featured', true)
+        .order('published_at', { ascending: false })
+        .limit(limit);
+
+    const featuredMapped = (featured || []).map(mapRow);
+    if (featuredMapped.length >= limit) return featuredMapped.slice(0, limit);
+
+    // Fill remaining with newest non-featured
+    const remaining = limit - featuredMapped.length;
+    const featuredSlugs = featuredMapped.map(a => a.slug);
+    const { data: rest } = await supabase
+        .from('newsroom_articles')
+        .select('*')
+        .eq('status', 'published')
+        .not('slug', 'in', `(${featuredSlugs.map(s => `"${s}"`).join(',')})`)
+        .order('published_at', { ascending: false })
+        .limit(remaining);
+
+    return [...featuredMapped, ...(rest || []).map(mapRow)];
 }
 
 // Canonical display order for category sections
@@ -106,47 +144,49 @@ const CATEGORY_ORDER = [
     'Workforce', 'Enterprise', 'Governance', 'Research', 'Hardware', 'Policy',
 ];
 
-export function getCategorySections(limit = 4): { category: string; articles: Article[] }[] {
-    const allPublished = readDB().filter((a) => a.status === 'published');
-    // Group by category
+export async function getCategorySections(limit = 4): Promise<{ category: string; articles: Article[] }[]> {
+    const { data, error } = await supabase
+        .from('newsroom_articles')
+        .select('*')
+        .eq('status', 'published')
+        .order('published_at', { ascending: false });
+
+    if (error) { console.error('getCategorySections error:', error); return []; }
+
+    const allPublished = (data || []).map(mapRow);
     const grouped: Record<string, Article[]> = {};
     for (const a of allPublished) {
         const cat = a.category;
         if (!grouped[cat]) grouped[cat] = [];
-        grouped[cat].push(a);
+        if (grouped[cat].length < limit) grouped[cat].push(a);
     }
-    // Sort each group by newest first
-    for (const cat of Object.keys(grouped)) {
-        grouped[cat].sort((a, b) => new Date(b.published_at).getTime() - new Date(a.published_at).getTime());
-        grouped[cat] = grouped[cat].slice(0, limit);
-    }
-    // Return in canonical order, only categories that have articles
+
     return CATEGORY_ORDER
         .filter((cat) => grouped[cat] && grouped[cat].length > 0)
         .map((cat) => ({ category: cat, articles: grouped[cat] }));
 }
 
-export function getCategories(): string[] {
-    const allPublished = readDB().filter((a) => a.status === 'published');
-    const cats = new Set(allPublished.map((a) => a.category));
+export async function getCategories(): Promise<string[]> {
+    const { data, error } = await supabase
+        .from('newsroom_articles')
+        .select('category')
+        .eq('status', 'published');
+
+    if (error) { console.error('getCategories error:', error); return []; }
+    const cats = new Set((data || []).map((r: any) => r.category));
     return CATEGORY_ORDER.filter((cat) => cats.has(cat));
 }
 
-// Canonical display order for company filter tags (read from company-tags.json)
-const COMPANY_ORDER: string[] = (() => {
-    try {
-        return JSON.parse(
-            fs.readFileSync(path.join(process.cwd(), 'src/data/company-tags.json'), 'utf-8')
-        );
-    } catch {
-        return [];
-    }
-})();
+export async function getCompanies(): Promise<string[]> {
+    const { data, error } = await supabase
+        .from('newsroom_articles')
+        .select('tags')
+        .eq('status', 'published');
 
-export function getCompanies(): string[] {
-    const allPublished = readDB().filter((a) => a.status === 'published');
-    const allTags = new Set(allPublished.flatMap((a) => a.tags || []));
-    return COMPANY_ORDER.filter((company) => allTags.has(company));
+    if (error) { console.error('getCompanies error:', error); return []; }
+    const allTags = new Set((data || []).flatMap((r: any) => r.tags || []));
+    // Return all unique tags as companies (no static order file needed)
+    return Array.from(allTags).sort();
 }
 
 // ── Write functions ──
@@ -158,13 +198,7 @@ function generateSlug(title: string): string {
         .replace(/^-|-$/g, '');
 }
 
-function estimateReadingTime(html: string): number {
-    const text = html.replace(/<[^>]*>/g, '');
-    const words = text.split(/\s+/).filter(Boolean).length;
-    return Math.max(1, Math.ceil(words / 230));
-}
-
-export function addArticle(input: {
+export async function addArticle(input: {
     title: string;
     subtitle?: string;
     author?: string;
@@ -176,61 +210,71 @@ export function addArticle(input: {
     status?: 'draft' | 'published';
     featured?: boolean;
     published_at?: string;
-}): Article {
-    const articles = readDB();
+    newsletter?: string;
+    article_number?: number;
+}): Promise<Article> {
     const now = new Date().toISOString();
     const slug = generateSlug(input.title);
+    const edDate = (input.published_at || now).substring(0, 10);
 
-    // Prevent duplicate slugs
-    let finalSlug = slug;
-    let counter = 1;
-    while (articles.some((a) => a.slug === finalSlug)) {
-        finalSlug = `${slug}-${counter}`;
-        counter++;
-    }
-
-    const article: Article = {
-        id: finalSlug,
-        slug: finalSlug,
-        title: input.title,
+    const row = {
+        newsletter: input.newsletter || 'main',
+        edition_date: edDate,
+        article_number: input.article_number || 1,
+        slug,
+        headline: input.title,
+        hook: input.subtitle || '',
         subtitle: input.subtitle || '',
-        author: input.author || 'Thorium Valley',
         category: input.category,
         tags: input.tags || [],
+        body: input.content,
+        condensed_content: input.newsletter_content || '',
         thumbnail_url: input.thumbnail_url || '',
-        published_at: input.published_at || now,
-        updated_at: now,
-        status: input.status || 'published',
         featured: input.featured || false,
-        reading_time: estimateReadingTime(input.content),
-        content: input.content,
-        newsletter_content: input.newsletter_content || '',
+        author: input.author || 'Thorium Valley',
+        status: input.status || 'published',
+        published_at: input.published_at || now,
     };
 
-    articles.push(article);
-    writeDB(articles);
-    return article;
+    const { data, error } = await supabase
+        .from('newsroom_articles')
+        .insert(row)
+        .select()
+        .single();
+
+    if (error) throw new Error(`addArticle failed: ${error.message}`);
+    return mapRow(data);
 }
 
-export function updateArticle(slug: string, updates: Partial<Article>): Article | null {
-    const articles = readDB();
-    const idx = articles.findIndex((a) => a.slug === slug);
-    if (idx === -1) return null;
+export async function updateArticle(slug: string, updates: Partial<Article>): Promise<Article | null> {
+    const mapped: any = {};
+    if (updates.title !== undefined) mapped.headline = updates.title;
+    if (updates.subtitle !== undefined) { mapped.subtitle = updates.subtitle; mapped.hook = updates.subtitle; }
+    if (updates.content !== undefined) mapped.body = updates.content;
+    if (updates.newsletter_content !== undefined) mapped.condensed_content = updates.newsletter_content;
+    if (updates.category !== undefined) mapped.category = updates.category;
+    if (updates.tags !== undefined) mapped.tags = updates.tags;
+    if (updates.thumbnail_url !== undefined) mapped.thumbnail_url = updates.thumbnail_url;
+    if (updates.featured !== undefined) mapped.featured = updates.featured;
+    if (updates.status !== undefined) mapped.status = updates.status;
+    if (updates.author !== undefined) mapped.author = updates.author;
+    mapped.updated_at = new Date().toISOString();
 
-    articles[idx] = {
-        ...articles[idx],
-        ...updates,
-        updated_at: new Date().toISOString(),
-    };
-    writeDB(articles);
-    return articles[idx];
+    const { data, error } = await supabase
+        .from('newsroom_articles')
+        .update(mapped)
+        .eq('slug', slug)
+        .select()
+        .single();
+
+    if (error || !data) return null;
+    return mapRow(data);
 }
 
-export function deleteArticle(slug: string): boolean {
-    const articles = readDB();
-    const idx = articles.findIndex((a) => a.slug === slug);
-    if (idx === -1) return false;
-    articles.splice(idx, 1);
-    writeDB(articles);
-    return true;
+export async function deleteArticle(slug: string): Promise<boolean> {
+    const { error } = await supabase
+        .from('newsroom_articles')
+        .delete()
+        .eq('slug', slug);
+    return !error;
 }

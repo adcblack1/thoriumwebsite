@@ -1,5 +1,426 @@
 [
   {
+    "id": "catalyst-may-25-2026",
+    "slug": "catalyst-may-25-2026",
+    "publication": "the-catalyst",
+    "title": "The Catalyst | May 25, 2026",
+    "date": "May 25, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to the Catalyst Newsletter.\n\nToday we've got the story of Starbucks rolling out AI inventory tracking to 11,000 stores because it promised 99% accuracy, then quietly killing the whole thing nine months later because it couldn't tell one type of milk from another.\n\nWe're also looking at a CEO who fired his entire HR department on a company worth 97% less than it was three years ago, then went on stage at a Fortune summit to brag about it. The math on why that's probably going to backfire is pretty brutal.\n\nAnd then there's Dun & Bradstreet, which discovered that AI agents were confidently pulling financial data on the wrong companies. Their solution was to basically build a background check system for software, and it might be the first real example of infrastructure designed for a world where AI agents are the ones making the queries.",
+    "toc": [
+      "Starbucks Replaced Its AI With More Trucks",
+      "Bolt's CEO Fired HR. The Data Says That's Expensive.",
+      "Dun & Bradstreet Is Running Background Checks on AI Agents"
+    ],
+    "article_slugs": [
+      "starbucks-replaced-its-ai-with-more-trucks",
+      "bolts-ceo-fired-hr-the-data-says-thats-expensive",
+      "dun-and-bradstreet-is-running-background-checks-on-ai-agents"
+    ],
+    "stories": [],
+    "sign_off": "That's the Catalyst for this issue. If you know a company doing something interesting with AI that nobody's covering, reply and tell us about it.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-catalyst-2026-05-25.png",
+    "thumbnail_url": "/thumbnails/starbucks-replaced-its-ai-with-more-trucks.png",
+    "published_at": "2026-05-25T13:00:00.000Z",
+    "updated_at": "2026-05-25T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Meta tracked employee keystrokes to train AI",
+          "rest": ", then laid off 8,000 of them the next day — a departing engineer's \"American Pie\" parody about it went viral internally",
+          "url": "https://awesomeagents.ai/news/meta-mci-employee-tracking-layoffs/"
+        },
+        {
+          "link_text": "Anthropic is paying Elon Musk $1.25 billion a month",
+          "rest": " to rent SpaceX's AI supercomputers through 2029 — despite Musk publicly calling the company \"misanthropic and evil\"",
+          "url": "https://levelup.gitconnected.com/anthropic-is-now-paying-elon-musk-1-25-billion-a-month-to-stay-alive-f3ee57c9dfd0"
+        },
+        {
+          "link_text": "OpenAI files confidentially for what could be the largest IPO in history",
+          "rest": ", targeting a $1 trillion valuation as early as September",
+          "url": "https://greyjournal.net/news/openai-confidential-ipo-filing-trillion-valuation/"
+        },
+        {
+          "link_text": "Trump killed his own AI executive order hours before the signing ceremony",
+          "rest": " after Musk, Zuckerberg, and David Sacks called him personally to argue it would help China",
+          "url": "https://cryptobriefing.com/trump-postpones-ai-executive-order-sacks/"
+        },
+        {
+          "link_text": "SoftBank insiders privately worry their CEO is getting conned by Sam Altman",
+          "rest": " — but when they raised concerns about the $60 billion bet on OpenAI, Masayoshi Son shut them down",
+          "url": "https://futurism.com/artificial-intelligence/insiders-softbank-sam-altman"
+        },
+        {
+          "link_text": "Google accepted 6,000 open-source contributions to its AI coding tool",
+          "rest": ", then closed it to everyone except paying enterprise customers",
+          "url": "https://www.techtimes.com/articles/317056/20260523/google-accepted-6000-gemini-cli-contributions-then-closed-tool-enterprise-only.htm"
+        },
+        {
+          "link_text": "244,000 developers downloaded a fake OpenAI tool from Hugging Face",
+          "rest": " that hit #1 trending — it was malware stealing crypto wallets",
+          "url": "https://ai.plainenglish.io/244-000-ai-developers-downloaded-what-they-thought-was-openai-and-it-stole-their-crypto-wallets-and-a47e45b5a1a4"
+        },
+        {
+          "link_text": "71% of Americans now oppose AI data centers in their area",
+          "rest": " — higher than opposition to nuclear plants — and someone threw a Molotov cocktail at Sam Altman's house",
+          "url": "https://generativeai.pub/ais-permission-slip-just-got-revoked-here-s-what-the-2026-backlash-actually-means-d1ec418a0f2b"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Wispr Flow",
+          "desc": "The new viral voice-to-text AI for iPhone and Mac that actually understands what you're saying every time",
+          "url": "https://ref.wisprflow.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Superpower",
+          "desc": "The health app that tests your blood and uses AI to tell you what's actually going on with your body before your doctor does",
+          "url": "https://partners.superpower.com/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "ChatGPT for PowerPoint",
+          "desc": "OpenAI launched a beta add-in that puts ChatGPT directly inside PowerPoint",
+          "url": "https://winbuzzer.com/2026/05/24/openai-puts-chatgpt-inside-powerpoint-with-beta-add-in-xcxwbn/",
+          "sponsored": false
+        },
+        {
+          "name": "Canva in Gemini",
+          "desc": "Type \"@Canva\" inside Google Gemini and you can create, resize, and edit designs without ever leaving the chat",
+          "url": "https://www.newsy-today.com/canva-integrates-design-tools-directly-into-google-gemini/",
+          "sponsored": false
+        },
+        {
+          "name": "Notion AI Agents",
+          "desc": "Notion's AI can now autonomously run tasks across your workspace",
+          "url": "https://saasbinder.com/2026/05/22/notion-review-2026/",
+          "sponsored": false
+        },
+        {
+          "name": "Docker Model Runner",
+          "desc": "Run AI models locally on your own machine without cloud APIs or Python setup",
+          "url": "https://www.toddpigram.com/2025/06/how-to-build-run-and-package-ai-models.html",
+          "sponsored": false
+        },
+        {
+          "name": "FinSights AI",
+          "desc": "An investing AI agent that answers stock questions using data traced back to actual SEC filings",
+          "url": "https://www.newconstructs.com/finsights-ai/",
+          "sponsored": false
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "13d249b8-7224-4964-bfe2-f96a0a191e8c",
+      "question": "When AI helps you finish something way faster than usual, what's your first feeling?",
+      "options": [
+        "Proud — I'm working smarter",
+        "Guilty — like I cut corners",
+        "Nervous someone will find out",
+        "Annoyed I didn't start using it sooner",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "When AI helps you finish something way faster than usual, what's your first feeling?",
+      "results": [
+        {
+          "option": "Proud — I'm working smarter",
+          "pct": 67
+        },
+        {
+          "option": "Nervous someone will find out",
+          "pct": 33
+        }
+      ]
+    },
+    "yesterdays_results": null
+  },
+  {
+    "id": "catalyst-may-20-2026",
+    "slug": "catalyst-may-20-2026",
+    "publication": "the-catalyst",
+    "title": "The Catalyst | May 20, 2026",
+    "date": "May 20, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to the Catalyst Newsletter.\n\nToday we've got the company that became the global case study for replacing humans with AI, then quietly started hiring humans again. Turns out nearly three quarters of enterprises that deployed AI agents have done the same thing.\n\nWe're also looking at a founder whose last company collapsed and locked 12,000 businesses out of their financial records right before tax season. He just raised $10 million to try the whole thing over with zero human bookkeepers.\n\nAnd then there's OpenAI, which just partnered with Dell to help companies run its coding agent on their own hardware because one developer ran up a $3,400 cloud bill in a single day and that story is apparently not unusual.",
+    "toc": [
+      "Klarna Rehired the Humans. Most Companies Are About To.",
+      "Bench Collapsed. Its Founder Raised $10M to Try Bookkeeping With Zero Humans.",
+      "OpenAI Built the Off-Ramp From Its Own Cloud Pricing"
+    ],
+    "article_slugs": [
+      "klarna-rehired-the-humans-most-companies-are-about-to",
+      "bench-collapsed-its-founder-raised-10m-to-try-bookkeeping-with-zero-humans",
+      "openai-built-the-off-ramp-from-its-own-cloud-pricing"
+    ],
+    "stories": [],
+    "sign_off": "That's the Catalyst for this issue. If you know a company doing something interesting with AI that nobody's covering, reply and tell us about it.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-catalyst-2026-05-20.png",
+    "thumbnail_url": "/thumbnails/klarna-rehired-the-humans-most-companies-are-about-to.jpeg",
+    "published_at": "2026-05-20T13:00:00.000Z",
+    "updated_at": "2026-05-20T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "OpenAI co-founder Andrej Karpathy jumps ship to Anthropic",
+          "rest": " to lead a team that uses Claude to make Claude better",
+          "url": "https://www.cnbc.com/2026/05/19/anthropic-hires-openai-cofounder-andrej-karpathy-former-tesla-ai-lead.html"
+        },
+        {
+          "link_text": "SpaceX plans to buy AI coding startup Cursor for $60 billion",
+          "rest": " right after its record-breaking $1.75 trillion IPO",
+          "url": "https://thenextweb.com/news/spacex-plans-to-buy-cursor-for-60-billion-once-its-record-ipo-wraps"
+        },
+        {
+          "link_text": "Google unveils Gemini 3.5 and a new AI agent called Spark",
+          "rest": " that keeps working on your tasks even after you close your laptop",
+          "url": "https://www.cnbc.com/2026/05/19/google-ai-ultra-gemini-spark-omni.html"
+        },
+        {
+          "link_text": "Commencement speakers keep getting booed",
+          "rest": " the moment they mention AI — ex-Google CEO Eric Schmidt is the latest",
+          "url": "https://www.bbc.com/news/articles/ce8pqd54qneo"
+        },
+        {
+          "link_text": "Malta is giving every citizen free ChatGPT Plus",
+          "rest": " but only if they pass an AI literacy course first",
+          "url": "https://thenextweb.com/news/openai-malta-chatgpt-plus-free-citizens"
+        },
+        {
+          "link_text": "NextEra is buying Dominion Energy for $67 billion",
+          "rest": " to create the world's largest utility — powered by the AI data center boom",
+          "url": "https://www.cnbc.com/2026/05/18/nextera-nee-dominion-energy-d-data-center-ai.html"
+        },
+        {
+          "link_text": "6.7 million people confidently tore apart a painting",
+          "rest": " they were sure was AI-generated — it was a real Monet",
+          "url": "https://fortune.com/2026/05/18/6-7-million-people-ripped-apart-ai-generated-monet-painting-real/"
+        },
+        {
+          "link_text": "A 19-year-old died after ChatGPT gave him drug advice",
+          "rest": " and his family's lawsuit could force courts to classify AI chatbots as products, not services",
+          "url": "https://finance.yahoo.com/sectors/healthcare/articles/19-old-died-chatgpt-gave-150500872.html"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Wispr Flow",
+          "desc": "The new viral voice-to-text AI for iPhone and Mac that actually understands what you're saying every time",
+          "url": "https://ref.wisprflow.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Superpower",
+          "desc": "The health app that tests your blood and uses AI to tell you what's actually going on with your body before your doctor does",
+          "url": "https://partners.superpower.com/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Gemini Spark",
+          "desc": "Google's new 24/7 AI agent can send emails, book meetings, and run multi-step workflows across Gmail, Docs, and Slides on your behalf — even after you close your laptop",
+          "url": "https://blog.google/innovation-and-ai/products/gemini-app/next-evolution-gemini-app/",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini Omni",
+          "desc": "Google's new video model lets you upload any photo or clip, then edit the action, swap backgrounds, or add new characters just by typing what you want changed",
+          "url": "https://www.engadget.com/2176568/google-redesigned-gemini-comes-with-a-new-interface-and-ai-models/",
+          "sponsored": false
+        },
+        {
+          "name": "GitHub Copilot Spaces",
+          "desc": "The Spaces API is now generally available, letting dev teams programmatically create and manage shared context libraries so Copilot gives smarter answers across entire codebases",
+          "url": "https://github.blog/changelog/2026-05-18-copilot-spaces-api-now-generally-available/",
+          "sponsored": false
+        },
+        {
+          "name": "Airtable Omni AI",
+          "desc": "Sketch out an idea for a dashboard or app, describe it to Airtable's AI assistant, and it builds a working version from your actual data in about two minutes — no design or coding skills needed",
+          "url": "https://www.youtube.com/watch?v=yOb64dh2Csg",
+          "sponsored": false
+        },
+        {
+          "name": "Twenty CRM",
+          "desc": "The open-source Salesforce alternative (46K GitHub stars) just shipped v2.5 with built-in AI chat and Claude integration, giving small teams a free, AI-native CRM they fully control",
+          "url": "https://github.com/twentyhq/twenty/releases/tag/v2.5.0",
+          "sponsored": false
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "9bfb5507-c134-4712-8904-cbc7dda76b5d",
+      "question": "When AI helps you finish something way faster than usual, what's your first feeling?",
+      "options": [
+        "Proud — I'm working smarter",
+        "Guilty — like I cut corners",
+        "Nervous someone will find out",
+        "Annoyed I didn't start using it sooner",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "When AI helps you finish something way faster than usual, what's your first feeling?",
+      "results": [
+        {
+          "option": "Proud — I'm working smarter",
+          "pct": 50
+        },
+        {
+          "option": "Guilty — like I cut corners",
+          "pct": 25
+        },
+        {
+          "option": "Other",
+          "pct": 25
+        }
+      ]
+    },
+    "yesterdays_results": null
+  },
+  {
+    "id": "catalyst-may-18-2026",
+    "slug": "catalyst-may-18-2026",
+    "publication": "the-catalyst",
+    "title": "The Catalyst | May 18, 2026",
+    "date": "May 18, 2026",
+    "intro": "Good Morning Thorium Valley, welcome back to the Catalyst Newsletter.\n\nToday we've got the story of Microsoft handing its own engineers two AI coding tools, watching them pick the competitor's product, and then quietly taking it away before anyone outside noticed.\n\nWe're also looking at Indeed's CIO who tried the obvious AI strategy, realized it was completely wrong after 90 days, and scrapped the whole thing to start over with an approach most companies would never try.\n\nAnd there's a startup that built AI good enough to catch heart disease doctors were missing on routine scans. The technology worked. Getting anyone to actually pay for it was the harder problem.",
+    "toc": [
+      "Even Microsoft's Engineers Preferred Claude Code",
+      "Why Indeed Threw Out Its AI Strategy After 90 Days",
+      "Medicare Now Pays $15.50 for AI Heart Scans"
+    ],
+    "article_slugs": [
+      "even-microsofts-engineers-preferred-claude-code",
+      "why-indeed-threw-out-its-ai-strategy-after-90-days",
+      "medicare-now-pays-15-50-for-ai-heart-scans"
+    ],
+    "stories": [],
+    "sign_off": "That's the Catalyst for this issue. If you know a company doing something interesting with AI that nobody's covering, reply and tell us about it.",
+    "writers": "Jason Chen, Advait Prakash, Andrew Hales, and the Thorium Valley crew.",
+    "banner_image_url": "/thumbnails/banner-catalyst-2026-05-18.png",
+    "thumbnail_url": "/thumbnails/even-microsofts-engineers-preferred-claude-code.jpeg",
+    "published_at": "2026-05-18T13:00:00.000Z",
+    "updated_at": "2026-05-18T13:00:00.000Z",
+    "status": "published",
+    "links": {
+      "news": [
+        {
+          "link_text": "Greg Brockman takes over OpenAI's product strategy",
+          "rest": " while Fidji Simo is on medical leave, merging ChatGPT and Codex into one unified platform",
+          "url": "https://stackpulse.news/greg-brockman-takes-product-lead-as-openai-pulls-chatgpt-and-codex-closer/"
+        },
+        {
+          "link_text": "OpenAI launches a $4 billion subsidiary",
+          "rest": " that stations its engineers inside large companies, with investors guaranteed a 17.5% annual return",
+          "url": "https://www.techtimes.com/articles/316726/20260516/openai-launches-4-billion-enterprise-ai-deployment-venture-recruits-mckinsey-capgemini.htm"
+        },
+        {
+          "link_text": "A judge pumped the brakes on Anthropic's $1.5 billion copyright settlement",
+          "rest": "— the largest in U.S. history — wanting more details on lawyer fees before signing off",
+          "url": "https://www.courthousenews.com/authors-publishers-near-final-approval-of-1-5-billion-anthropic-copyright-settlement/"
+        },
+        {
+          "link_text": "EY pulled a consulting report",
+          "rest": " after researchers found it cited a McKinsey study that doesn't exist and included fabricated data — all apparent AI hallucinations",
+          "url": "https://www.afr.com/world/north-america/ey-retracts-study-after-researchers-discover-ai-hallucinations-20260517-p5zxss"
+        },
+        {
+          "link_text": "71% of Americans don't want AI data centers",
+          "rest": " built near them — higher opposition than nuclear power plants",
+          "url": "https://finance.yahoo.com/sectors/technology/articles/amazon-meta-microsofts-ai-data-150118422.html"
+        },
+        {
+          "link_text": "All 11 of xAI's original co-founders have left",
+          "rest": " since SpaceX absorbed the company, with 50+ researchers exiting for Meta and other labs",
+          "url": "https://www.msn.com/en-us/money/companies/spacex-faces-talent-drain-as-50-xai-staff-reportedly-exit-for-meta-thinking-machines/ar-AA23ediE"
+        },
+        {
+          "link_text": "Microsoft researchers found that frontier AI models corrupt 25% of document content",
+          "rest": " during complex workplace tasks — concluding models \"are not ready for delegated workflows\"",
+          "url": "https://futurism.com/artificial-intelligence/microsoft-ai-researchers-workslop"
+        },
+        {
+          "link_text": "Anthropic and the Gates Foundation announced a $200 million partnership",
+          "rest": " to deploy Claude for global health, education, and agriculture in low-income countries",
+          "url": "https://www.anthropic.com/news/anthropic-gates-foundation-200m-partnership"
+        }
+      ],
+      "tools": [
+        {
+          "name": "Wispr Flow",
+          "desc": "The new viral voice-to-text AI for iPhone and Mac that actually understands what you're saying every time",
+          "url": "https://ref.wisprflow.ai/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "Superpower",
+          "desc": "The health app that tests your blood and uses AI to tell you what's actually going on with your body before your doctor does",
+          "url": "https://partners.superpower.com/thorium-valley",
+          "sponsored": true
+        },
+        {
+          "name": "ChatGPT Personal Finance",
+          "desc": "You can now connect your bank accounts, credit cards, and investments to ChatGPT via Plaid — then ask things like \"can I afford a house in five years\" or \"which subscriptions did I forget about\" and get answers based on your actual spending, not generic advice",
+          "url": "https://timesofindia.indiatimes.com/technology/tech-news/chatgpt-can-now-look-at-your-bank-account-heres-what-it-can-do/articleshow/131131865.cms",
+          "sponsored": false
+        },
+        {
+          "name": "Codex Mobile",
+          "desc": "OpenAI's coding agent now runs inside the ChatGPT app on your phone — approve tasks, review code changes, and keep long-running AI coding sessions moving from anywhere without needing to be at your computer",
+          "url": "https://9to5mac.com/2026/05/14/openai-brings-codex-control-to-chatgpt-for-iphone-and-android/",
+          "sponsored": false
+        },
+        {
+          "name": "Gemini Gems",
+          "desc": "Google's underrated feature lets you create custom chatbots with specific instructions and uploaded files baked in — like a recipe bot that already knows your dietary restrictions or a brand assistant that follows your style guide, so you stop re-explaining yourself every conversation",
+          "url": "https://www.xda-developers.com/gemini-gems-more-powerful-than-expected/",
+          "sponsored": false
+        },
+        {
+          "name": "OpenClaw",
+          "desc": "An open-source personal AI assistant with 373K GitHub stars just added a plugin system for building custom tools, a meme-maker skill, Python debugging, and Obsidian integration — it runs on any OS and lets you wire up your own workflows instead of waiting for a big company to build them",
+          "url": "https://github.com/openclaw/openclaw/releases/tag/v2026.5.16-beta.5",
+          "sponsored": false
+        }
+      ],
+      "jobs": []
+    },
+    "games": null,
+    "poll": {
+      "poll_id": "1d0af1b3-0772-4316-b31f-d33da95bd225",
+      "question": "When AI helps you finish something way faster than usual, what's your first feeling?",
+      "options": [
+        "Proud — I'm working smarter",
+        "Guilty — like I cut corners",
+        "Nervous someone will find out",
+        "Annoyed I didn't start using it sooner",
+        "Other"
+      ]
+    },
+    "poll_results": {
+      "question": "Be honest — how much of your AI use at work do your coworkers actually know about?",
+      "results": [
+        {
+          "option": "Nobody knows, it's my secret weapon",
+          "pct": 50
+        },
+        {
+          "option": "They all know, I'm the AI person",
+          "pct": 50
+        }
+      ]
+    },
+    "yesterdays_results": null
+  },
+  {
     "id": "catalyst-may-13-2026",
     "slug": "catalyst-may-13-2026",
     "publication": "the-catalyst",

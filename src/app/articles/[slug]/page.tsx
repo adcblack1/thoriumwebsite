@@ -16,7 +16,7 @@ interface ArticlePageProps {
 
 export async function generateMetadata({ params }: ArticlePageProps) {
     const { slug } = await params;
-    const article = getArticleBySlug(slug);
+    const article = await getArticleBySlug(slug);
 
     if (!article) {
         return { title: 'Article Not Found - Thorium Valley' };
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: ArticlePageProps) {
 
 export default async function ArticlePage({ params }: ArticlePageProps) {
     const { slug } = await params;
-    const article = getArticleBySlug(slug);
+    const article = await getArticleBySlug(slug);
 
     if (!article) {
         notFound();

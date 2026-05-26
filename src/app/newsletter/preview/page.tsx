@@ -5,9 +5,9 @@ export const metadata = {
     title: 'Newsletter Preview - Thorium Valley',
 };
 
-export default function NewsletterPreviewPage() {
+export default async function NewsletterPreviewPage() {
     // Build a sample newsletter from database articles
-    const articles = getFeaturedArticles(3);
+    const articles = await getFeaturedArticles(3);
 
     const edition: NewsletterEdition = {
         subject_emoji: '⚡',

@@ -133,10 +133,10 @@ export async function POST(request: Request) {
           if (!mainBeehiivId) mainBeehiivId = id;
         }
 
-        // Vibe3 always sends its own welcome — it's a separate publication
+        // Vibe3 welcome email only sent from vibe3.xyz/subscribe, not here
         const hasVibe3 = newsletters.includes('vibe3');
         if (hasVibe3 && PUB_MAP['vibe3']) {
-          const id = await subscribeToBeehiiv(PUB_MAP['vibe3']!, true);
+          const id = await subscribeToBeehiiv(PUB_MAP['vibe3']!, false);
           if (!mainBeehiivId) mainBeehiivId = id;
         }
 
@@ -159,9 +159,18 @@ export async function POST(request: Request) {
         const sha256 = (v: string) => crypto.createHash('sha256').update(v.toLowerCase().trim()).digest('hex');
         // Pass all available identifiers to maximize Event Match Quality (EMQ)
         // and link this step-1 event to step-9 events via external_id
+        // Prefer IPv6 over IPv4 when available — Meta requires matching IP version
+        // between browser pixel (often IPv6) and CAPI (often IPv4) for max EMQ
+        const ipCandidates: string[] = [];
+        const xff = request.headers.get('x-forwarded-for');
+        if (xff) ipCandidates.push(...xff.split(',').map(s => s.trim()).filter(Boolean));
+        const xri = request.headers.get('x-real-ip');
+        if (xri) ipCandidates.push(xri.trim());
+        const bestIp = ipCandidates.find(ip => ip.includes(':')) || ipCandidates[0] || '';
+
         const user_data: Record<string, string> = {
           em: sha256(email),
-          client_ip_address: request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '',
+          client_ip_address: bestIp,
           client_user_agent: request.headers.get('user-agent') || '',
           external_id: sha256(data.id), // Hashed Supabase subscriber_id — matches step-9 CAPI format
         };

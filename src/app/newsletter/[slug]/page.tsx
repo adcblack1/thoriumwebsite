@@ -25,7 +25,7 @@ interface NewsletterPageProps {
 
 export async function generateMetadata({ params }: NewsletterPageProps) {
   const { slug } = await params;
-  const newsletter = getNewsletterBySlug(slug);
+  const newsletter = await getNewsletterBySlug(slug);
   if (!newsletter) return { title: 'Newsletter Not Found - Thorium Valley' };
   return {
     title: `${newsletter.title} - Thorium Valley`,
@@ -37,7 +37,7 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
   const { slug } = await params;
   const resolvedSearchParams = await searchParams;
   const isAdmin = resolvedSearchParams?.admin === 'true';
-  const newsletter = getNewsletterBySlug(slug);
+  const newsletter = await getNewsletterBySlug(slug);
   if (!newsletter) notFound();
 
   const pub = (newsletter as any).publication || '';
@@ -45,9 +45,9 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
   const isLab = pub === 'the-lab' || slug.startsWith('lab-');
   const tocBullet = isCatalyst ? '/thumbnails/catalyst-star.png' : isLab ? '/thumbnails/lab-star.png' : '/thumbnails/toc-bullet.png';
 
-  const articles = newsletter.article_slugs
-    .map((s) => getArticleBySlug(s))
-    .filter(Boolean);
+  const articles = (await Promise.all(
+    newsletter.article_slugs.map((s) => getArticleBySlug(s))
+  )).filter(Boolean);
 
   const formattedDate = new Date(newsletter.published_at).toLocaleDateString('en-US', {
     month: 'long',
@@ -256,7 +256,7 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
               {/* Hero image */}
               {article.thumbnail_url && (
                 <div style={{ padding: '0', textAlign: 'center' }}>
-                  <Link href={`/articles/${article.slug}`} style={{ display: 'block' }}>
+                  {isLab ? (
                     <Image
                       src={article.thumbnail_url}
                       alt={article.title}
@@ -264,7 +264,17 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
                       height={340}
                       style={{ display: 'block', width: '100%', height: 'auto' }}
                     />
-                  </Link>
+                  ) : (
+                    <Link href={`/articles/${article.slug}`} style={{ display: 'block' }}>
+                      <Image
+                        src={article.thumbnail_url}
+                        alt={article.title}
+                        width={604}
+                        height={340}
+                        style={{ display: 'block', width: '100%', height: 'auto' }}
+                      />
+                    </Link>
+                  )}
                 </div>
               )}
 
@@ -278,15 +288,21 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
               {/* Title */}
               <div style={{ padding: `0 ${PAD}`, textAlign: 'left' }}>
                 <h1 style={{ fontFamily: SERIF, fontWeight: 400, fontSize: '30px', lineHeight: '1.2', color: '#2A2A2A', margin: 0, padding: 0, letterSpacing: '-0.05em' }}>
-                  <Link href={`/articles/${article.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
-                    {article.title}
-                  </Link>
+                  {isLab ? (
+                    article.title
+                  ) : (
+                    <Link href={`/articles/${article.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                      {article.title}
+                    </Link>
+                  )}
                 </h1>
               </div>
 
               {/* Share buttons */}
               {(() => {
-                const articleUrl = `https://thoriumvalley.com/articles/${article.slug}`;
+                const articleUrl = isLab
+                  ? `https://thoriumvalley.com/newsletter/${newsletter.slug}`
+                  : `https://thoriumvalley.com/articles/${article.slug}`;
                 const shareText = encodeURIComponent(article.title);
                 const shareUrl = encodeURIComponent(articleUrl);
                 return (
@@ -310,26 +326,44 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
               <div style={{ padding: `0 ${PAD}`, textAlign: 'left', wordBreak: 'break-word' }}>
                 <ArticleContent
                   className="nl-body"
-                  html={((article as any).newsletter_content || article.content || '<p>Content not available.</p>')
-                    .replace(/\/thumbnails\/valley-view-header\.png/g, '/IN THE VALLEY NEWS.png')
-                    .replace(/\/thumbnails\/into-the-valley\.png/g, '/IN THE VALLEY NEWS.png')
-                    .replace(/<p[^>]*><strong[^>]*>Our Valley View<\/strong><\/p>/gi,
-                      '<div class="vv-header" style="padding:0;"><img src="/IN THE VALLEY NEWS.png" alt="In the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')
-                    .replace(/<p[^>]*><strong[^>]*>OUR VALLEY VIEW<\/strong><\/p>/gi,
-                      '<div class="vv-header" style="padding:0;"><img src="/IN THE VALLEY NEWS.png" alt="In the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')
-                    .replace(/<p[^>]*>\s*<strong[^>]*>\s*Into the Valley\s*<\/strong>\s*<\/p>/gi,
-                      '<div class="vv-header" style="padding:0;"><img src="/IN THE VALLEY NEWS.png" alt="Into the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')
-                    .replace(/<h2>Into the Valley<\/h2>/gi,
-                      '<div class="vv-header" style="padding:0;"><img src="/IN THE VALLEY NEWS.png" alt="Into the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')}
+                  html={(() => {
+                    let bodyHtml = ((article as any).newsletter_content || article.content || '<p>Content not available.</p>')
+                      .replace(/\/thumbnails\/valley-view-header\.png/g, '/IN THE VALLEY NEWS.png')
+                      .replace(/\/thumbnails\/into-the-valley\.png/g, '/IN THE VALLEY NEWS.png')
+                      .replace(/<p[^>]*><strong[^>]*>Our Valley View<\/strong><\/p>/gi,
+                        '<div class="vv-header" style="padding:0;"><img src="/IN THE VALLEY NEWS.png" alt="In the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')
+                      .replace(/<p[^>]*><strong[^>]*>OUR VALLEY VIEW<\/strong><\/p>/gi,
+                        '<div class="vv-header" style="padding:0;"><img src="/IN THE VALLEY NEWS.png" alt="In the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')
+                      .replace(/<p[^>]*>\s*<strong[^>]*>\s*Into the Valley\s*<\/strong>\s*<\/p>/gi,
+                        '<div class="vv-header" style="padding:0;"><img src="/IN THE VALLEY NEWS.png" alt="Into the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>')
+                      .replace(/<h2>Into the Valley<\/h2>/gi,
+                        '<div class="vv-header" style="padding:0;"><img src="/IN THE VALLEY NEWS.png" alt="Into the Valley" style="display:block;width:35%;height:auto;padding:0;" /></div>');
+                    // For Lab/Catalyst: replace The Verdict / The Formula headers with images
+                    if (isLab) {
+                      const artSlug = article.slug || article.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+                      bodyHtml = bodyHtml
+                        .replace(/<h2>The Formula<\/h2>/gi,
+                          '<div style="text-align:center;padding:20px 0 8px;"><img class="section-header-img" src="/thumbnails/the-formula.png" alt="The Formula" /></div>')
+                        .replace(/<h2>The Verdict<\/h2>/gi,
+                          '<div style="text-align:center;padding:20px 0 8px;"><img class="section-header-img" src="/thumbnails/the-verdict.png" alt="The Verdict" /></div>')
+                        .replace(/<h3>Have Claude Explain This to Me<\/h3>\s*<p>Copy this prompt into Claude:<\/p>\s*<pre><code>[\s\S]*?<\/code><\/pre>/gi,
+                          `<p style="padding:16px 0 4px;margin:0;"><a href="/prompts/${artSlug}" style="color:#5170ff;text-decoration:none;font-family:${SANS};font-size:14px;font-weight:600;letter-spacing:0.02em;">Have Claude explain this to me →</a></p>`)
+                        .replace(/<h3>Ask Claude If It's Right for You<\/h3>\s*<p>Copy this prompt into Claude:<\/p>\s*<pre><code>[\s\S]*?<\/code><\/pre>/gi,
+                          `<p style="padding:16px 0 4px;margin:0;"><a href="/prompts/${artSlug}" style="color:${ACCENT};text-decoration:none;font-family:${SANS};font-size:14px;font-weight:600;letter-spacing:0.02em;">Ask Claude if it&#39;s right for me →</a></p>`);
+                    }
+                    return bodyHtml;
+                  })()}
                 />
               </div>
 
-              {/* Read full story link */}
+              {/* Read full story link — only for flagship newsletters */}
+              {!isLab && (
               <div style={{ padding: `8px ${PAD} 12px`, textAlign: 'left' }}>
                 <Link href={`/articles/${article.slug}`} style={{ fontFamily: SANS, fontSize: '14px', fontWeight: 600, color: ACCENT, textDecoration: 'none' }}>
                   Read the full story →
                 </Link>
               </div>
+              )}
 
             </div>
           );

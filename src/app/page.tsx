@@ -21,11 +21,11 @@ function ThumbnailOverlay() {
 
 export default async function HomePage() {
   // ── TOP SECTION: Newsletters ──
-  const { data: newsletters } = getNewsletters({ limit: 8, sort: 'newest' });
+  const { data: newsletters } = await getNewsletters({ limit: 8, sort: 'newest' });
 
   // ── CHILD NEWSLETTERS (edition-level, not story-level) ──
-  const { data: catalystNLs } = getCatalystNewsletters({ limit: 5, sort: 'newest' });
-  const { data: labNLs } = getLabNewsletters({ limit: 5, sort: 'newest' });
+  const { data: catalystNLs } = await getCatalystNewsletters({ limit: 5, sort: 'newest' });
+  const { data: labNLs } = await getLabNewsletters({ limit: 5, sort: 'newest' });
 
   // Each edition is one item — use first toc headline as title (not generic "The Catalyst | Date")
   const buildEditionItems = (nls: typeof catalystNLs) => nls.map(nl => ({
@@ -47,11 +47,11 @@ export default async function HomePage() {
   const recentLab = labEditions.slice(1, 5);
 
   // Build newsletter display items using article headlines
-  const newsletterItems = newsletters.map(nl => {
+  const newsletterItems = await Promise.all(newsletters.map(async nl => {
     // Resolve each article slug to get titles + thumbnail
-    const resolvedArticles = nl.article_slugs
-      .map(s => getArticleBySlug(s))
-      .filter(Boolean);
+    const resolvedArticles = (await Promise.all(
+      nl.article_slugs.map(s => getArticleBySlug(s))
+    )).filter(Boolean);
 
     const firstArticle = resolvedArticles[0];
     return {
@@ -64,13 +64,13 @@ export default async function HomePage() {
       category: 'Newsletter',
       published_at: nl.published_at || '',
     };
-  });
+  }));
 
   const featuredNL = newsletterItems[0];
   const recentNL = newsletterItems.slice(1, 8);
 
   // ── BOTTOM SECTION: Articles ──
-  const { data: articles } = getArticles({ limit: 8, sort: 'newest' });
+  const { data: articles } = await getArticles({ limit: 8, sort: 'newest' });
   const articleItems = articles.map(a => ({
     id: a.id,
     slug: a.slug,
@@ -86,7 +86,7 @@ export default async function HomePage() {
   const recentArticles = articleItems.slice(1, 8);
 
   // ── CATEGORY SECTIONS ──
-  const categorySections = getCategorySections(10);
+  const categorySections = await getCategorySections(10);
 
   return (
     <div>

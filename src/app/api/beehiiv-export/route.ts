@@ -25,7 +25,7 @@ export async function GET(req: NextRequest) {
         }
 
         if (slug) {
-            const result = exportNewsletterForBeehiiv(slug);
+            const result = await exportNewsletterForBeehiiv(slug);
             if (!result) {
                 return NextResponse.json({ error: `Newsletter not found: ${slug}` }, { status: 404 });
             }
@@ -37,7 +37,7 @@ export async function GET(req: NextRequest) {
         }
 
         if (article) {
-            const result = exportArticleForBeehiiv(article);
+            const result = await exportArticleForBeehiiv(article);
             if (!result) {
                 return NextResponse.json({ error: `Article not found: ${article}` }, { status: 404 });
             }

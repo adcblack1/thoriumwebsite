@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        const article = addArticle({
+        const article = await addArticle({
             title: body.title,
             subtitle: body.subtitle,
             author: body.author,

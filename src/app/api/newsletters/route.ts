@@ -8,13 +8,13 @@ export async function GET(request: Request) {
     const publication = searchParams.get('publication') || undefined;
 
     try {
-        const { data: newsletters } = getNewsletters({ limit, sort: 'newest', publication: publication || 'all' });
+        const { data: newsletters } = await getNewsletters({ limit, sort: 'newest', publication: publication || 'all' });
 
         // Resolve article data for each newsletter
-        const enriched = newsletters.map(nl => {
-            const resolvedArticles = nl.article_slugs
-                .map(s => getArticleBySlug(s))
-                .filter(Boolean);
+        const enriched = await Promise.all(newsletters.map(async nl => {
+            const resolvedArticles = (await Promise.all(
+                nl.article_slugs.map(s => getArticleBySlug(s))
+            )).filter(Boolean);
 
             const firstArticle = resolvedArticles[0];
             
@@ -37,7 +37,7 @@ export async function GET(request: Request) {
                 writers: nl.writers,
                 banner_image_url: nl.banner_image_url || '',
             };
-        });
+        }));
 
         return NextResponse.json({ data: enriched });
     } catch (error) {

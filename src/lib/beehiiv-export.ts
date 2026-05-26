@@ -242,13 +242,13 @@ function generateToolsCard(nl: Newsletter): string {
 
 // ── Main Export ──
 
-export function exportNewsletterForBeehiiv(slug: string): { html: string; title: string } | null {
-  const newsletter = getNewsletterBySlug(slug);
+export async function exportNewsletterForBeehiiv(slug: string): Promise<{ html: string; title: string } | null> {
+  const newsletter = await getNewsletterBySlug(slug);
   if (!newsletter) return null;
 
-  const articles = newsletter.article_slugs
-    .map((s) => getArticleBySlug(s))
-    .filter(Boolean) as Article[];
+  const articles = (await Promise.all(
+    newsletter.article_slugs.map((s) => getArticleBySlug(s))
+  )).filter(Boolean) as Article[];
 
   // Banner
   const bannerRow = newsletter.banner_image_url
@@ -384,8 +384,8 @@ export function exportNewsletterForBeehiiv(slug: string): { html: string; title:
 
 // ── Single Article Export ──
 
-export function exportArticleForBeehiiv(slug: string): { html: string; title: string } | null {
-  const article = getArticleBySlug(slug);
+export async function exportArticleForBeehiiv(slug: string): Promise<{ html: string; title: string } | null> {
+  const article = await getArticleBySlug(slug);
   if (!article) return null;
 
   const bodyContent = article.content || '<p>Content not available.</p>';

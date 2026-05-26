@@ -407,10 +407,24 @@ export default function SubscribePage() {
   // ── API helpers ──────────────────────────
 
   const createSubscriber = async (subEventId?: string) => {
+    // Re-read _fbp/_fbc cookies fresh at submit time.
+    // The fbq script can set _fbp AFTER the mount-time useEffect runs,
+    // which is why fbp coverage was only ~31% in EMQ diagnostics.
+    // Start from existing state (preserves synthetic fbc built from fbclid)
+    // and overwrite with any newer cookie values found right now.
+    const freshCookies: { fbp?: string; fbc?: string } = { ...metaCookies };
+    const cookiesNow = document.cookie.split(';').reduce((acc, c) => {
+      const [k, v] = c.trim().split('=');
+      if (k && v) acc[k] = v;
+      return acc;
+    }, {} as Record<string, string>);
+    if (cookiesNow['_fbp']) freshCookies.fbp = cookiesNow['_fbp'];
+    if (cookiesNow['_fbc']) freshCookies.fbc = cookiesNow['_fbc'];
+
     const res = await fetch('/api/subscribe', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: formData.email, ...metaCookies, ...utmParams, ...(subEventId ? { sub_event_id: subEventId } : {}) }),
+      body: JSON.stringify({ email: formData.email, ...freshCookies, ...utmParams, ...(subEventId ? { sub_event_id: subEventId } : {}) }),
     });
     const data = await res.json();
     if (data.subscriber_id) {
@@ -1256,10 +1270,10 @@ function StepEmail({
         @media(min-width:1024px){.subscribe-hero-h1{font-size:3.5rem!important;}}
       `}} />
       <h1
-        className="subscribe-hero-h1 font-times text-center font-bold -mt-1 uppercase"
+        className="subscribe-hero-h1 font-times text-center font-bold -mt-1"
         style={{ color: '#ffffff', letterSpacing: '-0.05em' }}
       >
-        <span className="lg:whitespace-nowrap">The morning paper</span>{' '}<br className="hidden lg:block" />for <span style={{ color: '#5170ff' }}>everything AI</span>
+        Know What Actually<br />Matters in <span style={{ color: '#5170ff' }}>AI</span>
       </h1>
 
       <style dangerouslySetInnerHTML={{
@@ -1270,7 +1284,7 @@ function StepEmail({
         className="subscribe-hero-subtext text-center leading-relaxed"
         style={{ color: '#ffffff', fontSize: '26px', fontWeight: 400 }}
       >
-        Our free, daily briefing keeps you ahead on AI.<br />The news, tools, and strategies professionals actually need.
+        Our free daily briefing keeps you ahead on AI. The news<br className="hidden lg:block" /> publication written by people who actually work in AI.
       </p>
 
       <div className="w-full max-w-sm lg:max-w-md">

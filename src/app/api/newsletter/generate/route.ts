@@ -8,8 +8,8 @@ export async function POST(req: NextRequest) {
 
         // If article slugs are provided, pull content from database
         if (body.article_slugs && Array.isArray(body.article_slugs)) {
-            const articles = body.article_slugs.map((slug: string) => {
-                const dbArticle = getArticleBySlug(slug);
+            const articles = await Promise.all(body.article_slugs.map(async (slug: string) => {
+                const dbArticle = await getArticleBySlug(slug);
                 if (!dbArticle) throw new Error(`Article not found: ${slug}`);
                 return {
                     category_label: dbArticle.category.toUpperCase(),
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
                     article_url: `https://thoriumvalley.com/articles/${dbArticle.slug}`,
                     author_name: dbArticle.author || 'Thorium Valley',
                 };
-            });
+            }));
 
             const edition: NewsletterEdition = {
                 subject_emoji: body.subject_emoji,

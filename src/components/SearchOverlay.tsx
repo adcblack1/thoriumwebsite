@@ -13,18 +13,6 @@ interface SearchResult {
     thumbnail_url?: string;
 }
 
-// Import actual articles database
-import articlesDb from '@/data/articles-db.json';
-
-// Dynamically generate searchable articles from the database
-const ARTICLES: SearchResult[] = Object.entries(articlesDb).map(([slug, data]: [string, any]) => ({
-    id: slug,
-    slug: slug,
-    title: data.title,
-    subtitle: data.subtitle || data.category,
-    // We omit thumbnail_url since not all articles have a reliable static thumbnail mapping in the DB
-}));
-
 interface SearchOverlayProps {
     isOpen: boolean;
     onClose: () => void;
@@ -33,7 +21,27 @@ interface SearchOverlayProps {
 export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<SearchResult[]>([]);
+    const [allArticles, setAllArticles] = useState<SearchResult[]>([]);
     const inputRef = useRef<HTMLInputElement>(null);
+
+    // Fetch articles from Supabase-backed API when overlay opens
+    useEffect(() => {
+        if (isOpen && allArticles.length === 0) {
+            fetch('/api/articles?limit=500&status=published')
+                .then(res => res.json())
+                .then(json => {
+                    const mapped = (json.data || []).map((a: any) => ({
+                        id: a.id || a.slug,
+                        slug: a.slug,
+                        title: a.title,
+                        subtitle: a.subtitle || a.category,
+                        thumbnail_url: a.thumbnail_url,
+                    }));
+                    setAllArticles(mapped);
+                })
+                .catch(() => {});
+        }
+    }, [isOpen, allArticles.length]);
 
     // Focus input when overlay opens
     useEffect(() => {
@@ -65,12 +73,12 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
             return;
         }
         const q = value.toLowerCase();
-        const filtered = ARTICLES.filter(
+        const filtered = allArticles.filter(
             a => a.title.toLowerCase().includes(q) ||
                 (a.subtitle && a.subtitle.toLowerCase().includes(q))
         );
         setResults(filtered);
-    }, []);
+    }, [allArticles]);
 
     // Highlight matching text
     const highlight = (text: string, q: string) => {

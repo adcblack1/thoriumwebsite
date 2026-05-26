@@ -8,16 +8,16 @@ interface RecommendedArticlesProps {
     limit?: number;
 }
 
-export function RecommendedArticles({ currentSlug, currentCategory, limit = 3 }: RecommendedArticlesProps) {
+export async function RecommendedArticles({ currentSlug, currentCategory, limit = 3 }: RecommendedArticlesProps) {
     // Same-category first, then fill with recent
-    const sameCat = getArticlesByCategory(currentCategory, limit + 1)
+    const sameCat = (await getArticlesByCategory(currentCategory, limit + 1))
         .filter(a => a.slug !== currentSlug);
 
     let recommended: Article[] = sameCat.slice(0, limit);
 
     if (recommended.length < limit) {
         const usedSlugs = new Set([currentSlug, ...recommended.map(a => a.slug)]);
-        const recent = getArticles({ limit: limit + 5 }).data
+        const recent = (await getArticles({ limit: limit + 5 })).data
             .filter((a: Article) => !usedSlugs.has(a.slug));
         recommended = [...recommended, ...recent].slice(0, limit);
     }

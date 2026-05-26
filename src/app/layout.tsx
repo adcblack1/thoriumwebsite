@@ -8,6 +8,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
+  themeColor: '#eeede9', // brand cream — colors iOS Safari chrome to match site bg
 };
 
 export const metadata: Metadata = {

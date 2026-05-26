@@ -8,9 +8,9 @@ interface RecommendedNewslettersProps {
     limit?: number;
 }
 
-export function RecommendedNewsletters({ currentSlug, limit = 3 }: RecommendedNewslettersProps) {
+export async function RecommendedNewsletters({ currentSlug, limit = 3 }: RecommendedNewslettersProps) {
     // Get recent newsletters excluding current
-    const all = getNewsletters({ limit: limit + 1 });
+    const all = await getNewsletters({ limit: limit + 1 });
     const recommended = all.data
         .filter((n: Newsletter) => n.slug !== currentSlug)
         .slice(0, limit);
@@ -18,15 +18,15 @@ export function RecommendedNewsletters({ currentSlug, limit = 3 }: RecommendedNe
     if (recommended.length === 0) return null;
 
     // For each newsletter, get the first article's thumbnail
-    const items = recommended.map((nl: Newsletter) => {
+    const items = await Promise.all(recommended.map(async (nl: Newsletter) => {
         const firstSlug = nl.article_slugs?.[0];
-        const firstArticle = firstSlug ? getArticleBySlug(firstSlug) : null;
+        const firstArticle = firstSlug ? await getArticleBySlug(firstSlug) : null;
         return {
             ...nl,
             firstArticleThumbnail: firstArticle?.thumbnail_url || nl.banner_image_url,
             firstHeadline: nl.toc?.[0] || nl.title,
         };
-    });
+    }));
 
     return (
         <section style={{ padding: '0 15px', marginTop: '32px', marginBottom: '48px' }}>

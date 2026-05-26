@@ -6,10 +6,13 @@ const slug = process.argv[2];
 if (!slug) { console.error('Usage: node generate-export.js <slug>'); process.exit(1); }
 
 const newsletters = JSON.parse(fs.readFileSync(path.join(__dirname, 'src/data/newsletters-db.json'), 'utf-8'));
+const catalystDb = JSON.parse(fs.readFileSync(path.join(__dirname, 'src/data/catalyst-db.json'), 'utf-8'));
 const articles = JSON.parse(fs.readFileSync(path.join(__dirname, 'src/data/articles-db.json'), 'utf-8'));
 
-const nl = newsletters.find(n => n.slug === slug);
+let nl = newsletters.find(n => n.slug === slug);
+if (!nl) nl = catalystDb.find(n => n.slug === slug);
 if (!nl) { console.error(`Newsletter "${slug}" not found`); process.exit(1); }
+const isCatalyst = nl.publication === 'the-catalyst';
 
 const BASE = 'https://www.thoriumvalley.com';
 const SERIF = "'Times New Roman MT Std','Times New Roman',Georgia,serif";
@@ -260,7 +263,10 @@ html += `<div style="padding:15px 15px;text-align:center;">
 html += `</div>`;
 
 // Write output
-const outDir = path.join(__dirname, '..', 'APRIL 31 CONTENT');
+const outDir = isCatalyst
+  ? path.join(__dirname, '..', 'MAY 24 CATALYST')
+  : path.join(__dirname, '..', 'APRIL 31 CONTENT');
+if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 const outPath = path.join(outDir, 'beehiiv-export.html');
 fs.writeFileSync(outPath, html, 'utf-8');
 const sizeKB = (Buffer.byteLength(html, 'utf-8') / 1024).toFixed(1);

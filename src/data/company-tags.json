@@ -96,5 +96,244 @@
   "Ramp",
   "TELUS",
   "Adobe",
-  "Isomorphic Labs"
+  "Isomorphic Labs",
+  "Ai2",
+  "Supermicro",
+  "METR",
+  "Kalshi",
+  "Vatican",
+  "Klarna",
+  "Sinch",
+  "Gravitee",
+  "Menlo Security",
+  "Semafor",
+  "Brex",
+  "Bench",
+  "Synthetic",
+  "Khosla Ventures",
+  "Rippling",
+  "Zenefits",
+  "Dell",
+  "Uber",
+  "NomadGo",
+  "Bolt",
+  "Dun & Bradstreet",
+  "Forrester",
+  "Trulioo",
+  "Moody's",
+  {
+    "name": "GitHub",
+    "slug": "github",
+    "count": 1
+  },
+  {
+    "name": "Google",
+    "slug": "google",
+    "count": 1
+  },
+  {
+    "name": "Meta",
+    "slug": "meta",
+    "count": 1
+  },
+  {
+    "name": "Anthropic",
+    "slug": "anthropic",
+    "count": 1
+  },
+  {
+    "name": "OpenAI",
+    "slug": "openai",
+    "count": 1
+  },
+  {
+    "name": "Tesla",
+    "slug": "tesla",
+    "count": 1
+  },
+  {
+    "name": "xAI",
+    "slug": "xai",
+    "count": 1
+  },
+  {
+    "name": "SpaceX",
+    "slug": "spacex",
+    "count": 1
+  },
+  {
+    "name": "Cursor",
+    "slug": "cursor",
+    "count": 1
+  },
+  {
+    "name": "Gamma",
+    "slug": "gamma",
+    "count": 1
+  },
+  {
+    "name": "Beautiful.ai",
+    "slug": "beautiful-ai",
+    "count": 1
+  },
+  {
+    "name": "Goblin Tools",
+    "slug": "goblin-tools",
+    "count": 1
+  },
+  {
+    "name": "Perplexity",
+    "slug": "perplexity",
+    "count": 1
+  },
+  {
+    "name": "Shield AI",
+    "slug": "shield-ai",
+    "count": 1
+  },
+  {
+    "name": "Warby Parker",
+    "slug": "warby-parker",
+    "count": 1
+  },
+  {
+    "name": "Gentle Monster",
+    "slug": "gentle-monster",
+    "count": 1
+  },
+  {
+    "name": "Samsung",
+    "slug": "samsung",
+    "count": 1
+  },
+  {
+    "name": "METR",
+    "slug": "metr",
+    "count": 1
+  },
+  {
+    "name": "DX",
+    "slug": "dx",
+    "count": 1
+  },
+  {
+    "name": "Coinbase",
+    "slug": "coinbase",
+    "count": 1
+  },
+  {
+    "name": "Block",
+    "slug": "block",
+    "count": 1
+  },
+  {
+    "name": "Airbnb",
+    "slug": "airbnb",
+    "count": 1
+  },
+  {
+    "name": "Figma",
+    "slug": "figma",
+    "count": 1
+  },
+  {
+    "name": "Creatify",
+    "slug": "creatify",
+    "count": 1
+  },
+  {
+    "name": "Canva",
+    "slug": "canva",
+    "count": 1
+  },
+  {
+    "name": "Scribe",
+    "slug": "scribe",
+    "count": 1
+  },
+  {
+    "name": "Fellou",
+    "slug": "fellou",
+    "count": 1
+  },
+  {
+    "name": "Genspark",
+    "slug": "genspark",
+    "count": 1
+  },
+  {
+    "name": "Microsoft",
+    "slug": "microsoft",
+    "count": 1
+  },
+  {
+    "name": "Nvidia",
+    "slug": "nvidia",
+    "count": 1
+  },
+  {
+    "name": "Broadcom",
+    "slug": "broadcom",
+    "count": 1
+  },
+  {
+    "name": "Oracle",
+    "slug": "oracle",
+    "count": 1
+  },
+  {
+    "name": "AMD",
+    "slug": "amd",
+    "count": 1
+  },
+  {
+    "name": "TSMC",
+    "slug": "tsmc",
+    "count": 1
+  },
+  {
+    "name": "ASML",
+    "slug": "asml",
+    "count": 1
+  },
+  {
+    "name": "Micron",
+    "slug": "micron",
+    "count": 1
+  },
+  {
+    "name": "Intel",
+    "slug": "intel",
+    "count": 1
+  },
+  {
+    "name": "Intuit",
+    "slug": "intuit",
+    "count": 1
+  },
+  {
+    "name": "Hyundai",
+    "slug": "hyundai",
+    "count": 1
+  },
+  {
+    "name": "Bloom Energy",
+    "slug": "bloom-energy",
+    "count": 1
+  },
+  {
+    "name": "TanStack",
+    "slug": "tanstack",
+    "count": 1
+  },
+  {
+    "name": "Citadel",
+    "slug": "citadel",
+    "count": 1
+  },
+  {
+    "name": "Manus",
+    "slug": "manus",
+    "count": 1
+  }
 ]
