@@ -74,6 +74,9 @@ export async function getArticles(options?: {
     }
     if (options?.publication) {
         query = query.eq('newsletter', options.publication);
+    } else {
+        // Exclude lab articles from public listings — lab content is newsletter-only
+        query = query.neq('newsletter', 'lab');
     }
 
     query = query.order('published_at', { ascending: sortDir === 'oldest' });

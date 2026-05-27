@@ -18,6 +18,8 @@ const SANS = "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text'
 const ACCENT = '#5170ff';
 const PAD = '15px';
 
+export const revalidate = 60;
+
 interface NewsletterPageProps {
   params: Promise<{ slug: string }>;
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;

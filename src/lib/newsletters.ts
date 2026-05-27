@@ -92,6 +92,7 @@ function mapRow(row: any): Newsletter {
         updated_at: row.created_at || '',
         status: row.status || 'published',
         description: row.description || '',
+        stories: row.stories || undefined,
         links: row.links || undefined,
         games: row.games || undefined,
         poll: row.poll || undefined,
