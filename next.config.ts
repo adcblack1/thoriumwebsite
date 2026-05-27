@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
         hostname: 'iyaypvpkozntojbasjuh.supabase.co',
         pathname: '/storage/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
     ],
   },
 };
