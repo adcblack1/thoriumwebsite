@@ -61,7 +61,7 @@ export function mdToHtml(md: string): string {
       out.push(`<ul>${items.join('')}</ul>`);
     }
     // Header
-    else if (trimmed.startsWith('# ')) {
+    else if (trimmed.match(/^#{1,6}\s/)) {
       out.push(`<p><strong>${trimmed.replace(/^#+\s*/, '')}</strong></p>`);
     }
     else {
