@@ -356,6 +356,7 @@ export async function exportMainForBeehiiv(slug?: string): Promise<{ html: strin
     content = content.replace(/<ul>/g, `<ul style="margin:0;padding:0 0 0 20px;">`);
     content = content.replace(/<li>/g, `<li style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0;">`);
     content = content.replace(/<p[^>]*><strong[^>]*>Our Valley View<\/strong><\/p>/gi, `<div style="padding:20px 0 8px;text-align:center;"><img src="${SITE}/IN%20THE%20VALLEY%20NEWS.png" alt="Into the Valley" style="display:block;width:100%;height:auto;margin:0 auto;padding:0;" /></div>`);
+    content = content.replace(/<p[^>]*><strong[^>]*>Into the Valley<\/strong><\/p>/gi, `<div style="padding:20px 0 8px;text-align:center;"><img src="${SITE}/IN%20THE%20VALLEY%20NEWS.png" alt="Into the Valley" style="display:block;width:100%;height:auto;margin:0 auto;padding:0;" /></div>`);
     content = content.replace(/<div class="vv-header"[^>]*>.*?<\/div>/gi, `<div style="padding:20px 0 8px;text-align:center;"><img src="${SITE}/IN%20THE%20VALLEY%20NEWS.png" alt="Into the Valley" style="display:block;width:100%;height:auto;margin:0 auto;padding:0;" /></div>`);
     const fm = content.match(/^<p[^>]*>(.)/);
     if (fm) content = content.replace(new RegExp(`^(<p[^>]*>)${fm[1].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`), `$1<span style="font-family:${TIMES};font-size:3.5em;float:left;line-height:0.8;padding-right:8px;padding-top:4px;color:${AC};font-weight:bold;">${fm[1]}</span>`);
