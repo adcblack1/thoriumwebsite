@@ -19,6 +19,8 @@ function ThumbnailOverlay() {
   );
 }
 
+export const revalidate = 60;
+
 export default async function HomePage() {
   // ── TOP SECTION: Newsletters ──
   const { data: newsletters } = await getNewsletters({ limit: 8, sort: 'newest' });

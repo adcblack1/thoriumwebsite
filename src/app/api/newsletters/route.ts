@@ -25,7 +25,7 @@ export async function GET(request: Request) {
                 id: nl.id,
                 slug: nl.slug,
                 publication: nl.publication || 'thorium-valley',
-                title: firstArticle?.title || nl.title,
+                title: firstArticle?.title || nl.toc?.[0] || nl.stories?.[0]?.title || nl.title,
                 subtitle: firstArticle?.subtitle || '',
                 thumbnail_url: nl.thumbnail_url || firstArticle?.thumbnail_url || storyThumb || '',
                 published_at: nl.published_at,
