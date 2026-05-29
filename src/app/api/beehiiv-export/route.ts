@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { exportNewsletterForBeehiiv, exportArticleForBeehiiv, exportWelcomeForBeehiiv, exportLabForBeehiiv, exportMainForBeehiiv } from '@/lib/beehiiv-export';
+import { exportNewsletterForBeehiiv, exportArticleForBeehiiv, exportWelcomeForBeehiiv, exportLabForBeehiiv, exportMainForBeehiiv, exportCatalystForBeehiiv } from '@/lib/beehiiv-export';
 
 export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
@@ -8,10 +8,11 @@ export async function GET(req: NextRequest) {
     const welcome = searchParams.get('welcome');
     const lab = searchParams.get('lab');
     const main = searchParams.get('main');
+    const catalyst = searchParams.get('catalyst');
 
-    if (!slug && !article && !lab && !main && welcome === null) {
+    if (!slug && !article && !lab && !main && !catalyst && welcome === null) {
         return NextResponse.json(
-            { error: 'Provide ?slug=, ?article=, ?lab=true, ?main=true, or ?welcome=true' },
+            { error: 'Provide ?slug=, ?article=, ?lab=, ?catalyst=, ?main=, or ?welcome=true' },
             { status: 400 }
         );
     }
@@ -35,6 +36,17 @@ export async function GET(req: NextRequest) {
             const result = await exportLabForBeehiiv(labSlug);
             if (!result) {
                 return NextResponse.json({ error: 'No Lab newsletter found' }, { status: 404 });
+            }
+            return NextResponse.json({ success: true, html: result.html, title: result.title });
+        }
+
+        // ?catalyst=true → most recent Catalyst edition
+        // ?catalyst=catalyst-may-25-2026 → specific edition
+        if (catalyst !== null) {
+            const catSlug = catalyst === 'true' || catalyst === '' ? undefined : catalyst;
+            const result = await exportCatalystForBeehiiv(catSlug);
+            if (!result) {
+                return NextResponse.json({ error: 'No Catalyst newsletter found' }, { status: 404 });
             }
             return NextResponse.json({ success: true, html: result.html, title: result.title });
         }
