@@ -368,7 +368,8 @@ export async function exportMainForBeehiiv(slug?: string): Promise<{ html: strin
   if (newsletter.links?.news?.length) {
     const ni = newsletter.links.news.map(item => {
       const rest = item.rest ? (item.rest.startsWith(' ') || item.rest.startsWith(',') ? item.rest : ` ${item.rest}`) : '';
-      return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;<a style="color:${AC};text-decoration:none;" href="${item.url}" target="_blank">${item.link_text.replace(/'/g, '&#x27;')}</a>${rest.replace(/'/g, '&#x27;')}</p>`;
+      const prefix = (item as any).prefix ? `${(item as any).prefix} ` : '';
+      return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${prefix}<a style="color:${AC};text-decoration:none;" href="${item.url}" target="_blank">${item.link_text.replace(/'/g, '&#x27;')}</a>${rest.replace(/'/g, '&#x27;')}</p>`;
     }).join('\n');
     let jobsSec = '';
     if (newsletter.links.jobs?.length) {
