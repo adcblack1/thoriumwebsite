@@ -9,9 +9,10 @@ interface WireframeGlobeProps {
     mobileYOffset?: number
     desktopYOffset?: number
     mobileScale?: number
+    speedMultiplier?: number
 }
 
-export default function WireframeGlobe({ className = "", mobileYOffset = -20, desktopYOffset = 0, mobileScale = 1.8 }: WireframeGlobeProps) {
+export default function WireframeGlobe({ className = "", mobileYOffset = -20, desktopYOffset = 0, mobileScale = 1.8, speedMultiplier = 1 }: WireframeGlobeProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const containerRef = useRef<HTMLDivElement>(null)
 
@@ -88,7 +89,7 @@ export default function WireframeGlobe({ className = "", mobileYOffset = -20, de
 
         // Auto-rotation — starts immediately
         const rotation: [number, number] = [0, -15]
-        const rotationSpeed = isMobile ? 0.12 : 0.17
+        const rotationSpeed = (isMobile ? 0.12 : 0.17) * speedMultiplier
 
         const rotationTimer = d3.timer(() => {
             rotation[0] += rotationSpeed

@@ -74,6 +74,14 @@ const PUB_TO_NL: Record<string, string> = {
     'the-lab': 'lab',
 };
 
+// Some Catalyst/Lab issues were ingested with the "IN THIS ISSUE" TOC block still
+// appended to the intro. The TOC is rendered separately from `toc`, so strip that
+// trailing block here — the single load chokepoint — to avoid showing it twice.
+function stripInThisIssue(intro: string): string {
+    const i = intro.search(/\n+[ \t#>*]*IN THIS ISSUE\b/i);
+    return i === -1 ? intro : intro.slice(0, i).trimEnd();
+}
+
 function mapRow(row: any): Newsletter {
     return {
         id: row.id || row.slug,
@@ -81,7 +89,7 @@ function mapRow(row: any): Newsletter {
         publication: NL_MAP[row.newsletter] || row.newsletter,
         title: row.title || '',
         date: row.date || '',
-        intro: row.intro || '',
+        intro: stripInThisIssue(row.intro || ''),
         toc: row.toc || [],
         article_slugs: row.article_slugs || [],
         sign_off: row.sign_off || '',

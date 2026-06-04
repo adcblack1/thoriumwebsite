@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Navigation } from '@/components/navigation';
 import { FooterNew } from '@/components/footer-new';
+import OfferWall from '@/components/subscribe/OfferWall';
 import Link from 'next/link';
 
 export default function ConfirmedPage() {
@@ -26,7 +27,8 @@ export default function ConfirmedPage() {
   return (
     <>
       <Navigation variant="hero" heroTheme="dark" scrolledTheme="white" heroBorder={true} />
-      <main className="min-h-screen bg-white flex items-center justify-center px-5 pt-24 pb-16">
+      <main className="min-h-screen bg-white flex flex-col items-center px-5 pt-20 lg:pt-52 pb-16">
+        <div className="w-full max-w-4xl flex flex-col items-center gap-6">
         <div className="w-full max-w-lg rounded-2xl bg-[#1b1b1b] p-8 lg:p-12 flex flex-col items-center gap-4 text-center">
           {/* TV Logo */}
           <img
@@ -65,6 +67,10 @@ export default function ConfirmedPage() {
           <p className="text-xs mt-4" style={{ color: '#ffffff' }}>
             Thank you for subscribing to Thorium Valley.
           </p>
+        </div>
+
+          {/* Same sponsored-offer wall as the funnel confirmation step. */}
+          <OfferWall page="confirmed" email={email || undefined} skip={3} />
         </div>
       </main>
       <FooterNew />

@@ -186,6 +186,47 @@ export function trackPurchase(eventId?: string, leadScore?: number, externalId?:
 }
 
 /**
+ * Track an OfferClick — fires when a subscriber clicks a sponsored MVF offer on
+ * the thank-you / tools page. `value` = the partner CPC we actually earn for
+ * that click (real revenue), so Meta can optimize toward and build audiences of
+ * high-intent offer-clickers. Custom event, so it never interferes with the
+ * Lead/Purchase subscriber-quality optimization. Pass eventId to deduplicate
+ * with the server-side CAPI OfferClick (same id on both sides).
+ */
+export function trackOfferClick(
+  offerId: string,
+  brand: string,
+  category: string,
+  cpc: number,
+  eventId?: string,
+  externalId?: string,
+) {
+  if (typeof window === 'undefined') return;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const fbq = (window as any).fbq;
+    if (typeof fbq === 'function') {
+      const params: Record<string, unknown> = {
+        value: cpc,
+        currency: 'USD',
+        content_ids: [offerId],
+        content_name: brand,
+        content_category: category,
+      };
+      if (externalId) params.external_id = externalId;
+      if (eventId) {
+        fbq('trackCustom', 'OfferClick', params, { eventID: eventId });
+      } else {
+        fbq('trackCustom', 'OfferClick', params);
+      }
+      console.log(`[Meta Pixel] Tracked custom "OfferClick" via fbq (${brand}, $${cpc})`);
+    }
+  } catch (e) {
+    console.warn('[Meta Pixel] OfferClick tracking failed:', e);
+  }
+}
+
+/**
  * Track a custom tier event (lead_high, lead_good, lead_medium, lead_low).
  * Fires the TIER NAME as the event name — used for audience building,
  * Ads Manager columns, and lookalike seed audiences.

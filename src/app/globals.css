@@ -91,6 +91,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── iOS Safari safe-area canvas (subscribe funnel) ──────────────────────────
+   The funnel is full-bleed navy, but the white <body> background shows through
+   the safe-area zones (behind the dynamic island / home indicator) as white
+   bars once viewport-fit=cover is set. Paint the document canvas navy whenever
+   a .subscribe-root is on the page so those zones match. The white step-11
+   confirmation overrides this back to #fff via JS (see subscribe/page.tsx).
+   This is an SSR default to avoid a first-paint flash; the JS keeps it correct
+   per step. */
+html:has(.subscribe-root),
+html:has(.subscribe-root) body {
+  background-color: #002f5b;
+}
+
 .font-inter {
   font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
 }
@@ -464,4 +477,26 @@ b {
 .legal-body th {
   background: #f5f5f5 !important;
   font-weight: 700 !important;
+}
+
+/* ============================================
+   /subscribe RESKIN — real Inter + navy palette
+   ============================================
+   Inter is loaded in src/app/subscribe/layout.tsx via next/font and exposed as
+   --font-inter-real. We scope it to the .subscribe-root subtree so the rest of
+   the site is untouched. The big display type (headlines + .font-times) keeps
+   Times New Roman MT; EVERYTHING else in the funnel renders in real Inter. */
+.subscribe-root,
+.subscribe-root .font-inter,
+.subscribe-root input,
+.subscribe-root button,
+.subscribe-root select,
+.subscribe-root textarea {
+  font-family: var(--font-inter-real), -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, system-ui, sans-serif;
+}
+
+/* Times stays Times even inside the Inter-scoped subtree. */
+.subscribe-root .font-times {
+  font-family: var(--font-times);
 }

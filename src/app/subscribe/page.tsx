@@ -4,53 +4,27 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import SubscribeHero from '@/components/subscribe/SubscribeHero';
 import WireframeGlobe from '@/components/WireframeGlobe';
 import { Navigation } from '@/components/navigation';
 import { FooterNew } from '@/components/footer-new';
 import { trackLead, trackSubscribe, trackPurchase, trackLeadTier, setAdvancedMatching } from '@/lib/meta-pixel';
+import { MvfOffer, pickOffers, logMvfOfferClick } from '@/lib/mvf-offers';
+import OfferWall from '@/components/subscribe/OfferWall';
 
-// Sponsored tools shown after survey
-const SPONSORED_TOOLS = [
-  {
-    name: 'Gamma',
-    primary: 'Professional presentations with a prompt.',
-    subtext: 'Gamma is Loveable for slide decks. Turn your ideas into polished presentations in seconds.',
-    url: 'https://try.gamma.app/f37ycs1r79mx',
-    image: '/images/gamma.png',
-    accent: '#F59E0B',
-  },
-  {
-    name: 'Granola',
-    primary: 'The TV team loves Granola.',
-    subtext: 'The only AI notetaker that actually saves you time. Summarizes every meeting, creates action items from your perspective, and saves us ~10 hours a week per person.',
-    url: 'https://granola.ai?via=thorium',
-    image: '/thumbnails/granola.avif',
-    featured: true,
-    accent: '#F5A623',
-  },
-  {
-    name: 'Clico',
-    primary: 'Stop tab-switching to ChatGPT.',
-    subtext: 'Clico is a free add-on that puts a writing helper directly inside Gmail, Google Docs, LinkedIn, and wherever else you type. No more copying your email into another tab and pasting the answer back.',
-    url: 'https://tryclico.link/thorium-valley',
-    image: '/images/clico-thumbnail.png',
-    accent: '#7C3AED',
-  },
-];
-
-// Granola partnership — single variation (replacing Littlebird A/B/C test)
-const LB_UNDERLINE = 'underline decoration-[#5170ff] decoration-2 underline-offset-4';
-const LB_VARIATIONS: Record<string, { label: string; mediaType: 'image' | 'video'; mediaSrc: string; headline: string; subtext: string; subtext2: string; link: string }> = {
-  C: {
-    label: 'Granola',
-    mediaType: 'image',
-    mediaSrc: '/thumbnails/granola.avif',
-    headline: 'granola',
-    subtext: 'Not the food. It\'s an AI notepad that does the one thing every other notetaker promises and none of them deliver: it actually makes your notes useful. You write during the meeting, it transcribes in the background, and when the call ends you get clean summaries and action items from your perspective. Saves our team about an hour a day each.',
-    subtext2: 'Don\'t believe us? Try it for one call and you\'ll see what we\'re talking about.',
-    link: 'https://granola.ai?via=thorium',
-  },
-};
+// ── MVF CPC offer pool — June 2026 order book ───────────────────────────────
+// Each href is a thova.co/<id> Dub short link that redirects through the MVF
+// (appwiki.nl) link to the advertiser. `cpc` is the *partner* CPC we earn per
+// click, straight from the MVF order sheet. The picker mirrors The Deep View
+// exactly: of the offers that still have click budget, show the highest-CPC
+// ones first. No persona/answer targeting — pure revenue ranking (just like TDV).
+//
+// PLACEHOLDERS: `logo`, `thumb`, and `blurb` are stand-ins. Drop real art into
+// /public/thumbnails/mvf/ (keep the filenames) and rewrite the blurbs — nothing
+// else changes; the picker + layout stay the same.
+// MvfOffer type, the MVF_OFFERS catalog, the revenue-ranked picker, and the
+// click logger now live in @/lib/mvf-offers — shared with the <OfferWall> used
+// on this page's step-11 confirmation and on the /confirmed page.
 
 
 const GOALS = [
@@ -142,8 +116,13 @@ const AI_TOOLS: { name: string; logo: string | null }[] = [
 ];
 
 // ── Lead Scoring (0-100) ──────────────────
-// Exact mirror of DeepView's algorithm — verified via empirical testing (3/3 matches)
-// Formula: base(seniority × companySize) + jobFunction + goal + min(10, Σ aiTools) + industry
+// Direct port of TheDeepView's algorithm v2.0, transcribed from their live bundle.
+// score = base(seniority tier × company size) + jobFunction + goal + min(10, Σ tool-set bonuses) + industry
+// TDV's scorer also reads role_title / company_name / company_niche, but their funnel never
+// collects those (no survey question, no enrichment) so they resolve empty and add 0 for every
+// lead — we omit them to keep parity exact.
+const normStr = (s: string) => (s || '').trim().toLowerCase();
+
 function calculateLeadScore(data: {
   seniority: string;
   company_size: string;
@@ -152,85 +131,92 @@ function calculateLeadScore(data: {
   industry: string;
   ai_tools: string[];
 }): number {
-  // 1. Seniority → tier
-  const seniorityTier: Record<string, string> = {
-    'Founder/CEO': 'A', 'C-level': 'A',
-    'SVP/EVP': 'B', 'Director/VP': 'B',
-    'Manager/Supervisor': 'C',
-    'Mid or Entry Level': 'D', 'Freelance/Contract': 'D',
-    'Student/Intern': 'E', 'Other': 'E',
+  // Seniority → tier (TDV map `d`; default E). No option maps to D — TDV only reaches
+  // tier D via role_title keywords, which this funnel never collects.
+  const tierBySeniority: Record<string, string> = {
+    'founder/ceo': 'A', 'c-level': 'A', 'c-suite/founder': 'A',
+    'svp/evp': 'B', 'director/vp': 'B', 'vp/director': 'B', director: 'B',
+    manager: 'C', 'manager/supervisor': 'C',
+    'individual contributor': 'E', 'mid or entry level': 'E',
+    'freelance/contract': 'E', 'student/intern': 'E', other: 'E',
   };
+  const tier = tierBySeniority[normStr(data.seniority)] || 'E';
 
-  // 2. Company size → column
-  const sizeCol: Record<string, number> = {
-    'Enterprise: over 1,000 employees': 0,
-    'Large: 500 - 999 employees': 1,
-    'Mid-size: 100 - 499 employees': 2,
-    'Small: 25 - 99 employees': 3,
-    'Startup: Less than 25 employees': 3,
-    'Solo/Self-Employed': 3,
+  // Company size → column (TDV map `c` with includes() fallback; default mid)
+  const sizeKey = normStr(data.company_size);
+  const sizeMap: Record<string, 'enterprise' | 'large' | 'mid' | 'small'> = {
+    'enterprise: over 1,000 employees': 'enterprise',
+    'large: 500 - 999 employees': 'large',
+    'mid-size: 100 - 499 employees': 'mid',
+    'small: less than 100 employees': 'small',
+    'small: 25 - 99 employees': 'small',
+    'startup: less than 25 employees': 'small',
+    'solo/self-employed': 'small',
   };
+  let sizeCol: 'enterprise' | 'large' | 'mid' | 'small';
+  if (sizeMap[sizeKey]) sizeCol = sizeMap[sizeKey];
+  else if (sizeKey.includes('over 1,000')) sizeCol = 'enterprise';
+  else if (sizeKey.includes('500') && sizeKey.includes('999')) sizeCol = 'large';
+  else if (sizeKey.includes('100') && sizeKey.includes('499')) sizeCol = 'mid';
+  else if (sizeKey.includes('25 - 99') || sizeKey.includes('less than 100')) sizeCol = 'small';
+  else if (sizeKey.includes('startup') || sizeKey.includes('solo')) sizeCol = 'small';
+  else sizeCol = 'mid';
 
-  // 3. Base matrix [tier][sizeCol]
-  const baseMatrix: Record<string, number[]> = {
-    'A': [55, 48, 40, 30],
-    'B': [45, 38, 30, 22],
-    'C': [35, 28, 22, 15],
-    'D': [25, 20, 15, 10],
-    'E': [12, 10,  8,  5],
+  // Base matrix (TDV map `p`)
+  const baseMatrix: Record<string, Record<string, number>> = {
+    A: { enterprise: 55, large: 48, mid: 40, small: 30 },
+    B: { enterprise: 45, large: 38, mid: 30, small: 22 },
+    C: { enterprise: 35, large: 28, mid: 22, small: 15 },
+    D: { enterprise: 25, large: 20, mid: 15, small: 10 },
+    E: { enterprise: 12, large: 10, mid: 8, small: 5 },
   };
+  const base = baseMatrix[tier][sizeCol];
 
-  // 4. Job function points
-  const jobPoints: Record<string, number> = {
-    'Executive/Leadership': 10,
-    'Engineering/Software Development': 15, 'Product Management': 15,
-    'Data/Analytics': 15, 'Strategy/Consulting': 15,
-    'Sales/Business Development': 10, 'Marketing/Communications': 10,
-    'Operations/Project Management': 5, 'Finance/Accounting': 5,
-    'Human Resources': 5, 'Customer Success/Support': 5,
-    'Design/Creative': 5, 'Other': 5,
+  // Job function (TDV map `m`, then keyword fallback; default 0)
+  const fnExact: Record<string, number> = {
+    'it/computers/electronics': 15, engineering: 15, 'product management': 15,
+    'strategy/consulting': 15, marketing: 10, sales: 10, 'business leadership': 10,
+    'finance/accounting': 5, 'business ops': 5, operations: 5, legal: 5,
+    'human resources': 5, 'creative/design': 5,
   };
+  const fnKey = normStr(data.job_function);
+  let jobPts: number;
+  if (fnKey in fnExact) jobPts = fnExact[fnKey];
+  else if (/engineering|software|product|strategy|consulting/.test(fnKey)) jobPts = 15;
+  else if (/marketing|communications|sales|business development|executive|leadership/.test(fnKey)) jobPts = 10;
+  else if (/finance|accounting|ops|operations|project|legal|human resources|creative|design/.test(fnKey) || fnKey === 'hr') jobPts = 5;
+  else jobPts = 0;
 
-  // 5. Goal points
+  // Goal (TDV map `u`; default 0)
   const goalPoints: Record<string, number> = {
-    'Implement AI into my business': 10, 'Build AI-powered products': 10,
-    'Automate repetitive tasks': 8, 'Supercharge my career': 6,
-    'Stay ahead of industry trends': 5, 'Make more money': 5, 'Work faster': 5,
+    'implement ai into my business': 10, 'build ai-powered products': 10,
+    'automate repetitive tasks': 8, 'supercharge my career': 6,
+    'stay ahead of industry trends': 5, 'work faster': 5, 'make more money': 5,
+    other: 4,
   };
+  const goalPts = goalPoints[normStr(data.main_goal)] || 0;
 
-  // 6. Industry points
-  const industryPoints: Record<string, number> = {
-    'AI/Technology/Software': 5,
-    'Financial Services': 3, 'Healthcare/Medical': 3,
-    'Media/Advertising/Marketing': 3, 'Telecommunications': 3,
-    'Biotech/Pharmaceuticals': 1, 'Retail/E-commerce/Consumer Goods': 1,
-    'Manufacturing/Industrial': 1, 'Professional Services': 1,
-    'Education': 1, 'Government/Public Sector': 1,
-    'Real Estate/Construction': 1, 'Transportation/Logistics': 1,
-    'Energy/Utilities': 1, 'Hospitality/Travel/Entertainment': 1,
-    'Non-Profit': 1, 'Other': 1,
-  };
+  // AI tools — one flat bonus per set if any tool from it is selected, capped at 10 (TDV sets f/h/x)
+  const setF = new Set(['microsoft copilot', 'copilot', 'zapier', 'make', 'n8n']);
+  const setH = new Set(['midjourney', 'runway', 'synthesia', 'heygen', 'elevenlabs', 'canva ai', 'canvaai']);
+  const setX = new Set(['chatgpt', 'claude', 'gemini', 'perplexity', 'notebooklm', 'cursor']);
+  const picked = new Set((data.ai_tools || []).map(normStr));
+  let toolPts = 0;
+  if ([...setF].some((t) => picked.has(t))) toolPts += 4;
+  if ([...setH].some((t) => picked.has(t))) toolPts += 3;
+  if ([...setX].some((t) => picked.has(t))) toolPts += 3;
+  toolPts = Math.min(10, toolPts);
 
-  // 7. Per-tool scoring, capped at 10
-  const toolPoints: Record<string, number> = {
-    'Microsoft Copilot': 4, 'Zapier': 4, 'Make': 4, 'n8n': 4,
-    'ChatGPT': 3, 'Claude': 3, 'Gemini': 3, 'Perplexity': 3,
-    'NotebookLM': 3, 'Cursor': 3, 'Notion AI': 3, 'Lovable': 3,
-    'Midjourney': 3, 'Runway': 3, 'HeyGen': 3, 'ElevenLabs': 3, 'Canva AI': 3,
-    'None yet': 0,
-  };
+  // Industry (TDV sets g/v on industry+niche; else 1 unless blank/"other" → 0). Niche always empty here.
+  const ind = normStr(data.industry);
+  const setG = ['ai', 'technology', 'software', 'computers/technology', 'information technology/services', 'software/hardware/networking'];
+  const setV = ['media', 'advertising', 'marketing', 'finance', 'financial', 'healthcare', 'medical', 'telecommunications'];
+  let indPts: number;
+  if (setG.some((k) => ind.includes(k))) indPts = 5;
+  else if (setV.some((k) => ind.includes(k))) indPts = 3;
+  else indPts = ['', '--', 'other'].includes(ind) ? 0 : 1;
 
-  const tools = data.ai_tools || [];
-  const toolScore = Math.min(10, tools.reduce((sum, t) => sum + (toolPoints[t] || 0), 0));
-
-  const tier = seniorityTier[data.seniority] || 'E';
-  const col = sizeCol[data.company_size] ?? 3;
-  const base = (baseMatrix[tier] || baseMatrix['E'])[col];
-  const job = jobPoints[data.job_function] || 5;
-  const goal = goalPoints[data.main_goal] || 5;
-  const ind = industryPoints[data.industry] || 1;
-
-  return Math.min(100, Math.max(0, base + job + goal + toolScore + ind));
+  return Math.min(100, Math.max(0, Math.round(base + jobPts + goalPts + toolPts + indPts)));
 }
 
 const CHILD_NEWSLETTERS = [
@@ -296,8 +282,8 @@ export default function SubscribePage() {
   const [error, setError] = useState<string | null>(null);
   const [direction, setDirection] = useState(1); // 1 = forward, -1 = back
   const [autoSubmitted, setAutoSubmitted] = useState(false);
-  const [lbVariation, setLbVariation] = useState<string>('C');
   const hasTrackedQL = useRef(false); // Prevent duplicate QualifiedLead fires across step 9 + 11
+  const [dubClicks, setDubClicks] = useState<Record<string, number>>({}); // live { slug: clicks } from Dub for budget-gating
 
   // ── UTM params captured on arrival ──
   const [utmParams, setUtmParams] = useState<{
@@ -356,6 +342,39 @@ export default function SubscribePage() {
 
     if (Object.keys(mc).length > 0) setMetaCookies(mc);
   }, [searchParams]);
+
+  // ── iOS Safari: keep the document canvas (the safe-area zones behind the
+  // dynamic island + home indicator) matching the current step's background so
+  // there are no white bars top/bottom. Steps 1–10 are navy; step 11 is white.
+  useEffect(() => {
+    const color = step === 11 ? '#ffffff' : '#002f5b';
+    document.documentElement.style.backgroundColor = color;
+    document.body.style.backgroundColor = color;
+  }, [step]);
+  // Reset the canvas when leaving the funnel so other routes keep their bg.
+  useEffect(() => () => {
+    document.documentElement.style.backgroundColor = '';
+    document.body.style.backgroundColor = '';
+  }, []);
+
+  // ── Sync live Dub click counts for offer budget-gating ──
+  // Fetches { slug: clicks } from /api/offers (server-cached 5 min). On failure
+  // dubClicks stays {} and the picker uses the static `used` seeds. Runs once on
+  // mount — by step 9 the data is ready, so offers reflect real click budgets.
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/offers')
+      .then((r) => (r.ok ? r.json() : {}))
+      .then((data: unknown) => {
+        if (!cancelled && data && typeof data === 'object') {
+          setDubClicks(data as Record<string, number>);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   // ── Restore from localStorage on mount ──
   // Only restore if arriving via ?step= (from a subscribe form).
@@ -563,18 +582,17 @@ export default function SubscribePage() {
     setStep(prev => prev - 1);
   };
 
-  // ── Log sponsor tool clicks to Supabase ──
-  const logToolClick = (toolName: string, page: string) => {
-    if (!subscriberId) return;
-    try {
-      navigator.sendBeacon(
-        '/api/subscribe/sponsor-click',
-        new Blob(
-          [JSON.stringify({ subscriber_id: subscriberId, sponsor_slug: toolName.toLowerCase(), step: page })],
-          { type: 'application/json' }
-        )
-      );
-    } catch { }
+  // ── Log a sponsor offer click (Supabase + Meta pixel + CAPI) ──
+  // Thin wrapper over the shared logger so step 9 and the step-11 wall behave
+  // identically to the /confirmed wall.
+  const logToolClick = (offer: MvfOffer, page: string) => {
+    logMvfOfferClick(offer, page, {
+      email: formData.email,
+      firstName: formData.first_name,
+      subscriberId: subscriberId || undefined,
+      fbp: metaCookies.fbp,
+      fbc: metaCookies.fbc,
+    });
   };
 
   // Step 9 — fire Lead, Purchase, and tier events for Meta optimization
@@ -683,26 +701,72 @@ export default function SubscribePage() {
 
   // ── Render ───────────────────────────────
 
+  // Step 1: Redesigned hero (navy + pink-cloud reskin).
+  // Pure presentational component — wired to the SAME funnel handlers, so
+  // submission/validation/tracking and steps 2–11 are unchanged. To roll back
+  // to the old black hero, just delete this block (the original <StepEmail/>
+  // and its step===1 layout below remain intact as a fallback).
+  if (step === 1) {
+    return (
+      <>
+        <SubscribeHero
+          email={formData.email}
+          onEmailChange={(v) => updateField('email', v)}
+          onSubmit={goNext}
+          loading={loading}
+          error={error}
+        />
+        {/* Legal links — same fixed bar as the rest of the flow */}
+        <div
+          className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 z-50 flex -translate-x-1/2 gap-8 rounded-full px-5 py-2"
+          style={{ backgroundColor: 'rgba(0,33,64,0.88)', backdropFilter: 'blur(8px)' }}
+        >
+          <a
+            href="/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs transition-colors whitespace-nowrap"
+            style={{ color: 'rgba(255,255,255,0.35)' }}
+          >
+            Privacy Policy
+          </a>
+          <a
+            href="/terms"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs transition-colors whitespace-nowrap"
+            style={{ color: 'rgba(255,255,255,0.35)' }}
+          >
+            Terms of Service
+          </a>
+        </div>
+      </>
+    );
+  }
+
   // Step 11: Confirmation — white page with header/footer + personalized tools
   if (step === 11) {
     return (
       <>
         <Navigation variant="hero" heroTheme="dark" scrolledTheme="white" heroBorder={true} />
-        <main className="min-h-screen bg-white flex flex-col items-center px-5 pt-48 pb-16">
+        <main className="min-h-screen bg-white flex flex-col items-center px-5 pt-24 lg:pt-48 pb-16">
           <div className="w-full max-w-4xl flex flex-col gap-6">
             {/* Confirmation card */}
-            <div className="rounded-2xl bg-[#1b1b1b] p-8 lg:p-12 flex flex-col items-center gap-4 text-center">
-              <div className="w-16 h-16 rounded-full bg-[#5170ff]/20 flex items-center justify-center mb-2">
-                <svg className="w-8 h-8 text-[#5170ff]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            <div className="rounded-2xl bg-black p-8 lg:p-12 flex flex-col items-center gap-4 text-center">
+              <div className="w-16 h-16 rounded-full bg-[#5170ff] flex items-center justify-center mb-1">
+                <svg className="w-9 h-9 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
 
-              <h2 className="font-times font-bold text-2xl lg:text-4xl" style={{ color: '#ffffff' }}>
-                One last step: confirm your email
+              <p className="font-inter text-[11px] font-semibold uppercase tracking-[0.2em]" style={{ color: '#5170ff' }}>
+                You&rsquo;re subscribed
+              </p>
+              <h2 className="font-times font-bold text-3xl lg:text-5xl leading-tight" style={{ color: '#ffffff' }}>
+                One last step: <em style={{ color: '#ffffff' }}>confirm your email</em>
               </h2>
-              <p className="text-sm" style={{ color: 'rgba(255,255,255,0.6)' }}>
-                Check your inbox. We just sent you a confirmation.
+              <p className="text-sm lg:text-base max-w-sm" style={{ color: 'rgba(255,255,255,0.65)' }}>
+                We just sent a confirmation link to your inbox. Tap it to lock in your free subscription and start reading.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-3 w-full mt-4">
@@ -739,44 +803,14 @@ export default function SubscribePage() {
               </p>
             </div>
 
-            {/* Granola partnership — single tool */}
-            <div className="text-center mb-4 mt-2">
-              <div className="flex items-center justify-center gap-3 lg:gap-4 mb-3">
-                <img src="/Transparent White Logo.png" alt="Thorium Valley" className="h-8 lg:h-10 invert" style={{ objectFit: 'contain' }} />
-                <span className="text-[#1b1b1b]/30 font-inter text-base font-light">×</span>
-                <img src="/images/granola-logo.avif" alt="Granola" className="h-8 lg:h-12" style={{ objectFit: 'contain' }} />
-              </div>
-              <p className="font-inter text-[10px] lg:text-[11px] font-semibold uppercase tracking-[0.15em]" style={{ color: '#5170ff' }}>
-                Official AI Meeting Tool Partner
-              </p>
-            </div>
-            <a
-              href="https://granola.ai?via=thorium"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => {
-                logToolClick('granola', 'confirmation');
-              }}
-              className="block w-full max-w-lg mx-auto rounded-xl overflow-hidden transition-all group hover:shadow-lg border border-[#1b1b1b]/10"
-              style={{ background: '#ffffff' }}
-            >
-              <div className="px-5 pt-5 pb-3">
-                <h3 className="font-times text-[#1b1b1b] leading-tight" style={{ fontWeight: 500, letterSpacing: '-0.05em', fontSize: '22px' }}>
-                  Why we can&rsquo;t stop talking about Granola.
-                </h3>
-              </div>
-              <div className="px-4">
-                <img src="/thumbnails/granola.avif" alt="Granola" className="w-full rounded-lg" style={{ objectFit: 'contain' }} />
-              </div>
-              <div className="px-5 pt-3 pb-5">
-                <p className="font-inter text-[#1b1b1b]/50 text-xs leading-relaxed">
-                  Not the food. It&rsquo;s an AI notepad that actually makes your notes useful. Saves our team about an hour a day each.
-                </p>
-                <span className="inline-block mt-2 text-[#5170ff] text-xs font-inter font-semibold group-hover:underline">
-                  Try Granola free →
-                </span>
-              </div>
-            </a>
+            {/* Full sponsored-offer wall — shared component, identical to /confirmed. */}
+            <OfferWall
+              page="confirmation"
+              email={formData.email}
+              firstName={formData.first_name}
+              subscriberId={subscriberId || undefined}
+              skip={3}
+            />
           </div>
         </main>
         <FooterNew />
@@ -785,13 +819,10 @@ export default function SubscribePage() {
   }
 
   return (
-    <main className={`relative flex flex-col bg-black overflow-x-hidden ${step === 9 ? 'min-h-screen h-screen' : 'min-h-screen'}`}>
-      {/* Globe background */}
-      <div className="absolute inset-0 flex items-center justify-center opacity-50">
-        <WireframeGlobe desktopYOffset={-40} mobileYOffset={-65} mobileScale={1.65} />
-      </div>
+    <main className={`relative flex flex-col overflow-x-hidden ${step === 9 ? 'min-h-screen h-screen' : 'min-h-screen'}`} style={{ background: '#002f5b' }}>
+      {/* Clouds removed for steps 2–11 — solid navy background only. */}
 
-      {/* Progress bar — starts after newsletter selection (step 2) */}
+      {/* Progress bar — starts after newsletter selection (step 2). */}
       <div className="relative z-20 w-full h-1 bg-white/10">
         <motion.div
           className="h-full bg-[#5170ff]"
@@ -801,9 +832,25 @@ export default function SubscribePage() {
         />
       </div>
 
-      {/* Main content */}
-      <div className={`flex-1 flex ${step === 9 ? 'items-start lg:items-center overflow-y-auto py-4 lg:py-6' : 'items-center'} justify-center ${step === 9 ? 'px-0 lg:px-8' : 'px-3 lg:px-5'} relative z-10 ${step <= 1 ? 'mt-8 lg:-mt-44' : step === 9 ? '' : 'lg:-mt-4'}`}>
-        <div className={`w-full ${step === 9 ? 'max-w-md lg:max-w-3xl mx-auto' : step === 1 ? 'max-w-md lg:max-w-2xl' : 'max-w-md'} ${step >= 2 && step !== 8 && step !== 9 && step !== 10 ? 'rounded-2xl border border-white/10 bg-black/60 backdrop-blur-xl p-6 lg:p-8' : ''}`}>
+      {/* Main content — box steps are top-anchored (logo pinned at a fixed
+          top spot, box starts right below it). Loaders (8/10) stay centered. */}
+      <div className={`flex-1 flex justify-center relative z-10 ${step === 9 ? 'px-0 lg:px-8' : 'px-3 lg:px-5'} ${step === 8 || step === 10 ? 'items-center' : 'items-start pt-16 lg:pt-20'} ${step === 9 ? 'overflow-y-auto pb-10 lg:pb-6' : ''}`}>
+        <div className={`flex w-full flex-col items-center mx-auto ${step === 9 ? 'max-w-md lg:max-w-3xl' : 'max-w-md'}`}>
+          {/* Thorium Valley text logo (wordmark) pinned at the top — same spot
+              across steps; the box starts right below it. White on the navy
+              steps; inverted to black on the white step 9. Shown on 3–7
+              everywhere; on 9 desktop-only. Hidden on step 2. */}
+          {step !== 2 && step !== 8 && step !== 10 && (
+            <div className="flex justify-center mb-6 lg:mb-8">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/subscribe/wordmark.png"
+                alt="Thorium Valley"
+                className="w-[112px] lg:w-[142px] select-none"
+              />
+            </div>
+          )}
+          <div className={`w-full ${step >= 2 && step !== 8 && step !== 9 && step !== 10 ? 'rounded-2xl bg-[#002f5b] p-6 lg:p-8 shadow-[0_24px_70px_-18px_rgba(0,0,0,0.6)]' : ''}`}>
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={step}
@@ -884,9 +931,8 @@ export default function SubscribePage() {
               {/* Step 8: Loading — finding tools */}
               {step === 8 && (
                 <div className="flex flex-col items-center gap-6 py-12">
-                  <div className="relative">
-                    <div className="w-14 h-14 rounded-full border-2 border-[#5170ff]/30" />
-                    <div className="absolute inset-0 w-14 h-14 rounded-full border-2 border-[#5170ff] border-t-transparent animate-spin" />
+                  <div className="w-56 h-56 lg:w-64 lg:h-64">
+                    <WireframeGlobe mobileScale={2.5} speedMultiplier={3} />
                   </div>
                   <div className="text-center">
                     <h2 className="font-times font-bold text-xl lg:text-2xl mb-2" style={{ color: '#ffffff' }}>
@@ -899,57 +945,84 @@ export default function SubscribePage() {
                 </div>
               )}
 
-              {/* Step 9: Granola partnership */}
+              {/* Step 9: Recommended tools — top 3 by CPC × remaining budget
+                  (The Deep View's picker; no persona/answer targeting). */}
               {step === 9 && (() => {
-                const v = LB_VARIATIONS[lbVariation] || LB_VARIATIONS.C;
-                return (
-                  <div className="flex flex-col items-center gap-4 lg:gap-5 px-3 lg:px-0 pb-16 lg:pb-0">
-                    {/* Card — stacked on mobile, side-by-side on desktop */}
-                    <a
-                      href={v.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => {
-                        logToolClick('granola', 'tools_page');
-                      }}
-                      className="block w-full max-w-xl mx-auto rounded-xl overflow-hidden transition-all group hover:shadow-2xl hover:shadow-white/10"
-                      style={{ background: '#ffffff' }}
-                    >
-                      <div className="flex flex-col">
-                        {/* Blue section — logos + media */}
-                        <div style={{ backgroundColor: '#5170ff' }} className="px-5 pt-3 pb-4 lg:px-8 lg:pb-6 flex flex-col items-center">
-                          <div className="flex items-center justify-center gap-2 lg:gap-3 mb-1">
-                            <img src="/Transparent White Logo.png" alt="Thorium Valley" className="h-5 lg:h-6" style={{ objectFit: 'contain' }} />
-                            <span className="text-white/50 font-inter text-xs font-light">×</span>
-                            <img src="/images/granola-logo.avif" alt="Granola" className="h-5 lg:h-7 invert brightness-0" style={{ objectFit: 'contain', filter: 'brightness(0) invert(1)' }} />
-                          </div>
-                          <p className="font-inter text-[7px] lg:text-[8px] font-semibold uppercase tracking-[0.15em] text-center mb-3" style={{ color: '#ffffff' }}>
-                            Official AI Meeting Tool Partner
-                          </p>
-                          <img key={v.mediaSrc} src={v.mediaSrc} alt="Granola AI" className="w-full rounded-lg shadow-xl" style={{ objectFit: 'contain' }} />
-                        </div>
-                        {/* White section — copy */}
-                        <div className="px-6 py-3 lg:px-10 lg:py-4">
-                          <span className="font-inter text-[10px] lg:text-[11px] font-semibold uppercase tracking-widest mb-1 block" style={{ color: '#5170ff' }}>
-                            Our Favorite AI Tool
-                          </span>
-                          <h3 className="font-times text-[#1b1b1b] leading-tight mb-1.5 text-[16px] lg:text-[18px]" style={{ fontWeight: 500, letterSpacing: '-0.04em' }}>
-                            Why we can&rsquo;t stop talking about <span className={LB_UNDERLINE}>Granola</span>.
-                          </h3>
-                          <p className="font-inter text-[#1b1b1b]/55 text-[10px] lg:text-[11px] leading-relaxed mb-0.5">{v.subtext}</p>
-                          <p className="font-inter text-[#1b1b1b]/55 text-[10px] lg:text-[11px] leading-relaxed mb-2.5">{v.subtext2}</p>
-                          <span className="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-full font-inter font-semibold text-[13px] text-white transition-all group-hover:brightness-110" style={{ backgroundColor: '#5170ff' }}>
-                            Try Granola free
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
-                          </span>
-                          <p className="font-inter text-[8px] text-[#1b1b1b]/30 mt-1 text-center">Free to try</p>
-                        </div>
+                const heroOffers = pickOffers(3, 0, dubClicks);
+                const renderCard = (o: MvfOffer) => (
+                  <a
+                    key={o.id}
+                    href={o.href}
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    onClick={() => logToolClick(o, 'tools_page')}
+                    className="group flex flex-col w-full rounded-2xl overflow-hidden bg-white border border-[#1b1b1b]/10 transition-all hover:shadow-2xl hover:shadow-white/10 active:scale-[0.99]"
+                  >
+                    {/* Screenshot banner */}
+                    <div className="aspect-[16/9] bg-[#f3f3f1] overflow-hidden">
+                      <img src={o.thumb} alt={o.brand} className="w-full h-full object-cover" />
+                    </div>
+                    <div className="px-4 py-3.5 flex flex-col">
+                      <div className="flex items-center gap-2 mb-1.5">
+                        <span className="w-7 h-7 shrink-0 rounded-md bg-[#f3f3f1] flex items-center justify-center overflow-hidden">
+                          <img src={o.logo} alt="" className="w-full h-full object-contain p-1" />
+                        </span>
+                        <span className="font-times text-[#1b1b1b] text-[18px] lg:text-[19px]" style={{ fontWeight: 600, letterSpacing: '-0.02em' }}>{o.brand}</span>
+                        <span className="font-inter text-[8px] uppercase tracking-wider text-[#5170ff] bg-[#5170ff]/10 px-1.5 py-0.5 ml-auto">{o.category}</span>
                       </div>
-                    </a>
-                    <div className="w-full max-w-xl mx-auto">
-                      <PrimaryButton onClick={() => {
-                        goNext();
-                      }}>Start reading →</PrimaryButton>
+                      <p className="font-inter text-[#1b1b1b]/55 text-[13px] leading-snug mb-2">{o.blurb}</p>
+                      <span className="inline-flex items-center gap-1 font-inter font-semibold text-[13px] group-hover:underline" style={{ color: '#5170ff' }}>
+                        {o.cta}
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                      </span>
+                    </div>
+                  </a>
+                );
+                return (
+                  <div className="flex flex-col items-center gap-4 px-3 lg:px-0 pb-20 lg:pb-6 w-full">
+                    <h2 className="font-times text-[22px] lg:text-[26px] text-center leading-snug px-4" style={{ color: '#ffffff' }}>
+                      Some AI tools we recommend for you.
+                    </h2>
+
+                    {/* Mobile: stacked large cards */}
+                    <div className="lg:hidden w-full max-w-md mx-auto flex flex-col gap-4">
+                      {heroOffers.map(renderCard)}
+                    </div>
+
+                    {/* Desktop: top pick full-size in front, the other two
+                        slightly smaller and tucked behind on each side. */}
+                    <div className="hidden lg:flex items-center justify-center w-full pt-2">
+                      {heroOffers[1] && (
+                        <div className="w-[400px] shrink-0 scale-[0.9] origin-right -mr-4 z-0 opacity-90">
+                          {renderCard(heroOffers[1])}
+                        </div>
+                      )}
+                      {heroOffers[0] && (
+                        <div className="w-[440px] shrink-0 relative z-20 rounded-2xl shadow-2xl">
+                          {renderCard(heroOffers[0])}
+                        </div>
+                      )}
+                      {heroOffers[2] && (
+                        <div className="w-[400px] shrink-0 scale-[0.9] origin-left -ml-4 z-0 opacity-90">
+                          {renderCard(heroOffers[2])}
+                        </div>
+                      )}
+                    </div>
+
+                    <p className="font-inter text-[10px] text-center max-w-xs" style={{ color: 'rgba(255,255,255,0.7)' }}>
+                      Paid partner recommendations. We only feature tools we&rsquo;d use ourselves.
+                    </p>
+
+                    <div className="w-full max-w-md mx-auto">
+                      <button
+                        onClick={() => {
+                          goNext();
+                        }}
+                        className="w-full py-3.5 rounded-full bg-white text-black text-base font-semibold hover:bg-white/90 active:scale-[0.98] transition-all inline-flex items-center justify-center gap-2"
+                      >
+                        Become an AI expert
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                      </button>
                     </div>
                   </div>
                 );
@@ -975,11 +1048,19 @@ export default function SubscribePage() {
               )}
             </motion.div>
           </AnimatePresence>
+          </div>
         </div>
       </div>
 
-      {/* Legal links */}
-      <div className={`fixed ${step === 9 ? 'bottom-0 left-0 right-0 rounded-none justify-center py-2' : 'bottom-4 left-1/2 -translate-x-1/2 rounded-full'} z-50 flex gap-8 px-5 py-2`} style={{ backgroundColor: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)' }}>
+      {/* Legal links — dark navy pill on the navy steps; on the white steps
+          (8/9/10) it goes transparent with black text so nothing reads blue. */}
+      <div
+        className={`fixed z-50 flex gap-8 px-5 ${step === 9 ? 'bottom-0 left-0 right-0 rounded-none justify-center pt-2 pb-[max(0.5rem,env(safe-area-inset-bottom))]' : 'bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 rounded-full py-2'}`}
+        style={{
+          backgroundColor: 'rgba(0,33,64,0.88)',
+          backdropFilter: 'blur(8px)',
+        }}
+      >
         <a
           href="/privacy"
           target="_blank"
@@ -1047,7 +1128,7 @@ function StepHeading({ children }: { children: React.ReactNode }) {
   return (
     <h2
       className="font-times text-center font-bold text-2xl lg:text-4xl mb-2"
-      style={{ color: '#ffffff', letterSpacing: '-0.03em' }}
+      style={{ color: '#ffffff', letterSpacing: '-0.05em' }}
     >
       {children}
     </h2>
@@ -1129,9 +1210,9 @@ function SelectableCard({
   return (
     <button
       onClick={onClick}
-      className={`w-full text-left px-4 py-3 rounded-xl border transition-all text-sm ${selected
-          ? 'border-[#5170ff] bg-[#5170ff]/15 text-white'
-          : 'border-white/15 bg-white/5 text-white/80 hover:border-white/30 hover:bg-white/8'
+      className={`w-full text-left px-4 py-3 rounded-xl transition-all text-sm ${selected
+          ? 'bg-[#5170ff]/20 text-white shadow-[0_10px_28px_-8px_rgba(0,0,0,0.55)]'
+          : 'bg-white/5 text-white/80 shadow-[0_8px_22px_-10px_rgba(0,0,0,0.5)] hover:bg-white/[0.08]'
         }`}
     >
       {children}
@@ -1195,7 +1276,7 @@ function StyledSelect({
 
       {isOpen && (
         <div
-          className="absolute left-0 right-0 mt-2 rounded-2xl border border-white/15 bg-[#1a1a1a] overflow-hidden z-50"
+          className="absolute left-0 right-0 mt-2 rounded-2xl border border-white/15 bg-[#0a3a68] overflow-hidden z-50"
           style={{
             boxShadow: '0 12px 40px rgba(0,0,0,0.5)',
             animation: 'dropdownIn 0.15s ease-out',
@@ -1374,7 +1455,7 @@ function StepEmail({
   );
 }
 
-// ── Step 2: Name ───────────────────────────
+// ── Step 3: Name ───────────────────────────
 
 function StepName({
   formData,
@@ -1409,7 +1490,7 @@ function StepName({
   );
 }
 
-// ── Step 3: Goal + Sponsor ─────────────────
+// ── Step 4: Goal ─────────────────
 
 function StepGoal({
   formData,
@@ -1452,7 +1533,7 @@ function StepGoal({
   );
 }
 
-// ── Step 4: Role ───────────────────────────
+// ── Step 5: Role ───────────────────────────
 
 function StepRole({
   formData,
@@ -1520,7 +1601,7 @@ function StepRole({
   );
 }
 
-// ── Step 5: Industry ───────────────────────
+// ── Step 6: Industry ───────────────────────
 
 function StepIndustry({
   formData,
@@ -1588,7 +1669,7 @@ function StepIndustry({
   );
 }
 
-// ── Step 6: AI Tools ───────────────────────
+// ── Step 7: AI Tools ───────────────────────
 
 function StepTools({
   formData,
@@ -1629,9 +1710,9 @@ function StepTools({
             <button
               key={tool.name}
               onClick={() => toggle(tool.name)}
-              className={`flex items-center gap-2 px-3 py-2.5 rounded-full border text-xs transition-all ${checked
-                  ? 'border-[#5170ff] bg-[#5170ff]/15 text-white'
-                  : 'border-white/15 bg-white/5 text-white/70 hover:border-white/25'
+              className={`flex items-center gap-2 px-3 py-2.5 rounded-full text-xs transition-all ${checked
+                  ? 'bg-[#5170ff]/20 text-white shadow-[0_6px_16px_-6px_rgba(0,0,0,0.5)]'
+                  : 'bg-white/5 text-white/70 shadow-[0_4px_12px_-7px_rgba(0,0,0,0.45)] hover:bg-white/10'
                 }`}
             >
               {tool.logo && (
@@ -1652,7 +1733,7 @@ function StepTools({
   );
 }
 
-// ── Step 7: Child Newsletters ──────────────
+// ── Step 2: Child Newsletters ──────────────
 
 function StepNewsletters({
   formData,
@@ -1709,9 +1790,9 @@ function StepNewsletters({
               <button
                 key={nl.id}
                 onClick={() => toggle(nl.id)}
-                className={`w-full text-left px-4 py-4 rounded-xl border transition-all ${checked
-                    ? 'border-[#5170ff] bg-[#5170ff]/10'
-                    : 'border-white/15 bg-white/5 hover:border-white/25'
+                className={`w-full text-left px-4 py-4 rounded-xl transition-all ${checked
+                    ? 'bg-[#5170ff]/15 shadow-[0_10px_28px_-8px_rgba(0,0,0,0.55)]'
+                    : 'bg-white/5 shadow-[0_8px_22px_-10px_rgba(0,0,0,0.5)] hover:bg-white/[0.08]'
                   }`}
               >
                 <div className="flex items-start gap-3">

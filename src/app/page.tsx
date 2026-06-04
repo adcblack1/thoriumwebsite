@@ -118,7 +118,7 @@ export default async function HomePage() {
                       <article className={`cursor-pointer flex gap-3 ${index !== 0 ? "pt-3 border-t border-[#1b1b1b]/25" : ""} ${index !== 4 ? "pb-3" : ""}`}>
                         <div className="w-28 aspect-[4/3] flex-shrink-0 bg-[#1b1b1b]/5 overflow-hidden relative">
                           {item.thumbnail_url ? (
-                            <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />
+                            <Image src={item.thumbnail_url} alt={item.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover" />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
                               <span className="text-[#1b1b1b]/30 text-xs">Art</span>
@@ -138,7 +138,7 @@ export default async function HomePage() {
                   <Link href={`${featuredArticle.linkPrefix}/${featuredArticle.slug}`} className="group block">
                     <div className="aspect-[4/3] relative overflow-hidden bg-[#1b1b1b]/5 mb-5">
                       {featuredArticle.thumbnail_url ? (
-                        <Image src={featuredArticle.thumbnail_url} alt={featuredArticle.title} fill priority className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <Image src={featuredArticle.thumbnail_url} alt={featuredArticle.title} fill priority sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
                           <span className="text-[#1b1b1b]/30">Featured</span>
@@ -170,7 +170,7 @@ export default async function HomePage() {
                       <article className={`cursor-pointer flex-1 ${index !== 0 ? "pt-4 border-t border-[#1b1b1b]/25" : ""}`}>
                         <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
                           {item.thumbnail_url ? (
-                            <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />
+                            <Image src={item.thumbnail_url} alt={item.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover" />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
                               <span className="text-[#1b1b1b]/30 text-xs">Article</span>
@@ -193,7 +193,7 @@ export default async function HomePage() {
                   <Link href={`${featuredArticle.linkPrefix}/${featuredArticle.slug}`} className="group block">
                     <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-4">
                       {featuredArticle.thumbnail_url ? (
-                        <Image src={featuredArticle.thumbnail_url} alt={featuredArticle.title} fill priority className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <Image src={featuredArticle.thumbnail_url} alt={featuredArticle.title} fill priority sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
                           <span className="text-[#1b1b1b]/30">Featured</span>
@@ -225,7 +225,7 @@ export default async function HomePage() {
                         <Link href={`${item.linkPrefix}/${item.slug}`} className="group block">
                           <div className="relative overflow-hidden bg-[#1b1b1b]/5 mb-3" style={{ aspectRatio: '4/3' }}>
                             {item.thumbnail_url ? (
-                              <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                              <Image src={item.thumbnail_url} alt={item.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                             ) : (
                               <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
                                 <span className="text-[#1b1b1b]/30 text-xs">Article</span>
@@ -252,7 +252,7 @@ export default async function HomePage() {
                       <article className={`cursor-pointer flex gap-4 pb-4 ${index !== 0 ? "pt-4 border-t border-[#1b1b1b]/25" : ""}`}>
                         <div className="w-20 aspect-square flex-shrink-0 bg-[#1b1b1b]/5 overflow-hidden relative">
                           {item.thumbnail_url ? (
-                            <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />
+                            <Image src={item.thumbnail_url} alt={item.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover" />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
                               <span className="text-[#1b1b1b]/30 text-xs">Article</span>
@@ -299,9 +299,12 @@ export default async function HomePage() {
           {/* TV Newsletter Logo */}
           <div className="border-t border-[#1b1b1b]/25 mb-4"></div>
           <div className="mb-3 flex justify-center">
-            <img
+            <Image
               src="/Transparent Black Logo.png"
               alt="Thorium Valley"
+              width={85}
+              height={85}
+              priority
               style={{ height: 'clamp(65px, 8vw, 85px)', width: 'auto', display: 'block' }}
             />
           </div>
@@ -321,6 +324,7 @@ export default async function HomePage() {
                           alt={featuredNL.title}
                           fill
                           priority
+                          sizes="(max-width: 768px) 100vw, 50vw"
                           className="object-cover"
                         />
                       ) : (
@@ -359,6 +363,7 @@ export default async function HomePage() {
                                   src={item.thumbnail_url}
                                   alt={item.title}
                                   fill
+                                  sizes="(max-width: 768px) 100vw, 25vw"
                                   className="object-cover"
                                 />
                               ) : (
@@ -388,6 +393,7 @@ export default async function HomePage() {
                                   src={item.thumbnail_url}
                                   alt={item.title}
                                   fill
+                                  sizes="(max-width: 768px) 100vw, 25vw"
                                   className="object-cover"
                                 />
                               ) : (
@@ -418,6 +424,7 @@ export default async function HomePage() {
                           src={featuredNL.thumbnail_url}
                           alt={featuredNL.title}
                           fill
+                          sizes="100vw"
                           className="object-cover"
                         />
                       ) : (
@@ -441,7 +448,7 @@ export default async function HomePage() {
                       <article className={`cursor-pointer flex gap-4 pb-4 ${index !== 0 ? "pt-4 border-t border-[#1b1b1b]/25" : ""}`}>
                         <div className="w-20 aspect-square flex-shrink-0 bg-[#1b1b1b]/5 overflow-hidden relative">
                           {item.thumbnail_url ? (
-                            <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />
+                            <Image src={item.thumbnail_url} alt={item.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover" />
                           ) : (
                             <div className="w-full h-full flex items-center justify-center bg-[#1b1b1b]/10">
                               <span className="text-[#1b1b1b]/30 text-xs">Edition</span>
@@ -503,7 +510,7 @@ export default async function HomePage() {
                   <article className="cursor-pointer border-r border-[#1b1b1b]/25 pr-8">
                     <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-4">
                       {featuredCatalyst.thumbnail_url && (
-                        <Image src={featuredCatalyst.thumbnail_url} alt={featuredCatalyst.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <Image src={featuredCatalyst.thumbnail_url} alt={featuredCatalyst.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                       )}
                       <ThumbnailOverlay />
                     </div>
@@ -528,7 +535,7 @@ export default async function HomePage() {
                         <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
                           <article className={`cursor-pointer ${index === 0 ? 'pb-4 border-b border-[#1b1b1b]/25' : 'pt-4'}`}>
                             <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
-                              {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
+                              {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover" />}
                               <ThumbnailOverlay />
                             </div>
                             <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-2">{item.title}</h3>
@@ -543,7 +550,7 @@ export default async function HomePage() {
                         <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
                           <article className={`cursor-pointer ${index === 0 ? 'pb-4 border-b border-[#1b1b1b]/25' : 'pt-4'}`}>
                             <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
-                              {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
+                              {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover" />}
                               <ThumbnailOverlay />
                             </div>
                             <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-2">{item.title}</h3>
@@ -560,7 +567,7 @@ export default async function HomePage() {
                 <Link href={`/newsletter/${featuredCatalyst.slug}`} className="group">
                   <article className="cursor-pointer mb-6">
                     <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-4">
-                      {featuredCatalyst.thumbnail_url && <Image src={featuredCatalyst.thumbnail_url} alt={featuredCatalyst.title} fill className="object-cover" />}
+                      {featuredCatalyst.thumbnail_url && <Image src={featuredCatalyst.thumbnail_url} alt={featuredCatalyst.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover" />}
                       <ThumbnailOverlay />
                     </div>
                     <h3 className="font-bold font-times leading-tight text-[#1b1b1b]" style={{ fontSize: '28px' }}>{featuredCatalyst.title}</h3>
@@ -572,7 +579,7 @@ export default async function HomePage() {
                     <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
                       <article className={`cursor-pointer flex gap-4 pb-4 ${index !== 0 ? 'pt-4 border-t border-[#1b1b1b]/25' : ''}`}>
                         <div className="w-20 aspect-square flex-shrink-0 bg-[#1b1b1b]/5 overflow-hidden relative">
-                          {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
+                          {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover" />}
                         </div>
                         <h3 className="font-bold font-times text-sm leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-3">{item.title}</h3>
                       </article>
@@ -612,7 +619,7 @@ export default async function HomePage() {
                   <article className="cursor-pointer border-r border-[#1b1b1b]/25 pr-8">
                     <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-4">
                       {featuredLab.thumbnail_url && (
-                        <Image src={featuredLab.thumbnail_url} alt={featuredLab.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                        <Image src={featuredLab.thumbnail_url} alt={featuredLab.title} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
                       )}
                       <ThumbnailOverlay />
                     </div>
@@ -637,7 +644,7 @@ export default async function HomePage() {
                         <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
                           <article className={`cursor-pointer ${index === 0 ? 'pb-4 border-b border-[#1b1b1b]/25' : 'pt-4'}`}>
                             <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
-                              {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
+                              {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover" />}
                               <ThumbnailOverlay />
                             </div>
                             <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-2">{item.title}</h3>
@@ -652,7 +659,7 @@ export default async function HomePage() {
                         <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
                           <article className={`cursor-pointer ${index === 0 ? 'pb-4 border-b border-[#1b1b1b]/25' : 'pt-4'}`}>
                             <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-3">
-                              {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
+                              {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover" />}
                               <ThumbnailOverlay />
                             </div>
                             <h3 className="font-bold font-times text-lg leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-2">{item.title}</h3>
@@ -669,7 +676,7 @@ export default async function HomePage() {
                 <Link href={`/newsletter/${featuredLab.slug}`} className="group">
                   <article className="cursor-pointer mb-6">
                     <div className="aspect-video relative overflow-hidden bg-[#1b1b1b]/5 mb-4">
-                      {featuredLab.thumbnail_url && <Image src={featuredLab.thumbnail_url} alt={featuredLab.title} fill className="object-cover" />}
+                      {featuredLab.thumbnail_url && <Image src={featuredLab.thumbnail_url} alt={featuredLab.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover" />}
                       <ThumbnailOverlay />
                     </div>
                     <h3 className="font-bold font-times leading-tight text-[#1b1b1b]" style={{ fontSize: '28px' }}>{featuredLab.title}</h3>
@@ -681,7 +688,7 @@ export default async function HomePage() {
                     <Link key={item.id} href={`/newsletter/${item.slug}`} className="group">
                       <article className={`cursor-pointer flex gap-4 pb-4 ${index !== 0 ? 'pt-4 border-t border-[#1b1b1b]/25' : ''}`}>
                         <div className="w-20 aspect-square flex-shrink-0 bg-[#1b1b1b]/5 overflow-hidden relative">
-                          {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill className="object-cover" />}
+                          {item.thumbnail_url && <Image src={item.thumbnail_url} alt={item.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw" className="object-cover" />}
                         </div>
                         <h3 className="font-bold font-times text-sm leading-snug text-[#1b1b1b] group-hover:text-accent transition-colors line-clamp-3">{item.title}</h3>
                       </article>

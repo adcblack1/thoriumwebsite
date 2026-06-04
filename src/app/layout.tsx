@@ -101,7 +101,7 @@ export default function RootLayout({
         />
         <Script
           id="fb-pixel-init"
-          strategy="beforeInteractive"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               !function(f,b,e,v,n,t,s)

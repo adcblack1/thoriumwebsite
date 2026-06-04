@@ -303,7 +303,6 @@ export async function exportMainForBeehiiv(slug?: string): Promise<{ html: strin
   const AC = '#5170ff';
   const SITE = 'https://www.thoriumvalley.com';
   const VOTE_BASE = 'https://www.thoriumvalley.com';
-  const nlSlug = newsletter.slug;
 
   const bannerUrl = newsletter.banner_image_url?.startsWith('http')
     ? newsletter.banner_image_url : `${SITE}${newsletter.banner_image_url || ''}`;
@@ -313,7 +312,7 @@ export async function exportMainForBeehiiv(slug?: string): Promise<{ html: strin
 
   const tocItems = newsletter.toc.map((item, i) => {
     const articleSlug = articles[i]?.slug;
-    const fsl = articleSlug ? `<td style="text-align:right;vertical-align:middle;white-space:nowrap;padding-left:12px;">\n  <a href="${SITE}/articles/${articleSlug}?utm_source=beehiiv&utm_medium=newsletter&utm_campaign=${nlSlug}" style="font-family:${INTER};font-size:10px;font-weight:800;color:${AC};text-decoration:none;letter-spacing:0.08em;">FULL STORY</a>\n </td>` : '';
+    const fsl = articleSlug ? `<td style="text-align:right;vertical-align:middle;white-space:nowrap;padding-left:12px;">\n  <a href="${SITE}/articles/${articleSlug}" style="font-family:${INTER};font-size:10px;font-weight:800;color:${AC};text-decoration:none;letter-spacing:0.08em;">FULL STORY</a>\n </td>` : '';
     return `<div style="padding:4px 15px;text-align:left;">\n <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>\n <td style="font-family:${TIMES};font-size:26px;line-height:1.3;color:#2A2A2A;padding:2px 0;letter-spacing:-0.05em;">\n <img src="${SITE}/thumbnails/toc-bullet.png" alt="" width="14" height="14" style="width:14px;height:14px;vertical-align:middle;margin-right:8px;">${item.replace(/'/g, '&#x27;')}\n </td>${fsl}\n </tr></table>\n</div>`;
   }).join('');
 
@@ -346,18 +345,22 @@ export async function exportMainForBeehiiv(slug?: string): Promise<{ html: strin
   }
 
   const articleCards = articles.map(article => {
-    const aUrl = `${SITE}/articles/${article.slug}?utm_source=beehiiv&utm_medium=newsletter&utm_campaign=${nlSlug}`;
+    const aUrl = `${SITE}/articles/${article.slug}`;
     const sT = encodeURIComponent(article.title);
     const sU = encodeURIComponent(aUrl);
     let content = mdToHtml((article as any).newsletter_content || article.content || '<p>Content not available.</p>');
     content = content.replace(/<a /g, `<a style="color:${AC};text-decoration:none;" `);
     content = content.replace(/<p>(?!<)/g, `<p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;">`);
     content = content.replace(/<p><strong/g, `<p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;"><strong`);
-    content = content.replace(/<ul>/g, `<ul style="margin:0;padding:0 0 0 20px;">`);
-    content = content.replace(/<li>/g, `<li style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0;">`);
+    content = content.replace(/<ul[^>]*>([\s\S]*?)<\/ul>/gi, (_m: string, inner: string) => { const items = inner.match(/<li[^>]*>([\s\S]*?)<\/li>/gi) || []; return items.map((li: string) => { const t = li.replace(/<\/?li[^>]*>/gi, '').trim(); return `<p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${t}</p>`; }).join('\n'); });
+
+    content = content.replace(/<p([^>]*)>\s*<strong[^>]*>\s*Into the Valley:?\s*<\/strong>:?\s*([\s\S]*?)<\/p>/gi, `<div style="padding:20px 0 8px;text-align:center;"><img src="${SITE}/IN%20THE%20VALLEY%20NEWS.png" alt="Into the Valley" style="display:block;width:100%;height:auto;margin:0 auto;padding:0;" /></div><p$1>$2</p>`);
     content = content.replace(/<p[^>]*><strong[^>]*>Our Valley View<\/strong><\/p>/gi, `<div style="padding:20px 0 8px;text-align:center;"><img src="${SITE}/IN%20THE%20VALLEY%20NEWS.png" alt="Into the Valley" style="display:block;width:100%;height:auto;margin:0 auto;padding:0;" /></div>`);
     content = content.replace(/<p[^>]*><strong[^>]*>Into the Valley<\/strong><\/p>/gi, `<div style="padding:20px 0 8px;text-align:center;"><img src="${SITE}/IN%20THE%20VALLEY%20NEWS.png" alt="Into the Valley" style="display:block;width:100%;height:auto;margin:0 auto;padding:0;" /></div>`);
     content = content.replace(/<div class="vv-header"[^>]*>.*?<\/div>/gi, `<div style="padding:20px 0 8px;text-align:center;"><img src="${SITE}/IN%20THE%20VALLEY%20NEWS.png" alt="Into the Valley" style="display:block;width:100%;height:auto;margin:0 auto;padding:0;" /></div>`);
+    // Plain text: <p>INTO THE VALLEY:</p>
+    content = content.replace(/<p[^>]*>\s*(?:INTO THE VALLEY|Into the Valley|into the valley):?\s*<\/p>/gi, `<div style="padding:20px 0 8px;text-align:center;"><img src="${SITE}/IN%20THE%20VALLEY%20NEWS.png" alt="Into the Valley" style="display:block;width:100%;height:auto;margin:0 auto;padding:0;" /></div>`);
+    content = content.replace(/<h[23]>Into the Valley<\/h[23]>/gi, `<div style="padding:20px 0 8px;text-align:center;"><img src="${SITE}/IN%20THE%20VALLEY%20NEWS.png" alt="Into the Valley" style="display:block;width:100%;height:auto;margin:0 auto;padding:0;" /></div>`);
     const fm = content.match(/^<p[^>]*>(.)/);
     if (fm) content = content.replace(new RegExp(`^(<p[^>]*>)${fm[1].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`), `$1<span style="font-family:${TIMES};font-size:3.5em;float:left;line-height:0.8;padding-right:8px;padding-top:4px;color:${AC};font-weight:bold;">${fm[1]}</span>`);
     const thumb = article.thumbnail_url ? `<div style="padding:0;text-align:center;">\n <a href="${aUrl}" style="display:block;text-decoration:none;">\n <img src="${abs(article.thumbnail_url)}" alt="${article.title.replace(/"/g, '&quot;')}" width="100%" style="display:block;width:100%;height:auto;" />\n </a>\n </div>` : '';
@@ -367,13 +370,25 @@ export async function exportMainForBeehiiv(slug?: string): Promise<{ html: strin
   let newsCard = '';
   if (newsletter.links?.news?.length) {
     const ni = newsletter.links.news.map(item => {
+      if ((item as any).text) {
+        const md = (item as any).text.match(/^(.*?)\[([^\]]+)\]\(([^)]+)\)(.*)$/);
+        if (md) return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${md[1].replace(/'/g, '&#x27;')}<a style="color:${AC};text-decoration:none;" href="${md[3]}" target="_blank">${md[2].replace(/'/g, '&#x27;')}</a>${md[4].replace(/'/g, '&#x27;')}</p>`;
+        return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${(item as any).text.replace(/'/g, '&#x27;')}</p>`;
+      }
       const rest = item.rest ? (item.rest.startsWith(' ') || item.rest.startsWith(',') ? item.rest : ` ${item.rest}`) : '';
       const prefix = (item as any).prefix ? `${(item as any).prefix} ` : '';
       return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${prefix}<a style="color:${AC};text-decoration:none;" href="${item.url}" target="_blank">${item.link_text.replace(/'/g, '&#x27;')}</a>${rest.replace(/'/g, '&#x27;')}</p>`;
     }).join('\n');
     let jobsSec = '';
     if (newsletter.links.jobs?.length) {
-      const ji = newsletter.links.jobs.map(item => ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;<a style="color:${AC};text-decoration:none;" href="${item.url}" target="_blank">${item.company}</a> &mdash; ${item.role}</p>`).join('\n');
+      const ji = newsletter.links.jobs.map(item => {
+        if ((item as any).text) {
+          const md = (item as any).text.match(/^\[([^\]]+)\]\(([^)]+)\):?\s*(.*)$/);
+          if (md) return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;<a style="color:${AC};text-decoration:none;" href="${md[2]}" target="_blank">${md[1].replace(/'/g, '&#x27;')}</a> &mdash; ${md[3].replace(/'/g, '&#x27;')}</p>`;
+          return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${(item as any).text.replace(/'/g, '&#x27;')}</p>`;
+        }
+        return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;<a style="color:${AC};text-decoration:none;" href="${item.url}" target="_blank">${item.company}</a> &mdash; ${item.role}</p>`;
+      }).join('\n');
       jobsSec = `\n <div style="border-bottom:1px solid rgba(27,27,27,0.06);margin:0 15px;"></div>\n <div style="padding:14px 15px 4px;"><p style="font-family:${INTER};color:#2A2A2A;font-size:13px;font-weight:700;letter-spacing:0.06em;margin:0;">WHO'S HIRING IN AI</p></div>\n <div style="padding:0 15px 5px;">\n${ji}\n </div>`;
     }
     newsCard = `<div style="border:1px solid #CDCDCD;border-radius:10px;margin:20px 0;padding:0 0 15px;overflow:hidden;">\n <div style="padding:0;text-align:center;"><img src="${SITE}/thumbnails/news-header.png" alt="In Other News" width="100%" style="display:block;width:100%;height:auto;" /></div>\n <div style="padding:10px 15px 0;"><p style="font-family:${INTER};color:${AC};font-size:16px;margin:0;">IN OTHER NEWS</p></div>\n <div style="padding:4px 15px 0;"><div style="font-family:${TIMES};font-size:30px;line-height:1.2;color:#2A2A2A;margin:0;letter-spacing:-0.05em;">What else happened today?</div></div>\n <div style="padding:0 15px;"><div style="border-bottom:1px solid rgba(27,27,27,0.1);margin:12px 0 8px;"></div></div>\n <div style="padding:0 15px;">\n${ni}\n </div>${jobsSec}\n</div>`;
@@ -394,7 +409,14 @@ export async function exportMainForBeehiiv(slug?: string): Promise<{ html: strin
 
   let toolsCard = '';
   if (newsletter.links?.tools?.length) {
-    const ti = newsletter.links.tools.map(item => ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;<a style="color:${AC};text-decoration:none;" href="${item.url}" target="_blank">${item.name}</a>: ${(item.desc || '').replace(/'/g, '&#x27;')}</p>`).join('\n');
+    const ti = newsletter.links.tools.map(item => {
+      if ((item as any).text) {
+        const md = (item as any).text.match(/^\[([^\]]+)\]\(([^)]+)\):?\s*(.*)$/);
+        if (md) return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;<a style="color:${AC};text-decoration:none;" href="${md[2]}" target="_blank">${md[1].replace(/'/g, '&#x27;')}</a>: ${md[3].replace(/'/g, '&#x27;')}</p>`;
+        return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${(item as any).text.replace(/'/g, '&#x27;')}</p>`;
+      }
+      return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;<a style="color:${AC};text-decoration:none;" href="${item.url}" target="_blank">${item.name}</a>: ${(item.desc || '').replace(/'/g, '&#x27;')}</p>`;
+    }).join('\n');
     toolsCard = `<div style="border:1px solid #CDCDCD;border-radius:10px;margin:20px 0;padding:0 0 15px;overflow:hidden;">\n <div style="padding:0;text-align:center;"><img src="${SITE}/thumbnails/tools-header.png" alt="AI Tools" width="100%" style="display:block;width:100%;height:auto;" /></div>\n <div style="padding:10px 15px 0;"><p style="font-family:${INTER};color:${AC};font-size:16px;margin:0;">AI TOOLS</p></div>\n <div style="padding:4px 15px 0;"><div style="font-family:${TIMES};font-size:30px;line-height:1.2;color:#2A2A2A;margin:0;letter-spacing:-0.05em;">What our editors are paying attention to today</div></div>\n <div style="padding:0 15px;"><div style="border-bottom:1px solid rgba(27,27,27,0.1);margin:12px 0 8px;"></div></div>\n <div style="padding:0 15px;">\n${ti}\n </div>\n</div>`;
   }
 
@@ -508,8 +530,7 @@ ${introParagraphs.map((p, i) => {
   let pollHtml = '';
   if (newsletter.poll) {
     const p = newsletter.poll;
-    const allOpts = [...p.options, ...(p.options.some(o => o.toLowerCase() === 'other') ? [] : ['Other'])];
-    const optLinks = allOpts.map(opt => {
+    const optLinks = p.options.map(opt => {
       const href = p.poll_id
         ? `${VOTE_BASE}/api/poll/vote?poll=${p.poll_id}&answer=${encodeURIComponent(opt)}&sid={{subscriber_id}}`
         : '#';
@@ -534,16 +555,18 @@ ${optLinks}
     // Process content: ensure links are styled
     let content = mdToHtml(story.content || '<p>Content not available.</p>');
     content = content.replace(/<a /g, `<a style="color:${AC};text-decoration:none;" target="_blank" `);
-    // Add drop cap to first paragraph
+    // Style bare <p> tags FIRST (every unstyled <p> needs the body font —
+    // match all of them, not just ones not followed by a tag, or the drop-cap
+    // paragraph below ends up unstyled and falls back to a serif default)
+    content = content.replace(/<p>/g, `<p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;">`);
+    // Then add drop cap to the first paragraph (keeps the <p>'s body font, only the first letter is serif)
     content = content.replace(
-      /^<p>(<strong[^>]*>.*?<\/strong>)<\/p>/,
-      (_, bold) => `<p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;">${bold}</p>`
+      /^<p([^>]*)>(.)/,
+      (_, attrs, firstChar) => `<p${attrs}><span style="font-family:'Times New Roman',serif;font-size:3.5em;float:left;line-height:0.8;padding-right:8px;padding-top:4px;color:${AC};font-weight:bold;">${firstChar.toUpperCase()}</span>`
     );
-    // Style remaining bare <p> tags
-    content = content.replace(/<p>(?!<)/g, `<p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;">`);
     // Style <ul>/<li>
-    content = content.replace(/<ul>/g, `<ul style="margin:0;padding:0 0 0 20px;">`);
-    content = content.replace(/<li>/g, `<li style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0;">`);
+    content = content.replace(/<ul[^>]*>([\s\S]*?)<\/ul>/gi, (_m: string, inner: string) => { const items = inner.match(/<li[^>]*>([\s\S]*?)<\/li>/gi) || []; return items.map((li: string) => { const t = li.replace(/<\/?li[^>]*>/gi, '').trim(); return `<p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${t}</p>`; }).join('\n'); });
+
     // Replace The Verdict / The Formula with images
     content = content.replace(/<h2>The Verdict<\/h2>/gi,
       `<div style="text-align:center;padding:20px 0 8px;"><img src="${SITE}/thumbnails/the-verdict.png" alt="The Verdict" style="display:block;width:100%;height:auto;" /></div>`);
@@ -575,9 +598,6 @@ ${optLinks}
  <div style="padding:0 15px;text-align:left;">
 ${content}
  </div>
- <div style="padding:8px 15px 12px;text-align:left;">
- <a href="${articleUrl}" style="font-family:${INTER};font-size:14px;font-weight:600;color:${AC};text-decoration:none;">Read the full story &rarr;</a>
- </div>
 </div>`;
   }).join('\n');
 
@@ -585,6 +605,11 @@ ${content}
   let newsCard = '';
   if (newsletter.links?.news?.length) {
     const newsItems = newsletter.links.news.map(item => {
+      if ((item as any).text) {
+        const md = (item as any).text.match(/^(.*?)\[([^\]]+)\]\(([^)]+)\)(.*)$/);
+        if (md) return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${md[1].replace(/'/g, '&#x27;')}<a style="color:${AC};text-decoration:none;" href="${md[3]}" target="_blank">${md[2].replace(/'/g, '&#x27;')}</a>${md[4].replace(/'/g, '&#x27;')}</p>`;
+        return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${(item as any).text.replace(/'/g, '&#x27;')}</p>`;
+      }
       const rest = item.rest ? (item.rest.startsWith(' ') || item.rest.startsWith(',') ? item.rest : ` ${item.rest}`) : '';
       const prefix = (item as any).prefix ? `${(item as any).prefix} ` : '';
       return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${prefix}<a style="color:${AC};text-decoration:none;" href="${item.url}" target="_blank">${item.link_text.replace(/'/g, '&#x27;')}</a>${rest.replace(/'/g, '&#x27;')}</p>`;
@@ -604,6 +629,11 @@ ${newsItems}
   let toolsCard = '';
   if (newsletter.links?.tools?.length) {
     const toolItems = newsletter.links.tools.map(item => {
+      if ((item as any).text) {
+        const md = (item as any).text.match(/^\[([^\]]+)\]\(([^)]+)\):?\s*(.*)$/);
+        if (md) return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;<a style="color:${AC};text-decoration:none;" href="${md[2]}" target="_blank">${md[1].replace(/'/g, '&#x27;')}</a>: ${md[3].replace(/'/g, '&#x27;')}</p>`;
+        return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${(item as any).text.replace(/'/g, '&#x27;')}</p>`;
+      }
       const sponsored = item.desc?.includes('(sponsored)') ? ' <span style="color:#999;font-style:italic;">(sponsored)</span>' : '';
       const desc = item.desc?.replace(/\*?\(sponsored\)\*?:?\s*/, '') || '';
       return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;<a style="color:${AC};text-decoration:none;" href="${item.url}" target="_blank">${item.name}</a>${sponsored}${desc ? ': ' + desc.replace(/'/g, '&#x27;') : ''}</p>`;
@@ -678,7 +708,6 @@ export async function exportCatalystForBeehiiv(slug?: string): Promise<{ html: s
   const INTER = 'Inter,sans-serif';
   const TIMES = "'Times New Roman',serif";
   const AC = '#5170ff';
-  const CAT_PURPLE = '#8c52ff';
   const SITE = 'https://www.thoriumvalley.com';
   const VOTE_BASE = 'https://www.thoriumvalley.com';
   const nlSlug = newsletter.slug;
@@ -697,7 +726,7 @@ export async function exportCatalystForBeehiiv(slug?: string): Promise<{ html: s
     const fsl = articleSlug
       ? `<td style="text-align:right;vertical-align:middle;white-space:nowrap;padding-left:12px;">\n  <a href="${SITE}/articles/${articleSlug}?utm_source=beehiiv&utm_medium=newsletter&utm_campaign=${nlSlug}" style="font-family:${INTER};font-size:10px;font-weight:800;color:${AC};text-decoration:none;letter-spacing:0.08em;">FULL STORY</a>\n </td>`
       : '';
-    return `<div style="padding:4px 15px;text-align:left;">\n <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>\n <td style="font-family:${TIMES};font-size:26px;line-height:1.3;color:#2A2A2A;padding:2px 0;letter-spacing:-0.05em;">\n <span style="color:${CAT_PURPLE};font-size:16px;margin-right:8px;">&#10022;</span>${item.replace(/'/g, '&#x27;')}\n </td>${fsl}\n </tr></table>\n</div>`;
+    return `<div style="padding:4px 15px;text-align:left;">\n <table width="100%" cellpadding="0" cellspacing="0" border="0"><tr>\n <td style="font-family:${TIMES};font-size:26px;line-height:1.3;color:#2A2A2A;padding:2px 0;letter-spacing:-0.05em;">\n <img src="${SITE}/thumbnails/toc-bullet.png" alt="" width="14" height="14" style="width:14px;height:14px;vertical-align:middle;margin-right:8px;">${item.replace(/'/g, '&#x27;')}\n </td>${fsl}\n </tr></table>\n</div>`;
   }).join('');
 
   // Secondary TOC
@@ -706,8 +735,8 @@ export async function exportCatalystForBeehiiv(slug?: string): Promise<{ html: s
   let secToc = '';
   if (hasNews || hasTools) {
     let spans = '';
-    if (hasNews) spans += `<span style="font-family:${INTER};font-size:14px;color:rgba(27,27,27,0.5);margin-right:20px;"><span style="color:${CAT_PURPLE};font-size:10px;opacity:0.4;margin-right:6px;">&#10022;</span>What else happened today?</span>`;
-    if (hasTools) spans += `<span style="font-family:${INTER};font-size:14px;color:rgba(27,27,27,0.5);"><span style="color:${CAT_PURPLE};font-size:10px;opacity:0.4;margin-right:6px;">&#10022;</span>What AI tools should I be using?</span>`;
+    if (hasNews) spans += `<span style="font-family:${INTER};font-size:14px;color:rgba(27,27,27,0.5);margin-right:20px;"><img src="${SITE}/thumbnails/toc-bullet.png" alt="" width="10" height="10" style="width:10px;height:10px;opacity:0.4;vertical-align:middle;margin-right:6px;">What else happened today?</span>`;
+    if (hasTools) spans += `<span style="font-family:${INTER};font-size:14px;color:rgba(27,27,27,0.5);"><img src="${SITE}/thumbnails/toc-bullet.png" alt="" width="10" height="10" style="width:10px;height:10px;opacity:0.4;vertical-align:middle;margin-right:6px;">What AI tools should I be using?</span>`;
     secToc = `<div style="padding:14px 15px 0;">${spans}</div>`;
   }
 
@@ -724,8 +753,7 @@ export async function exportCatalystForBeehiiv(slug?: string): Promise<{ html: s
   let pollHtml = '';
   if (newsletter.poll) {
     const p = newsletter.poll;
-    const allOpts = [...p.options, ...(p.options.some(o => o.toLowerCase() === 'other') ? [] : ['Other'])];
-    const optLinks = allOpts.map(opt => {
+    const optLinks = p.options.map(opt => {
       const href = p.poll_id
         ? `${VOTE_BASE}/api/poll/vote?poll=${p.poll_id}&answer=${encodeURIComponent(opt)}&sid={{subscriber_id}}`
         : '#';
@@ -744,13 +772,16 @@ export async function exportCatalystForBeehiiv(slug?: string): Promise<{ html: s
     content = content.replace(/<a /g, `<a style="color:${AC};text-decoration:none;" target="_blank" `);
     content = content.replace(/<p>(?!<)/g, `<p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;">`);
     content = content.replace(/<p><strong/g, `<p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:10px 0;margin:0;"><strong`);
-    content = content.replace(/<ul>/g, `<ul style="margin:0;padding:0 0 0 20px;">`);
-    content = content.replace(/<li>/g, `<li style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0;">`);
+    content = content.replace(/<ul[^>]*>([\s\S]*?)<\/ul>/gi, (_m: string, inner: string) => { const items = inner.match(/<li[^>]*>([\s\S]*?)<\/li>/gi) || []; return items.map((li: string) => { const t = li.replace(/<\/?li[^>]*>/gi, '').trim(); return `<p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${t}</p>`; }).join('\n'); });
+
     // Into the Valley header
+    content = content.replace(/<p([^>]*)>\s*<strong[^>]*>\s*Into the Valley:?\s*<\/strong>:?\s*([\s\S]*?)<\/p>/gi, `<div style="padding:20px 0 8px;text-align:center;"><img src="${SITE}/IN%20THE%20VALLEY%20NEWS.png" alt="Into the Valley" style="display:block;width:100%;height:auto;margin:0 auto;padding:0;" /></div><p$1>$2</p>`);
     content = content.replace(/<p[^>]*><strong[^>]*>Into the Valley<\/strong><\/p>/gi, `<div style="padding:20px 0 8px;text-align:center;"><img src="${SITE}/IN%20THE%20VALLEY%20NEWS.png" alt="Into the Valley" style="display:block;width:100%;height:auto;margin:0 auto;padding:0;" /></div>`);
     content = content.replace(/<p[^>]*><strong[^>]*>Our Valley View<\/strong><\/p>/gi, `<div style="padding:20px 0 8px;text-align:center;"><img src="${SITE}/IN%20THE%20VALLEY%20NEWS.png" alt="Into the Valley" style="display:block;width:100%;height:auto;margin:0 auto;padding:0;" /></div>`);
-    content = content.replace(/<h2>Into the Valley<\/h2>/gi, `<div style="padding:20px 0 8px;text-align:center;"><img src="${SITE}/IN%20THE%20VALLEY%20NEWS.png" alt="Into the Valley" style="display:block;width:100%;height:auto;margin:0 auto;padding:0;" /></div>`);
+    content = content.replace(/<h[23]>Into the Valley<\/h[23]>/gi, `<div style="padding:20px 0 8px;text-align:center;"><img src="${SITE}/IN%20THE%20VALLEY%20NEWS.png" alt="Into the Valley" style="display:block;width:100%;height:auto;margin:0 auto;padding:0;" /></div>`);
     content = content.replace(/<div class="vv-header"[^>]*>.*?<\/div>/gi, `<div style="padding:20px 0 8px;text-align:center;"><img src="${SITE}/IN%20THE%20VALLEY%20NEWS.png" alt="Into the Valley" style="display:block;width:100%;height:auto;margin:0 auto;padding:0;" /></div>`);
+    // Plain text: <p>INTO THE VALLEY:</p>
+    content = content.replace(/<p[^>]*>\s*(?:INTO THE VALLEY|Into the Valley|into the valley):?\s*<\/p>/gi, `<div style="padding:20px 0 8px;text-align:center;"><img src="${SITE}/IN%20THE%20VALLEY%20NEWS.png" alt="Into the Valley" style="display:block;width:100%;height:auto;margin:0 auto;padding:0;" /></div>`);
     // Drop cap
     const fm = content.match(/^<p[^>]*>(.)/);
     if (fm) content = content.replace(new RegExp(`^(<p[^>]*>)${fm[1].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`), `$1<span style="font-family:${TIMES};font-size:3.5em;float:left;line-height:0.8;padding-right:8px;padding-top:4px;color:${AC};font-weight:bold;">${fm[1]}</span>`);
@@ -762,6 +793,11 @@ export async function exportCatalystForBeehiiv(slug?: string): Promise<{ html: s
   let newsCard = '';
   if (newsletter.links?.news?.length) {
     const newsItems = newsletter.links.news.map(item => {
+      if ((item as any).text) {
+        const md = (item as any).text.match(/^(.*?)\[([^\]]+)\]\(([^)]+)\)(.*)$/);
+        if (md) return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${md[1].replace(/'/g, '&#x27;')}<a style="color:${AC};text-decoration:none;" href="${md[3]}" target="_blank">${md[2].replace(/'/g, '&#x27;')}</a>${md[4].replace(/'/g, '&#x27;')}</p>`;
+        return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${(item as any).text.replace(/'/g, '&#x27;')}</p>`;
+      }
       const rest = item.rest ? (item.rest.startsWith(' ') || item.rest.startsWith(',') ? item.rest : ` ${item.rest}`) : '';
       const prefix = (item as any).prefix ? `${(item as any).prefix} ` : '';
       return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${prefix}<a style="color:${AC};text-decoration:none;" href="${item.url}" target="_blank">${item.link_text.replace(/'/g, '&#x27;')}</a>${rest.replace(/'/g, '&#x27;')}</p>`;
@@ -773,6 +809,11 @@ export async function exportCatalystForBeehiiv(slug?: string): Promise<{ html: s
   let toolsCard = '';
   if (newsletter.links?.tools?.length) {
     const toolItems = newsletter.links.tools.map(item => {
+      if ((item as any).text) {
+        const md = (item as any).text.match(/^\[([^\]]+)\]\(([^)]+)\):?\s*(.*)$/);
+        if (md) return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;<a style="color:${AC};text-decoration:none;" href="${md[2]}" target="_blank">${md[1].replace(/'/g, '&#x27;')}</a>: ${md[3].replace(/'/g, '&#x27;')}</p>`;
+        return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;${(item as any).text.replace(/'/g, '&#x27;')}</p>`;
+      }
       const sponsored = (item.desc || '').includes('(sponsored)') ? ' <span style="color:#999;font-style:italic;">(sponsored)</span>' : '';
       const desc = (item.desc || '').replace(/\*?\(sponsored\)\*?:?\s*/, '');
       return ` <p style="font-family:${INTER};font-size:16px;line-height:1.5;color:#2D2D2D;padding:4px 0 4px 24px;margin:0;"><span style="color:${AC};font-weight:700;">+</span>&nbsp;<a style="color:${AC};text-decoration:none;" href="${item.url}" target="_blank">${item.name}</a>${sponsored}${desc ? ': ' + desc.replace(/'/g, '&#x27;') : ''}</p>`;
