@@ -85,7 +85,7 @@ export default function SubscribeHero({
         src="/images/subscribe/clouds-mobile.png"
         alt=""
         aria-hidden
-        className="pointer-events-none fixed left-1/2 top-0 z-0 w-full max-w-[560px] -translate-x-1/2 select-none lg:hidden"
+        className="pointer-events-none fixed left-1/2 -top-16 z-0 w-full max-w-[560px] -translate-x-1/2 select-none lg:hidden"
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
@@ -108,22 +108,7 @@ export default function SubscribeHero({
             straddle the card edge — in front of the cloud (z-10 within the
             column) but behind the card (z-20). */}
         <div className="relative mx-auto w-full max-w-[330px] lg:max-w-[440px]">
-          {/* Tech tag — user-supplied art (tilt baked in). */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/subscribe/tech-tag.png"
-            alt="Tech"
-            className="pointer-events-none absolute z-10 select-none top-[-42px] left-[-30px] w-[104px] lg:top-[-58px] lg:left-[-44px] lg:w-[146px]"
-            style={{ filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.30))' }}
-          />
-          {/* Business tag — user-supplied art (tilt baked in). */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/subscribe/business-tag.png"
-            alt="Business"
-            className="pointer-events-none absolute z-10 select-none top-[95%] right-[-32px] w-[130px] lg:right-[-50px] lg:w-[182px]"
-            style={{ filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.30))' }}
-          />
+          {/* Tech / Business tags removed per request. */}
 
           {/* Navy card — mobile drop shadow per spec; every child is real DOM */}
           <div
@@ -142,7 +127,7 @@ export default function SubscribeHero({
                 Sized down a touch alongside the wordmark per feedback. */}
             <h1
               className="font-times mt-4 lg:mt-6"
-              style={{ fontSize: 'clamp(26px, 3.3vw, 40px)', lineHeight: 1.08, fontWeight: 400, color: '#ffffff', letterSpacing: '-0.07em' }}
+              style={{ fontSize: 'clamp(31px, 3.3vw, 40px)', lineHeight: 1.08, fontWeight: 400, color: '#ffffff', letterSpacing: '-0.07em' }}
             >
               The front page of{' '}
               <span className="relative inline-block">
@@ -152,7 +137,7 @@ export default function SubscribeHero({
                   src="/images/subscribe/ai-underline.png"
                   alt=""
                   aria-hidden
-                  className="pointer-events-none absolute left-1/2 w-[210%] -translate-x-1/2 select-none"
+                  className="pointer-events-none absolute left-1/2 w-[240%] -translate-x-1/2 select-none"
                   style={{ bottom: '0.04em' }}
                 />
               </span>
