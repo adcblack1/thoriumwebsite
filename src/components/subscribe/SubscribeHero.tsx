@@ -83,19 +83,19 @@ export default function SubscribeHero({
         initial={reduce ? false : { opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 mt-28 w-full max-w-[420px] lg:mt-32 lg:max-w-[540px]"
+        className="relative z-10 mt-0 w-full max-w-[420px] lg:mt-4 lg:max-w-[600px]"
       >
         {/* Card + tags wrapper. Narrower than the column so the square card
             leaves cloud margin on both sides for the tags to peek into. Tags are
             positioned relative to THIS box (the card's footprint), so they
             straddle the card edge — in front of the cloud (z-10 within the
             column) but behind the card (z-20). */}
-        <div className="relative mx-auto w-full max-w-[330px] lg:max-w-[440px]">
+        <div className="relative mx-auto w-full max-w-[400px] lg:max-w-[520px]">
           {/* Tech / Business tags removed per request. */}
 
           {/* Navy card — mobile drop shadow per spec; every child is real DOM */}
           <div
-            className="relative z-20 flex aspect-square w-full flex-col items-center justify-center rounded-[30px] px-6 text-center text-white shadow-[0_28px_70px_-18px_rgba(0,0,0,0.7)] lg:rounded-[36px] lg:px-10"
+            className="relative z-20 flex w-full flex-col items-center justify-center rounded-[30px] px-6 py-9 text-center text-white shadow-[0_28px_70px_-18px_rgba(0,0,0,0.7)] lg:rounded-[36px] lg:px-10 lg:py-11"
             style={{ background: NAVY }}
           >
             {/* Wordmark (a touch smaller per feedback) */}
@@ -110,9 +110,10 @@ export default function SubscribeHero({
                 Sized down a touch alongside the wordmark per feedback. */}
             <h1
               className="font-times mt-4 lg:mt-6"
-              style={{ fontSize: 'clamp(31px, 3.3vw, 40px)', lineHeight: 1.08, fontWeight: 400, color: '#ffffff', letterSpacing: '-0.07em' }}
+              style={{ fontSize: 'clamp(32px, 3.6vw, 44px)', lineHeight: 1.1, fontWeight: 400, color: '#ffffff', letterSpacing: '-0.05em' }}
             >
-              The front page of{' '}
+              Become the go-to
+              <br />
               <span className="relative inline-block">
                 AI
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -123,13 +124,15 @@ export default function SubscribeHero({
                   className="pointer-events-none absolute left-1/2 w-[240%] -translate-x-1/2 select-none"
                   style={{ bottom: '0.04em' }}
                 />
-              </span>
-              .
+              </span>{' '}
+              person at
+              <br />
+              <em>your</em> company.
             </h1>
 
             {/* Subtext — Inter, #efefef per feedback */}
-            <p className="font-inter mt-3 lg:mt-4" style={{ fontSize: 'clamp(13px, 1.15vw, 16px)', lineHeight: 1.45, color: LIGHT }}>
-              Our free, daily newsletter turns professionals into AI experts.
+            <p className="font-inter mt-3 lg:mt-4" style={{ fontSize: 'clamp(15px, 1.4vw, 20px)', lineHeight: 1.45, fontWeight: 500, color: LIGHT }}>
+              Our free, daily newsletter helps you make sense of what matters in the age of AI.
             </p>
 
             {/* Form — the live wiring (unchanged contract) */}
@@ -174,7 +177,7 @@ export default function SubscribeHero({
 
             {/* No longer invite only — #efefef per feedback */}
             <p className="font-inter mt-2 lg:mt-3" style={{ fontSize: 'clamp(10px, 0.85vw, 12px)', color: LIGHT }}>
-              No longer invite only.
+              5 minutes. Every morning. No longer invite-only.
             </p>
           </div>
         </div>
