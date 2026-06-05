@@ -38,23 +38,6 @@ import { motion, useReducedMotion } from 'framer-motion';
 const NAVY = '#002f5b';
 const LIGHT = '#efefef'; // subtext + fine print, per spec
 
-// Real white company logos (files already in /public/images/companies).
-const LOGO_ROWS: { file: string; alt: string; h: number }[][] = [
-  [
-    { file: 'meta white logo.png', alt: 'Meta', h: 19 },
-    { file: 'google logo white.png', alt: 'Google', h: 22 },
-  ],
-  [
-    { file: 'morgan stanley white logo.png', alt: 'Morgan Stanley', h: 16 },
-    { file: 'cisco white logo.png', alt: 'Cisco', h: 17 },
-    { file: 'adobe white logo.png', alt: 'Adobe', h: 22 },
-  ],
-  [
-    { file: 'anduril white logo.png', alt: 'Anduril', h: 18 },
-    { file: 'fidelity white logo.png', alt: 'Fidelity Investments', h: 20 },
-  ],
-];
-const logoSrc = (file: string) => `/images/companies/${file.replace(/ /g, '%20')}`;
 
 // ── Props — the SAME decoupled contract the funnel already used ──
 type SubscribeHeroProps = {
@@ -82,14 +65,14 @@ export default function SubscribeHero({
       {/* Pink cloud + confetti backdrop (transparent → navy shows through). */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/images/subscribe/clouds-mobile.png"
+        src="/images/subscribe/clouds-mobile.webp"
         alt=""
         aria-hidden
         className="pointer-events-none fixed left-1/2 -top-16 z-0 w-full max-w-[560px] -translate-x-1/2 select-none lg:hidden"
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/images/subscribe/clouds-desktop.png"
+        src="/images/subscribe/clouds-desktop.webp"
         alt=""
         aria-hidden
         className="pointer-events-none absolute left-1/2 top-0 z-0 hidden w-full max-w-[1600px] -translate-x-[59%] select-none lg:block"
@@ -196,39 +179,14 @@ export default function SubscribeHero({
           </div>
         </div>
 
-        {/* Social proof — OUTSIDE the card, on the navy background, per feedback. */}
-        <div className="relative z-30 mt-8 flex w-full flex-col items-center text-center lg:mt-10">
-          <p className="font-inter" style={{ fontSize: 'clamp(13px, 1.1vw, 16px)', color: LIGHT }}>
-            Join 5,043{' '}
-            <span className="relative inline-block">
-              Leaders
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/subscribe/ai-underline.png"
-                alt=""
-                aria-hidden
-                className="pointer-events-none absolute left-1/2 w-[118%] -translate-x-1/2 select-none"
-                style={{ bottom: '-0.18em' }}
-              />
-            </span>{' '}
-            from companies like
-          </p>
-          <div className="mt-5 flex w-full flex-col items-center gap-4 lg:mt-6 lg:gap-5">
-            {LOGO_ROWS.map((row, i) => (
-              <div key={i} className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 lg:gap-x-9 lg:gap-y-4">
-                {row.map((l) => (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img
-                    key={l.alt}
-                    src={logoSrc(l.file)}
-                    alt={l.alt}
-                    className="object-contain"
-                    style={{ height: `clamp(${l.h}px, ${(l.h * 0.105).toFixed(2)}vw, ${Math.round(l.h * 1.4)}px)`, width: 'auto' }}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
+        {/* Social proof — single image: avatars + 5,043 count + company logos (white art on navy). */}
+        <div className="relative z-30 mt-8 flex w-full flex-col items-center lg:mt-10">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/subscribe/social-proof.webp"
+            alt="Join 5,043 leaders from companies like Meta, Google, Morgan Stanley, Cisco, Adobe, Anduril, and Fidelity"
+            className="w-full max-w-[480px] h-auto select-none"
+          />
         </div>
       </motion.div>
     </main>
