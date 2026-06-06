@@ -101,7 +101,7 @@ body {
    per step. */
 html:has(.subscribe-root),
 html:has(.subscribe-root) body {
-  background-color: #002f5b;
+  background-color: #000000;
 }
 
 .font-inter {

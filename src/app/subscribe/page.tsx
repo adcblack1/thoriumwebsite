@@ -347,9 +347,11 @@ export default function SubscribePage() {
   // dynamic island + home indicator) matching the current step's background so
   // there are no white bars top/bottom. Steps 1–10 are navy; step 11 is white.
   useEffect(() => {
-    const color = step === 11 ? '#ffffff' : '#002f5b';
+    const color = step === 1 ? '#000000' : step === 11 ? '#ffffff' : '#002f5b';
     document.documentElement.style.backgroundColor = color;
     document.body.style.backgroundColor = color;
+    const tc = document.querySelector('meta[name="theme-color"]');
+    if (tc) tc.setAttribute('content', color);
   }, [step]);
   // Reset the canvas when leaving the funnel so other routes keep their bg.
   useEffect(() => () => {
@@ -718,8 +720,7 @@ export default function SubscribePage() {
         />
         {/* Legal links — same fixed bar as the rest of the flow */}
         <div
-          className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 z-50 flex -translate-x-1/2 gap-8 rounded-full px-5 py-2"
-          style={{ backgroundColor: 'rgba(0,33,64,0.88)', backdropFilter: 'blur(8px)' }}
+          className="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 z-50 flex -translate-x-1/2 gap-8 px-5 py-2"
         >
           <a
             href="/privacy"

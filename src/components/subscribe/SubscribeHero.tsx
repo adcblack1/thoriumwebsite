@@ -60,23 +60,9 @@ export default function SubscribeHero({
   return (
     <main
       className="relative flex min-h-[100svh] w-full flex-col items-center overflow-hidden px-4 py-8"
-      style={{ background: NAVY }}
+      style={{ background: '#000000' }}
     >
-      {/* Pink cloud + confetti backdrop (transparent → navy shows through). */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/images/subscribe/clouds-mobile.webp"
-        alt=""
-        aria-hidden
-        className="pointer-events-none fixed left-1/2 -top-16 z-0 w-full max-w-[560px] -translate-x-1/2 select-none lg:hidden"
-      />
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src="/images/subscribe/clouds-desktop.webp"
-        alt=""
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-0 z-0 hidden w-full max-w-[1600px] -translate-x-[59%] select-none lg:block"
-      />
+      {/* Clouds removed — solid black background. */}
 
       {/* Card column */}
       <motion.div
@@ -93,46 +79,45 @@ export default function SubscribeHero({
         <div className="relative mx-auto w-full max-w-[400px] lg:max-w-[520px]">
           {/* Tech / Business tags removed per request. */}
 
-          {/* Navy card — mobile drop shadow per spec; every child is real DOM */}
+          {/* Black card — single box, white text (the deployed look). */}
           <div
             className="relative z-20 flex w-full flex-col items-center justify-center rounded-[30px] px-6 py-9 text-center text-white shadow-[0_28px_70px_-18px_rgba(0,0,0,0.7)] lg:rounded-[36px] lg:px-10 lg:py-11"
-            style={{ background: NAVY }}
+            style={{ background: '#000000' }}
           >
-            {/* Wordmark (a touch smaller per feedback) */}
+            {/* Wordmark */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/images/subscribe/wordmark.png"
               alt="Thorium Valley"
-              className="w-[88px] lg:w-[120px]"
+              className="w-[135px] lg:w-[135px]"
             />
 
-            {/* Headline — Times New Roman MT, -0.07em, "AI" hand-underlined.
-                Sized down a touch alongside the wordmark per feedback. */}
+            {/* Headline — Times New Roman MT; "AI" hand-underlined in blue. */}
             <h1
               className="font-times mt-4 lg:mt-6"
-              style={{ fontSize: 'clamp(32px, 3.6vw, 44px)', lineHeight: 1.1, fontWeight: 400, color: '#ffffff', letterSpacing: '-0.05em' }}
+              style={{ fontSize: 'clamp(38px, 4.6vw, 60px)', lineHeight: 1.08, fontWeight: 400, color: '#ffffff', letterSpacing: '-0.07em' }}
             >
-              Become the go-to
+              Make Sense of the
               <br />
-              <span className="relative inline-block">
-                AI
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/images/subscribe/ai-underline.png"
-                  alt=""
-                  aria-hidden
-                  className="pointer-events-none absolute left-1/2 w-[240%] -translate-x-1/2 select-none"
-                  style={{ bottom: '0.04em' }}
-                />
-              </span>{' '}
-              person at
-              <br />
-              <em>your</em> company.
+              <span style={{ color: '#5170ff' }}>
+                Age of{' '}
+                <span className="relative inline-block">
+                  AI
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/images/subscribe/ai-underline-blue.png"
+                    alt=""
+                    aria-hidden
+                    className="pointer-events-none absolute left-1/2 w-[130%] max-w-none -translate-x-1/2 select-none"
+                    style={{ bottom: '0.04em' }}
+                  />
+                </span>
+              </span>
             </h1>
 
-            {/* Subtext — Inter, #efefef per feedback */}
-            <p className="font-inter mt-3 lg:mt-4" style={{ fontSize: 'clamp(15px, 1.4vw, 20px)', lineHeight: 1.45, fontWeight: 500, color: LIGHT }}>
-              Our free, daily newsletter helps you make sense of what matters in the age of AI.
+            {/* Subtext */}
+            <p className="font-inter mt-3 lg:mt-4" style={{ fontSize: 'clamp(17px, 1.6vw, 22px)', lineHeight: 1.45, fontWeight: 500, color: LIGHT }}>
+              Our free, daily newsletter makes you smarter about AI.
             </p>
 
             {/* Form — the live wiring (unchanged contract) */}
@@ -163,7 +148,7 @@ export default function SubscribeHero({
                 type="submit"
                 disabled={loading}
                 className="font-inter h-11 w-full rounded-lg text-[15px] font-semibold transition-transform active:scale-[0.99] disabled:opacity-60 lg:h-[52px] lg:text-[16px]"
-                style={{ background: '#ffffff', color: '#000000', boxShadow: '0 0 14px 2px rgba(255,255,255,0.28), 0 0 26px 5px rgba(255,255,255,0.12)' }}
+                style={{ background: '#5170ff', color: '#ffffff', boxShadow: '0 0 14px 2px rgba(81,112,255,0.45), 0 0 26px 5px rgba(81,112,255,0.22)' }}
               >
                 {loading ? '…' : 'Subscribe'}
               </button>
@@ -175,7 +160,7 @@ export default function SubscribeHero({
               </p>
             )}
 
-            {/* No longer invite only — #efefef per feedback */}
+            {/* Fine print */}
             <p className="font-inter mt-2 lg:mt-3" style={{ fontSize: 'clamp(10px, 0.85vw, 12px)', color: LIGHT }}>
               5 minutes. Every morning. No longer invite-only.
             </p>

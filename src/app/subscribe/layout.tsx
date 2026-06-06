@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 // The subscribe flow uses a navy (#002f5b) background — this makes iOS Safari's
 // chrome (status bar tint + URL bar bleed) go navy to match.
 export const viewport: Viewport = {
-  themeColor: '#002f5b',
+  themeColor: '#000000',
 };
 
 export default function SubscribeLayout({
