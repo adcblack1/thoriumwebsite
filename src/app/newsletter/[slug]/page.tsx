@@ -1,5 +1,6 @@
 import { getNewsletterBySlug } from '@/lib/newsletters';
 import { getArticleBySlug } from '@/lib/articles';
+import { formatEditionDate } from '@/lib/format-date';
 import { mdToHtml } from '@/lib/beehiiv-export';
 import { SubscribeForm } from '@/components/subscribe-form';
 import { SubscribeCTA } from '@/components/SubscribeCTA';
@@ -52,11 +53,11 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
     newsletter.article_slugs.map((s) => getArticleBySlug(s))
   )).filter(Boolean);
 
-  const formattedDate = new Date(newsletter.published_at).toLocaleDateString('en-US', {
-    month: 'long',
-    day: 'numeric',
-    year: 'numeric',
-  });
+  // Show the edition's intended date (the editor-set `date` field), NOT
+  // `published_at` (the eve-of-publish timestamp, which renders a day early in
+  // western timezones). Fall back to published_at only for legacy rows missing date.
+  const formattedDate =
+    formatEditionDate(newsletter.date) || formatEditionDate(newsletter.published_at);
 
   /* ─── Scoped styles for dangerouslySetInnerHTML content ─── */
   const scopedCSS = `
@@ -95,7 +96,7 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
       <span>/</span>
       <Link href="/newsletter" className="nl-breadcrumb-link transition-colors">Newsletter</Link>
       <span>/</span>
-      <span className="text-[#5170ff]">{newsletter.date}</span>
+      <span className="text-[#5170ff]">{formatEditionDate(newsletter.date) || newsletter.date}</span>
     </nav>
   );
 

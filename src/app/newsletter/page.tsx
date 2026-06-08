@@ -9,6 +9,7 @@ import { SubscribeForm } from '@/components/subscribe-form';
 import { FadeIn } from '@/components/FadeIn';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { formatEditionDate } from '@/lib/format-date';
 
 interface NewsletterItem {
   id: string;
@@ -18,15 +19,14 @@ interface NewsletterItem {
   subtitle?: string;
   thumbnail_url?: string;
   published_at: string;
+  date?: string;
   toc: string[];
 }
 
-function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  });
+// Format the edition's intended `date` (timezone-safe). See lib/format-date.ts —
+// never format `published_at` for an edition date; it renders a day early in PT.
+function formatDate(dateStr: string | undefined) {
+  return formatEditionDate(dateStr, { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
 const PUB_TO_FILTER: Record<string, string> = {
@@ -306,7 +306,7 @@ export default function NewsletterArchivePage() {
                         </div>
                       )}
                       <time className="font-inter font-medium block text-xs mt-2" style={{ color: 'rgba(27,27,27,0.4)' }}>
-                        {formatDate(newsletters[0].published_at)}
+                        {formatDate(newsletters[0].date)}
                       </time>
                     </article>
                   </Link>
@@ -326,7 +326,7 @@ export default function NewsletterArchivePage() {
                               {nl.title}
                             </h3>
                             <time className="font-inter font-medium block text-xs mt-1" style={{ color: 'rgba(27,27,27,0.4)' }}>
-                              {formatDate(nl.published_at)}
+                              {formatDate(nl.date)}
                             </time>
                           </article>
                         </Link>
@@ -356,7 +356,7 @@ export default function NewsletterArchivePage() {
                               </div>
                             )}
                             <time className="font-inter font-medium block text-sm mt-2" style={{ color: 'rgba(27,27,27,0.4)' }}>
-                              {formatDate(nl.published_at)}
+                              {formatDate(nl.date)}
                             </time>
                           </div>
                           {/* Thumbnail – right */}
@@ -399,7 +399,7 @@ export default function NewsletterArchivePage() {
                       </div>
                     )}
                     <time className="font-inter font-medium block text-xs mt-2" style={{ color: 'rgba(27,27,27,0.4)' }}>
-                      {formatDate(newsletters[0].published_at)}
+                      {formatDate(newsletters[0].date)}
                     </time>
                   </article>
                 </Link>
@@ -435,7 +435,7 @@ export default function NewsletterArchivePage() {
                                 </div>
                               )}
                               <time className="font-inter font-medium block text-xs mt-1" style={{ color: 'rgba(27,27,27,0.4)' }}>
-                                {formatDate(nl.published_at)}
+                                {formatDate(nl.date)}
                               </time>
                             </div>
                           </article>
