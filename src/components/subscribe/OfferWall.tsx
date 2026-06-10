@@ -1,12 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { MvfOffer, MVF_OFFERS, pickOffers, logMvfOfferClick } from '@/lib/mvf-offers';
+import { MvfOffer, pickOffers, logMvfOfferClick, SurveyAnswers } from '@/lib/mvf-offers';
 
 /**
  * The sponsored-offer "wall" shown after conversion (TheDeepView's thank-you
- * pattern): EVERY in-budget offer, highest CPC first, revealed 6 at a time via
- * "Load more". Used on both the /subscribe step-11 confirmation and the
+ * pattern): the next `count` offers after the funnel trio (default 6 → the trio's
+ * 3 + this 6 mirrors TheDeepView's 3-then-6), answer-targeted then backfilled so
+ * it's always full. Used on both the /subscribe step-11 confirmation and the
  * /confirmed (post email-confirm) page so the two surfaces stay identical.
  *
  * Self-contained: fetches live Dub click counts for budget-gating, reads the
@@ -19,14 +20,18 @@ export default function OfferWall({
   firstName,
   subscriberId,
   skip = 0,
+  count = 6,
   initialShown = 6,
+  answers,
 }: {
   page: string;
   email?: string;
   firstName?: string;
   subscriberId?: string;
   skip?: number;       // offers already shown elsewhere (e.g. the funnel tools page) to skip
+  count?: number;      // how many offers this wall shows (default 6 — the "next 6" after the trio)
   initialShown?: number;
+  answers?: SurveyAnswers; // survey picks → answer-targeted offers; omit ⇒ untargeted (everyone)
 }) {
   const [shown, setShown] = useState(initialShown);
   const [dubClicks, setDubClicks] = useState<Record<string, number>>({});
@@ -62,7 +67,9 @@ export default function OfferWall({
     setCookies(mc);
   }, []);
 
-  const wall = pickOffers(MVF_OFFERS.length, skip, dubClicks); // CPC desc; skip the funnel tools-page offers so this continues from #(skip+1), mirroring TDV's thank-you wall
+  // The next `count` offers after the trio (skip), targeted then backfilled so it's
+  // always full. Default count=6 ⇒ the trio's 3 + this 6 = TheDeepView's 3-then-6.
+  const wall = pickOffers(count, skip, dubClicks, answers);
   const onOfferClick = (o: MvfOffer) =>
     logMvfOfferClick(o, page, { email, firstName, subscriberId, fbp: cookies.fbp, fbc: cookies.fbc });
 

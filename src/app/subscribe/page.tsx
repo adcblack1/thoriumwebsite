@@ -15,9 +15,11 @@ import OfferWall from '@/components/subscribe/OfferWall';
 // ── MVF CPC offer pool — June 2026 order book ───────────────────────────────
 // Each href is a thova.co/<id> Dub short link that redirects through the MVF
 // (appwiki.nl) link to the advertiser. `cpc` is the *partner* CPC we earn per
-// click, straight from the MVF order sheet. The picker mirrors The Deep View
-// exactly: of the offers that still have click budget, show the highest-CPC
-// ones first. No persona/answer targeting — pure revenue ranking (just like TDV).
+// click, straight from the MVF order sheet. The picker ports The Deep View's
+// offer engine: answer-targeted first (each offer declares the survey picks it
+// serves), then in-budget-first, highest-CPC, category-diversified; untargeted
+// offers backfill so the trio/wall is never short. (TDV ships this engine but
+// runs it empty — we populate the personas. See @/lib/mvf-offers.)
 //
 // PLACEHOLDERS: `logo`, `thumb`, and `blurb` are stand-ins. Drop real art into
 // /public/thumbnails/mvf/ (keep the filenames) and rewrite the blurbs — nothing
@@ -811,6 +813,14 @@ export default function SubscribePage() {
               firstName={formData.first_name}
               subscriberId={subscriberId || undefined}
               skip={3}
+              answers={{
+                main_goal: formData.main_goal,
+                seniority: formData.seniority,
+                job_function: formData.job_function,
+                industry: formData.industry,
+                company_size: formData.company_size,
+                ai_tools: formData.ai_tools,
+              }}
             />
           </div>
         </main>
@@ -946,10 +956,17 @@ export default function SubscribePage() {
                 </div>
               )}
 
-              {/* Step 9: Recommended tools — top 3 by CPC × remaining budget
-                  (The Deep View's picker; no persona/answer targeting). */}
+              {/* Step 9: Recommended tools — top 3, answer-targeted to the user's
+                  survey picks, then in-budget-first / highest-CPC / diversified. */}
               {step === 9 && (() => {
-                const heroOffers = pickOffers(3, 0, dubClicks);
+                const heroOffers = pickOffers(3, 0, dubClicks, {
+                  main_goal: formData.main_goal,
+                  seniority: formData.seniority,
+                  job_function: formData.job_function,
+                  industry: formData.industry,
+                  company_size: formData.company_size,
+                  ai_tools: formData.ai_tools,
+                });
                 const renderCard = (o: MvfOffer) => (
                   <a
                     key={o.id}
