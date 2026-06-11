@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
+import { beehiivUtm } from '@/lib/beehiiv-utm';
 
 const supabase = () =>
   createClient(
@@ -68,7 +69,7 @@ export async function POST(request: Request) {
               email: subscriber.email,
               reactivate_existing: true,
               send_welcome_email: false, // Don't send welcome for cross-sell adds
-              utm_source: 'cross_sell',
+              ...beehiivUtm({ utm_source: subscriber.utm_source, utm_campaign: subscriber.utm_campaign, utm_content: subscriber.utm_content }),
             }),
           }
         );

@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextResponse, after } from 'next/server';
+import { beehiivUtm } from '@/lib/beehiiv-utm';
 
 const supabase = () =>
   createClient(
@@ -75,40 +76,53 @@ export async function POST(request: Request) {
 
       // Subscribe to each selected publication
       const subscribeToBeehiiv = async (pubId: string, sendWelcome: boolean) => {
-        try {
-          // Build custom fields from UTM params available at step 1
-          const step1CustomFields: { name: string; value: string }[] = [];
-          if (utm_content) step1CustomFields.push({ name: 'ad_creative', value: utm_content });
-          if (utm_campaign) step1CustomFields.push({ name: 'ad_campaign', value: utm_campaign });
+        // Build custom fields from UTM params available at step 1
+        const step1CustomFields: { name: string; value: string }[] = [];
+        if (utm_content) step1CustomFields.push({ name: 'ad_creative', value: utm_content });
+        if (utm_campaign) step1CustomFields.push({ name: 'ad_campaign', value: utm_campaign });
 
-          const res = await fetch(
-            `https://api.beehiiv.com/v2/publications/${pubId}/subscriptions`,
-            {
-              method: 'POST',
-              headers: {
-                Authorization: `Bearer ${BEEHIIV_API_KEY}`,
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                email,
-                reactivate_existing: true,
-                send_welcome_email: sendWelcome,
-                utm_source: 'subscribe_flow',
-                ...(step1CustomFields.length > 0 ? { custom_fields: step1CustomFields } : {}),
-              }),
+        const body = JSON.stringify({
+          email,
+          reactivate_existing: true,
+          send_welcome_email: sendWelcome,
+          ...beehiivUtm({ utm_source, utm_campaign, utm_content }),
+          ...(step1CustomFields.length > 0 ? { custom_fields: step1CustomFields } : {}),
+        });
+
+        // Retry on 429 (rate limit), honoring Retry-After. A transient throttle
+        // must never drop a subscriber off a list — that's how the main-list adds
+        // were being lost when the engagement cron flooded beehiiv.
+        for (let attempt = 0; attempt < 4; attempt++) {
+          try {
+            const res = await fetch(
+              `https://api.beehiiv.com/v2/publications/${pubId}/subscriptions`,
+              {
+                method: 'POST',
+                headers: {
+                  Authorization: `Bearer ${BEEHIIV_API_KEY}`,
+                  'Content-Type': 'application/json',
+                },
+                body,
+              }
+            );
+            if (res.ok) {
+              const beehiivData = await res.json();
+              return beehiivData?.data?.id || null;
             }
-          );
-          if (res.ok) {
-            const beehiivData = await res.json();
-            return beehiivData?.data?.id || null;
-          } else {
+            if (res.status === 429) {
+              const retryAfter = Number(res.headers.get('retry-after'));
+              await new Promise((r) => setTimeout(r, Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 500 * (attempt + 1)));
+              continue;
+            }
             console.error(`Step 1 Beehiiv subscribe to ${pubId} failed:`, await res.text());
             return null;
+          } catch (err) {
+            console.error(`Step 1 Beehiiv error for ${pubId}:`, err);
+            await new Promise((r) => setTimeout(r, 500 * (attempt + 1)));
           }
-        } catch (err) {
-          console.error(`Step 1 Beehiiv error for ${pubId}:`, err);
-          return null;
         }
+        console.error(`Step 1 Beehiiv subscribe to ${pubId} failed: still rate-limited after retries`);
+        return null;
       };
 
       // Subscribe to all selected Beehiiv publications (awaited to ensure completion on Vercel)
@@ -241,7 +255,7 @@ export async function PATCH(request: Request) {
       // Get subscriber email (needed for both SparkLoop and Beehiiv)
       const { data: sub } = await supabase()
         .from('subscribers')
-        .select('email')
+        .select('email, utm_source, utm_campaign, utm_content')
         .eq('id', subscriber_id)
         .single();
 
@@ -305,7 +319,7 @@ export async function PATCH(request: Request) {
                   email: sub.email,
                   reactivate_existing: true,
                   send_welcome_email: false, // TV welcome already sent at step 1
-                  utm_source: 'subscribe_flow',
+                  ...beehiivUtm({ utm_source: sub.utm_source, utm_campaign: sub.utm_campaign, utm_content: sub.utm_content }),
                 }),
               }
             ).then(async (res) => {

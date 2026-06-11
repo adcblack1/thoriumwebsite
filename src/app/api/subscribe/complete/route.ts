@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
+import { beehiivUtm } from '@/lib/beehiiv-utm';
 
 const supabase = () =>
   createClient(
@@ -20,7 +21,8 @@ async function subscribeToBeehiiv(
   email: string,
   sendWelcome: boolean,
   customFields: { name: string; value: string }[],
-  apiKey: string
+  apiKey: string,
+  utmFields: Record<string, string>
 ): Promise<string | null> {
   try {
     const res = await fetch(
@@ -35,7 +37,7 @@ async function subscribeToBeehiiv(
           email,
           reactivate_existing: true,
           send_welcome_email: sendWelcome,
-          utm_source: 'subscribe_flow',
+          ...utmFields,
           custom_fields: customFields,
         }),
       }
@@ -111,6 +113,8 @@ export async function POST(request: Request) {
       ...(subscriber.utm_content ? [{ name: 'ad_creative', value: subscriber.utm_content }] : []),
     ];
 
+    const utmFields = beehiivUtm({ utm_source: subscriber.utm_source, utm_campaign: subscriber.utm_campaign, utm_content: subscriber.utm_content });
+
     // 3. Re-subscribe to each selected publication to update custom fields
     // Welcome emails are already sent at step 1 — do NOT re-send here
     let mainBeehiivId: string | null = null;
@@ -121,7 +125,7 @@ export async function POST(request: Request) {
       const tvPubId = PUB_MAP['thorium-valley'];
       if (tvPubId) {
         mainBeehiivId = await subscribeToBeehiiv(
-          tvPubId, subscriber.email, false, customFields, BEEHIIV_API_KEY
+          tvPubId, subscriber.email, false, customFields, BEEHIIV_API_KEY, utmFields
         );
         subscriptionResults['thorium-valley'] = mainBeehiivId;
       }
@@ -133,7 +137,7 @@ export async function POST(request: Request) {
       if (catalystPubId) {
         // Welcome already sent at step 1
         const id = await subscribeToBeehiiv(
-          catalystPubId, subscriber.email, false, customFields, BEEHIIV_API_KEY
+          catalystPubId, subscriber.email, false, customFields, BEEHIIV_API_KEY, utmFields
         );
         subscriptionResults['the-catalyst'] = id;
         if (!mainBeehiivId) mainBeehiivId = id;
@@ -146,7 +150,7 @@ export async function POST(request: Request) {
       if (labPubId) {
         // Welcome already sent at step 1
         const id = await subscribeToBeehiiv(
-          labPubId, subscriber.email, false, customFields, BEEHIIV_API_KEY
+          labPubId, subscriber.email, false, customFields, BEEHIIV_API_KEY, utmFields
         );
         subscriptionResults['the-lab'] = id;
         if (!mainBeehiivId) mainBeehiivId = id;
@@ -158,7 +162,7 @@ export async function POST(request: Request) {
       const vibe3PubId = PUB_MAP['vibe3'];
       if (vibe3PubId) {
         const id = await subscribeToBeehiiv(
-          vibe3PubId, subscriber.email, false, customFields, BEEHIIV_API_KEY
+          vibe3PubId, subscriber.email, false, customFields, BEEHIIV_API_KEY, utmFields
         );
         subscriptionResults['vibe3'] = id;
         if (!mainBeehiivId) mainBeehiivId = id;

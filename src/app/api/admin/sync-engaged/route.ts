@@ -2,6 +2,9 @@ import { createClient } from '@supabase/supabase-js';
 import { NextResponse } from 'next/server';
 import { createHash } from 'crypto';
 
+// Allow up to 5 min so a capped batch can finish at a gentle request rate.
+export const maxDuration = 300;
+
 const supabase = () =>
   createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -13,22 +16,44 @@ const BEEHIIV_PUB_ID = process.env.BEEHIIV_PUBLICATION_ID!;
 const META_PIXEL_ID = '773797471916037';
 const META_ACCESS_TOKEN = process.env.META_ACCESS_TOKEN;
 
+// Safety rails so this job can never again flood beehiiv's per-key rate limit and
+// starve live signups (which is what dropped subscribers off the main list):
+//   MAX_PER_RUN — hard cap on beehiiv calls per run; a backlog drains over a few
+//                 runs instead of hammering 1,000+ calls in one go.
+//   DELAY_MS    — gap between calls (~4 req/sec) leaving headroom for signups.
+const MAX_PER_RUN = 500;
+const DELAY_MS = 250;
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
 // SHA256 hash for Meta Conversions API
 function sha256(value: string): string {
   return createHash('sha256').update(value.trim().toLowerCase()).digest('hex');
 }
 
-// Get subscriber stats from Beehiiv
+// Get subscriber stats from Beehiiv. Retries on 429 (rate limit) honoring
+// Retry-After. Returns null ONLY on a real failure (so the caller leaves the sub
+// unprocessed and retries it next run); a 200 with no stats still returns the
+// object so the caller records it as processed.
 async function getBeehiivSubscription(subscriptionId: string) {
-  const res = await fetch(
-    `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions/${subscriptionId}?expand=stats,custom_fields`,
-    {
-      headers: { Authorization: `Bearer ${BEEHIIV_API_KEY}` },
+  const url = `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions/${subscriptionId}?expand=stats,custom_fields`;
+  for (let attempt = 0; attempt < 4; attempt++) {
+    try {
+      const res = await fetch(url, { headers: { Authorization: `Bearer ${BEEHIIV_API_KEY}` } });
+      if (res.ok) {
+        const data = await res.json();
+        return data?.data || null;
+      }
+      if (res.status === 429) {
+        const retryAfter = Number(res.headers.get('retry-after'));
+        await sleep(Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 1000 * (attempt + 1));
+        continue;
+      }
+      return null; // non-429 error — give up on this one
+    } catch {
+      await sleep(1000 * (attempt + 1));
     }
-  );
-  if (!res.ok) return null;
-  const data = await res.json();
-  return data?.data || null;
+  }
+  return null; // still rate-limited after retries — leave unprocessed for next run
 }
 
 // Send EngagedSubscriber event to Meta Conversions API
@@ -81,7 +106,7 @@ async function sendToMetaConversionsAPI(
 /**
  * GET /api/admin/sync-engaged
  * 
- * Called hourly by Vercel Cron. Does:
+ * Called daily by Vercel Cron (10:00 UTC / ~3 AM PT — off peak). Does:
  * 1. Finds completed subscribers with beehiiv IDs not yet processed
  * 2. Checks their engagement in Beehiiv
  * 3. For engaged ones (open rate > 40% AND 7+ days old), sends EngagedSubscriber to Meta
@@ -118,14 +143,18 @@ export async function GET(request: Request) {
       return NextResponse.json({ error: 'Database error' }, { status: 500 });
     }
 
-    // Filter out already-processed subscribers
-    const newSubscribers = (subscribers || []).filter(s => !processedIds.has(s.id));
+    // Filter out already-processed subscribers; oldest first; cap per run so a
+    // backlog drains gradually over a few runs instead of flooding beehiiv at once.
+    const pending = (subscribers || [])
+      .filter(s => !processedIds.has(s.id))
+      .sort((a, b) => (a.created_at < b.created_at ? -1 : 1));
+    const newSubscribers = pending.slice(0, MAX_PER_RUN);
 
     if (newSubscribers.length === 0) {
       return NextResponse.json({ message: 'No new subscribers to process', processed: 0 });
     }
 
-    console.log(`[Sync] Processing ${newSubscribers.length} new subscribers`);
+    console.log(`[Sync] Processing ${newSubscribers.length} of ${pending.length} pending subscribers`);
 
     // 3. Check each subscriber's engagement in Beehiiv
     const creativeStats: Record<string, { 
@@ -141,23 +170,26 @@ export async function GET(request: Request) {
     for (const sub of newSubscribers) {
       if (!sub.beehiiv_subscriber_id) continue;
 
-      // Rate limit: Beehiiv API allows ~10 req/sec
-      await new Promise(resolve => setTimeout(resolve, 150));
+      // Gentle pacing so we never starve live signups of beehiiv's rate budget.
+      await sleep(DELAY_MS);
 
       const beehiivData = await getBeehiivSubscription(sub.beehiiv_subscriber_id);
-      if (!beehiivData?.stats) continue;
+      if (!beehiivData) continue; // call failed after retries — retry next run, do NOT mark processed
 
-      const openRate = beehiivData.stats.open_rate ?? 0;
-      const ctr = beehiivData.stats.click_rate ?? 0;
+      const stats = beehiivData.stats;
+      const openRate = stats?.open_rate ?? 0;
+      const ctr = stats?.click_rate ?? 0;
       const creative = sub.utm_content || 'organic';
 
-      // Track stats by creative
-      if (!creativeStats[creative]) {
-        creativeStats[creative] = { openRates: [], ctrs: [], count: 0, campaign: sub.utm_campaign };
+      // Only fold into creative averages if real engagement stats came back.
+      if (stats) {
+        if (!creativeStats[creative]) {
+          creativeStats[creative] = { openRates: [], ctrs: [], count: 0, campaign: sub.utm_campaign };
+        }
+        creativeStats[creative].openRates.push(openRate * 100);
+        creativeStats[creative].ctrs.push(ctr * 100);
+        creativeStats[creative].count++;
       }
-      creativeStats[creative].openRates.push(openRate * 100);
-      creativeStats[creative].ctrs.push(ctr * 100);
-      creativeStats[creative].count++;
 
       // 4. If engaged (>40% open rate), send to Meta
       const emailHash = sha256(sub.email);
