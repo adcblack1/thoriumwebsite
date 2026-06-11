@@ -51,6 +51,7 @@ export type MvfOffer = {
   logo: string;    // /thumbnails/mvf/<id>-logo.png
   thumb: string;   // /thumbnails/mvf/<id>.png
   personas?: Persona[]; // answer-targeting; omit/empty ⇒ shown to everyone
+  paused?: boolean; // hide entirely (e.g. budget capped on MVF). flip to false to bring back.
 };
 
 // EXACT survey option strings (must match src/app/subscribe/page.tsx). Centralised
@@ -96,6 +97,7 @@ const SEN = {
 
 export const MVF_OFFERS: MvfOffer[] = [
   { id: 'multiplier', brand: 'Multiplier', category: 'International Payroll', cpc: 13.95, budget: 15,
+    paused: true, // MVF shows $0 on 6 clicks (likely capped) — pulled until confirmed live; flip to false to restore
     cta: 'Get Started', href: 'https://thova.co/multiplier',
     blurb: 'AI-powered global payroll — hire and pay employees compliantly in 150+ countries, no local entity required.',
     logo: '/thumbnails/mvf/multiplier-logo.png', thumb: '/thumbnails/mvf/multiplier.png',
@@ -277,8 +279,9 @@ export function selectOffers(
   opts: { skip?: number; live?: Record<string, number>; answers?: SurveyAnswers } = {}
 ): MvfOffer[] {
   const { skip = 0, live = {}, answers } = opts;
-  const eligible = rankByBudgetThenCpc(MVF_OFFERS.filter((o) => offerEligible(o, answers)), live);
-  const rest = rankByBudgetThenCpc(MVF_OFFERS.filter((o) => !offerEligible(o, answers)), live);
+  const active = MVF_OFFERS.filter((o) => !o.paused); // drop paused/capped offers entirely
+  const eligible = rankByBudgetThenCpc(active.filter((o) => offerEligible(o, answers)), live);
+  const rest = rankByBudgetThenCpc(active.filter((o) => !offerEligible(o, answers)), live);
   const ordered = [...diversify(eligible, eligible.length), ...diversify(rest, rest.length)];
   return ordered.slice(skip, skip + count);
 }
