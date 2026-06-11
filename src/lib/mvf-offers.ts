@@ -105,6 +105,7 @@ export const MVF_OFFERS: MvfOffer[] = [
       { q: 'job_function', anyOf: [FN.hr, FN.ops, FN.exec, FN.finance] },
     ] }] },
   { id: 'bamboohr-ats', brand: 'BambooHR', category: 'Applicant Tracking', cpc: 9.62, budget: 20,
+    paused: true, // pulled per request; flip to false to restore
     cta: 'See Demo', href: 'https://thova.co/bamboohr-ats',
     blurb: 'AI-powered applicant tracking that screens, schedules, and moves candidates through hiring on autopilot.',
     logo: '/thumbnails/mvf/bamboohr-logo.png', thumb: '/thumbnails/mvf/bamboohr-ats.png',
