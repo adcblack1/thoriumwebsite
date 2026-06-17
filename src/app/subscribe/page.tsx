@@ -774,7 +774,7 @@ export default function SubscribePage() {
 
               <div className="flex flex-col sm:flex-row gap-3 w-full mt-4">
                 <a
-                  href="https://mail.google.com/mail/u/0/#search/from%3Anews%40mail.thoriumvalley.com"
+                  href="https://mail.google.com/mail/u/0/#search/from%3Amail.beehiiv.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-full bg-white text-sm font-semibold hover:bg-white/90 active:scale-[0.98] transition-all"
@@ -787,7 +787,7 @@ export default function SubscribePage() {
                   Open Gmail
                 </a>
                 <a
-                  href="https://outlook.live.com/mail/0/inbox?search=from%3Anews%40mail.thoriumvalley.com"
+                  href="https://outlook.live.com/mail/0/inbox?search=from%3Amail.beehiiv.com"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 flex items-center justify-center gap-2 py-3.5 rounded-full border-2 border-white/30 text-sm font-semibold hover:border-white/50 active:scale-[0.98] transition-all"
