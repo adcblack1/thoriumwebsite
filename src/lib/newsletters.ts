@@ -82,6 +82,37 @@ function stripInThisIssue(intro: string): string {
     return i === -1 ? intro : intro.slice(0, i).trimEnd();
 }
 
+// The `links` JSONB is auto-populated by an external pipeline that sometimes writes
+// MALFORMED items: the whole "- [Name](url): desc" markdown dumped into name/company
+// (url empty), and a stray "-" prefix on news headlines. Every reader goes through
+// mapRow, so we repair on read here — the site and exports stay clean no matter what
+// the pipeline writes. (See also vibe3-site/exports/gen-*.js which carry the same guard.)
+function parseMdLink(text?: string, fallbackUrl?: string) {
+    const m = (text || '').match(/^\s*[-*]?\s*\[([^\]]+)\]\(([^)]+)\)\s*:?\s*([\s\S]*)$/);
+    if (m) return { name: m[1].trim(), url: m[2].trim(), rest: m[3].trim() };
+    return { name: (text || '').replace(/^\s*[-*]\s*/, '').trim(), url: fallbackUrl || '', rest: '' };
+}
+
+function normalizeLinks(links: any) {
+    if (!links || typeof links !== 'object') return links || undefined;
+    const hasMd = (s?: string) => /\[[^\]]+\]\([^)]+\)/.test(s || '');
+    const fixPrefix = (p?: string) => { const s = (p || '').replace(/^\s*[-*]\s*/, '').trim(); return s ? s + ' ' : ''; };
+    const out: any = { ...links };
+    if (Array.isArray(links.news)) out.news = links.news.map((n: any) =>
+        hasMd(n?.link_text)
+            ? ((p) => ({ prefix: fixPrefix(n.prefix), link_text: p.name, url: p.url || n.url || '', rest: p.rest || n.rest || '' }))(parseMdLink(n.link_text, n.url))
+            : { ...n, prefix: fixPrefix(n?.prefix) });
+    if (Array.isArray(links.tools)) out.tools = links.tools.map((t: any) =>
+        hasMd(t?.name)
+            ? ((p) => ({ name: p.name, url: p.url, desc: p.rest, sponsored: !!t.sponsored }))(parseMdLink(t.name, t.url))
+            : t);
+    if (Array.isArray(links.jobs)) out.jobs = links.jobs.map((j: any) =>
+        hasMd(j?.company)
+            ? ((p) => ({ company: p.name, url: p.url, role: p.rest, salary: j.salary || '' }))(parseMdLink(j.company, j.url))
+            : j);
+    return out;
+}
+
 function mapRow(row: any): Newsletter {
     return {
         id: row.id || row.slug,
@@ -101,7 +132,7 @@ function mapRow(row: any): Newsletter {
         status: row.status || 'published',
         description: row.description || '',
         stories: row.stories || undefined,
-        links: row.links || undefined,
+        links: normalizeLinks(row.links),
         games: row.games || undefined,
         poll: row.poll || undefined,
         poll_results: row.poll_results || undefined,
