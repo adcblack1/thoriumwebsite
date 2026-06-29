@@ -78,7 +78,7 @@ const PUB_TO_NL: Record<string, string> = {
 // appended to the intro. The TOC is rendered separately from `toc`, so strip that
 // trailing block here — the single load chokepoint — to avoid showing it twice.
 function stripInThisIssue(intro: string): string {
-    const i = intro.search(/\n+[ \t#>*]*IN THIS ISSUE\b/i);
+    const i = intro.search(/\n+[ \t#>*]*IN (?:THIS ISSUE|TODAY.?S EDITION)\b/i);
     return i === -1 ? intro : intro.slice(0, i).trimEnd();
 }
 

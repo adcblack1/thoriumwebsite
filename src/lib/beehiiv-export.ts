@@ -37,11 +37,20 @@ function abs(url: string): string {
 // ── Markdown → HTML (for condensed_content which is stored as markdown) ──
 export function mdToHtml(md: string): string {
   if (!md) return '';
-  // Already HTML? Return as-is
-  if (md.trimStart().startsWith('<p>') || md.trimStart().startsWith('<div>')) return md;
-  let html = md;
-  // Strip leading category + headline (e.g. "PRODUCTS\n\n# AI is now writing the AI\n\n")
-  html = html.replace(/^[A-Z\s&]+\n\n#[^\n]+\n\n/, '');
+  // Strip leaked model artifacts the ingest pipeline sometimes prepends: a "</think>"
+  // reasoning tag + the category and "# Title" header (markdown OR HTML form), which
+  // otherwise render as a stray drop-cap on the category and a duplicated title.
+  const src = md.replace(/<think[\s\S]*?<\/think>/gi, '').replace(/<\/?think>/gi, '');
+  // Already HTML? strip a leading <p>CATEGORY</p> + <h1>Title</h1>, then return as-is.
+  if (src.trimStart().startsWith('<p>') || src.trimStart().startsWith('<div>')) {
+    return src
+      .replace(/^\s*<p[^>]*>\s*(?:<strong[^>]*>\s*)?[A-Z][A-Z0-9 &/]*\s*(?:<\/strong>\s*)?<\/p>\s*<h1[^>]*>[\s\S]*?<\/h1>/i, '')
+      .replace(/^\s*<h1[^>]*>[\s\S]*?<\/h1>/i, '')
+      .trimStart();
+  }
+  let html = src.trimStart();
+  // Strip leading "CATEGORY\n\n# Headline\n\n" (category plain-caps or **bold**)
+  html = html.replace(/^(?:\*\*[^*\n]+\*\*|[A-Z][A-Z0-9 &/]*)\s*\n+#+\s*[^\n]+\n+/, '');
   // Convert **bold**
   html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
   // Convert *italic* / _italic_
