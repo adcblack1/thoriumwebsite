@@ -113,7 +113,6 @@ export const MVF_OFFERS: MvfOffer[] = [
       { q: 'job_function', anyOf: [FN.hr, FN.exec, FN.ops] },
     ] }] },
   { id: 'zendesk', brand: 'Zendesk', category: 'IT Software', cpc: 9.07, budget: 100,
-    paused: true, // capped on appwiki — pulled from rotation; flip to false to restore
     cta: 'Try for Free', href: 'https://thova.co/zendesk',
     blurb: 'AI-powered IT and customer-service desk that resolves tickets faster.',
     logo: '/thumbnails/mvf/zendesk-logo.png', thumb: '/thumbnails/mvf/zendesk.png',
@@ -121,7 +120,6 @@ export const MVF_OFFERS: MvfOffer[] = [
       { q: 'job_function', anyOf: [FN.cs, FN.eng, FN.ops, FN.data, FN.product] },
     ] }] },
   { id: 'creatio', brand: 'Creatio', category: 'CRM', cpc: 5.98, budget: 150,
-    paused: true, // capped on appwiki — pulled from rotation; flip to false to restore
     cta: 'Start Free Trial', href: 'https://thova.co/creatio',
     blurb: 'No-code CRM with AI-driven workflow automation for sales, marketing, and service teams.',
     logo: '/thumbnails/mvf/creatio-logo.png', thumb: '/thumbnails/mvf/creatio.png',
@@ -138,6 +136,7 @@ export const MVF_OFFERS: MvfOffer[] = [
       { q: 'company_size', anyOf: [SIZE.mid, SIZE.small, SIZE.startup] },
     ] }] },
   { id: 'wheniwork', brand: 'When I Work', category: 'Scheduling', cpc: 4.48, budget: 200,
+    paused: true, // paused on appwiki (advertiser pause, not a budget cap); flip to false when it relaunches
     cta: 'Try Free', href: 'https://thova.co/wheniwork',
     blurb: 'AI-assisted scheduling that builds shifts, tracks time, and messages your team — all in one app.',
     logo: '/thumbnails/mvf/wheniwork-logo.png', thumb: '/thumbnails/mvf/wheniwork.png',
