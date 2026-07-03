@@ -1,5 +1,5 @@
 import { getNewsletters } from '@/lib/newsletters';
-import { getArticleBySlug } from '@/lib/articles';
+import { getArticleCardsBySlugs } from '@/lib/articles';
 import { NextResponse } from 'next/server';
 
 export async function GET(request: Request) {
@@ -10,17 +10,21 @@ export async function GET(request: Request) {
     try {
         const { data: newsletters } = await getNewsletters({ limit, sort: 'newest', publication: publication || 'all' });
 
-        // Resolve article data for each newsletter
-        const enriched = await Promise.all(newsletters.map(async nl => {
-            const resolvedArticles = (await Promise.all(
-                nl.article_slugs.map(s => getArticleBySlug(s))
-            )).filter(Boolean);
+        // One batched query for every referenced article (title/subtitle/thumb
+        // only) instead of a full-row query per slug per newsletter (old N+1).
+        const articleCards = await getArticleCardsBySlugs(
+            newsletters.flatMap(nl => nl.article_slugs || [])
+        );
 
-            const firstArticle = resolvedArticles[0];
-            
+        const enriched = newsletters.map(nl => {
+            // First slug that actually resolves (same behavior as the old
+            // resolvedArticles.filter(Boolean)[0]).
+            const firstSlug = (nl.article_slugs || []).find(s => articleCards.has(s));
+            const firstArticle = firstSlug ? articleCards.get(firstSlug) : undefined;
+
             // For child newsletters with stories, use the first story's thumbnail
             const storyThumb = nl.stories?.[0]?.thumbnail_url;
-            
+
             return {
                 id: nl.id,
                 slug: nl.slug,
@@ -37,7 +41,7 @@ export async function GET(request: Request) {
                 writers: nl.writers,
                 banner_image_url: nl.banner_image_url || '',
             };
-        }));
+        });
 
         return NextResponse.json({ data: enriched });
     } catch (error) {

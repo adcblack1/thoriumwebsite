@@ -92,6 +92,29 @@ export async function getArticles(options?: {
     };
 }
 
+// Light batched lookup for newsletter cards — one query for many slugs, no
+// article bodies. Replaces the per-slug getArticleBySlug N+1 in /api/newsletters.
+export async function getArticleCardsBySlugs(
+    slugs: string[]
+): Promise<Map<string, { title: string; subtitle: string; thumbnail_url: string }>> {
+    const unique = [...new Set(slugs.filter(Boolean))];
+    const map = new Map<string, { title: string; subtitle: string; thumbnail_url: string }>();
+    if (!unique.length) return map;
+    const { data, error } = await supabase
+        .from('newsroom_articles')
+        .select('slug, headline, subtitle, hook, thumbnail_url')
+        .in('slug', unique);
+    if (error || !data) { console.error('getArticleCardsBySlugs error:', error); return map; }
+    for (const row of data) {
+        map.set(row.slug, {
+            title: row.headline || row.slug,
+            subtitle: row.subtitle || row.hook || '',
+            thumbnail_url: row.thumbnail_url || '',
+        });
+    }
+    return map;
+}
+
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
     const { data, error } = await supabase
         .from('newsroom_articles')
