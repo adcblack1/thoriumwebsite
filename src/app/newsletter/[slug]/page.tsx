@@ -2,6 +2,7 @@ import { getNewsletterBySlug } from '@/lib/newsletters';
 import { getArticleBySlug } from '@/lib/articles';
 import { formatEditionDate } from '@/lib/format-date';
 import { mdToHtml } from '@/lib/beehiiv-export';
+import { ensureValley } from '@/lib/valley';
 import { SubscribeForm } from '@/components/subscribe-form';
 import { SubscribeCTA } from '@/components/SubscribeCTA';
 import { RecommendedNewsletters } from '@/components/RecommendedNewsletters';
@@ -331,7 +332,10 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
                 <ArticleContent
                   className="nl-body"
                   html={(() => {
-                    let bodyHtml = mdToHtml((article as any).newsletter_content || article.content || '<p>Content not available.</p>')
+                    // Heal a missing/"---" Into-the-Valley divider before rendering (flagship/catalyst only — lab uses The Verdict)
+                    let rawBody = (article as any).newsletter_content || article.content || '<p>Content not available.</p>';
+                    if (!isLab) rawBody = ensureValley(rawBody);
+                    let bodyHtml = mdToHtml(rawBody)
                       .replace(/\/thumbnails\/valley-view-header\.png/g, '/IN THE VALLEY NEWS.png')
                       .replace(/\/thumbnails\/into-the-valley\.png/g, '/IN THE VALLEY NEWS.png')
                       .replace(/<p[^>]*><strong[^>]*>Our Valley View<\/strong><\/p>/gi,
@@ -385,7 +389,7 @@ export default async function NewsletterPage({ params, searchParams }: Newslette
           // 1. Replace "The Formula" / "The Verdict" headers with images
           // 2. Replace "Have Claude Explain..." + prompt block with a link to /prompts/slug
           const storySlug = story.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-          let transformedContent = mdToHtml(story.content || '<p>Content not available.</p>')
+          let transformedContent = mdToHtml(isLab ? (story.content || '<p>Content not available.</p>') : ensureValley(story.content || '<p>Content not available.</p>'))
             .replace(/<h2>The Formula<\/h2>/gi,
               '<div style="text-align:center;padding:20px 0 8px;"><img class="section-header-img" src="/thumbnails/the-formula.png" alt="The Formula" /></div>')
             .replace(/<h2>The Verdict<\/h2>/gi,

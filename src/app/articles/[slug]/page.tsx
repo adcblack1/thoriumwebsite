@@ -1,4 +1,5 @@
 import { getArticles, getArticleBySlug } from '@/lib/articles';
+import { ensureValley } from '@/lib/valley';
 import { SubscribeCTA } from '@/components/SubscribeCTA';
 import { ArticleContent } from '@/components/ArticleContent';
 import { SubscribeForm } from '@/components/subscribe-form';
@@ -271,7 +272,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               prose-strong:text-[#1b1b1b]
               prose-ul:text-[#1b1b1b] prose-ol:text-[#1b1b1b]
               prose-blockquote:border-l-[#5170ff] prose-blockquote:text-[#1b1b1b]/80"
-                        html={(article.content || '<p>Content not available.</p>')
+                        html={ensureValley(article.content || '<p>Content not available.</p>')
                                 .replace(/valley-view-header\.png/g, 'IN THE VALLEY NEWS.png')
                                 .replace(/Our Valley View/g, 'Valley View')
                                 .replace(/<div[^>]*class="vv-header"[^>]*>[\s\S]*?<\/div>/g, '<div style="text-align:center;margin:2em 0 1em;"><img src="/IN THE VALLEY NEWS.png" alt="In the Valley" style="display:inline-block;width:100%;height:auto;" /></div>')

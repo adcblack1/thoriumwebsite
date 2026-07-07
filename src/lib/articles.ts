@@ -125,6 +125,34 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     return mapRow(data);
 }
 
+// Server-side article search for the nav search overlay. Light select (no bodies —
+// the old client-side approach shipped a ~2 MB payload before it could match anything),
+// case-insensitive across headline, hook, subtitle, and category.
+export async function searchArticles(q: string, limit = 20): Promise<Array<{
+    slug: string; title: string; subtitle: string; category: string; thumbnail_url: string;
+}>> {
+    // Sanitize: strip PostgREST or-filter delimiters + LIKE wildcards from user input
+    const clean = q.replace(/[%_,()]/g, ' ').trim();
+    if (clean.length < 2) return [];
+    const pat = `%${clean}%`;
+    const { data, error } = await supabase
+        .from('newsroom_articles')
+        .select('slug, headline, subtitle, hook, category, thumbnail_url')
+        .eq('status', 'published')
+        .neq('newsletter', 'lab')
+        .or(`headline.ilike.${pat},hook.ilike.${pat},subtitle.ilike.${pat},category.ilike.${pat}`)
+        .order('published_at', { ascending: false })
+        .limit(limit);
+    if (error) { console.error('searchArticles error:', error); return []; }
+    return (data || []).map(row => ({
+        slug: row.slug,
+        title: row.headline || row.slug,
+        subtitle: row.subtitle || row.hook || '',
+        category: row.category || '',
+        thumbnail_url: row.thumbnail_url || '',
+    }));
+}
+
 export async function getArticlesByCategory(category: string, limit = 10): Promise<Article[]> {
     const { data, error } = await supabase
         .from('newsroom_articles')

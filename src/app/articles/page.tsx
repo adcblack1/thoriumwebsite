@@ -8,7 +8,6 @@ import { SubscribeCTA } from '@/components/SubscribeCTA';
 import { FadeIn } from '@/components/FadeIn';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import companyTags from '@/data/company-tags.json';
 
 interface Article {
     id: string;
@@ -35,7 +34,6 @@ export default function ArticlesPage() {
     const [articles, setArticles] = useState<Article[]>([]);
     const [categories, setCategories] = useState<string[]>([]);
     const [activeCategory, setActiveCategory] = useState('All');
-    const [activeCompany, setActiveCompany] = useState('All');
 
     useEffect(() => {
         fetch('/api/articles?limit=100')
@@ -43,10 +41,15 @@ export default function ArticlesPage() {
             .then(data => {
                 const arts = data.data || [];
                 setArticles(arts);
-                // Extract unique categories in order
+                // Extract unique categories in order — trimmed, case-insensitive dedupe,
+                // empty/null skipped (they rendered as blank + duplicate pills).
                 const cats: string[] = [];
+                const seen = new Set<string>();
                 arts.forEach((a: Article) => {
-                    if (!cats.includes(a.category)) cats.push(a.category);
+                    const cat = (a.category || '').trim();
+                    if (!cat) return;
+                    const key = cat.toLowerCase();
+                    if (!seen.has(key)) { seen.add(key); cats.push(cat); }
                 });
                 setCategories(cats);
             })
@@ -63,23 +66,11 @@ export default function ArticlesPage() {
         }
     }, [searchParams, categories]);
 
-    const [filterMode, setFilterMode] = useState<'topic' | 'company'>('topic');
-
-    // Reset sub-filter when switching modes
-    const handleModeSwitch = (mode: 'topic' | 'company') => {
-        setFilterMode(mode);
-        if (mode === 'topic') {
-            setActiveCompany('All');
-        } else {
-            setActiveCategory('All');
-        }
-    };
-
-    const filtered = articles.filter(a => {
-        const matchCategory = activeCategory === 'All' || a.category === activeCategory;
-        const matchCompany = activeCompany === 'All' || (a.tags || []).includes(activeCompany);
-        return matchCategory && matchCompany;
-    });
+    // Match categories case-insensitively so pill filters catch case-variant rows
+    const filtered = articles.filter(a =>
+        activeCategory === 'All' ||
+        (a.category || '').trim().toLowerCase() === activeCategory.toLowerCase()
+    );
 
     return (
         <>
@@ -101,106 +92,38 @@ export default function ArticlesPage() {
                     </FadeIn>
                 </div>
 
-                {/* Mode toggle: Read by Topic / Read by Company */}
-                <div className="relative" style={{ backgroundColor: '#000000' }}>
-                    <div className="max-w-7xl lg:max-w-5xl mx-auto px-6 border-b border-white/20">
-                        <div className="flex justify-center gap-8 py-3">
-                            <button
-                                onClick={() => handleModeSwitch('topic')}
-                                className="font-inter text-xs font-semibold uppercase tracking-wider pb-2 whitespace-nowrap relative group"
-                                style={{ color: filterMode === 'topic' ? '#5170ff' : '#ffffff' }}
-                            >
-                                Read by Topic
-                                <span
-                                    className="absolute bottom-0 left-0 h-0.5 transition-all duration-300"
-                                    style={{ backgroundColor: '#5170ff', width: filterMode === 'topic' ? '100%' : '0%' }}
-                                />
-                                {filterMode !== 'topic' && (
-                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#5170ff' }} />
-                                )}
-                            </button>
-                            <button
-                                onClick={() => handleModeSwitch('company')}
-                                className="font-inter text-xs font-semibold uppercase tracking-wider pb-2 whitespace-nowrap relative group"
-                                style={{ color: filterMode === 'company' ? '#5170ff' : '#ffffff' }}
-                            >
-                                Read by Company
-                                <span
-                                    className="absolute bottom-0 left-0 h-0.5 transition-all duration-300"
-                                    style={{ backgroundColor: '#5170ff', width: filterMode === 'company' ? '100%' : '0%' }}
-                                />
-                                {filterMode !== 'company' && (
-                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#5170ff' }} />
-                                )}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Sub-filter row: shows categories OR companies based on mode */}
+                {/* Category filter row */}
                 <div className="sticky top-0 z-20 relative" style={{ backgroundColor: '#000000' }}>
                     <div className="absolute right-0 top-0 bottom-0 w-20 z-10 pointer-events-none lg:hidden" style={{ background: 'linear-gradient(to left, #000000 20%, transparent)' }} />
                     <div className="max-w-7xl lg:max-w-5xl mx-auto px-6 border-b border-white/20">
                         <div className="flex gap-6 overflow-x-auto py-3" style={{ scrollbarWidth: 'none' }}>
                             <style dangerouslySetInnerHTML={{ __html: '.cat-filters::-webkit-scrollbar { display: none; }' }} />
 
-                            {filterMode === 'topic' ? (
-                                <>
-                                    <button
-                                        onClick={() => setActiveCategory('All')}
-                                        className="font-inter text-xs font-semibold uppercase tracking-wider pb-2 whitespace-nowrap relative group"
-                                        style={{ color: activeCategory === 'All' ? '#5170ff' : '#ffffff' }}
-                                    >
-                                        All
-                                        <span className="absolute bottom-0 left-0 h-0.5 transition-all duration-300" style={{ backgroundColor: '#5170ff', width: activeCategory === 'All' ? '100%' : '0%' }} />
-                                        {activeCategory !== 'All' && (
-                                            <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#5170ff' }} />
-                                        )}
-                                    </button>
-                                    {categories.map(cat => (
-                                        <button
-                                            key={cat}
-                                            onClick={() => setActiveCategory(cat)}
-                                            className="font-inter text-xs font-semibold uppercase tracking-wider pb-2 whitespace-nowrap relative group"
-                                            style={{ color: activeCategory === cat ? '#5170ff' : '#ffffff' }}
-                                        >
-                                            {cat}
-                                            <span className="absolute bottom-0 left-0 h-0.5 transition-all duration-300" style={{ backgroundColor: '#5170ff', width: activeCategory === cat ? '100%' : '0%' }} />
-                                            {activeCategory !== cat && (
-                                                <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#5170ff' }} />
-                                            )}
-                                        </button>
-                                    ))}
-                                </>
-                            ) : (
-                                <>
-                                    <button
-                                        onClick={() => setActiveCompany('All')}
-                                        className="font-inter text-xs font-semibold uppercase tracking-wider pb-2 whitespace-nowrap relative group"
-                                        style={{ color: activeCompany === 'All' ? '#5170ff' : '#ffffff' }}
-                                    >
-                                        All
-                                        <span className="absolute bottom-0 left-0 h-0.5 transition-all duration-300" style={{ backgroundColor: '#5170ff', width: activeCompany === 'All' ? '100%' : '0%' }} />
-                                        {activeCompany !== 'All' && (
-                                            <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#5170ff' }} />
-                                        )}
-                                    </button>
-                                    {(companyTags as string[]).map(company => (
-                                        <button
-                                            key={company}
-                                            onClick={() => setActiveCompany(company)}
-                                            className="font-inter text-xs font-semibold uppercase tracking-wider pb-2 whitespace-nowrap relative group"
-                                            style={{ color: activeCompany === company ? '#5170ff' : '#ffffff' }}
-                                        >
-                                            {company}
-                                            <span className="absolute bottom-0 left-0 h-0.5 transition-all duration-300" style={{ backgroundColor: '#5170ff', width: activeCompany === company ? '100%' : '0%' }} />
-                                            {activeCompany !== company && (
-                                                <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#5170ff' }} />
-                                            )}
-                                        </button>
-                                    ))}
-                                </>
-                            )}
+                            <button
+                                onClick={() => setActiveCategory('All')}
+                                className="font-inter text-xs font-semibold uppercase tracking-wider pb-2 whitespace-nowrap relative group"
+                                style={{ color: activeCategory === 'All' ? '#5170ff' : '#ffffff' }}
+                            >
+                                All
+                                <span className="absolute bottom-0 left-0 h-0.5 transition-all duration-300" style={{ backgroundColor: '#5170ff', width: activeCategory === 'All' ? '100%' : '0%' }} />
+                                {activeCategory !== 'All' && (
+                                    <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#5170ff' }} />
+                                )}
+                            </button>
+                            {categories.map(cat => (
+                                <button
+                                    key={cat}
+                                    onClick={() => setActiveCategory(cat)}
+                                    className="font-inter text-xs font-semibold uppercase tracking-wider pb-2 whitespace-nowrap relative group"
+                                    style={{ color: activeCategory === cat ? '#5170ff' : '#ffffff' }}
+                                >
+                                    {cat}
+                                    <span className="absolute bottom-0 left-0 h-0.5 transition-all duration-300" style={{ backgroundColor: '#5170ff', width: activeCategory === cat ? '100%' : '0%' }} />
+                                    {activeCategory !== cat && (
+                                        <span className="absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" style={{ backgroundColor: '#5170ff' }} />
+                                    )}
+                                </button>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -210,8 +133,8 @@ export default function ArticlesPage() {
             {/* CONTENT AREA                                */}
             {/* ═══════════════════════════════════════════ */}
 
-            {/* ALL + TOPIC MODE: Front-page style layout */}
-            {filterMode === 'topic' && activeCategory === 'All' && articles.length > 0 && (
+            {/* ALL: Front-page style layout */}
+            {activeCategory === 'All' && articles.length > 0 && (
                 <>
                     {/* LATEST – hero grid */}
                     <section className="bg-white pt-10 pb-4">
@@ -321,7 +244,7 @@ export default function ArticlesPage() {
 
                     {/* CATEGORY SECTIONS */}
                     {categories.map(cat => {
-                        const catArticles = articles.filter(a => a.category === cat);
+                        const catArticles = articles.filter(a => (a.category || '').trim().toLowerCase() === cat.toLowerCase());
                         if (catArticles.length === 0) return null;
                         return (
                             <section key={cat} className="bg-white pb-4">
@@ -416,8 +339,8 @@ export default function ArticlesPage() {
                 </>
             )}
 
-            {/* FILTERED VIEW: specific topic or company selected */}
-            {!(filterMode === 'topic' && activeCategory === 'All') && filtered.length > 0 && (
+            {/* FILTERED VIEW: specific topic selected */}
+            {activeCategory !== 'All' && filtered.length > 0 && (
                 <section className="bg-white pt-10 pb-16">
                     <div className="max-w-7xl mx-auto px-6">
 
@@ -508,7 +431,7 @@ export default function ArticlesPage() {
                 </section>
             )}
 
-            {filtered.length === 0 && !(filterMode === 'topic' && activeCategory === 'All') && (
+            {filtered.length === 0 && activeCategory !== 'All' && (
                 <section className="bg-white py-20">
                     <div className="max-w-7xl lg:max-w-5xl mx-auto px-6 text-center">
                         <p className="font-inter text-[#1b1b1b]/40">No articles in this category yet.</p>

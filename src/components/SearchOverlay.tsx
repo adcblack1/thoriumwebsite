@@ -6,10 +6,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 interface SearchResult {
-    id: string;
     slug: string;
     title: string;
     subtitle?: string;
+    category?: string;
     thumbnail_url?: string;
 }
 
@@ -21,27 +21,38 @@ interface SearchOverlayProps {
 export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
     const [query, setQuery] = useState('');
     const [results, setResults] = useState<SearchResult[]>([]);
-    const [allArticles, setAllArticles] = useState<SearchResult[]>([]);
+    const [loading, setLoading] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
+    // Guards stale responses when a slower query resolves after a newer one
+    const requestSeq = useRef(0);
 
-    // Fetch articles from Supabase-backed API when overlay opens
+    // Debounced server-side search — queries Supabase across title/subtitle/category
+    // instead of prefetching every article body (~2 MB) to filter client-side.
     useEffect(() => {
-        if (isOpen && allArticles.length === 0) {
-            fetch('/api/articles?limit=500&status=published')
+        const q = query.trim();
+        if (q.length < 2) {
+            setResults([]);
+            setLoading(false);
+            return;
+        }
+        setLoading(true);
+        const seq = ++requestSeq.current;
+        const t = setTimeout(() => {
+            fetch(`/api/search?q=${encodeURIComponent(q)}`)
                 .then(res => res.json())
                 .then(json => {
-                    const mapped = (json.data || []).map((a: any) => ({
-                        id: a.id || a.slug,
-                        slug: a.slug,
-                        title: a.title,
-                        subtitle: a.subtitle || a.category,
-                        thumbnail_url: a.thumbnail_url,
-                    }));
-                    setAllArticles(mapped);
+                    if (seq !== requestSeq.current) return; // stale
+                    setResults(json.data || []);
+                    setLoading(false);
                 })
-                .catch(() => {});
-        }
-    }, [isOpen, allArticles.length]);
+                .catch(() => {
+                    if (seq !== requestSeq.current) return;
+                    setResults([]);
+                    setLoading(false);
+                });
+        }, 250);
+        return () => clearTimeout(t);
+    }, [query]);
 
     // Focus input when overlay opens
     useEffect(() => {
@@ -65,20 +76,9 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
         return () => window.removeEventListener('keydown', handleKey);
     }, [isOpen, onClose]);
 
-    // Search logic
     const handleSearch = useCallback((value: string) => {
         setQuery(value);
-        if (value.trim().length < 2) {
-            setResults([]);
-            return;
-        }
-        const q = value.toLowerCase();
-        const filtered = allArticles.filter(
-            a => a.title.toLowerCase().includes(q) ||
-                (a.subtitle && a.subtitle.toLowerCase().includes(q))
-        );
-        setResults(filtered);
-    }, [allArticles]);
+    }, []);
 
     // Highlight matching text
     const highlight = (text: string, q: string) => {
@@ -126,9 +126,13 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                     </div>
 
                     {/* Results */}
-                    {query.length >= 2 && (
+                    {query.trim().length >= 2 && (
                         <div className="max-h-[60vh] overflow-y-auto">
-                            {results.length === 0 ? (
+                            {loading && results.length === 0 ? (
+                                <div className="px-5 py-12 text-center">
+                                    <p className="text-[#1b1b1b]/40 text-base">Searching&hellip;</p>
+                                </div>
+                            ) : results.length === 0 ? (
                                 <div className="px-5 py-12 text-center">
                                     <p className="text-[#1b1b1b]/40 text-base">
                                         No articles found for &ldquo;{query}&rdquo;
@@ -143,7 +147,7 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                                     </div>
                                     {results.map((article) => (
                                         <Link
-                                            key={article.id}
+                                            key={article.slug}
                                             href={`/articles/${article.slug}`}
                                             onClick={onClose}
                                         >
@@ -162,9 +166,9 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
                                                     <h4 className="font-times font-bold text-[#1b1b1b] text-base leading-snug line-clamp-2">
                                                         {highlight(article.title, query)}
                                                     </h4>
-                                                    {article.subtitle && (
+                                                    {(article.subtitle || article.category) && (
                                                         <p className="text-[#1b1b1b]/50 text-sm mt-1 line-clamp-1">
-                                                            {highlight(article.subtitle, query)}
+                                                            {highlight(article.subtitle || article.category || '', query)}
                                                         </p>
                                                     )}
                                                 </div>

@@ -17,46 +17,64 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Email is required' }, { status: 400 });
     }
 
-    // Check if subscriber already exists
-    const { data: existing } = await supabase()
-      .from('subscribers')
-      .select('id')
-      .eq('email', email)
-      .single();
+    // Getting the subscriber onto beehiiv (the actual list) must NOT depend on
+    // the tracking database being healthy. If Supabase is slow/down we skip the
+    // tracking row and STILL add them to beehiiv below — a DB hiccup must never
+    // cost a paid signup again (that's exactly what the July 2 outage did).
+    let subscriberId: string | null = null;
 
-    if (existing) {
-      // Return full subscriber record so client can restore progress
-      const { data: fullRecord } = await supabase()
+    // Existence check is best-effort: if the DB errors we just proceed, and
+    // beehiiv's reactivate_existing handles any duplicate cleanly.
+    try {
+      const { data: existing } = await supabase()
         .from('subscribers')
-        .select('*')
-        .eq('id', existing.id)
+        .select('id')
+        .eq('email', email)
         .single();
 
-      return NextResponse.json({
-        subscriber_id: existing.id,
-        existing: true,
-        data: fullRecord,
-      });
+      if (existing) {
+        // Return full subscriber record so client can restore progress
+        const { data: fullRecord } = await supabase()
+          .from('subscribers')
+          .select('*')
+          .eq('id', existing.id)
+          .single();
+
+        return NextResponse.json({
+          subscriber_id: existing.id,
+          existing: true,
+          data: fullRecord,
+        });
+      }
+    } catch (e) {
+      console.error('Existence check failed (continuing to beehiiv):', e);
     }
 
-    const { data, error } = await supabase()
-      .from('subscribers')
-      .insert({
-        email,
-        ...(child_newsletters ? { child_newsletters } : {}),
-        ...(fbp ? { fbp } : {}),
-        ...(fbc ? { fbc } : {}),
-        ...(utm_source ? { utm_source } : {}),
-        ...(utm_medium ? { utm_medium } : {}),
-        ...(utm_campaign ? { utm_campaign } : {}),
-        ...(utm_content ? { utm_content } : {}),
-      })
-      .select('id')
-      .single();
+    // Insert the tracking row (best-effort). On failure we DO NOT abort — we
+    // fall through to the beehiiv subscribe so the person still lands on the list.
+    try {
+      const { data, error } = await supabase()
+        .from('subscribers')
+        .insert({
+          email,
+          ...(child_newsletters ? { child_newsletters } : {}),
+          ...(fbp ? { fbp } : {}),
+          ...(fbc ? { fbc } : {}),
+          ...(utm_source ? { utm_source } : {}),
+          ...(utm_medium ? { utm_medium } : {}),
+          ...(utm_campaign ? { utm_campaign } : {}),
+          ...(utm_content ? { utm_content } : {}),
+        })
+        .select('id')
+        .single();
 
-    if (error) {
-      console.error('Create subscriber error:', error);
-      return NextResponse.json({ error: 'Failed to create subscriber' }, { status: 500 });
+      if (error) {
+        console.error('Create subscriber row failed (continuing to beehiiv):', error);
+      } else {
+        subscriberId = data?.id ?? null;
+      }
+    } catch (e) {
+      console.error('Create subscriber threw (continuing to beehiiv):', e);
     }
 
     // Immediately subscribe to ALL selected Beehiiv publications
@@ -154,12 +172,16 @@ export async function POST(request: Request) {
           if (!mainBeehiivId) mainBeehiivId = id;
         }
 
-        // Store first beehiiv ID in Supabase
-        if (mainBeehiivId) {
-          await supabase()
-            .from('subscribers')
-            .update({ beehiiv_subscriber_id: mainBeehiivId })
-            .eq('id', data.id);
+        // Store first beehiiv ID in Supabase (best-effort — only if we have a tracking row)
+        if (mainBeehiivId && subscriberId) {
+          try {
+            await supabase()
+              .from('subscribers')
+              .update({ beehiiv_subscriber_id: mainBeehiivId })
+              .eq('id', subscriberId);
+          } catch (e) {
+            console.error('Store beehiiv id failed (non-fatal):', e);
+          }
         }
       }
     }
@@ -186,7 +208,9 @@ export async function POST(request: Request) {
           em: sha256(email),
           client_ip_address: bestIp,
           client_user_agent: request.headers.get('user-agent') || '',
-          external_id: sha256(data.id), // Hashed Supabase subscriber_id — matches step-9 CAPI format
+          // Hashed Supabase subscriber_id — matches step-9 CAPI format. Omitted
+          // if the tracking row failed to write (DB down); email still matches.
+          ...(subscriberId ? { external_id: sha256(subscriberId) } : {}),
         };
         if (fbp) user_data.fbp = fbp;
         if (fbc) user_data.fbc = fbc;
@@ -224,7 +248,7 @@ export async function POST(request: Request) {
       }
     }
 
-    return NextResponse.json({ subscriber_id: data.id });
+    return NextResponse.json({ subscriber_id: subscriberId });
   } catch (err) {
     console.error('Subscribe API error:', err);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
