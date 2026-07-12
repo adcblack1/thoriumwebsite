@@ -153,6 +153,7 @@ export const MVF_OFFERS: MvfOffer[] = [
       { q: 'company_size', anyOf: [SIZE.startup, SIZE.small, SIZE.solo] },
     ] }] },
   { id: 'godaddy-pos', brand: 'GoDaddy', category: 'POS', cpc: 3.88, budget: 100,
+    paused: true, // capped on appwiki (Jul) — pulled from rotation; flip to false to restore
     cta: 'Get Started', href: 'https://thova.co/godaddy-pos',
     blurb: 'AI-powered point-of-sale, payments, and an online store that all sync in one dashboard.',
     logo: '/thumbnails/mvf/godaddy-logo.png', thumb: '/thumbnails/mvf/godaddy-pos.png',
